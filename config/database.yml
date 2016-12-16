@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: seinfeldcalendar_production
-  username: seinfeldcalendar
-  password: <%= ENV['SEINFELDCALENDAR_DATABASE_PASSWORD'] %>
+  database: d1du7h2l0k77lc
+  username: wrtdmitdtgfulo
+  password: 2dd70f3bd09c0b5f025897b4b42f8ffb9ccb023ed2cac376aa4374c30e4aae7b
