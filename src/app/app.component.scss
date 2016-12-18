@@ -1,69 +1,76 @@
-$border: 		#c6c6c6;
-$border-focus: 	#9FB1C1;
-$aqua: 			#07B3A1;
-$asphalt: 		#506982;
-header{
+$border: #c6c6c6;
+$border-focus: #9FB1C1;
+$aqua: #07B3A1;
+$asphalt: #506982;
+
+header {
 	font-family: 'Lato', 'sans-serif';
-	color: $aqua;
-	padding: 20px;
+	color: white;
 	box-sizing: border-box;
-	h1{
+
+	h1 {
+		float: left;
 		text-align: center;
 		font-weight: 400;
 		font-size: 50px;
-		margin-bottom: 10px;
-		span{
-			font-weight:300;
+		margin-left: 10%;
+		span {
+			font-weight: 300;
 		}
 	}
-	p{
+
+	p {
 		font-weight: 400;
 		font-size: 16px;
 		color: rgba(255,255,255,.9);
-     letter-spacing: .05em;
-     margin-bottom: 10px;
+		letter-spacing: 0.05em;
+		margin-bottom: 10px;
 	}
-  h3,
-  h3 a{
-    color: #32CCFE;
-    a{
-      transition: color .3s;
-      &:hover{
-        color: white;
-      }
-    }
-  }
+
+	.user-information {
+		float: right;
+		margin: 50px 20px;
+
+		a {
+			text-decoration: none;
+			color: $aqua;
+			box-sizing: border-box;
+			border-radius: 3px;
+			background-color: white;
+			padding: 10px 18px;
+			font-size: 14px;
+			margin: 0 10px;
+			transition: background-color 0.2s;
+
+			&:hover {
+				background-color: #eff;
+			}
+		}
+	}
+
+	.clear {
+		clear: both;
+	}
 }
+
 section {
-	router-outlet{
+	router-outlet {
 		display: block;
 		padding-bottom: 25px;
 	}
 	font-family: 'Lato', 'sans-serif';
 	color: $aqua;
 	padding: 3em 100px;
-	a{
+
+	a {
 		color: $aqua;
 		border-bottom: 1px solid white;
 		padding: 10px;
 		margin: 10px;
-		transition: color 0.5s, border 0.5s ease-out, padding 0.2s ;
-		&:hover{
+
+		&:hover {
 			text-decoration: none;
 			color: #e74c3c;
-			border-bottom: 1px solid #e74c3c;
-			padding: 12px;
-		}
-		&:active{
-			text-decoration: none;
-			color: #e74c3c;
-			border-bottom: 1px solid #e74c3c;
-			padding: 15px;
-		}
-		&:focus{
-			text-decoration: none;
-			color: #e74c3c;
-			border-bottom: 1px solid #e74c3c;
 		}
 	}
 }

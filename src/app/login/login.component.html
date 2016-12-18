@@ -1,0 +1,30 @@
+<form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+    <!--  General -->
+    <div class="form-group">
+        <h2 class="heading">Login</h2>
+        <div class="controls">
+            <input formControlName="email" type="email" id="email" class="floatLabel" name="email" (focus)="moveLabelUp('email')" (blur)="moveLabelDown('email')" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+            <label id="label-email" for="email">Email</label>
+        </div>
+        <div class="controls">
+            <input formControlName="password" type="password" id="password" class="floatLabel" name="password" (focus)="moveLabelUp('password')" (blur)="moveLabelDown('password')" required minlength='8'>
+            <label id="label-password" for="password">Password</label>
+            <i class="fa fa-eye-slash" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></i>
+        </div>
+        <div class="alert alert-warning" id="wrong-input" hidden>
+            <b>Wrong username/password</b>
+        </div>
+        <div class="controls">
+            <p style="text-align: center; color: #888;">
+                New to Seinfeld Calendar? <a class="sign-up" href="/signup">Sign Up now</a>
+            </p>
+        </div>
+    </div>
+    <!-- button -->
+    <div class="form-group">
+        <div class="controls">
+            <button type="submit">Login</button>
+        </div>
+        <div class="controls" style="text-align: center; font-size: 14px; !important"><a href="#" style="color: #999">Forgot your password?</a></div>
+    </div>
+</form>

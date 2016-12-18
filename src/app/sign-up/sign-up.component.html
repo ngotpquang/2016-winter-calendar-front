@@ -1,0 +1,49 @@
+<form [formGroup]="signUpForm" (ngSubmit)="doSignUp()">
+    <!--  General -->
+    <div class="form-group">
+        <h2 class="heading">Sign up</h2>
+        <div class="controls">
+            <input formControlName="fullName" type="text" id="fullName"
+            class="floatLabel" name="fullName"
+            (focus)="moveLabelUp('fullName')" (blur)="moveLabelDown('fullName')"
+            required>
+            <label id="label-fullName" for="fullName">Name</label>
+        </div>
+        <div class="controls">
+            <input formControlName="email" type="email" id="email"
+            class="floatLabel" name="email"
+            (focus)="moveLabelUp('email')" (blur)="moveLabelDown('email')" required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <label id="label-email" for="email">Email</label>
+        </div>
+        <div class="controls">
+            <input formControlName="password" type="password" id="password"
+            class="floatLabel" name="password"
+            (focus)="moveLabelUp('password')" (blur)="moveLabelDown('password')" required minlength='8'
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <label id="label-password" for="password">Password</label>
+            <i class="fa fa-eye-slash" (mouseup)="displayPassword('password')"
+            (mousedown)="displayPassword('password')"></i>
+        </div>
+        <div class="controls">
+            <input formControlName="confirmPassword" type="password" id="confirmPassword"
+            class="floatLabel" name="confirmPassword"
+            (focus)="moveLabelUp('confirmPassword')" (blur)="moveLabelDown('confirmPassword')"
+            data-toggle="tooltip" data-placement="right" title="Password does not match!"
+            required minlength="8"
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <label id="label-confirmPassword" for="confirmPassword">Confirm Password</label>
+            <i class="fa fa-eye-slash" (mouseup)="displayPassword('confirmPassword')"
+            (mousedown)="displayPassword('confirmPassword')"></i>
+        </div>
+        <div class="alert alert-danger" id="password-match" hidden>
+          <b>Passwords do not match.</b>
+        </div>
+    </div>
+    <!-- button -->
+    <div class="form-group">
+        <div class="controls">
+            <button type="submit">Create free account</button>
+        </div>
+    </div>
+</form>
