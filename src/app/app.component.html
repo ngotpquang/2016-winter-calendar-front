@@ -1,4 +1,5 @@
-<header>
+<header id="header">
+  <app-side-bar></app-side-bar>
   <h1><i class="fa fa-calendar-check-o"></i> {{title}}</h1>
   <div class="user-information">
     <!-- <a routerLink="/sign-up" routerLinkActive="active">Signup</a> -->
@@ -8,6 +9,8 @@
   <div class="clear">
   </div>
 </header>
-<section>
-  <router-outlet></router-outlet>
-</section>
+<main id="main">
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</main>

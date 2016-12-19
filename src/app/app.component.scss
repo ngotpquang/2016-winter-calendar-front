@@ -7,16 +7,16 @@ header {
 	font-family: 'Lato', 'sans-serif';
 	color: white;
 	box-sizing: border-box;
+	position: relative;
 
 	h1 {
 		float: left;
-		text-align: center;
+		// text-align: center;
 		font-weight: 400;
 		font-size: 50px;
-		margin-left: 10%;
-		span {
-			font-weight: 300;
-		}
+		margin-left: 40px;
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 
 	p {
@@ -29,7 +29,7 @@ header {
 
 	.user-information {
 		float: right;
-		margin: 50px 20px;
+		margin: 20px 20px;
 
 		a {
 			text-decoration: none;
@@ -73,4 +73,8 @@ section {
 			color: #e74c3c;
 		}
 	}
+}
+#main, #header {
+    transition: margin-left .3s;
+    padding: 20px;
 }

@@ -8,14 +8,16 @@ import { AppComponent } from './app.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { LoginComponent } from './login/login.component';
 import { MainRoutes } from './app.route';
-import { SignUpComponent } from './sign-up/sign-up.component'
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SideBarComponent } from './side-bar/side-bar.component'
 
 @NgModule({
     declarations: [
         AppComponent,
         IntroductionComponent,
         LoginComponent,
-        SignUpComponent
+        SignUpComponent,
+        SideBarComponent
     ],
     imports: [
         BrowserModule,
