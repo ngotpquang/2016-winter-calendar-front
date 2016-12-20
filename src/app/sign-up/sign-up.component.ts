@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable'
+import { Router } from '@angular/router';
+
+import { UserService } from '../user/user.service'
+import '../rxjs-operator'
 
 @Component({
   selector: 'app-sign-up',
@@ -8,7 +13,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -24,20 +30,25 @@ export class SignUpComponent implements OnInit {
         // console.log(event);
         let user = this.signUpForm.value;
         console.log(user);
-        var passwordRegrex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,200}$/;
-        if (!user.password.match(passwordRegrex)) {
-            let alert = (<HTMLInputElement>document.getElementById('password-match'));
-            alert.innerHTML = "Password must be more than 8 characters and contains at least one numeric digit, one uppercase and one lowercase letter"
-            alert.hidden = false;
-        } else if (user.password != user.confirmPassword) {
-            (<HTMLInputElement>document.getElementById('password-match')).hidden = false;
-        } else {
-            (<HTMLInputElement>document.getElementById('password-match')).hidden = true;
-            alert(JSON.stringify(this.signUpForm.value));
-            localStorage.setItem('myStorage', JSON.stringify(this.signUpForm.value));
-            console.log(JSON.parse(localStorage.getItem('myStorage')));
-            // console.log(localStorage);
-        }
+        // var passwordRegrex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,200}$/;
+        // if (!user.password.match(passwordRegrex)) {
+        //     let alert = (<HTMLInputElement>document.getElementById('password-match'));
+        //     alert.innerHTML = "Password must be more than 8 characters and contains at least one numeric digit, one uppercase and one lowercase letter"
+        //     alert.hidden = false;
+        // } else if (user.password != user.confirmPassword) {
+        //     (<HTMLInputElement>document.getElementById('password-match')).hidden = false;
+        // } else {
+        //     (<HTMLInputElement>document.getElementById('password-match')).hidden = true;
+        //     alert(JSON.stringify(this.signUpForm.value));
+        //     localStorage.setItem('myStorage', JSON.stringify(this.signUpForm.value));
+        //     console.log(JSON.parse(localStorage.getItem('myStorage')));
+        //     // console.log(localStorage);
+        // }
+        this.userService.signup(user.fullName, user.email, user.password).subscribe((result) => {
+            if (result) {
+                this.router.navigate(['']);
+            }
+        });
     }
 
     moveLabelUp(string) {

@@ -29,13 +29,14 @@ header {
 
 	.user-information {
 		float: right;
-		margin: 20px 20px;
+		margin-top: 10px;
 
-		a {
+		button {
 			text-decoration: none;
 			color: $aqua;
 			box-sizing: border-box;
 			border-radius: 3px;
+			border: none;
 			background-color: white;
 			padding: 10px 18px;
 			font-size: 14px;
@@ -44,6 +45,9 @@ header {
 
 			&:hover {
 				background-color: #eff;
+			}
+			&:active {
+				border: none;
 			}
 		}
 	}

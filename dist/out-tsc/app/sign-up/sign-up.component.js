@@ -9,8 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../user/user.service';
+import '../rxjs-operator';
 var SignUpComponent = (function () {
-    function SignUpComponent() {
+    function SignUpComponent(userService, router) {
+        this.userService = userService;
+        this.router = router;
         this.signUpForm = new FormGroup({
             email: new FormControl('', Validators.required),
             fullName: new FormControl('', Validators.required),
@@ -21,23 +26,14 @@ var SignUpComponent = (function () {
     SignUpComponent.prototype.ngOnInit = function () {
     };
     SignUpComponent.prototype.doSignUp = function (event) {
+        var _this = this;
         var user = this.signUpForm.value;
         console.log(user);
-        var passwordRegrex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,200}$/;
-        if (!user.password.match(passwordRegrex)) {
-            var alert_1 = document.getElementById('password-match');
-            alert_1.innerHTML = "Password must be more than 8 characters and contains at least one numeric digit, one uppercase and one lowercase letter";
-            alert_1.hidden = false;
-        }
-        else if (user.password != user.confirmPassword) {
-            document.getElementById('password-match').hidden = false;
-        }
-        else {
-            document.getElementById('password-match').hidden = true;
-            alert(JSON.stringify(this.signUpForm.value));
-            localStorage.setItem('myStorage', JSON.stringify(this.signUpForm.value));
-            console.log(JSON.parse(localStorage.getItem('myStorage')));
-        }
+        this.userService.signup(user.fullName, user.email, user.password).subscribe(function (result) {
+            if (result) {
+                _this.router.navigate(['']);
+            }
+        });
     };
     SignUpComponent.prototype.moveLabelUp = function (string) {
         var label = document.getElementById("label-" + string);
@@ -74,7 +70,7 @@ SignUpComponent = __decorate([
         templateUrl: './sign-up.component.html',
         styleUrls: ['../login/login.component.scss']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [UserService, Router])
 ], SignUpComponent);
 export { SignUpComponent };
 //# sourceMappingURL=../../../../src/app/sign-up/sign-up.component.js.map

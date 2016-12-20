@@ -1,33 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable'
+import { Router } from '@angular/router';
+
+import { UserService } from '../user/user.service'
+import '../rxjs-operator'
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+    constructor(private userService: UserService, private router: Router) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  public loginForm = new FormGroup({
+    public loginForm = new FormGroup({
         email: new FormControl('', Validators.required),
         password: new FormControl('', Validators.minLength(8)),
     });
-    // constructor(public fb: FormBuilder) { }
     doLogin() {
         let user = this.loginForm.value;
-        if (user.password != "11111111") {
-            (<HTMLInputElement>document.getElementById('wrong-input')).hidden = false;
-        } else {
-            (<HTMLInputElement>document.getElementById('wrong-input')).hidden = true;
-            alert(JSON.stringify(this.loginForm.value));
-            localStorage.setItem('myStorage', JSON.stringify(this.loginForm.value));
-            console.log(JSON.parse(localStorage.getItem('myStorage')));
-        }
+        // if (user.password != "11111111") {
+        //     (<HTMLInputElement>document.getElementById('wrong-input')).hidden = false;
+        // } else {
+        //     (<HTMLInputElement>document.getElementById('wrong-input')).hidden = true;
+        //     alert(JSON.stringify(this.loginForm.value));
+        //     localStorage.setItem('myStorage', JSON.stringify(this.loginForm.value));
+        //     console.log(JSON.parse(localStorage.getItem('myStorage')));
+        // }
+        console.log(user.email + "|" + user.password);
+        this.userService.login(user.email, user.password).subscribe((result) => {
+            if (result) {
+                this.router.navigate(['']);
+            }
+        });
     }
 
     moveLabelUp(string) {

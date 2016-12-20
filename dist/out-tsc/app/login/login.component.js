@@ -9,8 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../user/user.service';
+import '../rxjs-operator';
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(userService, router) {
+        this.userService = userService;
+        this.router = router;
         this.loginForm = new FormGroup({
             email: new FormControl('', Validators.required),
             password: new FormControl('', Validators.minLength(8)),
@@ -19,16 +24,14 @@ var LoginComponent = (function () {
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.doLogin = function () {
+        var _this = this;
         var user = this.loginForm.value;
-        if (user.password != "11111111") {
-            document.getElementById('wrong-input').hidden = false;
-        }
-        else {
-            document.getElementById('wrong-input').hidden = true;
-            alert(JSON.stringify(this.loginForm.value));
-            localStorage.setItem('myStorage', JSON.stringify(this.loginForm.value));
-            console.log(JSON.parse(localStorage.getItem('myStorage')));
-        }
+        console.log(user.email + "|" + user.password);
+        this.userService.login(user.email, user.password).subscribe(function (result) {
+            if (result) {
+                _this.router.navigate(['']);
+            }
+        });
     };
     LoginComponent.prototype.moveLabelUp = function (string) {
         var label = document.getElementById("label-" + string);
@@ -65,7 +68,7 @@ LoginComponent = __decorate([
         templateUrl: './login.component.html',
         styleUrls: ['./login.component.scss']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [UserService, Router])
 ], LoginComponent);
 export { LoginComponent };
 //# sourceMappingURL=../../../../src/app/login/login.component.js.map

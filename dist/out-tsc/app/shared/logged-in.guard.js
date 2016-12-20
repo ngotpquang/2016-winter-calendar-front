@@ -7,25 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-var AppComponent = (function () {
-    function AppComponent(router) {
-        this.router = router;
-        this.title = 'Seinfeld Calendar';
+import { Injectable } from '@angular/core';
+import { UserService } from '../user/user.service';
+var LoggedInGuard = (function () {
+    function LoggedInGuard(user) {
+        this.user = user;
     }
-    AppComponent.prototype.onClick = function (string) {
-        this.router.navigate(['/' + string]);
+    LoggedInGuard.prototype.canActivate = function () {
+        return this.user.isLoggedIn();
     };
-    return AppComponent;
+    return LoggedInGuard;
 }());
-AppComponent = __decorate([
-    Component({
-        selector: 'app-root',
-        templateUrl: './app.component.html',
-        styleUrls: ['./app.component.scss']
-    }),
-    __metadata("design:paramtypes", [Router])
-], AppComponent);
-export { AppComponent };
-//# sourceMappingURL=../../../src/app/app.component.js.map
+LoggedInGuard = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [UserService])
+], LoggedInGuard);
+export { LoggedInGuard };
+//# sourceMappingURL=../../../../src/app/shared/logged-in.guard.js.map
