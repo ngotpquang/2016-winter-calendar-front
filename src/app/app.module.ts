@@ -12,7 +12,7 @@ import { MainRoutes } from './app.route';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { UserService } from './user/user.service';
-import { CreateNewGoalComponent } from './create-new-goal/create-new-goal.component'
+import { CreateNewGoalComponent } from './create-new-goal/create-new-goal.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +21,7 @@ import { CreateNewGoalComponent } from './create-new-goal/create-new-goal.compon
         LoginComponent,
         SignUpComponent,
         SideBarComponent,
-        CreateNewGoalComponent
+        CreateNewGoalComponent,
     ],
     imports: [
         BrowserModule,

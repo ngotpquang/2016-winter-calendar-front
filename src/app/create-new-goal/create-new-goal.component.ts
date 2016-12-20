@@ -33,6 +33,13 @@ export class CreateNewGoalComponent implements OnInit {
         untilDate: new FormControl(),
         numberEvents: new FormControl()
     });
+
+    roundUpTime() {
+        return this.commonFunctions.roundUpTime();
+    }
+    untilDate() {
+        return this.commonFunctions.untilDate();
+    }
     moveLabelUp(string) {
         this.commonFunctions.moveLabelUp(string);
     }
@@ -43,47 +50,11 @@ export class CreateNewGoalComponent implements OnInit {
         this.commonFunctions.changeAttributeInput(inputId, typeOfChange);
     }
     changeRepetitionType() {
-        let val = (<HTMLInputElement>document.getElementById('repetition-type')).value;
-        switch (val) {
-            case this.repetitionTypes[0]:
-                this.commonFunctions.togglePanel('weeklyRepetition', true);
-                this.commonFunctions.togglePanel('monthlyRepetition', true);
-                (<HTMLInputElement>document.getElementById('repetitionFrequencyType')).innerHTML = 'day(s)';
-                break;
-            case this.repetitionTypes[1]:
-                this.commonFunctions.togglePanel('weeklyRepetition', false);
-                this.commonFunctions.togglePanel('monthlyRepetition', true);
-                (<HTMLInputElement>document.getElementById('repetitionFrequencyType')).innerHTML = 'week(s)';
-                break;
-            case this.repetitionTypes[2]:
-                this.commonFunctions.togglePanel('weeklyRepetition', true);
-                this.commonFunctions.togglePanel('monthlyRepetition', false);
-                (<HTMLInputElement>document.getElementById('repetitionFrequencyType')).innerHTML = 'month(s)';
-                break;
-            case this.repetitionTypes[3]:
-                this.commonFunctions.togglePanel('weeklyRepetition', true);
-                this.commonFunctions.togglePanel('monthlyRepetition', true);
-                (<HTMLInputElement>document.getElementById('repetitionFrequencyType')).innerHTML = 'year(s)';
-                break;
-        }
+        this.commonFunctions.changeRepetitionType();
     }
 
     changeRepetitionLimitedTime() {
-        let val = (<HTMLInputElement>document.getElementById('repetition-limited-time')).value;
-        switch (val) {
-            case this.repetitionLimitedTimes[0]:
-                this.commonFunctions.togglePanel('untilDate', true);
-                this.commonFunctions.togglePanel('numberEvents', true);
-                break;
-            case this.repetitionLimitedTimes[1]:
-                this.commonFunctions.togglePanel('untilDate', false);
-                this.commonFunctions.togglePanel('numberEvents', true);
-                break;
-            case this.repetitionLimitedTimes[2]:
-                this.commonFunctions.togglePanel('untilDate', true);
-                this.commonFunctions.togglePanel('numberEvents', false);
-                break;
-        }
+          this.commonFunctions.changeRepetitionLimitedTime();
     }
     setNewGoal() {
         let goal = this.createNewGoalForm.value;

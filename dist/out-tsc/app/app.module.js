@@ -20,6 +20,7 @@ import { MainRoutes } from './app.route';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { UserService } from './user/user.service';
+import { CreateNewGoalComponent } from './create-new-goal/create-new-goal.component';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,7 +33,8 @@ AppModule = __decorate([
             IntroductionComponent,
             LoginComponent,
             SignUpComponent,
-            SideBarComponent
+            SideBarComponent,
+            CreateNewGoalComponent,
         ],
         imports: [
             BrowserModule,

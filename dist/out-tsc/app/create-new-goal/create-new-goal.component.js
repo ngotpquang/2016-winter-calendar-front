@@ -30,6 +30,12 @@ var CreateNewGoalComponent = (function () {
         this.repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
         this.commonFunctions = new CommonFunctions();
     };
+    CreateNewGoalComponent.prototype.roundUpTime = function () {
+        return this.commonFunctions.roundUpTime();
+    };
+    CreateNewGoalComponent.prototype.untilDate = function () {
+        return this.commonFunctions.untilDate();
+    };
     CreateNewGoalComponent.prototype.moveLabelUp = function (string) {
         this.commonFunctions.moveLabelUp(string);
     };
@@ -40,46 +46,10 @@ var CreateNewGoalComponent = (function () {
         this.commonFunctions.changeAttributeInput(inputId, typeOfChange);
     };
     CreateNewGoalComponent.prototype.changeRepetitionType = function () {
-        var val = document.getElementById('repetition-type').value;
-        switch (val) {
-            case this.repetitionTypes[0]:
-                this.commonFunctions.togglePanel('weeklyRepetition', true);
-                this.commonFunctions.togglePanel('monthlyRepetition', true);
-                document.getElementById('repetitionFrequencyType').innerHTML = 'day(s)';
-                break;
-            case this.repetitionTypes[1]:
-                this.commonFunctions.togglePanel('weeklyRepetition', false);
-                this.commonFunctions.togglePanel('monthlyRepetition', true);
-                document.getElementById('repetitionFrequencyType').innerHTML = 'week(s)';
-                break;
-            case this.repetitionTypes[2]:
-                this.commonFunctions.togglePanel('weeklyRepetition', true);
-                this.commonFunctions.togglePanel('monthlyRepetition', false);
-                document.getElementById('repetitionFrequencyType').innerHTML = 'month(s)';
-                break;
-            case this.repetitionTypes[3]:
-                this.commonFunctions.togglePanel('weeklyRepetition', true);
-                this.commonFunctions.togglePanel('monthlyRepetition', true);
-                document.getElementById('repetitionFrequencyType').innerHTML = 'year(s)';
-                break;
-        }
+        this.commonFunctions.changeRepetitionType();
     };
     CreateNewGoalComponent.prototype.changeRepetitionLimitedTime = function () {
-        var val = document.getElementById('repetition-limited-time').value;
-        switch (val) {
-            case this.repetitionLimitedTimes[0]:
-                this.commonFunctions.togglePanel('untilDate', true);
-                this.commonFunctions.togglePanel('numberEvents', true);
-                break;
-            case this.repetitionLimitedTimes[1]:
-                this.commonFunctions.togglePanel('untilDate', false);
-                this.commonFunctions.togglePanel('numberEvents', true);
-                break;
-            case this.repetitionLimitedTimes[2]:
-                this.commonFunctions.togglePanel('untilDate', true);
-                this.commonFunctions.togglePanel('numberEvents', false);
-                break;
-        }
+        this.commonFunctions.changeRepetitionLimitedTime();
     };
     CreateNewGoalComponent.prototype.setNewGoal = function () {
         var goal = this.createNewGoalForm.value;

@@ -105,9 +105,13 @@ h2.heading {
             }
         }
 
-        &.repetition-type {
+        &.repetition-type,
+        &.from {
             position: relative;
             top: -22px;
+        }
+        &.from {
+          height: 20px;
         }
         &.inline-input {
           width: 30%;

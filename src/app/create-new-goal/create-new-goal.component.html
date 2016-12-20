@@ -8,8 +8,8 @@
 				<label id="label-goalName" for="goalName">Goal name</label>
 			</div>
 			<div class="right">
-				<label id="label-from" for="from">From</label>
-				<input formControlName="from" type="text" id="from" class="floatLabel" name="from" (focus)='changeAttributeInput("from","datetime-local")' (blur)="moveLabelDown('goalName')" />
+				<label id="label-from" for="from" class="fix">From</label>
+				<input formControlName="from" type="datetime-local" id="from" class="from" name="from" value="{{roundUpTime() | date:'yyyy-MM-ddTHH:mm'}}" />
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -57,7 +57,7 @@
 					</select>
 			</div>
 			<div class="right">
-				<input type="date" formControlName="untilDate" id="untilDate" hidden="hidden"/>
+				<input type="date" formControlName="untilDate" id="untilDate" hidden="hidden" value="{{untilDate() | date:'yyyy-MM-dd'}}"/>
 				<span id="numberEvents" hidden="hidden"><input type="number" formControlName="numberEvents" min='1' style="width: 50%"/> event(s)</span>
 			</div>
 			<div class="clear"></div>
