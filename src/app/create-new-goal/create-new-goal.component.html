@@ -1,0 +1,84 @@
+<!-- [formGroup]="createNewGoalForm" (ngSubmit)="setNewGoal()" -->
+<form [formGroup]="createNewGoalForm" (ngSubmit)="setNewGoal()">
+	<div class="form-group">
+		<h2 class="heading">New goal</h2>
+		<div class="controls">
+			<div class="left">
+				<input formControlName="goalName" type="text" id="goalName" class="floatLabel" name="goalName" (focus)="moveLabelUp('goalName')" (blur)="moveLabelDown('goalName')" required>
+				<label id="label-goalName" for="goalName">Goal name</label>
+			</div>
+			<div class="right">
+				<label id="label-from" for="from">From</label>
+				<input formControlName="from" type="text" id="from" class="floatLabel" name="from" (focus)='changeAttributeInput("from","datetime-local")' (blur)="moveLabelDown('goalName')" />
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="controls">
+			<textarea rows='4' formControlName="description" type="textarea" id="description" class="floatLabel" name="description" (focus)="moveLabelUp('description')" (blur)="moveLabelDown('description')"></textarea>
+			<label id="label-description" for="description">Description</label>
+		</div>
+		<div class="controls">
+			<div class="left">
+				<label id="label-repetition" for="repetition" class='fix'>Repetition</label>
+				<select formControlName="repetitionType" class="repetition-type" id="repetition-type" style="margin-bottom: 0px;" (change)="changeRepetitionType()">
+						<option *ngFor="let rp of repetitionTypes" value="{{rp}}">{{rp}}</option>
+					</select >
+				</div>
+				<div class="right">
+                every&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+					<input formControlName="repetitionFrequency" type="number" min='1' class="inline-input"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="repetitionFrequencyType">day(s)</span>
+
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!-- TODO -->
+			<div class="control" id="weeklyRepetition" hidden="hidden">
+				<div class="left">
+						<span *ngFor="let day of weekDays"><input type="checkbox" name="{{day}}-selected" value="{{day}}" style="margin-bottom: 20px;"/> {{day}} </span>
+			</div>
+		</div>
+		<!-- FIXME -->
+		<div class="control" id="monthlyRepetition" hidden="hidden">
+			<div class="left">
+				<input type="radio" name="sameDay" value='sameday' /> on the same day each month
+				<br />
+				<input type="radio" name="dayDefined" value='daydefined' /> on every <span id="dayDefineValue">first Monday</span>
+				<br />
+				<br />
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="controls">
+			<div class="left">
+				<select formControlName="repetitionLimitedTime" class="repetition-limited-time" id="repetition-limited-time" (change)="changeRepetitionLimitedTime()">
+						<option *ngFor="let rlt of repetitionLimitedTimes" value="{{rlt}}">{{rlt}}</option>
+					</select>
+			</div>
+			<div class="right">
+				<input type="date" formControlName="untilDate" id="untilDate" hidden="hidden"/>
+				<span id="numberEvents" hidden="hidden"><input type="number" formControlName="numberEvents" min='1' style="width: 50%"/> event(s)</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="controls" hidden="hidden">
+			<label id="reminders" for="reminders">Reminders</label>
+			<button type="button">Add reminder</button>
+			<select>
+						<option value="0">At time of event</option>
+						<option value="1" selected>10 minutes before</option>
+						<option value="2">30 minutes before</option>
+					</select>
+		</div>
+		<div class="controls">
+			<input formControlName="autoUpdateFailed" type="checkbox" id="is-auto" name='is-auto' value="autoUpdateFailed" style="width: 5%;" />Auto update failed days.
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="controls">
+			<button type="submit" style="width: 10%;" class="right">Save</button>
+			<div class="clear"></div>
+		</div>
+	</div>
+</form>
