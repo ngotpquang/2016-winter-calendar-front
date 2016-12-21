@@ -8,7 +8,7 @@ import { CreateNewGoalComponent } from './create-new-goal/create-new-goal.compon
 
 // Define which component should be loaded based on the current URL
 export const MainRoutes = [
-  { path: '',       component: IntroductionComponent },
+  { path: '',       component: IntroductionComponent, pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'createnewgoal', component: CreateNewGoalComponent}
