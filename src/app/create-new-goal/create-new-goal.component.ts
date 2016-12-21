@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { CommonFunctions } from '../shared/common-functions';
+import { Goal } from '../shared/goal.interface';
 
 @Component({
     selector: 'app-create-new-goal',
@@ -9,10 +10,11 @@ import { CommonFunctions } from '../shared/common-functions';
     styleUrls: ['./create-new-goal.component.scss']
 })
 export class CreateNewGoalComponent implements OnInit {
-    weekDays;
-    repetitionTypes;
-    repetitionLimitedTimes;
-    commonFunctions: CommonFunctions;
+    public weekDays: string[];
+    public repetitionTypes: string[];
+    public repetitionLimitedTimes: string[];
+    public commonFunctions: CommonFunctions;
+    // public goal: Goal;
     constructor() { }
 
     ngOnInit() {
@@ -31,7 +33,15 @@ export class CreateNewGoalComponent implements OnInit {
         repetitionLimitedTime: new FormControl(),
         autoUpdateFailed: new FormControl(),
         untilDate: new FormControl(),
-        numberEvents: new FormControl()
+        numberEvents: new FormControl(),
+        monthlyRepetition: new FormControl(),
+        Mon: new FormControl(),
+        Tue: new FormControl(),
+        Wed: new FormControl(),
+        Thu: new FormControl(),
+        Fri: new FormControl(),
+        Sat: new FormControl(),
+        Sun: new FormControl(),
     });
 
     roundUpTime() {
@@ -54,7 +64,7 @@ export class CreateNewGoalComponent implements OnInit {
     }
 
     changeRepetitionLimitedTime() {
-          this.commonFunctions.changeRepetitionLimitedTime();
+        this.commonFunctions.changeRepetitionLimitedTime();
     }
     setNewGoal() {
         let goal = this.createNewGoalForm.value;

@@ -23,14 +23,17 @@ export class CommonFunctions implements OnInit {
     changeAttributeInput(inputId, typeOfChange) {
         let input = (<HTMLInputElement>document.getElementById(inputId));
         input.type = typeOfChange;
-        this.moveLabelUp(inputId);
+        // this.moveLabelUp(inputId);
     }
 
     togglePanel(panelId, arg) {
+      console.log(panelId + "|" + arg);
+      let panel = (<HTMLInputElement>document.getElementById(panelId));
+      console.log(panel);
         if (arg) {
-            (<HTMLInputElement>document.getElementById(panelId)).hidden = true;
+            panel.hidden = true;
         } else {
-            (<HTMLInputElement>document.getElementById(panelId)).hidden = false;
+            panel.hidden = false;
         }
     }
 
@@ -82,16 +85,16 @@ export class CommonFunctions implements OnInit {
         let val = (<HTMLInputElement>document.getElementById('repetition-limited-time')).value;
         switch (val) {
             case this.repetitionLimitedTimes[0]:
-                this.togglePanel('untilDate', true);
-                this.togglePanel('numberEvents', true);
+                this.togglePanel('until-date', true);
+                this.togglePanel('number-events', true);
                 break;
             case this.repetitionLimitedTimes[1]:
-                this.togglePanel('untilDate', false);
-                this.togglePanel('numberEvents', true);
+                this.togglePanel('until-date', false);
+                this.togglePanel('number-events', true);
                 break;
             case this.repetitionLimitedTimes[2]:
-                this.togglePanel('untilDate', true);
-                this.togglePanel('numberEvents', false);
+                this.togglePanel('until-date', true);
+                this.togglePanel('number-events', false);
                 break;
         }
     }

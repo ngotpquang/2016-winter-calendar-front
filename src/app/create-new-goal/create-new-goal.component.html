@@ -36,17 +36,17 @@
 			<!-- TODO -->
 			<div class="control" id="weeklyRepetition" hidden="hidden">
 				<div class="left">
-						<span *ngFor="let day of weekDays"><input type="checkbox" name="{{day}}-selected" value="{{day}}" style="margin-bottom: 20px;"/> {{day}} </span>
+						<span *ngFor="let day of weekDays"><input type="checkbox" formControlName="{{day}}" name="{{day}}" value="{{day}}" style="margin-bottom: 20px;"/> {{day}} </span>
 			</div>
 		</div>
 		<!-- FIXME -->
 		<div class="control" id="monthlyRepetition" hidden="hidden">
 			<div class="left">
-				<input type="radio" name="sameDay" value='sameday' /> on the same day each month
-				<br />
-				<input type="radio" name="dayDefined" value='daydefined' /> on every <span id="dayDefineValue">first Monday</span>
-				<br />
-				<br />
+					<input type="radio" name="monthlyRepetition" formControlName="monthlyRepetition" value='sameday' /> on the same day each month
+					<br />
+					<input type="radio" name="monthlyRepetition" formControlName="monthlyRepetition" value='daydefined' /> on every <span id="dayDefineValue">first Monday</span>
+					<br />
+					<br />
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -57,8 +57,8 @@
 					</select>
 			</div>
 			<div class="right">
-				<input type="date" formControlName="untilDate" id="untilDate" hidden="hidden" value="{{untilDate() | date:'yyyy-MM-dd'}}"/>
-				<span id="numberEvents" hidden="hidden"><input type="number" formControlName="numberEvents" min='1' style="width: 50%"/> event(s)</span>
+				<input type="date" formControlName="untilDate" id="until-date" hidden="hidden" value="{{untilDate() | date:'yyyy-MM-dd'}}" />
+				<span id="number-events" hidden="hidden"><input type="number" formControlName="numberEvents" min='1' style="width: 50%"/> event(s)</span>
 			</div>
 			<div class="clear"></div>
 		</div>

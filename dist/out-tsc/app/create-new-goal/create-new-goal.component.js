@@ -21,7 +21,15 @@ var CreateNewGoalComponent = (function () {
             repetitionLimitedTime: new FormControl(),
             autoUpdateFailed: new FormControl(),
             untilDate: new FormControl(),
-            numberEvents: new FormControl()
+            numberEvents: new FormControl(),
+            monthlyRepetition: new FormControl(),
+            Mon: new FormControl(),
+            Tue: new FormControl(),
+            Wed: new FormControl(),
+            Thu: new FormControl(),
+            Fri: new FormControl(),
+            Sat: new FormControl(),
+            Sun: new FormControl(),
         });
     }
     CreateNewGoalComponent.prototype.ngOnInit = function () {

@@ -19,14 +19,16 @@ var CommonFunctions = (function () {
     CommonFunctions.prototype.changeAttributeInput = function (inputId, typeOfChange) {
         var input = document.getElementById(inputId);
         input.type = typeOfChange;
-        this.moveLabelUp(inputId);
     };
     CommonFunctions.prototype.togglePanel = function (panelId, arg) {
+        console.log(panelId + "|" + arg);
+        var panel = document.getElementById(panelId);
+        console.log(panel);
         if (arg) {
-            document.getElementById(panelId).hidden = true;
+            panel.hidden = true;
         }
         else {
-            document.getElementById(panelId).hidden = false;
+            panel.hidden = false;
         }
     };
     CommonFunctions.prototype.roundUpTime = function () {
@@ -76,16 +78,16 @@ var CommonFunctions = (function () {
         var val = document.getElementById('repetition-limited-time').value;
         switch (val) {
             case this.repetitionLimitedTimes[0]:
-                this.togglePanel('untilDate', true);
-                this.togglePanel('numberEvents', true);
+                this.togglePanel('until-date', true);
+                this.togglePanel('number-events', true);
                 break;
             case this.repetitionLimitedTimes[1]:
-                this.togglePanel('untilDate', false);
-                this.togglePanel('numberEvents', true);
+                this.togglePanel('until-date', false);
+                this.togglePanel('number-events', true);
                 break;
             case this.repetitionLimitedTimes[2]:
-                this.togglePanel('untilDate', true);
-                this.togglePanel('numberEvents', false);
+                this.togglePanel('until-date', true);
+                this.togglePanel('number-events', false);
                 break;
         }
     };
