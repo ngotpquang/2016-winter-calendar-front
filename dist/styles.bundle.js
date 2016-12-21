@@ -506,7 +506,7 @@ exports = module.exports = __webpack_require__(146)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "body {\n  background-color: #07B3A1;\n}\n", ""]);
 
 // exports
 
