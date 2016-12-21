@@ -7,7 +7,7 @@
     "node": "6.9.2"
   },
   "scripts": {
-    "preinstall": "./node_modules/bower/bin/bower install",
+    "postinstall": "./node_modules/bower/bin/bower install",
     "start": "ng serve",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
