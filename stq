@@ -1,0 +1,83 @@
+[33mcommit d0bf0f260506281b5aaae5288bbeca807fd49d8e[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Wed Dec 21 13:20:40 2016 +0700
+
+    2016-Calendar: Add debug remote
+
+[33mcommit f4bf57361ad41c3bac0af5f36862f93a25f7cc6d[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Wed Dec 21 09:08:55 2016 +0700
+
+    Calendar-2016-Front-end: Testing deploy on Heroku
+
+[33mcommit 1f90b10c88079f37335a9e82e7ed2ac8d523430c[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Wed Dec 21 09:08:32 2016 +0700
+
+    2016-Calendar: ignore node module
+
+[33mcommit a3db5c9e73e12591ffd36092fc326cefdb83e982[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Tue Dec 20 18:14:21 2016 +0700
+
+    Add a new goal: Improve UI
+
+[33mcommit 97794b7210804eab4c2a0c76325586b56cd40f74[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Tue Dec 20 16:38:08 2016 +0700
+
+    Add new goal: Create UI
+
+[33mcommit 39a4374ace3b6542f6dcc56f2d03364fd448bc90[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Tue Dec 20 08:56:47 2016 +0700
+
+    Login and Sign up: Add new feature - sending request to server
+
+[33mcommit 6eec17fdfa36b910cf6758e91d21471a2e6e9409[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Mon Dec 19 11:11:18 2016 +0700
+
+    Add sidebar component UI
+
+[33mcommit e43d0d575091947cbca61595fcb12e1bb4f13b42[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Sun Dec 18 23:55:02 2016 +0700
+
+    Add login and sign up UI with route module
+
+[33mcommit edaaf77381e32b8530f4fecdd62010baee2df12c[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Sun Dec 18 21:37:05 2016 +0700
+
+    Add new file to use angular-cli for building angular app
+
+[33mcommit a01c3851941be512339e1d6c7de26ffce1582d2b[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Sun Dec 18 21:31:32 2016 +0700
+
+    Refresh repository to change to use angular-cli for building project
+
+[33mcommit 41624c03a0af8553707f2e77f4b192d3f1120b01[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Fri Dec 16 11:51:08 2016 +0700
+
+    Sign up and Login: Re add UI due to problem which Vu made
+
+[33mcommit 9524455a8817efe2e9e3c6eeb1ab041d0eb3a2c7[m
+Author: Liger <ngotruongphamquang@gmail.com>
+Date:   Fri Dec 16 10:53:55 2016 +0700
+
+    Remove wrong commit of Vu on front-end repository
+
+[33mcommit 7320c8e5c0ca4b0e03cde3fadf5ecaef322ea464[m
+Author: Anh Vu <anhvu3594@gmail.com>
+Date:   Fri Dec 16 10:00:26 2016 +0700
+
+    set database for heroku
+
+[33mcommit 0ad62c2f36e36f3df3d9178a756ae0ecbffb31ae[m
+Author: Anh Vu <anhvu3594@gmail.com>
+Date:   Fri Dec 16 09:39:11 2016 +0700
+
+    init
