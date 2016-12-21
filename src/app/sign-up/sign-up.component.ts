@@ -44,7 +44,7 @@ export class SignUpComponent implements OnInit {
         //     console.log(JSON.parse(localStorage.getItem('myStorage')));
         //     // console.log(localStorage);
         // }
-        this.userService.signup(user.fullName, user.email, user.password).subscribe((result) => {
+        this.userService.signup(user.fullName, user.email, user.password, user.confirmPassword).subscribe((result) => {
             if (result) {
                 this.router.navigate(['']);
             }

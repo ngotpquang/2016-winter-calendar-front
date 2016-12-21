@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         //     localStorage.setItem('myStorage', JSON.stringify(this.loginForm.value));
         //     console.log(JSON.parse(localStorage.getItem('myStorage')));
         // }
-        console.log(user.email + "|" + user.password);
+        console.log(JSON.stringify(this.loginForm.value));
         this.userService.login(user.email, user.password).subscribe((result) => {
             if (result) {
                 this.router.navigate(['']);

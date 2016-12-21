@@ -32,7 +32,7 @@ var UserService = (function () {
     UserService.prototype.login = function (email, password) {
         var _this = this;
         return this.http
-            .post('/login', JSON.stringify({ email: email, password: password }), { headers: __WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* contentHeaders */] })
+            .post('https://wintercalendar.herokuapp.com/api/v1/auth/sign_in', JSON.stringify({ email: email, password: password }), { headers: __WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* contentHeaders */] })
             .map(function (res) { return res.json(); })
             .map(function (res) {
             if (res.success) {
@@ -42,10 +42,10 @@ var UserService = (function () {
             return res.success;
         });
     };
-    UserService.prototype.signup = function (fullName, email, password) {
+    UserService.prototype.signup = function (name, email, password, password_comfirmation) {
         var _this = this;
         return this.http
-            .post('/signup', JSON.stringify({ fullName: fullName, email: email, password: password }), { headers: __WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* contentHeaders */] })
+            .post('https://wintercalendar.herokuapp.com/api/v1/auth/', JSON.stringify({ name: name, email: email, password: password, password_comfirmation: password_comfirmation }), { headers: __WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* contentHeaders */] })
             .map(function (res) { return res.json(); })
             .map(function (res) {
             if (res.success) {
@@ -314,7 +314,7 @@ var LoginComponent = (function () {
         //     localStorage.setItem('myStorage', JSON.stringify(this.loginForm.value));
         //     console.log(JSON.parse(localStorage.getItem('myStorage')));
         // }
-        console.log(user.email + "|" + user.password);
+        console.log(JSON.stringify(this.loginForm.value));
         this.userService.login(user.email, user.password).subscribe(function (result) {
             if (result) {
                 _this.router.navigate(['']);
@@ -421,7 +421,7 @@ var SignUpComponent = (function () {
         //     console.log(JSON.parse(localStorage.getItem('myStorage')));
         //     // console.log(localStorage);
         // }
-        this.userService.signup(user.fullName, user.email, user.password).subscribe(function (result) {
+        this.userService.signup(user.fullName, user.email, user.password, user.confirmPassword).subscribe(function (result) {
             if (result) {
                 _this.router.navigate(['']);
             }

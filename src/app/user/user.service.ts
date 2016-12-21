@@ -14,7 +14,7 @@ export class UserService {
     login(email, password) {
         return this.http
             .post(
-            '/login',
+            'https://wintercalendar.herokuapp.com/api/v1/auth/sign_in',
             JSON.stringify({ email, password }),
             { headers: contentHeaders })
             .map(res => res.json())
@@ -27,11 +27,11 @@ export class UserService {
             });
     }
 
-    signup(fullName, email, password){
+    signup(name, email, password, password_comfirmation){
       return this.http
           .post(
-          '/signup',
-          JSON.stringify({ fullName, email, password }),
+          'https://wintercalendar.herokuapp.com/api/v1/auth/',
+          JSON.stringify({ name, email, password, password_comfirmation }),
           { headers: contentHeaders })
           .map(res => res.json())
           .map((res) => {
