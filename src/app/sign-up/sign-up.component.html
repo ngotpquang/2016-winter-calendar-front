@@ -3,11 +3,11 @@
     <div class="form-group">
         <h2 class="heading">Sign up</h2>
         <div class="controls">
-            <input formControlName="fullName" type="text" id="fullName"
-            class="floatLabel" name="fullName"
-            (focus)="moveLabelUp('fullName')" (blur)="moveLabelDown('fullName')"
+            <input formControlName="name" type="text" id="name"
+            class="floatLabel" name="name"
+            (focus)="moveLabelUp('name')" (blur)="moveLabelDown('name')"
             required>
-            <label id="label-fullName" for="fullName">Name</label>
+            <label id="label-name" for="name">Name</label>
         </div>
         <div class="controls">
             <input formControlName="email" type="email" id="email"
@@ -26,15 +26,15 @@
             (mousedown)="displayPassword('password')"></i>
         </div>
         <div class="controls">
-            <input formControlName="confirmPassword" type="password" id="confirmPassword"
-            class="floatLabel" name="confirmPassword"
-            (focus)="moveLabelUp('confirmPassword')" (blur)="moveLabelDown('confirmPassword')"
+            <input formControlName="password_confirmation" type="password" id="password_confirmation"
+            class="floatLabel" name="password_confirmation"
+            (focus)="moveLabelUp('password_confirmation')" (blur)="moveLabelDown('password_confirmation')"
             data-toggle="tooltip" data-placement="right" title="Password does not match!"
             required minlength="8"
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-            <label id="label-confirmPassword" for="confirmPassword">Confirm Password</label>
-            <i class="fa fa-eye-slash" (mouseup)="displayPassword('confirmPassword')"
-            (mousedown)="displayPassword('confirmPassword')"></i>
+            <label id="label-password_confirmation" for="password_confirmation">Confirm Password</label>
+            <i class="fa fa-eye-slash" (mouseup)="displayPassword('password_confirmation')"
+            (mousedown)="displayPassword('password_confirmation')"></i>
         </div>
         <div class="alert alert-danger" id="password-match" hidden>
           <b>Passwords do not match.</b>

@@ -33,13 +33,19 @@ var UserService = (function () {
         var _this = this;
         return this.http
             .post('https://wintercalendar.herokuapp.com/api/v1/auth/sign_in', JSON.stringify({ email: email, password: password }), { headers: __WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* contentHeaders */] })
-            .map(function (res) { return res.json(); })
             .map(function (res) {
-            if (res.success) {
-                localStorage.setItem('auth_token', res.auth_token);
+            if (res) {
+                console.log(__WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* contentHeaders */]);
+                console.log(res);
+                console.log("Response: " + JSON.stringify(res.json()));
+                console.log("Response: " + (res.headers));
+                // localStorage.setItem('auth_token', res.auth_token);
                 _this.loggedIn = true;
             }
-            return res.success;
+            else {
+                console.log(res);
+            }
+            return res;
         });
     };
     UserService.prototype.signup = function (name, email, password, password_comfirmation) {
@@ -48,11 +54,15 @@ var UserService = (function () {
             .post('https://wintercalendar.herokuapp.com/api/v1/auth/', JSON.stringify({ name: name, email: email, password: password, password_comfirmation: password_comfirmation }), { headers: __WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* contentHeaders */] })
             .map(function (res) { return res.json(); })
             .map(function (res) {
-            if (res.success) {
-                localStorage.setItem('auth_token', res.auth_token);
+            if (res) {
+                console.log("Response: " + res);
+                // localStorage.setItem('auth_token', res.auth_token);
                 _this.loggedIn = true;
             }
-            return res.success;
+            else {
+                console.log(res);
+            }
+            return res;
         });
     };
     UserService.prototype.logout = function () {
@@ -317,7 +327,18 @@ var LoginComponent = (function () {
         console.log(JSON.stringify(this.loginForm.value));
         this.userService.login(user.email, user.password).subscribe(function (result) {
             if (result) {
+                console.log(result);
+                console.log("1111111111111111111111111");
+                console.log(result.headers['_headers']);
+                console.log("1111111111111111111111111");
+                console.log("Result: " + result);
+                document.getElementById('login-button').hidden = true;
+                document.getElementById('signup-button').hidden = true;
+                document.getElementById('user-name').innerHTML = "Quang";
                 _this.router.navigate(['']);
+            }
+            else {
+                console.log("Login failed");
             }
         });
     };
@@ -393,10 +414,10 @@ var SignUpComponent = (function () {
         this.userService = userService;
         this.router = router;
         this.signUpForm = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormGroup */]({
+            name: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required),
             email: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required),
-            fullName: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].required),
             password: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].minLength(8)),
-            confirmPassword: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].minLength(8))
+            password_confirmation: new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormControl */]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["c" /* Validators */].minLength(8))
         });
     }
     SignUpComponent.prototype.ngOnInit = function () {
@@ -421,9 +442,13 @@ var SignUpComponent = (function () {
         //     console.log(JSON.parse(localStorage.getItem('myStorage')));
         //     // console.log(localStorage);
         // }
-        this.userService.signup(user.fullName, user.email, user.password, user.confirmPassword).subscribe(function (result) {
+        this.userService.signup(user.name, user.email, user.password, user.password_comfirmation).subscribe(function (result) {
             if (result) {
+                console.log("Result: " + result);
                 _this.router.navigate(['']);
+            }
+            else {
+                console.log("Sign up failed");
             }
         });
     };
@@ -439,7 +464,7 @@ var SignUpComponent = (function () {
         }
     };
     SignUpComponent.prototype.moveLabelAllDown = function () {
-        var inputs = ['email', 'fullName', 'password', 'confirmPassword'];
+        var inputs = ['email', 'name', 'password', 'password_confirmation'];
         for (var _i = 0, inputs_1 = inputs; _i < inputs_1.length; _i++) {
             var input = inputs_1[_i];
             if (document.getElementById(input) != null) {
@@ -740,8 +765,11 @@ var CommonFunctions = (function () {
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return contentHeaders; });
 
 var contentHeaders = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Headers */]();
-contentHeaders.append('Accept', 'application/json');
 contentHeaders.append('Content-Type', 'application/json');
+contentHeaders.append('Access-Control-Allow-Headers', '');
+contentHeaders.append('Access-Control-Allow-Methods', 'POST,GET,DELETE,PATCH,PUT,OPTIONS');
+contentHeaders.append('Access-Control-Allow-Origin', '');
+contentHeaders.append('Access-Control-Expose-Headers', 'Access-Token');
 //# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/headers.js.map
 
 /***/ },
@@ -933,7 +961,7 @@ module.exports = ".sidenav {\n  height: 100%;\n  width: 0;\n  position: fixed;\n
 /***/ 666:
 /***/ function(module, exports) {
 
-module.exports = "<header id=\"header\">\n  <app-side-bar></app-side-bar>\n  <h1><i class=\"fa fa-calendar-check-o\"></i> {{title}}</h1>\n  <div class=\"user-information\">\n    <!-- <a routerLink=\"/sign-up\" routerLinkActive=\"active\">Signup</a> -->\n    <!-- <a routerLink=\"/login\" routerLinkActive=\"active\">Login</a> -->\n    <button  (click)=\"onClick('login')\">Login</button>\n    <button  (click)=\"onClick('signup')\">Sign Up</button>\n  </div>\n  <div class=\"clear\">\n  </div>\n</header>\n<main id=\"main\">\n  <section>\n    <router-outlet></router-outlet>\n  </section>\n</main>\n"
+module.exports = "<header id=\"header\">\n  <app-side-bar></app-side-bar>\n  <h1><i class=\"fa fa-calendar-check-o\"></i> {{title}}</h1>\n  <div class=\"user-information\">\n    <!-- <a routerLink=\"/sign-up\" routerLinkActive=\"active\">Signup</a> -->\n    <!-- <a routerLink=\"/login\" routerLinkActive=\"active\">Login</a> -->\n    <button  (click)=\"onClick('login')\" id=\"login-button\">Login</button>\n    <button  (click)=\"onClick('signup')\" id=\"signup-button\">Sign Up</button>\n    <p id=\"user-name\">\n    </p>\n  </div>\n  <div class=\"clear\">\n  </div>\n</header>\n<main id=\"main\">\n  <section>\n    <router-outlet></router-outlet>\n  </section>\n</main>\n"
 
 /***/ },
 
@@ -968,7 +996,7 @@ module.exports = "<div id=\"mySidenav\" class=\"sidenav\">\n<a href=\"javascript
 /***/ 671:
 /***/ function(module, exports) {
 
-module.exports = "<form [formGroup]=\"signUpForm\" (ngSubmit)=\"doSignUp()\">\n    <!--  General -->\n    <div class=\"form-group\">\n        <h2 class=\"heading\">Sign up</h2>\n        <div class=\"controls\">\n            <input formControlName=\"fullName\" type=\"text\" id=\"fullName\"\n            class=\"floatLabel\" name=\"fullName\"\n            (focus)=\"moveLabelUp('fullName')\" (blur)=\"moveLabelDown('fullName')\"\n            required>\n            <label id=\"label-fullName\" for=\"fullName\">Name</label>\n        </div>\n        <div class=\"controls\">\n            <input formControlName=\"email\" type=\"email\" id=\"email\"\n            class=\"floatLabel\" name=\"email\"\n            (focus)=\"moveLabelUp('email')\" (blur)=\"moveLabelDown('email')\" required\n            pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\">\n            <label id=\"label-email\" for=\"email\">Email</label>\n        </div>\n        <div class=\"controls\">\n            <input formControlName=\"password\" type=\"password\" id=\"password\"\n            class=\"floatLabel\" name=\"password\"\n            (focus)=\"moveLabelUp('password')\" (blur)=\"moveLabelDown('password')\" required minlength='8'\n            pattern=\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\">\n            <label id=\"label-password\" for=\"password\">Password</label>\n            <i class=\"fa fa-eye-slash\" (mouseup)=\"displayPassword('password')\"\n            (mousedown)=\"displayPassword('password')\"></i>\n        </div>\n        <div class=\"controls\">\n            <input formControlName=\"confirmPassword\" type=\"password\" id=\"confirmPassword\"\n            class=\"floatLabel\" name=\"confirmPassword\"\n            (focus)=\"moveLabelUp('confirmPassword')\" (blur)=\"moveLabelDown('confirmPassword')\"\n            data-toggle=\"tooltip\" data-placement=\"right\" title=\"Password does not match!\"\n            required minlength=\"8\"\n            pattern=\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\">\n            <label id=\"label-confirmPassword\" for=\"confirmPassword\">Confirm Password</label>\n            <i class=\"fa fa-eye-slash\" (mouseup)=\"displayPassword('confirmPassword')\"\n            (mousedown)=\"displayPassword('confirmPassword')\"></i>\n        </div>\n        <div class=\"alert alert-danger\" id=\"password-match\" hidden>\n          <b>Passwords do not match.</b>\n        </div>\n    </div>\n    <!-- button -->\n    <div class=\"form-group\">\n        <div class=\"controls\">\n            <button type=\"submit\">Create free account</button>\n        </div>\n    </div>\n</form>\n"
+module.exports = "<form [formGroup]=\"signUpForm\" (ngSubmit)=\"doSignUp()\">\n    <!--  General -->\n    <div class=\"form-group\">\n        <h2 class=\"heading\">Sign up</h2>\n        <div class=\"controls\">\n            <input formControlName=\"name\" type=\"text\" id=\"name\"\n            class=\"floatLabel\" name=\"name\"\n            (focus)=\"moveLabelUp('name')\" (blur)=\"moveLabelDown('name')\"\n            required>\n            <label id=\"label-name\" for=\"name\">Name</label>\n        </div>\n        <div class=\"controls\">\n            <input formControlName=\"email\" type=\"email\" id=\"email\"\n            class=\"floatLabel\" name=\"email\"\n            (focus)=\"moveLabelUp('email')\" (blur)=\"moveLabelDown('email')\" required\n            pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\">\n            <label id=\"label-email\" for=\"email\">Email</label>\n        </div>\n        <div class=\"controls\">\n            <input formControlName=\"password\" type=\"password\" id=\"password\"\n            class=\"floatLabel\" name=\"password\"\n            (focus)=\"moveLabelUp('password')\" (blur)=\"moveLabelDown('password')\" required minlength='8'\n            pattern=\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\">\n            <label id=\"label-password\" for=\"password\">Password</label>\n            <i class=\"fa fa-eye-slash\" (mouseup)=\"displayPassword('password')\"\n            (mousedown)=\"displayPassword('password')\"></i>\n        </div>\n        <div class=\"controls\">\n            <input formControlName=\"password_confirmation\" type=\"password\" id=\"password_confirmation\"\n            class=\"floatLabel\" name=\"password_confirmation\"\n            (focus)=\"moveLabelUp('password_confirmation')\" (blur)=\"moveLabelDown('password_confirmation')\"\n            data-toggle=\"tooltip\" data-placement=\"right\" title=\"Password does not match!\"\n            required minlength=\"8\"\n            pattern=\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\">\n            <label id=\"label-password_confirmation\" for=\"password_confirmation\">Confirm Password</label>\n            <i class=\"fa fa-eye-slash\" (mouseup)=\"displayPassword('password_confirmation')\"\n            (mousedown)=\"displayPassword('password_confirmation')\"></i>\n        </div>\n        <div class=\"alert alert-danger\" id=\"password-match\" hidden>\n          <b>Passwords do not match.</b>\n        </div>\n    </div>\n    <!-- button -->\n    <div class=\"form-group\">\n        <div class=\"controls\">\n            <button type=\"submit\">Create free account</button>\n        </div>\n    </div>\n</form>\n"
 
 /***/ },
 

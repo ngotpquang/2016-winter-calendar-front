@@ -17,30 +17,38 @@ export class UserService {
             'https://wintercalendar.herokuapp.com/api/v1/auth/sign_in',
             JSON.stringify({ email, password }),
             { headers: contentHeaders })
-            .map(res => res.json())
-            .map((res) => {
-                if (res.success) {
-                    localStorage.setItem('auth_token', res.auth_token);
+            .map(res => {
+                if (res) {
+                    console.log(contentHeaders);
+                    console.log(res);
+                    console.log("Response: " + JSON.stringify(res.json()));
+                    console.log("Response: " + (res.headers));
+                    // localStorage.setItem('auth_token', res.auth_token);
                     this.loggedIn = true;
+                } else {
+                    console.log(res);
                 }
-                return res.success;
+                return res;
             });
     }
 
-    signup(name, email, password, password_comfirmation){
-      return this.http
-          .post(
-          'https://wintercalendar.herokuapp.com/api/v1/auth/',
-          JSON.stringify({ name, email, password, password_comfirmation }),
-          { headers: contentHeaders })
-          .map(res => res.json())
-          .map((res) => {
-              if (res.success) {
-                  localStorage.setItem('auth_token', res.auth_token);
-                  this.loggedIn = true;
-              }
-              return res.success;
-          });
+    signup(name, email, password, password_comfirmation) {
+        return this.http
+            .post(
+            'https://wintercalendar.herokuapp.com/api/v1/auth/',
+            JSON.stringify({ name, email, password, password_comfirmation }),
+            { headers: contentHeaders })
+            .map(res => res.json())
+            .map((res) => {
+                if (res) {
+                    console.log("Response: " + res);
+                    // localStorage.setItem('auth_token', res.auth_token);
+                    this.loggedIn = true;
+                } else {
+                    console.log(res);
+                }
+                return res;
+            });
     }
 
     logout() {

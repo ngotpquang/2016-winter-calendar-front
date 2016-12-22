@@ -7,23 +7,23 @@ import { UserService } from '../user/user.service'
 import '../rxjs-operator'
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['../login/login.component.scss']
+    selector: 'app-sign-up',
+    templateUrl: './sign-up.component.html',
+    styleUrls: ['../login/login.component.scss']
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) {
-  }
+    constructor(private userService: UserService, private router: Router) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  public signUpForm = new FormGroup({
+    public signUpForm = new FormGroup({
+        name: new FormControl('', Validators.required),
         email: new FormControl('', Validators.required),
-        fullName: new FormControl('', Validators.required),
         password: new FormControl('', Validators.minLength(8)),
-        confirmPassword: new FormControl('', Validators.minLength(8))
+        password_confirmation: new FormControl('', Validators.minLength(8))
     });
     // constructor(public fb: FormBuilder) { }
     doSignUp(event) {
@@ -44,9 +44,12 @@ export class SignUpComponent implements OnInit {
         //     console.log(JSON.parse(localStorage.getItem('myStorage')));
         //     // console.log(localStorage);
         // }
-        this.userService.signup(user.fullName, user.email, user.password, user.confirmPassword).subscribe((result) => {
+        this.userService.signup(user.name, user.email, user.password, user.password_comfirmation).subscribe((result) => {
             if (result) {
+                console.log("Result: " + result);
                 this.router.navigate(['']);
+            } else {
+                console.log("Sign up failed");
             }
         });
     }
@@ -64,7 +67,7 @@ export class SignUpComponent implements OnInit {
     }
 
     moveLabelAllDown() {
-        let inputs = ['email', 'fullName', 'password', 'confirmPassword'];
+        let inputs = ['email', 'name', 'password', 'password_confirmation'];
         for (let input of inputs) {
             if (<HTMLInputElement>document.getElementById(input) != null) {
                 (<HTMLInputElement>document.getElementById(input)).value = "";

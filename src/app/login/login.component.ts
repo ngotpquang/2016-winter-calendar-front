@@ -36,7 +36,18 @@ export class LoginComponent implements OnInit {
         console.log(JSON.stringify(this.loginForm.value));
         this.userService.login(user.email, user.password).subscribe((result) => {
             if (result) {
+                console.log(result);
+                console.log("1111111111111111111111111");
+                console.log(result.headers['_headers']);
+                console.log("1111111111111111111111111");
+                console.log("Result: " + result);
+                (<HTMLInputElement>document.getElementById('login-button')).hidden = true;
+                (<HTMLInputElement>document.getElementById('signup-button')).hidden = true;
+                (<HTMLInputElement>document.getElementById('user-name')).innerHTML = "Quang";
                 this.router.navigate(['']);
+            }
+            else {
+                console.log("Login failed");
             }
         });
     }
