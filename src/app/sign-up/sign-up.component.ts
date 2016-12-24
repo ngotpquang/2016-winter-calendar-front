@@ -9,7 +9,7 @@ import '../rxjs-operator'
 @Component({
     selector: 'app-sign-up',
     templateUrl: './sign-up.component.html',
-    styleUrls: ['../login/login.component.scss']
+    styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
 
@@ -52,30 +52,6 @@ export class SignUpComponent implements OnInit {
                 console.log("Sign up failed");
             }
         });
-    }
-
-    moveLabelUp(string) {
-        let label = document.getElementById("label-" + string);
-        label.classList.add('active');
-    }
-    moveLabelDown(string) {
-        let input = (<HTMLInputElement>document.getElementById(string)).value;
-        if (input === '' || input === 'blank') {
-            let label = document.getElementById("label-" + string);
-            label.classList.remove('active');
-        }
-    }
-
-    moveLabelAllDown() {
-        let inputs = ['email', 'name', 'password', 'password_confirmation'];
-        for (let input of inputs) {
-            if (<HTMLInputElement>document.getElementById(input) != null) {
-                (<HTMLInputElement>document.getElementById(input)).value = "";
-                let label = document.getElementById("label-" + input);
-                label.classList.remove('active');
-            }
-        }
-        (<HTMLInputElement>document.getElementById('password-match')).hidden = true;
     }
 
     displayPassword(string) {

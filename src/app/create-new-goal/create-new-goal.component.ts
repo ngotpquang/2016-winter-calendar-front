@@ -25,23 +25,23 @@ export class CreateNewGoalComponent implements OnInit {
     }
 
     public createNewGoalForm = new FormGroup({
-        goalName: new FormControl(),
-        from: new FormControl(),
+        goal_name: new FormControl(),
+        start_date: new FormControl(),
         description: new FormControl(),
-        repetitionType: new FormControl(),
-        repetitionFrequency: new FormControl(),
-        repetitionLimitedTime: new FormControl(),
+        type_of_repetition: new FormControl(),
+        how_often: new FormControl(),
+        type_of_end_date: new FormControl(),
         autoUpdateFailed: new FormControl(),
-        untilDate: new FormControl(),
-        numberEvents: new FormControl(),
-        monthlyRepetition: new FormControl(),
-        Mon: new FormControl(),
-        Tue: new FormControl(),
-        Wed: new FormControl(),
-        Thu: new FormControl(),
-        Fri: new FormControl(),
-        Sat: new FormControl(),
-        Sun: new FormControl(),
+        specific_end_date: new FormControl(),
+        number_of_event: new FormControl(),
+        type_of_month: new FormControl(),
+        day_of_week_Mon: new FormControl(),
+        day_of_week_Tue: new FormControl(),
+        day_of_week_Wed: new FormControl(),
+        day_of_week_Thu: new FormControl(),
+        day_of_week_Fri: new FormControl(),
+        day_of_week_Sat: new FormControl(),
+        day_of_week_Sun: new FormControl(),
     });
 
     roundUpTime() {
@@ -50,15 +50,7 @@ export class CreateNewGoalComponent implements OnInit {
     untilDate() {
         return this.commonFunctions.untilDate();
     }
-    moveLabelUp(string) {
-        this.commonFunctions.moveLabelUp(string);
-    }
-    moveLabelDown(string) {
-        this.commonFunctions.moveLabelDown(string);
-    }
-    changeAttributeInput(inputId, typeOfChange) {
-        this.commonFunctions.changeAttributeInput(inputId, typeOfChange);
-    }
+
     changeRepetitionType() {
         this.commonFunctions.changeRepetitionType();
     }
@@ -68,6 +60,7 @@ export class CreateNewGoalComponent implements OnInit {
     }
     setNewGoal() {
         let goal = this.createNewGoalForm.value;
-        console.log(JSON.stringify(goal));
+        console.log(goal);
+        // console.log(JSON.stringify(goal));
     }
 }

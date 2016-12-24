@@ -1,13 +1,9 @@
 <header id="header">
-  <app-side-bar></app-side-bar>
-  <h1><i class="fa fa-calendar-check-o"></i> {{title}}</h1>
-  <div class="user-information">
-    <!-- <a routerLink="/sign-up" routerLinkActive="active">Signup</a> -->
-    <!-- <a routerLink="/login" routerLinkActive="active">Login</a> -->
-    <button  (click)="onClick('login')" id="login-button">Login</button>
+  <side-bar></side-bar>
+  <span class="title-content"><a routerLink=""><span class="fa fa-calendar-check-o"></span> {{title}}</a></span>
+  <div class="title-button">
     <button  (click)="onClick('signup')" id="signup-button">Sign Up</button>
-    <p id="user-name">
-    </p>
+    <button  (click)="onClick('login')" id="login-button">Login</button>
   </div>
   <div class="clear">
   </div>

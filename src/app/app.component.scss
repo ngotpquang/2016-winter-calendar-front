@@ -1,84 +1,86 @@
-$border: #c6c6c6;
-$border-focus: #9FB1C1;
-$aqua: #07B3A1;
-$asphalt: #506982;
+#header,
+#main {
+	transition: margin-left 0.3s;
+}
+$main: #1E824C;
+$shadow: #86E2D5;
+$cascade: #95A5A6;
 
 header {
-	font-family: 'Lato', 'sans-serif';
+	background-color: $main;
+	font-family: 'Raleway', sans-serif;
+	padding: 1em;
 	color: white;
-	box-sizing: border-box;
-	position: relative;
 
-	h1 {
-		float: left;
-		// text-align: center;
-		font-weight: 400;
-		font-size: 50px;
-		margin-left: 40px;
-		margin-top: 0;
-		margin-bottom: 0;
+	.title-content {
+		font-size: 4em;
+		margin-left: 1em;
 	}
 
-	p {
-		font-weight: 400;
-		font-size: 16px;
-		color: rgba(255,255,255,.9);
-		letter-spacing: 0.05em;
-		margin-bottom: 10px;
-	}
-
-	.user-information {
+	.title-button {
 		float: right;
-		margin-top: 10px;
+		position: relative;
+		margin-top: 1em;
 
 		button {
-			text-decoration: none;
-			color: $aqua;
-			box-sizing: border-box;
-			border-radius: 3px;
-			border: none;
+			// display: block;
+			border: 1px solid $main;
+			border-radius: 10px;
 			background-color: white;
-			padding: 10px 18px;
-			font-size: 14px;
-			margin: 0 10px;
-			transition: background-color 0.2s;
+			color: $main;
+			font-family: inherit;
+			font-size: inherit;
+			padding: 0.5em;
+			width: 6em;
+			margin-left: 0.5em;
+			transition: all 0.3s;
 
-			&:hover {
-				background-color: #eff;
-			}
+			&:hover,
+			&:focus,
 			&:active {
-				border: none;
+				outline: none;
+				background-color: $main;
+				color: white;
+				font-weight: bold;
+				border: 1px solid white;
+			}
+
+			&:first-child {
+				background: #ddd;
+				color: $main;
+				font-weight: normal;
 			}
 		}
 	}
-
-	.clear {
-		clear: both;
-	}
-}
-
-section {
-	router-outlet {
-		display: block;
-		padding-bottom: 25px;
-	}
-	font-family: 'Lato', 'sans-serif';
-	color: $aqua;
-	padding: 3em 100px;
-
 	a {
-		color: $aqua;
-		border-bottom: 1px solid white;
-		padding: 10px;
-		margin: 10px;
-
-		&:hover {
+		color: white;
+		text-decoration: none;
+		&:hover, &:focus, &:active {
 			text-decoration: none;
-			color: #e74c3c;
+			color: white;
 		}
 	}
 }
-#main, #header {
-    transition: margin-left .3s;
-    padding: 20px;
+
+.left {
+	width: 45%;
+}
+
+.clear {
+	clear: both;
+}
+
+main {
+	section {
+		margin: auto 4em;
+		font-family: 'Raleway', sans-serif;
+	}
+}
+
+.left {
+	width: 45%;
+}
+
+.clear {
+	clear: both;
 }

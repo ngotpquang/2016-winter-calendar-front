@@ -2,48 +2,23 @@
     <!--  General -->
     <div class="form-group">
         <h2 class="heading">Sign up</h2>
-        <div class="controls">
-            <input formControlName="name" type="text" id="name"
-            class="floatLabel" name="name"
-            (focus)="moveLabelUp('name')" (blur)="moveLabelDown('name')"
-            required>
-            <label id="label-name" for="name">Name</label>
-        </div>
-        <div class="controls">
-            <input formControlName="email" type="email" id="email"
-            class="floatLabel" name="email"
-            (focus)="moveLabelUp('email')" (blur)="moveLabelDown('email')" required
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-            <label id="label-email" for="email">Email</label>
-        </div>
-        <div class="controls">
-            <input formControlName="password" type="password" id="password"
-            class="floatLabel" name="password"
-            (focus)="moveLabelUp('password')" (blur)="moveLabelDown('password')" required minlength='8'
-            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-            <label id="label-password" for="password">Password</label>
-            <i class="fa fa-eye-slash" (mouseup)="displayPassword('password')"
-            (mousedown)="displayPassword('password')"></i>
-        </div>
-        <div class="controls">
-            <input formControlName="password_confirmation" type="password" id="password_confirmation"
-            class="floatLabel" name="password_confirmation"
-            (focus)="moveLabelUp('password_confirmation')" (blur)="moveLabelDown('password_confirmation')"
-            data-toggle="tooltip" data-placement="right" title="Password does not match!"
-            required minlength="8"
-            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-            <label id="label-password_confirmation" for="password_confirmation">Confirm Password</label>
-            <i class="fa fa-eye-slash" (mouseup)="displayPassword('password_confirmation')"
-            (mousedown)="displayPassword('password_confirmation')"></i>
-        </div>
+        <label for="name">Name</label>
+        <input formControlName="name" type="text" id="name" class="floatLabel" name="name" (focus)="moveLabelUp('name')" (blur)="moveLabelDown('name')" required>
+        <label for="email">Email</label>
+        <input formControlName="email" type="email" id="email" class="floatLabel" name="email" (focus)="moveLabelUp('email')" (blur)="moveLabelDown('email')" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <label for="password">Password</label>
+        <input formControlName="password" type="password" id="password" class="floatLabel" name="password" (focus)="moveLabelUp('password')" (blur)="moveLabelDown('password')" required minlength='8' pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+        <span class="fa fa-eye-slash a" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
+        <label for="password_confirmation">Confirm Password</label>
+        <input formControlName="password_confirmation" type="password" id="password_confirmation" class="floatLabel" name="password_confirmation" (focus)="moveLabelUp('password_confirmation')" (blur)="moveLabelDown('password_confirmation')" data-toggle="tooltip"
+            data-placement="right" title="Password does not match!" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+        <span class="fa fa-eye-slash b" (mouseup)="displayPassword('password_confirmation')" (mousedown)="displayPassword('password_confirmation')"></span>
         <div class="alert alert-danger" id="password-match" hidden>
-          <b>Passwords do not match.</b>
+            <b>Passwords do not match.</b>
         </div>
     </div>
     <!-- button -->
     <div class="form-group">
-        <div class="controls">
-            <button type="submit">Create free account</button>
-        </div>
+        <button type="submit">Create free account</button>
     </div>
 </form>

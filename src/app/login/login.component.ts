@@ -41,39 +41,12 @@ export class LoginComponent implements OnInit {
                 console.log(result.headers['_headers']);
                 console.log("1111111111111111111111111");
                 console.log("Result: " + result);
-                (<HTMLInputElement>document.getElementById('login-button')).hidden = true;
-                (<HTMLInputElement>document.getElementById('signup-button')).hidden = true;
-                (<HTMLInputElement>document.getElementById('user-name')).innerHTML = "Quang";
                 this.router.navigate(['']);
             }
             else {
                 console.log("Login failed");
             }
         });
-    }
-
-    moveLabelUp(string) {
-        let label = document.getElementById("label-" + string);
-        label.classList.add('active');
-    }
-    moveLabelDown(string) {
-        let input = (<HTMLInputElement>document.getElementById(string)).value;
-        if (input === '' || input === 'blank') {
-            let label = document.getElementById("label-" + string);
-            label.classList.remove('active');
-        }
-    }
-
-    moveLabelAllDown() {
-        let inputs = ['email', 'fullName', 'password', 'confirmPassword'];
-        for (let input of inputs) {
-            if (<HTMLInputElement>document.getElementById(input) != null) {
-                (<HTMLInputElement>document.getElementById(input)).value = "";
-                let label = document.getElementById("label-" + input);
-                label.classList.remove('active');
-            }
-        }
-        (<HTMLInputElement>document.getElementById('wrong-input')).hidden = true;
     }
 
     displayPassword(string) {

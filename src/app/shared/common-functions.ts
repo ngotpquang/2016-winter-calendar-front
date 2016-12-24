@@ -1,35 +1,14 @@
 import { OnInit } from '@angular/core';
 
 export class CommonFunctions implements OnInit {
-    repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
-    repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
+    repetitionTypes = ['1', '2', '3', '4'];
+    repetitionLimitedTimes = ['1', '2', '3'];
     constructor() { }
     ngOnInit() {
-        // this.repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
-        // this.repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
-    }
-    moveLabelUp(string) {
-        let label = document.getElementById("label-" + string);
-        label.classList.add('active');
-    }
-    moveLabelDown(string) {
-        let input = (<HTMLInputElement>document.getElementById(string)).value;
-        if (input === '' || input === 'blank') {
-            let label = document.getElementById("label-" + string);
-            label.classList.remove('active');
-        }
-    }
-
-    changeAttributeInput(inputId, typeOfChange) {
-        let input = (<HTMLInputElement>document.getElementById(inputId));
-        input.type = typeOfChange;
-        // this.moveLabelUp(inputId);
     }
 
     togglePanel(panelId, arg) {
-      console.log(panelId + "|" + arg);
-      let panel = (<HTMLInputElement>document.getElementById(panelId));
-      console.log(panel);
+        let panel = (<HTMLInputElement>document.getElementById(panelId));
         if (arg) {
             panel.hidden = true;
         } else {

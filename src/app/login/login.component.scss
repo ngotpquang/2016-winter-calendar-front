@@ -1,133 +1,101 @@
-// Float label
-$border: #c6c6c6;
-$border-focus: #9FB1C1;
-$aqua: #07B3A1;
-$asphalt: #506982;
+$main: #1E824C;
+$shadow: #86E2D5;
+$cascade: #95A5A6;
 
-a {
-    text-decoration: none;
-}
-
-form {
-    position: relative;
-    padding: 2em 5%;
-    background-color: white;
-    width: 50%;
+.form-group {
+    width: 40%;
     margin: 0 auto;
-    border-radius: 10px;
-    box-sizing: border-box;
-}
-
-h2.heading {
-    font-size: 26px;
-    // text-transform: uppercase;
-    font-weight: 400;
-    text-align: left;
-    color: $aqua;
-    border-bottom: 1px solid $aqua;
-    padding-bottom: 3px;
-    margin-bottom: 20px;
-}
-
-.controls {
-    text-align: left;
     position: relative;
-    p {
-      font-family: 'Lato', 'sans-serif';
-      font-size: 16px;
-      font-weight: 300;
+
+    h2 {
+        font-size: 26px;
+        font-weight: 600;
+        text-align: left;
+        color: $main;
+        border-bottom: 1px solid $main;
+        padding-bottom: 3px;
+        margin-bottom: 20px;
     }
 
     a {
-        font-family: 'Lato', 'sans-serif';
-        font-size: 16px;
-        font-weight: 300;
-        color: $aqua;
-        border: none;
+        font-size: inherit;
+        font-family: inherit;
+        color: $main;
+        text-decoration: none;
+        transition: all 1s ease-out;
 
-        &:focus,
         &:hover {
-            color: $aqua;
-            cursor: pointer;
-            border: none;
             text-decoration: underline;
+            color: lighten($main, 10%);
+        }
+
+        &:active {
+            color: $cascade;
         }
     }
 
-    button,
+    label {
+        font-size: 12.5px;
+        color: $main;
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.5em;
+        margin-top: 1em;
+        margin-left: 1em;
+    }
+
     input[type="email"],
     input[type="password"],
-    input[type="text"],
-    textarea {
-        padding: 12px;
-        font-size: 14px;
-        border: 1px solid $border;
-        width: 94%;
-        margin-bottom: 18px;
-        color: #888;
-        font-family: 'Lato', 'sans-serif';
-        font-size: 16px;
-        font-weight: 300;
-        background-color: #fff;
-        border-radius: 2px;
-        transition: all 0.3s;
+    input[type="text"] {
+        font-family: inherit;
+        font-size: inherit;
+        color: #222;
+        border: 1px solid $main;
+        border-radius: 10px;
+        height: 25px;
+        padding: 0.2em;
+        width: 100%;
+        transition: all 0.2s;
 
         &:focus,
         &:hover {
             outline: none;
-            border-color: $border-focus;
-
-            + label {
-                color: $aqua;
-                cursor: text;
-            }
+            box-shadow: 0 0 5px 0 $shadow;
         }
     }
-    button{
-      width: 100%;
-    }
 
-    label {
-        position: absolute;
-        left: 8px;
-        top: 12px;
-        color: #999;
-        font-size: 16px;
-        display: inline-block;
-        padding: 1px 10px;
-        font-weight: 400;
-        background-color: rgba(255,255,255,0);
-        pointer-events: none;
-        transition: color 0.3s, top 0.3s, background-color 0.8s;
-
-        &.active {
-            top: -12px;
-            color: #555;
-            background-color: rgba(255,255,255,1);
-        }
+    div {
+        color: $main;
+        font-size: 12.5px;
     }
 
     button {
-        cursor: pointer;
-        background-color: $aqua;
-        border: none;
-        color: #fff;
-        padding: 12px 0;
+        // display: block;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: $main;
+        color: white;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0.5em;
+        width: 102%;
+        transition: all 0.3s;
 
-        &:hover {
-            background-color: darken($aqua, 10%);
+        &:hover,
+        &:focus,
+        &:active {
+            outline: none;
+            background-color: white;
+            color: $main;
+            font-weight: bold;
+            border: 1.5px solid $main;
         }
     }
 
-    i {
-        color: #888;
+    span {
         position: absolute;
-        top: 1.1em;
-        left: 92%;
-
-        &:hover {
-            cursor: pointer;
-            color: $aqua;
-        }
+        top: 72.5%;
+        left: 95%;
+        color: #ddd;
     }
 }
