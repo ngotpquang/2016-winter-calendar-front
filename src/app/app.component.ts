@@ -7,11 +7,9 @@ import { Router } from '@angular/router';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    constructor(
-        private router: Router,
-    ) { }
+    constructor(private router: Router) { }
     title = 'Seinfeld Calendar';
-    onClick(string){
-      this.router.navigate(['/' + string]);
+    onClick(string) {
+        this.router.navigate(['/' + string]);
     }
 }

@@ -82,6 +82,7 @@ $cascade: #95A5A6;
         width: 102%;
         margin-top: 2em;
         transition: all 0.3s;
+        cursor: pointer;
 
         &:hover,
         &:focus,
@@ -96,7 +97,8 @@ $cascade: #95A5A6;
 
     span {
         position: absolute;
-        color: #ddd;
+        color: #aaa;
+        cursor: pointer;
 
         &.a {
             top: 70%;

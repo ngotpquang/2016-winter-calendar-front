@@ -3,7 +3,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable'
 import { Router } from '@angular/router';
 
-import { UserService } from '../user/user.service'
+import { UserService } from '../user/user.service';
+import { Angular2TokenService } from 'angular2-token';
 import '../rxjs-operator'
 
 @Component({
@@ -13,7 +14,41 @@ import '../rxjs-operator'
 })
 export class LoginComponent implements OnInit {
 
-    constructor(private userService: UserService, private router: Router) {
+    constructor(private userService: UserService, private router: Router, private tokenService: Angular2TokenService) {
+        this.tokenService.init({
+            apiPath: 'https://wintercalendar.herokuapp.com/api/v1',
+
+            signInPath: 'auth/sign_in',
+            signInRedirect: null,
+            signInStoredUrlStorageKey: null,
+
+            signOutPath: 'auth/sign_out',
+            validateTokenPath: 'auth/validate_token',
+            signOutFailedValidate: false,
+
+            registerAccountPath: 'auth',
+            deleteAccountPath: 'auth',
+            registerAccountCallback: window.location.href,
+
+            updatePasswordPath: 'auth',
+            resetPasswordPath: 'auth/password',
+            resetPasswordCallback: window.location.href,
+
+            oAuthPaths: {
+                github: 'auth/github'
+            },
+            oAuthCallbackPath: 'oauth_callback',
+            oAuthWindowType: 'newWindow',
+
+            userTypes: null,
+
+            globalOptions: {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }
+        });
     }
 
     ngOnInit() {
@@ -34,19 +69,12 @@ export class LoginComponent implements OnInit {
         //     console.log(JSON.parse(localStorage.getItem('myStorage')));
         // }
         console.log(JSON.stringify(this.loginForm.value));
-        this.userService.login(user.email, user.password).subscribe((result) => {
-            if (result) {
-                console.log(result);
-                console.log("1111111111111111111111111");
-                console.log(result.headers['_headers']);
-                console.log("1111111111111111111111111");
-                console.log("Result: " + result);
-                this.router.navigate(['']);
-            }
-            else {
-                console.log("Login failed");
-            }
-        });
+        this.tokenService.signIn({ email: user.email, password: user.password }).subscribe(
+            res => {
+                console.log(res);
+            },
+            error => console.log(error)
+        );
     }
 
     displayPassword(string) {

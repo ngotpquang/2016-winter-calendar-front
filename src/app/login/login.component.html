@@ -5,7 +5,7 @@
         <label for="email">Email</label>
         <input formControlName="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
         <label for="password">Password</label>
-        <input formControlName="password" type="password" id="password" class="floatLabel" name="password" (focus)="moveLabelUp('password')" (blur)="moveLabelDown('password')" required minlength='8'>
+        <input formControlName="password" type="password" name="password" required minlength='8'>
         <span class="fa fa-eye-slash" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
         <div class="alert alert-warning" id="wrong-input" hidden>
             <b>Wrong username/password</b>
@@ -17,6 +17,6 @@
     <!-- button -->
     <div class="form-group">
         <button type="submit">Login</button>
-        <div class="controls" style="text-align: center; font-size: 14px; !important"><a href="#" style="color: #999">Forgot your password?</a></div>
+        <div class="" style="text-align: center; font-size: 14px; margin-top: 1.5em;"><a href="#" style="color: #999">Forgot your password?</a></div>
     </div>
 </form>

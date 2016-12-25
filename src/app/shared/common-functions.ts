@@ -48,6 +48,7 @@ export class CommonFunctions implements OnInit {
                 (<HTMLInputElement>document.getElementById('repetitionFrequencyType')).innerHTML = 'week(s)';
                 break;
             case this.repetitionTypes[2]:
+                (<HTMLInputElement>document.getElementById('dayDefineValue')).innerHTML = this.getDay();
                 this.togglePanel('weeklyRepetition', true);
                 this.togglePanel('monthlyRepetition', false);
                 (<HTMLInputElement>document.getElementById('repetitionFrequencyType')).innerHTML = 'month(s)';
@@ -76,6 +77,52 @@ export class CommonFunctions implements OnInit {
                 this.togglePanel('number-events', false);
                 break;
         }
+    }
+
+    getDay() {
+        let today = new Date();
+        let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        let orderNumbers = ["first ", "second ", "third ", "fourth "];
+        let result = "";
+        let days = this.getAllDaysOfMonth(today.getDay(), today.getMonth());
+        for (let day in days) {
+          if (today.getDate() === days[day].getDate()){
+            if (day == ((days.length - 1) + "")){
+              result += "last ";
+            } else {
+              for (let i in orderNumbers){
+                if (day == i + ""){
+                  result += orderNumbers[i];
+                }
+              }
+            }
+          }
+        }
+        for (let i in dayNames){
+          if (today.getDay() + "" == i){
+            result += dayNames[i];
+          }
+        }
+        return result;
+    }
+    getAllDaysOfMonth(day, month) {
+        let d = new Date(),
+            results = [];
+
+        d.setDate(1);
+
+        // Get the first {day} in the month
+        while (d.getDay() !== day) {
+            d.setDate(d.getDate() + 1);
+        }
+
+        // Get all the other {day} in the month
+        while (d.getMonth() === month) {
+            results.push(new Date(d.getTime()));
+            d.setDate(d.getDate() + 7);
+        }
+
+        return results;
     }
 
 }

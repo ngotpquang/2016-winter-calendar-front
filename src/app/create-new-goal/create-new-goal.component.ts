@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { CommonFunctions } from '../shared/common-functions';
-import { Goal } from '../shared/goal.interface';
+import { Goal, Repetition, EndDate } from '../shared/goal';
 
 @Component({
     selector: 'app-create-new-goal',
@@ -59,8 +59,32 @@ export class CreateNewGoalComponent implements OnInit {
         this.commonFunctions.changeRepetitionLimitedTime();
     }
     setNewGoal() {
-        let goal = this.createNewGoalForm.value;
+        let input = this.createNewGoalForm.value;
+        let day_of_week =
+            (input.day_of_week_Mon == true ? "Mon, " : "") +
+            (input.day_of_week_Tue == true ? "Tue, " : "") +
+            (input.day_of_week_Wed == true ? "Wed, " : "") +
+            (input.day_of_week_Thu == true ? "Thu, " : "") +
+            (input.day_of_week_Fri == true ? "Fri, " : "") +
+            (input.day_of_week_Sat == true ? "Sat, " : "") +
+            (input.day_of_week_Sun == true ? "Sun" : "");
+        let start_date;
+        if (input.start_date == null) {
+            start_date = this.roundUpTime().toString();
+        } else {
+            start_date = input.start_date;
+        }
+        let specific_end_date;
+        if (input.type_of_end_date == 2) {
+            if (input.specific_end_date == null) {
+                specific_end_date = this.untilDate().toString();
+            } else {
+                specific_end_date = input.specific_end_date;
+            }
+        }
+        let goal = new Goal(input.goal_name, start_date, input.description,
+          new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
+          new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event));
         console.log(goal);
-        // console.log(JSON.stringify(goal));
     }
 }

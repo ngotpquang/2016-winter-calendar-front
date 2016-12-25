@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CommonFunctions } from '../shared/common-functions';
-import { Goal } from '../shared/goal';
+import { Goal, Repetition, EndDate } from '../shared/goal';
 var CreateNewGoalComponent = (function () {
     function CreateNewGoalComponent() {
         this.createNewGoalForm = new FormGroup({
@@ -53,7 +53,31 @@ var CreateNewGoalComponent = (function () {
     };
     CreateNewGoalComponent.prototype.setNewGoal = function () {
         var input = this.createNewGoalForm.value;
-        var goal = new Goal();
+        var day_of_week = (input.day_of_week_Mon == true ? "Mon, " : "") +
+            (input.day_of_week_Tue == true ? "Tue, " : "") +
+            (input.day_of_week_Wed == true ? "Wed, " : "") +
+            (input.day_of_week_Thu == true ? "Thu, " : "") +
+            (input.day_of_week_Fri == true ? "Fri, " : "") +
+            (input.day_of_week_Sat == true ? "Sat, " : "") +
+            (input.day_of_week_Sun == true ? "Sun" : "");
+        var start_date;
+        if (input.start_date == null) {
+            start_date = this.roundUpTime().toString();
+        }
+        else {
+            start_date = input.start_date;
+        }
+        var specific_end_date;
+        if (input.type_of_end_date == 2) {
+            if (input.specific_end_date == null) {
+                specific_end_date = this.untilDate().toString();
+            }
+            else {
+                specific_end_date = input.specific_end_date;
+            }
+        }
+        var goal = new Goal(input.goal_name, start_date, input.description, new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month), new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event));
+        console.log(goal);
     };
     return CreateNewGoalComponent;
 }());
@@ -66,4 +90,4 @@ CreateNewGoalComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], CreateNewGoalComponent);
 export { CreateNewGoalComponent };
-//# sourceMappingURL=../../../../src/app/create-new-goal/create-new-goal.component.js.map
+//# sourceMappingURL=../../../../../src/app/create-new-goal/create-new-goal.component.js.map
