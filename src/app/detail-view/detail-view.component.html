@@ -1,0 +1,65 @@
+<div class="view">
+    <div class="item" *ngFor="let goal of goals; let i = index;">
+        <div class="goal-panel" *ngIf="i % 2 == 0" style="float: left;">
+            <div class="goal-title">
+                <b id="title">{{goal.goal_name}}</b>
+                <div class="reminder"><span class="fa fa-clock-o"></span> 21:00</div>
+            </div>
+            <div class="clear"></div>
+            <div class="feature">
+                <input id="check" type="checkbox" name="" value="">
+                <div class="favorite"><span class="fa fa-star-o"></span></div>
+            </div>
+            <div class="clear"></div>
+            <div class="goal-detail">
+                <span class="number-of-days-done">1 day</span>
+                <span class="space"></span>
+                <span class="best-chain">1 best</span>
+                <span class="space"></span>
+                <span class="passed-day-in-total">1/2</span>
+                <span class="space"></span>
+
+                <span class="type-of-repetition">
+        <div [ngSwitch]="goal.repetition.type_of_repetition">
+          <div *ngSwitchCase="1">Daily</div>
+          <div *ngSwitchCase="2">Weekly</div>
+          <div *ngSwitchCase="3">Monthly</div>
+          <div *ngSwitchCase="4">Yearly</div>
+          <div *ngSwitchDefault>Daily</div>
+        </div></span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="goal-panel" *ngIf="i % 2 != 0" style="float: right;">
+            <div class="goal-title">
+                <b id="title">{{goal.goal_name}}</b>
+                <div class="reminder"><span class="fa fa-clock-o"></span> 21:00</div>
+            </div>
+            <div class="clear"></div>
+            <div class="feature">
+                <input id="check" type="checkbox" name="" value="">
+                <div class="favorite"><span class="fa fa-star-o"></span></div>
+            </div>
+            <div class="clear"></div>
+            <div class="goal-detail">
+                <span class="number-of-days-done">1 day</span>
+                <span class="space"></span>
+                <span class="best-chain">1 best</span>
+                <span class="space"></span>
+                <span class="passed-day-in-total">1/2</span>
+                <span class="space"></span>
+
+                <span class="type-of-repetition">
+        <div [ngSwitch]="goal.repetition.type_of_repetition">
+          <div *ngSwitchCase="1">Daily</div>
+          <div *ngSwitchCase="2">Weekly</div>
+          <div *ngSwitchCase="3">Monthly</div>
+          <div *ngSwitchCase="4">Yearly</div>
+          <div *ngSwitchDefault>Daily</div>
+        </div></span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

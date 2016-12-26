@@ -11,14 +11,16 @@ export class GoalService {
 
     constructor(private http: Http) { }
 
-    addNewGoal(goal: Goal) {
+    addNewGoal(goal: Goal){
         return this.http
             .post(
             'https://wintercalendar.herokuapp.com/api/v1/goals',
             JSON.stringify(goal),
-            { headers: headers })
-            .subscribe(res => {
-                return res;
-            });
+            { headers: headers });
+    }
+
+    getAllGoals() {
+        return this.http
+            .get('https://wintercalendar.herokuapp.com/api/v1/goals');
     }
 }

@@ -59,7 +59,7 @@ export class CreateNewGoalComponent implements OnInit {
     changeRepetitionLimitedTime() {
         this.commonFunctions.changeRepetitionLimitedTime();
     }
-    setNewGoal() {
+    addNewGoal() {
         let input = this.createNewGoalForm.value;
         let day_of_week = null;
         if (input.type_of_repetition == 2) {
@@ -89,8 +89,8 @@ export class CreateNewGoalComponent implements OnInit {
         let goal = new Goal(input.goal_name, start_date, input.description,
             new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
             new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event));
-        console.log(JSON.stringify(goal));
-        this.goalService.addNewGoal(goal);
-
+        this.goalService.addNewGoal(goal).subscribe(res => {
+            console.log(res);
+        });
     }
 }
