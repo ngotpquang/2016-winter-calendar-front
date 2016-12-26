@@ -9,9 +9,16 @@ import '../rxjs-operator';
 @Injectable()
 export class GoalService {
 
-  constructor(private http: Http) { }
+    constructor(private http: Http) { }
 
-  addNewGoal(goal: Goal){
-    // return this.http.post('');
-  }
+    addNewGoal(goal: Goal) {
+        return this.http
+            .post(
+            'https://wintercalendar.herokuapp.com/api/v1/goals',
+            JSON.stringify(goal),
+            { headers: headers })
+            .subscribe(res => {
+                return res;
+            });
+    }
 }
