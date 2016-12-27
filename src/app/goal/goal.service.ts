@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Goal } from '../shared/goal';
@@ -11,7 +11,7 @@ export class GoalService {
 
     constructor(private http: Http) { }
 
-    addNewGoal(goal: Goal){
+    addNewGoal(goal: Goal) {
         return this.http
             .post(
             'https://wintercalendar.herokuapp.com/api/v1/goals',
@@ -20,7 +20,8 @@ export class GoalService {
     }
 
     getAllGoals() {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         return this.http
-            .get('https://wintercalendar.herokuapp.com/api/v1/goals');
+            .get('https://wintercalendar.herokuapp.com/api/v1/goals?email=' + currentUser.email + '&token=' + currentUser.token);
     }
 }

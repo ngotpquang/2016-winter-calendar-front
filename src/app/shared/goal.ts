@@ -1,11 +1,15 @@
 export class Goal {
+  email: string;
+  token: string;
   goal_name: string;
   start_date;
   description : string;
   repetition: Repetition;
   end_date: EndDate;
 
-  constructor(goal_name, start_date, description, repetition: Repetition, end_date: EndDate){
+  constructor(email, token, goal_name, start_date, description, repetition: Repetition, end_date: EndDate){
+    this.email = email;
+    this.token = token;
     this.goal_name = goal_name;
     this.start_date = start_date;
     this.description = description;

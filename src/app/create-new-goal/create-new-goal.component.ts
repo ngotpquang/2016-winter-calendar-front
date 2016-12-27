@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 import { CommonFunctions } from '../shared/common-functions';
 import { Goal, Repetition, EndDate } from '../shared/goal';
-
 import { GoalService } from '../goal/goal.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class CreateNewGoalComponent implements OnInit {
     public repetitionTypes: string[];
     public repetitionLimitedTimes: string[];
     public commonFunctions: CommonFunctions;
-    constructor(private goalService: GoalService) { }
+    constructor(private goalService: GoalService, private router: Router) { }
 
     ngOnInit() {
         this.weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -86,11 +87,14 @@ export class CreateNewGoalComponent implements OnInit {
                 specific_end_date = input.specific_end_date;
             }
         }
-        let goal = new Goal(input.goal_name, start_date, input.description,
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let goal = new Goal(currentUser.email, currentUser.token, input.goal_name, start_date, input.description,
             new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
             new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event));
         this.goalService.addNewGoal(goal).subscribe(res => {
             console.log(res);
-        });
+            this.router.navigate(['/detailview']);
+        },
+            error => console.log(error));
     }
 }

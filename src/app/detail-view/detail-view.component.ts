@@ -12,7 +12,6 @@ export class DetailViewComponent implements OnInit {
   goals;
   constructor(private goalService : GoalService) {
     goalService.getAllGoals().subscribe(res => {
-      console.log(res);
       this.goals = res.json();
     });
   }

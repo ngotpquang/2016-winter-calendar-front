@@ -86,22 +86,22 @@ export class CommonFunctions implements OnInit {
         let result = "";
         let days = this.getAllDaysOfMonth(today.getDay(), today.getMonth());
         for (let day in days) {
-          if (today.getDate() === days[day].getDate()){
-            if (day == ((days.length - 1) + "")){
-              result += "last ";
-            } else {
-              for (let i in orderNumbers){
-                if (day == i + ""){
-                  result += orderNumbers[i];
+            if (today.getDate() === days[day].getDate()) {
+                if (day == ((days.length - 1) + "")) {
+                    result += "last ";
+                } else {
+                    for (let i in orderNumbers) {
+                        if (day == i + "") {
+                            result += orderNumbers[i];
+                        }
+                    }
                 }
-              }
             }
-          }
         }
-        for (let i in dayNames){
-          if (today.getDay() + "" == i){
-            result += dayNames[i];
-          }
+        for (let i in dayNames) {
+            if (today.getDay() + "" == i) {
+                result += dayNames[i];
+            }
         }
         return result;
     }
@@ -123,6 +123,24 @@ export class CommonFunctions implements OnInit {
         }
 
         return results;
+    }
+
+    changeTitleAfterLogined(title: string) {
+        console.log("Changing button");
+        let defaultButton = document.getElementsByClassName("default-button");
+        console.log(defaultButton);
+        if (defaultButton.length != 0) {
+            (<HTMLInputElement>defaultButton[0]).hidden = true;
+            (<HTMLInputElement>defaultButton[1]).hidden = true;
+        }
+        let logoutButton = <HTMLInputElement>document.getElementById("logout-button");
+        console.log(logoutButton);
+        if (logoutButton != null) {
+            logoutButton.hidden = false;
+        }
+        let titleContent = <HTMLInputElement>document.getElementById("title-content");
+        titleContent.innerHTML = title;
+
     }
 
 }
