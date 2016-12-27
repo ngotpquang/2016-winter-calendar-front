@@ -86,7 +86,8 @@ export class CreateNewGoalComponent implements OnInit {
                 specific_end_date = input.specific_end_date;
             }
         }
-        let goal = new Goal(input.goal_name, start_date, input.description,
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let goal = new Goal(currentUser.email, currentUser.token, input.goal_name, start_date, input.description,
             new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
             new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event));
         this.goalService.addNewGoal(goal).subscribe(res => {

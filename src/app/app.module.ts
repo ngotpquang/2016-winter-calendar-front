@@ -8,9 +8,11 @@ import { Angular2TokenService } from 'angular2-token';
 
 import { AppComponent } from './app.component';
 import { CreateNewGoalComponent } from './create-new-goal/create-new-goal.component';
+import { DetailViewComponent } from './detail-view/detail-view.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { LoginComponent } from './login/login.component';
-import { MainRoutes } from './app.route';
+import { MonthViewComponent } from './month-view/month-view.component';
+import { Routes } from './app.route';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 
@@ -18,7 +20,6 @@ import { LoggedInGuard } from './shared/logged-in.guard';
 
 import { GoalService } from './goal/goal.service';
 import { UserService } from './user/user.service';
-import { DetailViewComponent } from './detail-view/detail-view.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { DetailViewComponent } from './detail-view/detail-view.component';
         SideBarComponent,
         CreateNewGoalComponent,
         DetailViewComponent,
+        MonthViewComponent,
     ],
     imports: [
         BrowserModule,
@@ -36,7 +38,7 @@ import { DetailViewComponent } from './detail-view/detail-view.component';
         JsonpModule,
         HttpModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(MainRoutes)
+        RouterModule.forRoot(Routes)
     ],
     providers: [UserService, LoggedInGuard, GoalService, Angular2TokenService],
     bootstrap: [AppComponent]

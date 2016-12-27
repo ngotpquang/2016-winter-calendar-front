@@ -125,4 +125,14 @@ export class CommonFunctions implements OnInit {
         return results;
     }
 
+    changeTitleAfterLogined(title:string) {
+      let defaultButton = document.getElementsByClassName("default-button");
+      let logoutButton = <HTMLInputElement>document.getElementById("logout-button");
+      (<HTMLInputElement>defaultButton[0]).hidden = true;
+      (<HTMLInputElement>defaultButton[1]).hidden = true;
+      let titleContent = <HTMLInputElement>document.getElementById("title-content");
+      titleContent.innerHTML = title;
+      logoutButton.hidden = false;
+    }
+
 }
