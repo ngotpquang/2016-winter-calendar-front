@@ -9,7 +9,7 @@ import '../rxjs-operator';
 export class UserService {
     private loggedIn = false;
     constructor(private http: Http) {
-        this.loggedIn = !!localStorage.getItem('auth_token');
+        this.loggedIn = !!localStorage.getItem('currentUser');
     }
     logIn(email, password) {
         return this.http

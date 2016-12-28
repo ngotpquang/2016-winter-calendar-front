@@ -6,69 +6,110 @@ ul {
     list-style-type: none;
 }
 
-body {
+$main: #1E824C;
+
+.item {
     font-family: inherit;
-}
+    position: relative;
+    margin: 2em auto;
+    border: 1px solid $main;
+    border-radius: 10px;
 
-.month {
-    padding: 70px 25px;
-    width: 100%;
-    background: #1abc9c;
+    .month {
+        padding: 30px 25px;
+        width: 100%;
+        // background: #ccc;
 
-    ul {
-        margin: 0;
-        padding: 0;
+        ul {
+            margin: 0;
+            padding: 0;
 
-        li {
-            color: white;
-            font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            li {
+                color: $main;
+                font-size: 25px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+            }
+        }
+
+        .prev {
+            float: left;
+            padding-top: 10px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .next {
+            float: right;
+            padding-top: 10px;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 
-    .prev {
-        float: left;
-        padding-top: 10px;
+    .weekdays {
+        margin: 0;
+        padding: 10px 0;
+        background-color: $main;
+
+        li {
+            display: inline-block;
+            width: 13.6%;
+            color: white;
+            text-align: center;
+        }
     }
 
-    .next {
-        float: right;
-        padding-top: 10px;
-    }
-}
+    .days {
+        // background: #eee;
+        margin: 0 auto;
+        padding-left: 0.9em;
+        padding-right: 0.9em;
+        padding-top: 0.9em;
+        padding-bottom: 0.5em;
+        position: relative;
 
-.weekdays {
-    margin: 0;
-    padding: 10px 0;
-    background-color: #ddd;
+        li {
+            list-style-type: none;
+            display: inline-block;
+            width: 13.8%;
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 5px;
+            padding: 2em 0;
+            color: black;
+            transition: all 0.2s ease-in-out;
 
-    li {
-        display: inline-block;
-        width: 13.6%;
-        color: #666;
-        text-align: center;
-    }
-}
+            &.active {
+                font-weight: bold;
+            }
 
-.days {
-    padding: 10px 0;
-    background: #eee;
-    margin: 0;
+            &.hide {
+                display: none;
+            }
+            &.hide-background {
+                background-color: white;
+            }
 
-    li {
-        list-style-type: none;
-        display: inline-block;
-        width: 13.6%;
-        text-align: center;
-        margin-bottom: 5px;
-        font-size: 12px;
-        color: #777;
+            @mixin x {
+              background-clip: border-box;
+              background-size: 50%;
+              text-align: left;
+            }
 
-        &.active {
-            padding: 5px;
-            background: #1abc9c;
-            color: white !important;
+            &.pass, &.fail {
+              background: url('../../img/passed.png') no-repeat center;
+              @include x;
+            }
+            &.fail {
+              background: url('../../img/failed.png') no-repeat center;
+              @include x;
+            }
         }
     }
 }

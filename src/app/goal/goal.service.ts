@@ -24,4 +24,15 @@ export class GoalService {
         return this.http
             .get('https://wintercalendar.herokuapp.com/api/v1/goals?email=' + currentUser.email + '&token=' + currentUser.token);
     }
+
+    getGoalsById(id: string) {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        return this.http
+            .get('https://wintercalendar.herokuapp.com/api/v1/goals/' + id + '?email=' + currentUser.email + '&token=' + currentUser.token);
+    }
+
+    markGoal(id: string, date_of_calendar: string, status: string){
+      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      return this.http.put('https://wintercalendar.herokuapp.com/api/v1/goals/' + id + '/calendar', JSON.stringify({token: currentUser.token, id: id, date_of_calendar: date_of_calendar,status: status}));
+    }
 }

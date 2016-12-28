@@ -1,11 +1,16 @@
 export class Goal {
+  id: string;
   email: string;
   token: string;
   goal_name: string;
   start_date;
+  best_chain: string;
+  progress: string;
   description : string;
   repetition: Repetition;
   end_date: EndDate;
+  calendars:  Calendar[];
+
 
   constructor(email, token, goal_name, start_date, description, repetition: Repetition, end_date: EndDate){
     this.email = email;
@@ -41,4 +46,11 @@ export class EndDate {
     this.specific_end_date = specific_end_date;
     this.number_of_event = number_of_event;
   }
+}
+
+export class Calendar {
+  id: string;
+  goal_id: string;
+  date_of_calendar: string;
+  status: string;
 }

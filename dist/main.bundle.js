@@ -4,10 +4,40 @@ webpackJsonp([0,3],{
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_throw__ = __webpack_require__(728);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_catch__ = __webpack_require__(729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__ = __webpack_require__(730);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__(731);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_distinctUntilChanged___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_distinctUntilChanged__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(733);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__ = __webpack_require__(736);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise__ = __webpack_require__(737);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise__);
+// import 'rxjs/Rx'; // adds ALL RxJS statics & operators to Observable
+
+
+
+
+
+
+
+//# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/rxjs-operator.js.map
+
+/***/ },
+
+/***/ 103:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_headers__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rxjs_operator__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rxjs_operator__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rxjs_operator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__rxjs_operator__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return UserService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -27,7 +57,7 @@ var UserService = (function () {
     function UserService(http) {
         this.http = http;
         this.loggedIn = false;
-        this.loggedIn = !!localStorage.getItem('auth_token');
+        this.loggedIn = !!localStorage.getItem('currentUser');
     }
     UserService.prototype.logIn = function (email, password) {
         return this.http
@@ -61,37 +91,63 @@ var UserService = (function () {
 
 /***/ },
 
-/***/ 142:
+/***/ 143:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_throw__ = __webpack_require__(726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_observable_throw__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_catch__ = __webpack_require__(727);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__ = __webpack_require__(728);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__(729);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_distinctUntilChanged___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_distinctUntilChanged__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(731);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__ = __webpack_require__(734);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_switchMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise__ = __webpack_require__(735);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise__);
-// import 'rxjs/Rx'; // adds ALL RxJS statics & operators to Observable
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_headers__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rxjs_operator__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rxjs_operator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__rxjs_operator__);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return GoalService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
 
-
-
-
-//# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/rxjs-operator.js.map
+var GoalService = (function () {
+    function GoalService(http) {
+        this.http = http;
+    }
+    GoalService.prototype.addNewGoal = function (goal) {
+        return this.http
+            .post('https://wintercalendar.herokuapp.com/api/v1/goals', JSON.stringify(goal), { headers: __WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* headers */] });
+    };
+    GoalService.prototype.getAllGoals = function () {
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        return this.http
+            .get('https://wintercalendar.herokuapp.com/api/v1/goals?email=' + currentUser.email + '&token=' + currentUser.token);
+    };
+    GoalService.prototype.getGoalsById = function (id) {
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        return this.http
+            .get('https://wintercalendar.herokuapp.com/api/v1/goals/' + id + '?email=' + currentUser.email + '&token=' + currentUser.token);
+    };
+    GoalService.prototype.markGoal = function (id, date_of_calendar, status) {
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        return this.http.put('https://wintercalendar.herokuapp.com/api/v1/goals/' + id + '/calendar', JSON.stringify({ token: currentUser.token, id: id, date_of_calendar: date_of_calendar, status: status }));
+    };
+    GoalService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === 'function' && _a) || Object])
+    ], GoalService);
+    return GoalService;
+    var _a;
+}());
+//# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/goal.service.js.map
 
 /***/ },
 
-/***/ 143:
+/***/ 144:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -236,61 +292,14 @@ var CommonFunctions = (function () {
 
 /***/ },
 
-/***/ 218:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_headers__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rxjs_operator__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rxjs_operator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__rxjs_operator__);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return GoalService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var GoalService = (function () {
-    function GoalService(http) {
-        this.http = http;
-    }
-    GoalService.prototype.addNewGoal = function (goal) {
-        return this.http
-            .post('https://wintercalendar.herokuapp.com/api/v1/goals', JSON.stringify(goal), { headers: __WEBPACK_IMPORTED_MODULE_2__shared_headers__["a" /* headers */] });
-    };
-    GoalService.prototype.getAllGoals = function () {
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        return this.http
-            .get('https://wintercalendar.herokuapp.com/api/v1/goals?email=' + currentUser.email + '&token=' + currentUser.token);
-    };
-    GoalService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === 'function' && _a) || Object])
-    ], GoalService);
-    return GoalService;
-    var _a;
-}());
-//# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/goal.service.js.map
-
-/***/ },
-
 /***/ 340:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_common_functions__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user_service__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_common_functions__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user_service__ = __webpack_require__(103);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -347,8 +356,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-root',
-            template: __webpack_require__(711),
-            styles: [__webpack_require__(703)]
+            template: __webpack_require__(713),
+            styles: [__webpack_require__(705)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__user_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__user_user_service__["a" /* UserService */]) === 'function' && _b) || Object])
     ], AppComponent);
@@ -365,10 +374,10 @@ var AppComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_common_functions__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_goal__ = __webpack_require__(523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__goal_goal_service__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_common_functions__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_goal__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__goal_goal_service__ = __webpack_require__(143);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CreateNewGoalComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -467,8 +476,8 @@ var CreateNewGoalComponent = (function () {
     CreateNewGoalComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-create-new-goal',
-            template: __webpack_require__(712),
-            styles: [__webpack_require__(704)]
+            template: __webpack_require__(714),
+            styles: [__webpack_require__(706)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__goal_goal_service__["a" /* GoalService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__goal_goal_service__["a" /* GoalService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _b) || Object])
     ], CreateNewGoalComponent);
@@ -484,7 +493,8 @@ var CreateNewGoalComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__goal_goal_service__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__goal_goal_service__ = __webpack_require__(143);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return DetailViewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -497,26 +507,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var DetailViewComponent = (function () {
-    function DetailViewComponent(goalService) {
+    function DetailViewComponent(router, goalService) {
         var _this = this;
+        this.router = router;
         this.goalService = goalService;
         goalService.getAllGoals().subscribe(function (res) {
             _this.goals = res.json();
-        });
+        }, function (error) { return console.log(error); });
     }
     DetailViewComponent.prototype.ngOnInit = function () {
+    };
+    DetailViewComponent.prototype.displayMonthView = function (goal) {
+        console.log(goal.id);
+        this.router.navigate(['/monthview', goal.id]);
     };
     DetailViewComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-detail-view',
-            template: __webpack_require__(713),
-            styles: [__webpack_require__(705)]
+            template: __webpack_require__(715),
+            styles: [__webpack_require__(707)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__goal_goal_service__["a" /* GoalService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__goal_goal_service__["a" /* GoalService */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__goal_goal_service__["a" /* GoalService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__goal_goal_service__["a" /* GoalService */]) === 'function' && _b) || Object])
     ], DetailViewComponent);
     return DetailViewComponent;
-    var _a;
+    var _a, _b;
 }());
 //# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/detail-view.component.js.map
 
@@ -546,8 +562,8 @@ var IntroductionComponent = (function () {
     IntroductionComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-introduction',
-            template: __webpack_require__(714),
-            styles: [__webpack_require__(706)]
+            template: __webpack_require__(716),
+            styles: [__webpack_require__(708)]
         }), 
         __metadata('design:paramtypes', [])
     ], IntroductionComponent);
@@ -563,10 +579,10 @@ var IntroductionComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user_service__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_common_functions__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rxjs_operator__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user_service__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_common_functions__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rxjs_operator__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rxjs_operator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__rxjs_operator__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -613,8 +629,8 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-login',
-            template: __webpack_require__(715),
-            styles: [__webpack_require__(707)]
+            template: __webpack_require__(717),
+            styles: [__webpack_require__(709)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__user_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__user_user_service__["a" /* UserService */]) === 'function' && _b) || Object])
     ], LoginComponent);
@@ -630,6 +646,10 @@ var LoginComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rxjs_operator__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rxjs_operator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__rxjs_operator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__goal_goal_service__ = __webpack_require__(143);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MonthViewComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -641,41 +661,133 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var MonthViewComponent = (function () {
-    function MonthViewComponent() {
+    function MonthViewComponent(route, router, goalService) {
+        this.route = route;
+        this.router = router;
+        this.goalService = goalService;
     }
     MonthViewComponent.prototype.ngOnInit = function () {
-        this.displayCalendar(11, 2016);
+        var _this = this;
+        this.route.params.switchMap(function (params) { return _this.goalService.getGoalsById(params['id']); })
+            .subscribe(function (res) {
+            _this.goal = res.json();
+        }, function (error) { return console.log(error); });
+        this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
+    };
+    MonthViewComponent.prototype.displayGoalOnCalendar = function () {
+        // let date = this.goal
+    };
+    MonthViewComponent.prototype.getMonthName = function (month) {
+        var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        for (var i in monthNames) {
+            if (i == month + "") {
+                return monthNames[i];
+            }
+        }
+    };
+    MonthViewComponent.prototype.getMonth = function (monthName) {
+        var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return monthNames.indexOf(monthName);
     };
     MonthViewComponent.prototype.displayCalendar = function (month, fullYear) {
+        var monthName = document.getElementById('monthName');
+        var year = document.getElementById('year');
+        monthName.innerHTML = this.getMonthName(month);
+        year.innerHTML = fullYear;
         var today = new Date();
-        var result = "";
         var firstDay = new Date(fullYear, month, 1);
-        var lastDay = new Date(fullYear, month + 1, 0);
+        var lastDay = month < 11 ? new Date(fullYear, month + 1, 0) : new Date(fullYear + 1, 0, 0);
         var spaceBefore = firstDay.getDay() == 0 ? 6 : (firstDay.getDay() - 1);
-        for (var i = 0; i < spaceBefore; i++) {
-            result += "<li></li>";
+        for (var i = 1; i <= spaceBefore; i++) {
+            var li = document.getElementById(i + "");
+            li.innerHTML = "&nbsp;";
+            li.classList.add('hide-background');
         }
-        for (var i = 1; i <= lastDay.getDate(); i++) {
-            if (i == today.getDate()) {
-                result += "<li class='active'>" + i + "</li>";
+        for (var i = spaceBefore + 1; i <= spaceBefore + lastDay.getDate(); i++) {
+            var li = document.getElementById(i + "");
+            li.classList.remove('hide');
+            li.classList.remove('hide-background');
+            li.style.cursor = "pointer";
+            li.innerHTML = i - spaceBefore + "";
+            if (i == (today.getDate() + spaceBefore) && today.getMonth() == month && today.getFullYear() == fullYear) {
+                li.classList.add('active');
             }
             else {
-                result += "<li>" + i + "</li>";
+                li.classList.remove('active');
             }
         }
-        var calendar = document.getElementById('calendar');
-        calendar.innerHTML = result;
+        for (var i = spaceBefore + lastDay.getDate() + 1; i <= 42; i++) {
+            var li = document.getElementById(i + "");
+            li.classList.add('hide');
+        }
+    };
+    MonthViewComponent.prototype.previousMonth = function () {
+        var monthName = document.getElementById('monthName');
+        var month = this.getMonth(monthName.innerHTML);
+        var year = document.getElementById('year');
+        var previousMonth = month > 0 ? month - 1 : 11;
+        var y = month == 0 ? parseInt(year.innerHTML) - 1 : parseInt(year.innerHTML);
+        this.displayCalendar(previousMonth, y);
+    };
+    MonthViewComponent.prototype.nextMonth = function () {
+        var monthName = document.getElementById('monthName');
+        var month = this.getMonth(monthName.innerHTML);
+        var year = document.getElementById('year');
+        var nextMonth = month < 11 ? month + 1 : 0;
+        var y = month == 11 ? parseInt(year.innerHTML) + 1 : parseInt(year.innerHTML);
+        this.displayCalendar(nextMonth, y);
+    };
+    MonthViewComponent.prototype.displayDate = function (id) {
+        var _this = this;
+        // console.log(this.goal);
+        var date = document.getElementById(id + "");
+        var monthName = document.getElementById('monthName');
+        var month = this.getMonth(monthName.innerHTML);
+        var year = document.getElementById('year');
+        var fullDate = year.innerHTML + "-" + month + "-" + date.innerHTML;
+        // console.log(fullDate);
+        if (date.classList.item(0) == null || date.classList.item(0) == 'active') {
+            if (date.classList.item(1) == 'pass') {
+                date.classList.remove('pass');
+                date.classList.add('fail');
+                this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(function (res) { console.log(res); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
+            }
+            else if (date.classList.item(1) == 'fail') {
+                date.classList.remove('fail');
+                this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(function (res) { console.log(res); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
+            }
+            else {
+                date.classList.add('pass');
+                this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(function (res) { console.log(res); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
+            }
+        }
+        else if (date.classList.item(0) == 'pass') {
+            console.log(date.classList.item(0));
+            console.log(date.classList.item(1));
+            date.classList.remove('pass');
+            date.classList.add('fail');
+            this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(function (res) { console.log(res); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
+        }
+        else {
+            console.log(date.classList);
+            date.classList.remove('fail');
+            this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(function (res) { console.log(res); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
+        }
     };
     MonthViewComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-month-view',
-            template: __webpack_require__(716),
-            styles: [__webpack_require__(708)]
+            template: __webpack_require__(718),
+            styles: [__webpack_require__(710)]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__goal_goal_service__["a" /* GoalService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__goal_goal_service__["a" /* GoalService */]) === 'function' && _c) || Object])
     ], MonthViewComponent);
     return MonthViewComponent;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/month-view.component.js.map
 
@@ -699,11 +811,47 @@ headers.append('Content-Type', 'application/json');
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_user_service__ = __webpack_require__(103);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LoggedInGuard; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var LoggedInGuard = (function () {
+    function LoggedInGuard(user) {
+        this.user = user;
+    }
+    LoggedInGuard.prototype.canActivate = function () {
+        return this.user.isLoggedIn();
+    };
+    LoggedInGuard = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__user_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__user_user_service__["a" /* UserService */]) === 'function' && _a) || Object])
+    ], LoggedInGuard);
+    return LoggedInGuard;
+    var _a;
+}());
+//# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/logged-in.guard.js.map
+
+/***/ },
+
+/***/ 348:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user_service__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_common_functions__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rxjs_operator__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user_service__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_common_functions__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rxjs_operator__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rxjs_operator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__rxjs_operator__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SignUpComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -752,8 +900,8 @@ var SignUpComponent = (function () {
     SignUpComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-sign-up',
-            template: __webpack_require__(718),
-            styles: [__webpack_require__(710)]
+            template: __webpack_require__(720),
+            styles: [__webpack_require__(712)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__user_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__user_user_service__["a" /* UserService */]) === 'function' && _b) || Object])
     ], SignUpComponent);
@@ -764,7 +912,7 @@ var SignUpComponent = (function () {
 
 /***/ },
 
-/***/ 402:
+/***/ 403:
 /***/ function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -773,21 +921,21 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 402;
+webpackEmptyContext.id = 403;
 
 
 /***/ },
 
-/***/ 403:
+/***/ 404:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_ts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__polyfills_ts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(486);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(525);
 
 
 
@@ -801,29 +949,29 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ },
 
-/***/ 520:
+/***/ 521:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_token__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_token__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_token___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_token__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__create_new_goal_create_new_goal_component__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__detail_view_detail_view_component__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__introduction_introduction_component__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login_component__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__month_view_month_view_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_route__ = __webpack_require__(521);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__sign_up_sign_up_component__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__side_bar_side_bar_component__ = __webpack_require__(525);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_logged_in_guard__ = __webpack_require__(524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__goal_goal_service__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__user_user_service__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_route__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__sign_up_sign_up_component__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__side_bar_side_bar_component__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_logged_in_guard__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__goal_goal_service__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__user_user_service__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__detail_view_detail_view_module__ = __webpack_require__(523);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -861,21 +1009,21 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__introduction_introduction_component__["a" /* IntroductionComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__sign_up_sign_up_component__["a" /* SignUpComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__side_bar_side_bar_component__["a" /* SideBarComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__sign_up_sign_up_component__["a" /* SignUpComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__side_bar_side_bar_component__["a" /* SideBarComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__create_new_goal_create_new_goal_component__["a" /* CreateNewGoalComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__detail_view_detail_view_component__["a" /* DetailViewComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__month_view_month_view_component__["a" /* MonthViewComponent */],
             ],
             imports: [
+                __WEBPACK_IMPORTED_MODULE_17__detail_view_detail_view_module__["a" /* DetailViewModule */],
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["b" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["f" /* JsonpModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["g" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* ReactiveFormsModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_12__app_route__["a" /* Routes */])
+                __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_11__app_route__["a" /* appRoutes */])
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_17__user_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_15__shared_logged_in_guard__["a" /* LoggedInGuard */], __WEBPACK_IMPORTED_MODULE_16__goal_goal_service__["a" /* GoalService */], __WEBPACK_IMPORTED_MODULE_5_angular2_token__["Angular2TokenService"]],
+            providers: [__WEBPACK_IMPORTED_MODULE_16__user_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_14__shared_logged_in_guard__["a" /* LoggedInGuard */], __WEBPACK_IMPORTED_MODULE_15__goal_goal_service__["a" /* GoalService */], __WEBPACK_IMPORTED_MODULE_5_angular2_token__["Angular2TokenService"]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
         }), 
         __metadata('design:paramtypes', [])
@@ -886,7 +1034,7 @@ var AppModule = (function () {
 
 /***/ },
 
-/***/ 521:
+/***/ 522:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -894,9 +1042,9 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__detail_view_detail_view_component__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__introduction_introduction_component__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login_component__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__month_view_month_view_component__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sign_up_sign_up_component__ = __webpack_require__(347);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Routes; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_logged_in_guard__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sign_up_sign_up_component__ = __webpack_require__(348);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return appRoutes; });
 
 
 
@@ -904,24 +1052,80 @@ var AppModule = (function () {
 
 
 // Define which component should be loaded based on the current URL
-var Routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__introduction_introduction_component__["a" /* IntroductionComponent */] },
+var appRoutes = [
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_2__introduction_introduction_component__["a" /* IntroductionComponent */], pathMatch: 'full' },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__login_login_component__["a" /* LoginComponent */] },
     { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_5__sign_up_sign_up_component__["a" /* SignUpComponent */] },
-    { path: 'createnewgoal', component: __WEBPACK_IMPORTED_MODULE_0__create_new_goal_create_new_goal_component__["a" /* CreateNewGoalComponent */] },
-    { path: 'detailview', component: __WEBPACK_IMPORTED_MODULE_1__detail_view_detail_view_component__["a" /* DetailViewComponent */] },
-    { path: 'monthview', component: __WEBPACK_IMPORTED_MODULE_4__month_view_month_view_component__["a" /* MonthViewComponent */] }
+    { path: 'createnewgoal', component: __WEBPACK_IMPORTED_MODULE_0__create_new_goal_create_new_goal_component__["a" /* CreateNewGoalComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_4__shared_logged_in_guard__["a" /* LoggedInGuard */]] },
+    { path: 'detailview', component: __WEBPACK_IMPORTED_MODULE_1__detail_view_detail_view_component__["a" /* DetailViewComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_4__shared_logged_in_guard__["a" /* LoggedInGuard */]] },
 ];
 //# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/app.route.js.map
 
 /***/ },
 
-/***/ 522:
+/***/ 523:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__month_view_month_view_component__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__detail_view_route__ = __webpack_require__(524);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return DetailViewModule; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var DetailViewModule = (function () {
+    function DetailViewModule() {
+    }
+    DetailViewModule = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* CommonModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* RouterModule */].forChild(__WEBPACK_IMPORTED_MODULE_4__detail_view_route__["a" /* detailViewRoutes */])
+            ],
+            declarations: [__WEBPACK_IMPORTED_MODULE_3__month_view_month_view_component__["a" /* MonthViewComponent */]]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DetailViewModule);
+    return DetailViewModule;
+}());
+//# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/detail-view.module.js.map
+
+/***/ },
+
+/***/ 524:
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__month_view_month_view_component__ = __webpack_require__(345);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return detailViewRoutes; });
+
+var detailViewRoutes = [
+    { path: 'monthview/:id', component: __WEBPACK_IMPORTED_MODULE_0__month_view_month_view_component__["a" /* MonthViewComponent */] }
+];
+//# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/detail-view.route.js.map
+
+/***/ },
+
+/***/ 525:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_component__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(521);
 /* unused harmony namespace reexport */
 /* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
 
@@ -930,13 +1134,14 @@ var Routes = [
 
 /***/ },
 
-/***/ 523:
+/***/ 526:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Goal; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return Repetition; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return EndDate; });
+/* unused harmony export Calendar */
 var Goal = (function () {
     function Goal(email, token, goal_name, start_date, description, repetition, end_date) {
         this.email = email;
@@ -966,47 +1171,16 @@ var EndDate = (function () {
     }
     return EndDate;
 }());
+var Calendar = (function () {
+    function Calendar() {
+    }
+    return Calendar;
+}());
 //# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/goal.js.map
 
 /***/ },
 
-/***/ 524:
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_user_service__ = __webpack_require__(102);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LoggedInGuard; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var LoggedInGuard = (function () {
-    function LoggedInGuard(user) {
-        this.user = user;
-    }
-    LoggedInGuard.prototype.canActivate = function () {
-        return this.user.isLoggedIn();
-    };
-    LoggedInGuard = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__user_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__user_user_service__["a" /* UserService */]) === 'function' && _a) || Object])
-    ], LoggedInGuard);
-    return LoggedInGuard;
-    var _a;
-}());
-//# sourceMappingURL=/home/code-engine-studio/seinfeld_calendar/src/logged-in.guard.js.map
-
-/***/ },
-
-/***/ 525:
+/***/ 527:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1043,8 +1217,8 @@ var SideBarComponent = (function () {
     SideBarComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'side-bar',
-            template: __webpack_require__(717),
-            styles: [__webpack_require__(709)]
+            template: __webpack_require__(719),
+            styles: [__webpack_require__(711)]
         }), 
         __metadata('design:paramtypes', [])
     ], SideBarComponent);
@@ -1054,7 +1228,7 @@ var SideBarComponent = (function () {
 
 /***/ },
 
-/***/ 526:
+/***/ 528:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1070,41 +1244,41 @@ var environment = {
 
 /***/ },
 
-/***/ 527:
+/***/ 529:
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__ = __webpack_require__(542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__ = __webpack_require__(544);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_core_js_es6_symbol__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_core_js_es6_object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_core_js_es6_object__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__ = __webpack_require__(531);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__ = __webpack_require__(533);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_core_js_es6_function___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_core_js_es6_function__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__ = __webpack_require__(539);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_core_js_es6_parse_int__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_es6_parse_float__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__ = __webpack_require__(536);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_es6_number___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_core_js_es6_number__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_core_js_es6_math___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_core_js_es6_math__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__ = __webpack_require__(543);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_es6_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_core_js_es6_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__ = __webpack_require__(532);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_core_js_es6_date___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_core_js_es6_date__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__ = __webpack_require__(531);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_core_js_es6_array___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_core_js_es6_array__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__ = __webpack_require__(541);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_core_js_es6_regexp__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__ = __webpack_require__(534);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_core_js_es6_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_core_js_es6_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__ = __webpack_require__(540);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__ = __webpack_require__(542);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_es6_set___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_core_js_es6_set__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__ = __webpack_require__(540);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_es6_reflect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__ = __webpack_require__(545);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_core_js_es7_reflect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__ = __webpack_require__(774);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__ = __webpack_require__(776);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_zone_js_dist_zone__);
 
 
@@ -1126,125 +1300,125 @@ var environment = {
 
 /***/ },
 
-/***/ 703:
+/***/ 705:
 /***/ function(module, exports) {
 
 module.exports = "#header,\n#main {\n  -webkit-transition: margin-left 0.3s;\n  transition: margin-left 0.3s; }\n\nheader {\n  background-color: #1E824C;\n  font-family: 'Raleway', sans-serif;\n  padding: 1em;\n  color: white; }\n  header .title-content {\n    font-size: 4em;\n    margin-left: 1em; }\n  header .title-button {\n    float: right;\n    position: relative;\n    margin-top: 1em; }\n    header .title-button button {\n      border: 1px solid #1E824C;\n      border-radius: 10px;\n      background-color: white;\n      color: #1E824C;\n      font-family: inherit;\n      font-size: inherit;\n      padding: 0.5em;\n      width: 6em;\n      margin-left: 0.5em;\n      -webkit-transition: all 0.3s;\n      transition: all 0.3s; }\n      header .title-button button:hover, header .title-button button:focus, header .title-button button:active {\n        outline: none;\n        background-color: #1E824C;\n        color: white;\n        font-weight: bold;\n        border: 1px solid white; }\n      header .title-button button#signup {\n        background: #ddd;\n        color: #1E824C;\n        font-weight: normal; }\n  header a {\n    color: white;\n    text-decoration: none; }\n    header a:hover, header a:focus, header a:active {\n      text-decoration: none;\n      color: white; }\n\n.left {\n  width: 45%; }\n\n.clear {\n  clear: both; }\n\nmain section {\n  margin: auto 4em;\n  font-family: 'Raleway', sans-serif; }\n\n.left {\n  width: 45%; }\n\n.clear {\n  clear: both; }\n"
 
 /***/ },
 
-/***/ 704:
+/***/ 706:
 /***/ function(module, exports) {
 
 module.exports = ".form-group {\n  width: 80%;\n  margin: 0 auto;\n  font-family: inherit; }\n  .form-group h2 {\n    font-size: 26px;\n    font-weight: 600;\n    text-align: left;\n    color: #1E824C;\n    border-bottom: 1px solid #1E824C;\n    padding-bottom: 3px;\n    margin-bottom: 20px; }\n  .form-group a {\n    font-size: inherit;\n    font-family: inherit;\n    color: #1E824C;\n    text-decoration: none;\n    -webkit-transition: all 1s ease-out;\n    transition: all 1s ease-out; }\n    .form-group a:hover {\n      text-decoration: underline;\n      color: #28ab64; }\n    .form-group a:active {\n      color: #95A5A6; }\n  .form-group label {\n    font-size: 12.5px;\n    color: #1E824C;\n    display: block;\n    font-weight: 500;\n    margin-bottom: 0.5em;\n    margin-top: 1em;\n    margin-left: 1em; }\n  .form-group input[type=\"date\"],\n  .form-group input[type=\"datetime-local\"],\n  .form-group input[type=\"number\"],\n  .form-group input[type=\"password\"],\n  .form-group input[type=\"text\"],\n  .form-group select,\n  .form-group textarea {\n    font-family: inherit;\n    font-size: inherit;\n    color: #222;\n    border: 1px solid #1E824C;\n    border-radius: 10px;\n    font-size: inherit;\n    height: 25px;\n    padding: 0.2em;\n    width: 100%;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s; }\n    .form-group input[type=\"date\"]:focus, .form-group input[type=\"date\"]:hover, .form-group input[type=\"date\"]:active,\n    .form-group input[type=\"datetime-local\"]:focus,\n    .form-group input[type=\"datetime-local\"]:hover,\n    .form-group input[type=\"datetime-local\"]:active,\n    .form-group input[type=\"number\"]:focus,\n    .form-group input[type=\"number\"]:hover,\n    .form-group input[type=\"number\"]:active,\n    .form-group input[type=\"password\"]:focus,\n    .form-group input[type=\"password\"]:hover,\n    .form-group input[type=\"password\"]:active,\n    .form-group input[type=\"text\"]:focus,\n    .form-group input[type=\"text\"]:hover,\n    .form-group input[type=\"text\"]:active,\n    .form-group select:focus,\n    .form-group select:hover,\n    .form-group select:active,\n    .form-group textarea:focus,\n    .form-group textarea:hover,\n    .form-group textarea:active {\n      outline: none;\n      box-shadow: 0 0 5px 0 #86E2D5; }\n  .form-group textarea {\n    height: auto; }\n  .form-group select {\n    background-color: white;\n    height: 32px;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s; }\n  .form-group .left {\n    float: left;\n    width: 45%; }\n  .form-group .right {\n    float: right;\n    width: 45%; }\n  .form-group .clear {\n    clear: both; }\n  .form-group div {\n    color: #1E824C;\n    font-size: 12.5px; }\n  .form-group button {\n    border: 1px solid white;\n    border-radius: 10px;\n    background-color: #1E824C;\n    color: white;\n    font-family: inherit;\n    font-size: inherit;\n    padding: 0.5em;\n    width: 2em;\n    -webkit-transition: all 0.3s;\n    transition: all 0.3s;\n    cursor: pointer; }\n    .form-group button:hover, .form-group button:active, .form-group button:focus {\n      background-color: white;\n      color: #1E824C;\n      font-weight: bold;\n      border: 1.5px solid #1E824C; }\n"
 
 /***/ },
 
-/***/ 705:
+/***/ 707:
 /***/ function(module, exports) {
 
 module.exports = ".view {\n  margin: 2em auto; }\n  .view .goal-panel {\n    width: 45%;\n    font-family: 'Raleway', sans-serif;\n    font-size: 14px;\n    margin: 1em 1.5em;\n    padding: 0.5em;\n    border-bottom: 1.5px solid #1E824C; }\n    .view .goal-panel .goal-title #title {\n      float: left;\n      margin-left: 2em; }\n    .view .goal-panel .goal-title .reminder {\n      float: right; }\n    .view .goal-panel .feature #check {\n      float: left; }\n    .view .goal-panel .feature .favorite {\n      float: right; }\n    .view .goal-panel .goal-detail {\n      margin-left: 2em; }\n      .view .goal-panel .goal-detail span {\n        display: inline-block; }\n      .view .goal-panel .goal-detail .number-of-days-done,\n      .view .goal-panel .goal-detail .type-of-repetition {\n        width: 13%; }\n      .view .goal-panel .goal-detail .best-chain,\n      .view .goal-panel .goal-detail .passed-day-in-total {\n        text-align: center;\n        width: 20%; }\n      .view .goal-panel .goal-detail .space {\n        width: 10%; }\n      .view .goal-panel .goal-detail .type-of-repetition {\n        text-align: right;\n        float: right; }\n    .view .goal-panel .clear {\n      clear: both; }\n"
 
 /***/ },
 
-/***/ 706:
+/***/ 708:
 /***/ function(module, exports) {
 
 module.exports = ""
 
 /***/ },
 
-/***/ 707:
+/***/ 709:
 /***/ function(module, exports) {
 
 module.exports = ".form-group {\n  width: 40%;\n  margin: 0 auto;\n  position: relative; }\n  .form-group h2 {\n    font-size: 26px;\n    font-weight: 600;\n    text-align: left;\n    color: #1E824C;\n    border-bottom: 1px solid #1E824C;\n    padding-bottom: 3px;\n    margin-bottom: 20px; }\n  .form-group a {\n    font-size: inherit;\n    font-family: inherit;\n    color: #1E824C;\n    text-decoration: none;\n    -webkit-transition: all 1s ease-out;\n    transition: all 1s ease-out; }\n    .form-group a:hover {\n      text-decoration: underline;\n      color: #28ab64; }\n    .form-group a:active {\n      color: #95A5A6; }\n  .form-group label {\n    font-size: 12.5px;\n    color: #1E824C;\n    display: block;\n    font-weight: 500;\n    margin-bottom: 0.5em;\n    margin-top: 1em;\n    margin-left: 1em; }\n  .form-group input[type=\"email\"],\n  .form-group input[type=\"password\"],\n  .form-group input[type=\"text\"] {\n    font-family: inherit;\n    font-size: inherit;\n    color: #222;\n    border: 1px solid #1E824C;\n    border-radius: 10px;\n    height: 25px;\n    padding: 0.2em;\n    width: 100%;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s; }\n    .form-group input[type=\"email\"]:focus, .form-group input[type=\"email\"]:hover,\n    .form-group input[type=\"password\"]:focus,\n    .form-group input[type=\"password\"]:hover,\n    .form-group input[type=\"text\"]:focus,\n    .form-group input[type=\"text\"]:hover {\n      outline: none;\n      box-shadow: 0 0 5px 0 #86E2D5; }\n  .form-group div {\n    color: #1E824C;\n    font-size: 12.5px; }\n  .form-group button {\n    border: 1px solid white;\n    border-radius: 10px;\n    background-color: #1E824C;\n    color: white;\n    font-family: inherit;\n    font-size: inherit;\n    padding: 0.5em;\n    width: 102%;\n    -webkit-transition: all 0.3s;\n    transition: all 0.3s;\n    cursor: pointer; }\n    .form-group button:hover, .form-group button:focus, .form-group button:active {\n      outline: none;\n      background-color: white;\n      color: #1E824C;\n      font-weight: bold;\n      border: 1.5px solid #1E824C; }\n  .form-group span {\n    position: absolute;\n    top: 72%;\n    left: 95%;\n    color: #aaa;\n    cursor: pointer; }\n"
 
 /***/ },
 
-/***/ 708:
-/***/ function(module, exports) {
-
-module.exports = "* {\n  box-sizing: border-box; }\n\nul {\n  list-style-type: none; }\n\nbody {\n  font-family: inherit; }\n\n.month {\n  padding: 70px 25px;\n  width: 100%;\n  background: #1abc9c; }\n  .month ul {\n    margin: 0;\n    padding: 0; }\n    .month ul li {\n      color: white;\n      font-size: 20px;\n      text-transform: uppercase;\n      letter-spacing: 3px; }\n  .month .prev {\n    float: left;\n    padding-top: 10px; }\n  .month .next {\n    float: right;\n    padding-top: 10px; }\n\n.weekdays {\n  margin: 0;\n  padding: 10px 0;\n  background-color: #ddd; }\n  .weekdays li {\n    display: inline-block;\n    width: 13.6%;\n    color: #666;\n    text-align: center; }\n\n.days {\n  padding: 10px 0;\n  background: #eee;\n  margin: 0; }\n  .days li {\n    list-style-type: none;\n    display: inline-block;\n    width: 13.6%;\n    text-align: center;\n    margin-bottom: 5px;\n    font-size: 12px;\n    color: #777; }\n    .days li.active {\n      padding: 5px;\n      background: #1abc9c;\n      color: white !important; }\n"
-
-/***/ },
-
-/***/ 709:
-/***/ function(module, exports) {
-
-module.exports = ".sidenav {\n  height: 100%;\n  width: 0;\n  position: fixed;\n  z-index: 1;\n  top: 0;\n  left: 0;\n  background-color: #111;\n  overflow-x: hidden;\n  /* Disable horizontal scroll */\n  padding-top: 40px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s; }\n  .sidenav a {\n    padding: 8px 8px 8px 32px;\n    text-decoration: none;\n    font-size: 16px;\n    color: #818181;\n    display: block; }\n    .sidenav a:hover, .offcanvas .sidenav a:focus {\n      color: #f1f1f1; }\n  .sidenav a:nth-child(5n) {\n    border-bottom: 1px solid white; }\n  .sidenav .closebtn {\n    position: absolute;\n    top: 0;\n    right: 20px;\n    font-size: 16px;\n    margin-left: 40px; }\n\nspan {\n  position: absolute;\n  left: 20px;\n  top: 35px;\n  font-size: 20px; }\n\n/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */\n@media screen and (max-height: 450px) {\n  .sidenav {\n    padding-top: 15px; }\n  .sidenav a {\n    font-size: 14px; } }\n"
-
-/***/ },
-
 /***/ 710:
 /***/ function(module, exports) {
 
-module.exports = ".form-group {\n  width: 40%;\n  margin: 0 auto;\n  position: relative; }\n  .form-group h2 {\n    font-size: 26px;\n    font-weight: 600;\n    text-align: left;\n    color: #1E824C;\n    border-bottom: 1px solid #1E824C;\n    padding-bottom: 3px;\n    margin-bottom: 20px; }\n  .form-group a {\n    font-size: inherit;\n    font-family: inherit;\n    color: #1E824C;\n    text-decoration: none;\n    -webkit-transition: all 1s ease-out;\n    transition: all 1s ease-out; }\n    .form-group a:hover {\n      text-decoration: underline;\n      color: #28ab64; }\n    .form-group a:active {\n      color: #95A5A6; }\n  .form-group label {\n    font-size: 12.5px;\n    color: #1E824C;\n    display: block;\n    font-weight: 500;\n    margin-bottom: 0.5em;\n    margin-top: 1em;\n    margin-left: 1em; }\n  .form-group input[type=\"email\"],\n  .form-group input[type=\"password\"],\n  .form-group input[type=\"text\"] {\n    font-family: inherit;\n    font-size: inherit;\n    color: #222;\n    border: 1px solid #1E824C;\n    border-radius: 10px;\n    height: 25px;\n    padding: 0.2em;\n    width: 100%;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s;\n    box-sizing: content-box; }\n    .form-group input[type=\"email\"]:focus, .form-group input[type=\"email\"]:hover,\n    .form-group input[type=\"password\"]:focus,\n    .form-group input[type=\"password\"]:hover,\n    .form-group input[type=\"text\"]:focus,\n    .form-group input[type=\"text\"]:hover {\n      outline: none;\n      box-shadow: 0 0 5px 0 #86E2D5; }\n  .form-group div {\n    color: #1E824C;\n    font-size: 12.5px; }\n  .form-group button {\n    border: 1px solid white;\n    border-radius: 10px;\n    background-color: #1E824C;\n    color: white;\n    font-family: inherit;\n    font-size: inherit;\n    padding: 0.5em;\n    width: 102%;\n    margin-top: 2em;\n    -webkit-transition: all 0.3s;\n    transition: all 0.3s;\n    cursor: pointer; }\n    .form-group button:hover, .form-group button:focus, .form-group button:active {\n      outline: none;\n      background-color: white;\n      color: #1E824C;\n      font-weight: bold;\n      border: 1.5px solid #1E824C; }\n  .form-group span {\n    position: absolute;\n    color: #aaa;\n    cursor: pointer; }\n    .form-group span.a {\n      top: 70%;\n      left: 95%; }\n    .form-group span.b {\n      top: 91.5%;\n      left: 95%; }\n"
+module.exports = "* {\n  box-sizing: border-box; }\n\nul {\n  list-style-type: none; }\n\n.item {\n  font-family: inherit;\n  position: relative;\n  margin: 2em auto;\n  border: 1px solid #1E824C;\n  border-radius: 10px; }\n  .item .month {\n    padding: 30px 25px;\n    width: 100%; }\n    .item .month ul {\n      margin: 0;\n      padding: 0; }\n      .item .month ul li {\n        color: #1E824C;\n        font-size: 25px;\n        font-weight: bold;\n        text-transform: uppercase;\n        letter-spacing: 3px; }\n    .item .month .prev {\n      float: left;\n      padding-top: 10px; }\n      .item .month .prev:hover {\n        cursor: pointer; }\n    .item .month .next {\n      float: right;\n      padding-top: 10px; }\n      .item .month .next:hover {\n        cursor: pointer; }\n  .item .weekdays {\n    margin: 0;\n    padding: 10px 0;\n    background-color: #1E824C; }\n    .item .weekdays li {\n      display: inline-block;\n      width: 13.6%;\n      color: white;\n      text-align: center; }\n  .item .days {\n    margin: 0 auto;\n    padding-left: 0.9em;\n    padding-right: 0.9em;\n    padding-top: 0.9em;\n    padding-bottom: 0.5em;\n    position: relative; }\n    .item .days li {\n      list-style-type: none;\n      display: inline-block;\n      width: 13.8%;\n      font-size: 15px;\n      text-align: center;\n      margin-bottom: 5px;\n      padding: 2em 0;\n      color: black;\n      -webkit-transition: all 0.2s ease-in-out;\n      transition: all 0.2s ease-in-out; }\n      .item .days li.active {\n        font-weight: bold; }\n      .item .days li.hide {\n        display: none; }\n      .item .days li.hide-background {\n        background-color: white; }\n      .item .days li.pass, .item .days li.fail {\n        background: url(\"../../img/passed.png\") no-repeat center;\n        background-clip: border-box;\n        background-size: 50%;\n        text-align: left; }\n      .item .days li.fail {\n        background: url(\"../../img/failed.png\") no-repeat center;\n        background-clip: border-box;\n        background-size: 50%;\n        text-align: left; }\n"
 
 /***/ },
 
 /***/ 711:
 /***/ function(module, exports) {
 
-module.exports = "<header id=\"header\">\n  <side-bar></side-bar>\n  <span class=\"title-content\"><a routerLink=\"\"><span class=\"fa fa-calendar-check-o\"></span> <span id=\"title-content\">{{title}}</span></a>\n  </span>\n      <div class=\"title-button default-button\" *ngFor=\"let button of listButton\">\n          <button (click)=\"onClick(button.route)\" id=\"{{button.route}}\">{{button.value}}</button>\n      </div>\n      <div class=\"title-button\" id=\"logout-button\" hidden=\"hidden\">\n          <button (click)=\"logout()\">Logout</button>\n      </div>\n  <div class=\"clear\">\n  </div>\n</header>\n<main id=\"main\">\n  <section>\n    <router-outlet></router-outlet>\n  </section>\n</main>\n"
+module.exports = ".sidenav {\n  height: 100%;\n  width: 0;\n  position: fixed;\n  z-index: 1;\n  top: 0;\n  left: 0;\n  background-color: #111;\n  overflow-x: hidden;\n  /* Disable horizontal scroll */\n  padding-top: 40px;\n  -webkit-transition: 0.5s;\n  transition: 0.5s; }\n  .sidenav a {\n    padding: 8px 8px 8px 32px;\n    text-decoration: none;\n    font-size: 16px;\n    color: #818181;\n    display: block; }\n    .sidenav a:hover, .offcanvas .sidenav a:focus {\n      color: #f1f1f1; }\n  .sidenav a:nth-child(5n) {\n    border-bottom: 1px solid white; }\n  .sidenav .closebtn {\n    position: absolute;\n    top: 0;\n    right: 20px;\n    font-size: 16px;\n    margin-left: 40px; }\n\nspan {\n  position: absolute;\n  left: 20px;\n  top: 35px;\n  font-size: 20px; }\n\n/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */\n@media screen and (max-height: 450px) {\n  .sidenav {\n    padding-top: 15px; }\n  .sidenav a {\n    font-size: 14px; } }\n"
 
 /***/ },
 
 /***/ 712:
 /***/ function(module, exports) {
 
-module.exports = "<form [formGroup]=\"createNewGoalForm\" (ngSubmit)=\"addNewGoal()\">\n\t<div class=\"form-group\">\n\t\t<h2 class=\"heading\">New goal</h2>\n\t\t<div class=\"left\">\n\t\t\t<label for=\"goal-name\">Goal name</label>\n\t\t\t<input formControlName=\"goal_name\" type=\"text\" id=\"goal-name\" name=\"goal-name\" required>\n\t\t</div>\n\t\t<div class=\"right\">\n\t\t\t<label for=\"from\" class=\"fix\">From</label>\n\t\t\t<input formControlName=\"start_date\" type=\"datetime-local\" id=\"start-date\" name=\"start-date\" value=\"{{roundUpTime() | date:'yyyy-MM-ddTHH:mm'}}\" />\n\t\t</div>\n\t\t<div class=\"clear\"></div>\n\t\t<label id=\"label-description\" for=\"description\">Description</label>\n\t\t<textarea rows='4' formControlName=\"description\" type=\"textarea\" id=\"description\" name=\"description\" required></textarea>\n\t\t<div class=\"left\">\n\t\t\t<label id=\"label-repetition\" for=\"repetition\" class='fix'>Repetition</label>\n\t\t\t<select formControlName=\"type_of_repetition\" class=\"repetition-type\" id=\"repetition-type\" (change)=\"changeRepetitionType()\">\n\t\t\t\t\t\t<option *ngFor=\"let rp of repetitionTypes; let i = index;\" value=\"{{i + 1}}\">{{rp}}</option>\n\t\t\t\t\t</select >\n\t\t\t\t</div>\n\t\t\t\t<div class=\"right\">\n                every&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n\t\t\t\t\t<input formControlName=\"how_often\" type=\"number\" min='1' class=\"inline-input\" style=\"width: 10%; margin-top: 2.7em;\"/>\n                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id=\"repetitionFrequencyType\">day(s)</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"clear\"></div>\n\t\t\t<!-- TODO -->\n\t\t\t\t<div class=\"left\" id=\"weeklyRepetition\" hidden=\"hidden\" style=\"margin-top: 2em;\">\n\t\t\t\t\t\t<span *ngFor=\"let day of weekDays\"><input type=\"checkbox\" formControlName=\"day_of_week_{{day}}\" name=\"{{day}}\" value=\"{{day}}\" /> {{day}} </span>\n\t\t\t\t\t</div>\n\t\t\t<div class=\"clear\"></div>\n\t\t<!-- FIXME -->\n\t\t\t<div class=\"left\" id=\"monthlyRepetition\" hidden=\"hidden\" style=\"margin-top: 2em;\">\n\t\t\t\t\t<input type=\"radio\" name=\"type_of_month\" formControlName=\"type_of_month\" value='1' /> on the same day each month\n\t\t\t\t\t<input type=\"radio\" name=\"type_of_month\" formControlName=\"type_of_month\" value='2' /> on every <span id=\"dayDefineValue\">first Monday</span>\n\t\t\t</div>\n\t\t\t<div class=\"clear\"></div>\n\n\t\t\t<div class=\"left\">\n\t\t\t\t<select formControlName=\"type_of_end_date\" class=\"repetition-limited-time\" id=\"repetition-limited-time\" (change)=\"changeRepetitionLimitedTime()\" style=\"margin-top: 2em;\">\n\t\t\t\t\t\t<option *ngFor=\"let rlt of repetitionLimitedTimes; let i = index;\" value=\"{{i + 1}}\">{{rlt}}</option>\n\t\t\t\t\t</select>\n\t\t</div>\n\t\t<div class=\"right\">\n\t\t\t<input type=\"date\" formControlName=\"specific_end_date\" id=\"until-date\" hidden=\"hidden\" value=\"{{untilDate() | date:'yyyy-MM-dd'}}\" style=\"margin-top: 2em;\"/>\n\t\t\t<span id=\"number-events\" hidden=\"hidden\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"number\" formControlName=\"number_of_event\" min='1' style=\"width: 10%; margin-top: 2em;\" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event(s)</span>\n\t\t</div>\n\t\t<div class=\"clear\"></div>\n\t\t<div class=\"left\" hidden=\"hidden\">\n\t\t\t<label id=\"reminders\" for=\"reminders\">Reminders</label>\n\t\t\t<button type=\"button\">Add reminder</button>\n\t\t\t<select>\n\t\t\t\t\t\t<option value=\"0\">At time of event</option>\n\t\t\t\t\t\t<option value=\"1\" selected>10 minutes before</option>\n\t\t\t\t\t\t<option value=\"2\">30 minutes before</option>\n\t\t\t\t\t</select>\n\t\t</div>\n\t\t<div class=\"clear\"></div>\n\t\t<div class=\"left\">\n\t\t\t<input formControlName=\"autoUpdateFailed\" type=\"checkbox\" id=\"is-auto\" name='is-auto' value=\"autoUpdateFailed\" style=\"width: 5%;\" style=\"margin-top: 2em;\"/>Auto update failed days.\n\t\t</div>\n\t\t<div class=\"clear\"></div>\n\t</div>\n\t<div class=\"form-group\">\n\t\t<div class=\"right\" style=\"font-size: 16px;\">\n\t\t\t<button type=\"button\" (click)=\"addNewGoal()\"class=\"right\">Add goal</button>\n\t\t\t<div class=\"clear\"></div>\n\t\t</div>\n\t</div>\n</form>\n"
+module.exports = ".form-group {\n  width: 40%;\n  margin: 0 auto;\n  position: relative; }\n  .form-group h2 {\n    font-size: 26px;\n    font-weight: 600;\n    text-align: left;\n    color: #1E824C;\n    border-bottom: 1px solid #1E824C;\n    padding-bottom: 3px;\n    margin-bottom: 20px; }\n  .form-group a {\n    font-size: inherit;\n    font-family: inherit;\n    color: #1E824C;\n    text-decoration: none;\n    -webkit-transition: all 1s ease-out;\n    transition: all 1s ease-out; }\n    .form-group a:hover {\n      text-decoration: underline;\n      color: #28ab64; }\n    .form-group a:active {\n      color: #95A5A6; }\n  .form-group label {\n    font-size: 12.5px;\n    color: #1E824C;\n    display: block;\n    font-weight: 500;\n    margin-bottom: 0.5em;\n    margin-top: 1em;\n    margin-left: 1em; }\n  .form-group input[type=\"email\"],\n  .form-group input[type=\"password\"],\n  .form-group input[type=\"text\"] {\n    font-family: inherit;\n    font-size: inherit;\n    color: #222;\n    border: 1px solid #1E824C;\n    border-radius: 10px;\n    height: 25px;\n    padding: 0.2em;\n    width: 100%;\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s;\n    box-sizing: content-box; }\n    .form-group input[type=\"email\"]:focus, .form-group input[type=\"email\"]:hover,\n    .form-group input[type=\"password\"]:focus,\n    .form-group input[type=\"password\"]:hover,\n    .form-group input[type=\"text\"]:focus,\n    .form-group input[type=\"text\"]:hover {\n      outline: none;\n      box-shadow: 0 0 5px 0 #86E2D5; }\n  .form-group div {\n    color: #1E824C;\n    font-size: 12.5px; }\n  .form-group button {\n    border: 1px solid white;\n    border-radius: 10px;\n    background-color: #1E824C;\n    color: white;\n    font-family: inherit;\n    font-size: inherit;\n    padding: 0.5em;\n    width: 102%;\n    margin-top: 2em;\n    -webkit-transition: all 0.3s;\n    transition: all 0.3s;\n    cursor: pointer; }\n    .form-group button:hover, .form-group button:focus, .form-group button:active {\n      outline: none;\n      background-color: white;\n      color: #1E824C;\n      font-weight: bold;\n      border: 1.5px solid #1E824C; }\n  .form-group span {\n    position: absolute;\n    color: #aaa;\n    cursor: pointer; }\n    .form-group span.a {\n      top: 70%;\n      left: 95%; }\n    .form-group span.b {\n      top: 91.5%;\n      left: 95%; }\n"
 
 /***/ },
 
 /***/ 713:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"view\">\n    <div class=\"item\" *ngFor=\"let goal of goals; let i = index;\">\n        <div class=\"goal-panel\" *ngIf=\"i % 2 == 0\" style=\"float: left;\">\n            <div class=\"goal-title\">\n                <b id=\"title\">{{goal.goal_name}}</b>\n                <div class=\"reminder\"><span class=\"fa fa-clock-o\"></span> 21:00</div>\n            </div>\n            <div class=\"clear\"></div>\n            <div class=\"feature\">\n                <input id=\"check\" type=\"checkbox\" name=\"\" value=\"\">\n                <div class=\"favorite\"><span class=\"fa fa-star-o\"></span></div>\n            </div>\n            <div class=\"clear\"></div>\n            <div class=\"goal-detail\">\n                <span class=\"number-of-days-done\">1 day</span>\n                <span class=\"space\"></span>\n                <span class=\"best-chain\">1 best</span>\n                <span class=\"space\"></span>\n                <span class=\"passed-day-in-total\">1/2</span>\n                <span class=\"space\"></span>\n\n                <span class=\"type-of-repetition\">\n        <div [ngSwitch]=\"goal.repetition.type_of_repetition\">\n          <div *ngSwitchCase=\"1\">Daily</div>\n          <div *ngSwitchCase=\"2\">Weekly</div>\n          <div *ngSwitchCase=\"3\">Monthly</div>\n          <div *ngSwitchCase=\"4\">Yearly</div>\n          <div *ngSwitchDefault>Daily</div>\n        </div></span>\n            </div>\n            <div class=\"clear\"></div>\n        </div>\n        <div class=\"goal-panel\" *ngIf=\"i % 2 != 0\" style=\"float: right;\">\n            <div class=\"goal-title\">\n                <b id=\"title\">{{goal.goal_name}}</b>\n                <div class=\"reminder\"><span class=\"fa fa-clock-o\"></span> 21:00</div>\n            </div>\n            <div class=\"clear\"></div>\n            <div class=\"feature\">\n                <input id=\"check\" type=\"checkbox\" name=\"\" value=\"\">\n                <div class=\"favorite\"><span class=\"fa fa-star-o\"></span></div>\n            </div>\n            <div class=\"clear\"></div>\n            <div class=\"goal-detail\">\n                <span class=\"number-of-days-done\">1 day</span>\n                <span class=\"space\"></span>\n                <span class=\"best-chain\">1 best</span>\n                <span class=\"space\"></span>\n                <span class=\"passed-day-in-total\">1/2</span>\n                <span class=\"space\"></span>\n\n                <span class=\"type-of-repetition\">\n        <div [ngSwitch]=\"goal.repetition.type_of_repetition\">\n          <div *ngSwitchCase=\"1\">Daily</div>\n          <div *ngSwitchCase=\"2\">Weekly</div>\n          <div *ngSwitchCase=\"3\">Monthly</div>\n          <div *ngSwitchCase=\"4\">Yearly</div>\n          <div *ngSwitchDefault>Daily</div>\n        </div></span>\n            </div>\n            <div class=\"clear\"></div>\n        </div>\n        <div class=\"clear\"></div>\n    </div>\n</div>\n"
+module.exports = "<header id=\"header\">\n  <side-bar></side-bar>\n  <span class=\"title-content\"><a routerLink=\"\"><span class=\"fa fa-calendar-check-o\"></span> <span id=\"title-content\">{{title}}</span></a>\n  </span>\n      <div class=\"title-button default-button\" *ngFor=\"let button of listButton\">\n          <button (click)=\"onClick(button.route)\" id=\"{{button.route}}\">{{button.value}}</button>\n      </div>\n      <div class=\"title-button\" id=\"logout-button\" hidden=\"hidden\">\n          <button (click)=\"logout()\">Logout</button>\n      </div>\n  <div class=\"clear\">\n  </div>\n</header>\n<main id=\"main\">\n  <section>\n    <router-outlet></router-outlet>\n  </section>\n</main>\n"
 
 /***/ },
 
 /***/ 714:
 /***/ function(module, exports) {
 
-module.exports = "<p style=\"color: 1E824C;\">\n    Introduction\n    <br />\n    <a routerLink='/createnewgoal'>Create new goal</a>\n    <br />\n    <a routerLink='/detailview'>All goals</a>\n    <br />\n    <a routerLink='/monthview'>Month view</a>\n</p>\n"
+module.exports = "<form [formGroup]=\"createNewGoalForm\" (ngSubmit)=\"addNewGoal()\">\n\t<div class=\"form-group\">\n\t\t<h2 class=\"heading\">New goal</h2>\n\t\t<div class=\"left\">\n\t\t\t<label for=\"goal-name\">Goal name</label>\n\t\t\t<input formControlName=\"goal_name\" type=\"text\" id=\"goal-name\" name=\"goal-name\" required>\n\t\t</div>\n\t\t<div class=\"right\">\n\t\t\t<label for=\"from\" class=\"fix\">From</label>\n\t\t\t<input formControlName=\"start_date\" type=\"datetime-local\" id=\"start-date\" name=\"start-date\" value=\"{{roundUpTime() | date:'yyyy-MM-ddTHH:mm'}}\" />\n\t\t</div>\n\t\t<div class=\"clear\"></div>\n\t\t<label id=\"label-description\" for=\"description\">Description</label>\n\t\t<textarea rows='4' formControlName=\"description\" type=\"textarea\" id=\"description\" name=\"description\" required></textarea>\n\t\t<div class=\"left\">\n\t\t\t<label id=\"label-repetition\" for=\"repetition\" class='fix'>Repetition</label>\n\t\t\t<select formControlName=\"type_of_repetition\" class=\"repetition-type\" id=\"repetition-type\" (change)=\"changeRepetitionType()\">\n\t\t\t\t\t\t<option *ngFor=\"let rp of repetitionTypes; let i = index;\" value=\"{{i + 1}}\">{{rp}}</option>\n\t\t\t\t\t</select >\n\t\t\t\t</div>\n\t\t\t\t<div class=\"right\">\n                every&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\n\t\t\t\t\t<input formControlName=\"how_often\" type=\"number\" min='1' class=\"inline-input\" style=\"width: 10%; margin-top: 2.7em;\"/>\n                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id=\"repetitionFrequencyType\">day(s)</span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"clear\"></div>\n\t\t\t<!-- TODO -->\n\t\t\t\t<div class=\"left\" id=\"weeklyRepetition\" hidden=\"hidden\" style=\"margin-top: 2em;\">\n\t\t\t\t\t\t<span *ngFor=\"let day of weekDays\"><input type=\"checkbox\" formControlName=\"day_of_week_{{day}}\" name=\"{{day}}\" value=\"{{day}}\" /> {{day}} </span>\n\t\t\t\t\t</div>\n\t\t\t<div class=\"clear\"></div>\n\t\t<!-- FIXME -->\n\t\t\t<div class=\"left\" id=\"monthlyRepetition\" hidden=\"hidden\" style=\"margin-top: 2em;\">\n\t\t\t\t\t<input type=\"radio\" name=\"type_of_month\" formControlName=\"type_of_month\" value='1' /> on the same day each month\n\t\t\t\t\t<input type=\"radio\" name=\"type_of_month\" formControlName=\"type_of_month\" value='2' /> on every <span id=\"dayDefineValue\">first Monday</span>\n\t\t\t</div>\n\t\t\t<div class=\"clear\"></div>\n\n\t\t\t<div class=\"left\">\n\t\t\t\t<select formControlName=\"type_of_end_date\" class=\"repetition-limited-time\" id=\"repetition-limited-time\" (change)=\"changeRepetitionLimitedTime()\" style=\"margin-top: 2em;\">\n\t\t\t\t\t\t<option *ngFor=\"let rlt of repetitionLimitedTimes; let i = index;\" value=\"{{i + 1}}\">{{rlt}}</option>\n\t\t\t\t\t</select>\n\t\t</div>\n\t\t<div class=\"right\">\n\t\t\t<input type=\"date\" formControlName=\"specific_end_date\" id=\"until-date\" hidden=\"hidden\" value=\"{{untilDate() | date:'yyyy-MM-dd'}}\" style=\"margin-top: 2em;\"/>\n\t\t\t<span id=\"number-events\" hidden=\"hidden\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"number\" formControlName=\"number_of_event\" min='1' style=\"width: 10%; margin-top: 2em;\" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event(s)</span>\n\t\t</div>\n\t\t<div class=\"clear\"></div>\n\t\t<div class=\"left\" hidden=\"hidden\">\n\t\t\t<label id=\"reminders\" for=\"reminders\">Reminders</label>\n\t\t\t<button type=\"button\">Add reminder</button>\n\t\t\t<select>\n\t\t\t\t\t\t<option value=\"0\">At time of event</option>\n\t\t\t\t\t\t<option value=\"1\" selected>10 minutes before</option>\n\t\t\t\t\t\t<option value=\"2\">30 minutes before</option>\n\t\t\t\t\t</select>\n\t\t</div>\n\t\t<div class=\"clear\"></div>\n\t\t<div class=\"left\">\n\t\t\t<input formControlName=\"autoUpdateFailed\" type=\"checkbox\" id=\"is-auto\" name='is-auto' value=\"autoUpdateFailed\" style=\"width: 5%;\" style=\"margin-top: 2em;\"/>Auto update failed days.\n\t\t</div>\n\t\t<div class=\"clear\"></div>\n\t</div>\n\t<div class=\"form-group\">\n\t\t<div class=\"right\" style=\"font-size: 16px;\">\n\t\t\t<button type=\"button\" (click)=\"addNewGoal()\"class=\"right\">Add goal</button>\n\t\t\t<div class=\"clear\"></div>\n\t\t</div>\n\t</div>\n</form>\n"
 
 /***/ },
 
 /***/ 715:
 /***/ function(module, exports) {
 
-module.exports = "<form [formGroup]=\"loginForm\" (ngSubmit)=\"doLogin()\">\n    <!--  General -->\n    <div class=\"form-group\">\n        <h2 class=\"heading\">Login</h2>\n        <label for=\"email\">Email</label>\n        <input formControlName=\"email\" type=\"email\" name=\"email\" pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\" required>\n        <label for=\"password\">Password</label>\n        <input formControlName=\"password\" type=\"password\" name=\"password\" required minlength='8'>\n        <span class=\"fa fa-eye-slash\" (mouseup)=\"displayPassword('password')\" (mousedown)=\"displayPassword('password')\"></span>\n        <div class=\"alert alert-warning\" id=\"wrong-input\" hidden>\n            <b>Wrong username/password</b>\n        </div>\n        <p style=\"text-align: center; color: #888;\">\n            New to Seinfeld Calendar? <a class=\"sign-up\" routerLink=\"/signup\">Sign Up now</a>\n        </p>\n    </div>\n    <!-- button -->\n    <div class=\"form-group\">\n        <button type=\"submit\">Login</button>\n        <div class=\"\" style=\"text-align: center; font-size: 14px; margin-top: 1.5em;\"><a href=\"#\" style=\"color: #999\">Forgot your password?</a></div>\n    </div>\n</form>\n"
+module.exports = "<div class=\"view\">\n    <div class=\"item\" *ngFor=\"let goal of goals; let i = index;\">\n        <div class=\"goal-panel\" (click)=\"displayMonthView(goal)\" *ngIf=\"i % 2 == 0\" style=\"float: left;\">\n            <div class=\"goal-title\">\n                <b id=\"title\">{{goal.goal_name}}</b>\n                <div class=\"reminder\"><span class=\"fa fa-clock-o\"></span> 21:00</div>\n            </div>\n            <div class=\"clear\"></div>\n            <div class=\"feature\">\n                <input id=\"check\" type=\"checkbox\" name=\"\" value=\"\">\n                <div class=\"favorite\"><span class=\"fa fa-star-o\"></span></div>\n            </div>\n            <div class=\"clear\"></div>\n            <div class=\"goal-detail\">\n                <span class=\"number-of-days-done\">1 day</span>\n                <span class=\"space\"></span>\n                <span class=\"best-chain\">1 best</span>\n                <span class=\"space\"></span>\n                <span class=\"passed-day-in-total\">1/2</span>\n                <span class=\"space\"></span>\n\n                <span class=\"type-of-repetition\">\n        <div [ngSwitch]=\"goal.repetition.type_of_repetition\">\n          <div *ngSwitchCase=\"1\">Daily</div>\n          <div *ngSwitchCase=\"2\">Weekly</div>\n          <div *ngSwitchCase=\"3\">Monthly</div>\n          <div *ngSwitchCase=\"4\">Yearly</div>\n          <div *ngSwitchDefault>Daily</div>\n        </div></span>\n            </div>\n            <div class=\"clear\"></div>\n        </div>\n        <div class=\"goal-panel\" (click)=\"displayMonthView(goal)\" *ngIf=\"i % 2 != 0\" style=\"float: right;\">\n            <div class=\"goal-title\">\n                <b id=\"title\">{{goal.goal_name}}</b>\n                <div class=\"reminder\"><span class=\"fa fa-clock-o\"></span> 21:00</div>\n            </div>\n            <div class=\"clear\"></div>\n            <div class=\"feature\">\n                <input id=\"check\" type=\"checkbox\" name=\"\" value=\"\">\n                <div class=\"favorite\"><span class=\"fa fa-star-o\"></span></div>\n            </div>\n            <div class=\"clear\"></div>\n            <div class=\"goal-detail\">\n                <span class=\"number-of-days-done\">1 day</span>\n                <span class=\"space\"></span>\n                <span class=\"best-chain\">1 best</span>\n                <span class=\"space\"></span>\n                <span class=\"passed-day-in-total\">1/2</span>\n                <span class=\"space\"></span>\n\n                <span class=\"type-of-repetition\">\n        <div [ngSwitch]=\"goal.repetition.type_of_repetition\">\n          <div *ngSwitchCase=\"1\">Daily</div>\n          <div *ngSwitchCase=\"2\">Weekly</div>\n          <div *ngSwitchCase=\"3\">Monthly</div>\n          <div *ngSwitchCase=\"4\">Yearly</div>\n          <div *ngSwitchDefault>Daily</div>\n        </div></span>\n            </div>\n            <div class=\"clear\"></div>\n        </div>\n        <div class=\"clear\"></div>\n    </div>\n</div>\n"
 
 /***/ },
 
 /***/ 716:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"item\" style=\"width: 30%;\">\n    <div class=\"month\">\n        <ul>\n            <li class=\"prev\">❮</li>\n            <li class=\"next\">❯</li>\n            <li style=\"text-align:center\" id=\"monthName\"></li>\n            <li style=\"font-size:18px; text-align:center\" id=\"year\"></li>\n        </ul>\n    </div>\n\n    <ul class=\"weekdays\">\n        <li>Mon</li>\n        <li>Tue</li>\n        <li>Wed</li>\n        <li>Thu</li>\n        <li>Fri</li>\n        <li>Sat</li>\n        <li>Sun</li>\n    </ul>\n    <ul class=\"days\" id=\"calendar\">\n    </ul>\n</div>\n"
+module.exports = "<p style=\"color: 1E824C;\">\n    Introduction\n    <br />\n    <a routerLink='/createnewgoal'>Create new goal</a>\n    <br />\n    <a routerLink='/detailview'>All goals</a>\n    <br />\n    <a routerLink='/monthview'>Month view</a>\n</p>\n"
 
 /***/ },
 
 /***/ 717:
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"mySidenav\" class=\"sidenav\">\n<a href=\"javascript:void(0)\" class=\"closebtn\" (click)=\"toggleSideBar('0')\"><i class=\"fa fa-chevron-left\" aria-hidden=\"true\"></i></a>\n<a href=\"#\">Detail View</a>\n<a href=\"#\">Week View</a>\n<a href=\"#\">Month View</a>\n<a href=\"#\">Year View</a>\n<a href=\"#\">Setting</a>\n</div>\n<span id=\"openSideBar\"><i class=\"fa fa-bars\" aria-hidden=\"true\" (click)=\"toggleSideBar('200px')\"></i></span>\n"
+module.exports = "<form [formGroup]=\"loginForm\" (ngSubmit)=\"doLogin()\">\n    <!--  General -->\n    <div class=\"form-group\">\n        <h2 class=\"heading\">Login</h2>\n        <label for=\"email\">Email</label>\n        <input formControlName=\"email\" type=\"email\" name=\"email\" pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\" required>\n        <label for=\"password\">Password</label>\n        <input formControlName=\"password\" type=\"password\" name=\"password\" required minlength='8'>\n        <span class=\"fa fa-eye-slash\" (mouseup)=\"displayPassword('password')\" (mousedown)=\"displayPassword('password')\"></span>\n        <div class=\"alert alert-warning\" id=\"wrong-input\" hidden>\n            <b>Wrong username/password</b>\n        </div>\n        <p style=\"text-align: center; color: #888;\">\n            New to Seinfeld Calendar? <a class=\"sign-up\" routerLink=\"/signup\">Sign Up now</a>\n        </p>\n    </div>\n    <!-- button -->\n    <div class=\"form-group\">\n        <button type=\"submit\">Login</button>\n        <div class=\"\" style=\"text-align: center; font-size: 14px; margin-top: 1.5em;\"><a href=\"#\" style=\"color: #999\">Forgot your password?</a></div>\n    </div>\n</form>\n"
 
 /***/ },
 
 /***/ 718:
 /***/ function(module, exports) {
 
+module.exports = "<div class=\"item\" style=\"width: 60%; align: center;\">\n    <div class=\"month\">\n        <ul>\n            <li class=\"prev\" (click)=\"previousMonth()\">❮</li>\n            <li class=\"next\" (click)=\"nextMonth()\">❯</li>\n            <li style=\"text-align:center\" id=\"monthName\" value=\"\"></li>\n            <li style=\"font-size:18px; text-align:center\" id=\"year\" value=\"\"></li>\n        </ul>\n    </div>\n\n    <ul class=\"weekdays\">\n        <li>Mon</li>\n        <li>Tue</li>\n        <li>Wed</li>\n        <li>Thu</li>\n        <li>Fri</li>\n        <li>Sat</li>\n        <li>Sun</li>\n    </ul>\n    <ul class=\"days\" id=\"calendar\">\n      <li id=\"1\" (click)=\"displayDate(1)\">&nbsp;</li>\n      <li id=\"2\" (click)=\"displayDate(2)\">&nbsp;</li>\n      <li id=\"3\" (click)=\"displayDate(3)\">&nbsp;</li>\n      <li id=\"4\" (click)=\"displayDate(4)\">&nbsp;</li>\n      <li id=\"5\" (click)=\"displayDate(5)\">&nbsp;</li>\n      <li id=\"6\" (click)=\"displayDate(6)\">&nbsp;</li>\n      <li id=\"7\" (click)=\"displayDate(7)\">&nbsp;</li>\n      <li id=\"8\" (click)=\"displayDate(8)\">&nbsp;</li>\n      <li id=\"9\" (click)=\"displayDate(9)\">&nbsp;</li>\n      <li id=\"10\" (click)=\"displayDate(10)\">&nbsp;</li>\n      <li id=\"11\" (click)=\"displayDate(11)\">&nbsp;</li>\n      <li id=\"12\" (click)=\"displayDate(12)\">&nbsp;</li>\n      <li id=\"13\" (click)=\"displayDate(13)\">&nbsp;</li>\n      <li id=\"14\" (click)=\"displayDate(14)\">&nbsp;</li>\n      <li id=\"15\" (click)=\"displayDate(15)\">&nbsp;</li>\n      <li id=\"16\" (click)=\"displayDate(16)\">&nbsp;</li>\n      <li id=\"17\" (click)=\"displayDate(17)\">&nbsp;</li>\n      <li id=\"18\" (click)=\"displayDate(18)\">&nbsp;</li>\n      <li id=\"19\" (click)=\"displayDate(19)\">&nbsp;</li>\n      <li id=\"20\" (click)=\"displayDate(20)\">&nbsp;</li>\n      <li id=\"21\" (click)=\"displayDate(21)\">&nbsp;</li>\n      <li id=\"22\" (click)=\"displayDate(22)\">&nbsp;</li>\n      <li id=\"23\" (click)=\"displayDate(23)\">&nbsp;</li>\n      <li id=\"24\" (click)=\"displayDate(24)\">&nbsp;</li>\n      <li id=\"25\" (click)=\"displayDate(25)\">&nbsp;</li>\n      <li id=\"26\" (click)=\"displayDate(26)\">&nbsp;</li>\n      <li id=\"27\" (click)=\"displayDate(27)\">&nbsp;</li>\n      <li id=\"28\" (click)=\"displayDate(28)\">&nbsp;</li>\n      <li id=\"29\" (click)=\"displayDate(29)\">&nbsp;</li>\n      <li id=\"30\" (click)=\"displayDate(30)\">&nbsp;</li>\n      <li id=\"31\" (click)=\"displayDate(31)\">&nbsp;</li>\n      <li id=\"32\" (click)=\"displayDate(32)\">&nbsp;</li>\n      <li id=\"33\" (click)=\"displayDate(33)\">&nbsp;</li>\n      <li id=\"34\" (click)=\"displayDate(34)\">&nbsp;</li>\n      <li id=\"35\" (click)=\"displayDate(35)\">&nbsp;</li>\n      <li id=\"36\" (click)=\"displayDate(36)\">&nbsp;</li>\n      <li id=\"37\" (click)=\"displayDate(37)\">&nbsp;</li>\n      <li id=\"38\" (click)=\"displayDate(38)\">&nbsp;</li>\n      <li id=\"39\" (click)=\"displayDate(39)\">&nbsp;</li>\n      <li id=\"40\" (click)=\"displayDate(40)\">&nbsp;</li>\n      <li id=\"41\" (click)=\"displayDate(41)\">&nbsp;</li>\n      <li id=\"42\" (click)=\"displayDate(42)\">&nbsp;</li>\n    </ul>\n</div>\n<div class=\"div\"></div>\n"
+
+/***/ },
+
+/***/ 719:
+/***/ function(module, exports) {
+
+module.exports = "<div id=\"mySidenav\" class=\"sidenav\">\n<a href=\"javascript:void(0)\" class=\"closebtn\" (click)=\"toggleSideBar('0')\"><i class=\"fa fa-chevron-left\" aria-hidden=\"true\"></i></a>\n<a href=\"#\">Detail View</a>\n<a href=\"#\">Week View</a>\n<a href=\"#\">Month View</a>\n<a href=\"#\">Year View</a>\n<a href=\"#\">Setting</a>\n</div>\n<span id=\"openSideBar\"><i class=\"fa fa-bars\" aria-hidden=\"true\" (click)=\"toggleSideBar('200px')\"></i></span>\n"
+
+/***/ },
+
+/***/ 720:
+/***/ function(module, exports) {
+
 module.exports = "<form [formGroup]=\"signUpForm\" (ngSubmit)=\"doSignUp()\">\n    <!--  General -->\n    <div class=\"form-group\">\n        <h2 class=\"heading\">Sign up</h2>\n        <label for=\"name\">Name</label>\n        <input formControlName=\"name\" type=\"text\" id=\"name\" class=\"floatLabel\" name=\"name\" (focus)=\"moveLabelUp('name')\" (blur)=\"moveLabelDown('name')\" required>\n        <label for=\"email\">Email</label>\n        <input formControlName=\"email\" type=\"email\" id=\"email\" class=\"floatLabel\" name=\"email\" (focus)=\"moveLabelUp('email')\" (blur)=\"moveLabelDown('email')\" required pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\">\n        <label for=\"password\">Password</label>\n        <input formControlName=\"password\" type=\"password\" id=\"password\" class=\"floatLabel\" name=\"password\" (focus)=\"moveLabelUp('password')\" (blur)=\"moveLabelDown('password')\" required minlength='8' pattern=\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\">\n        <span class=\"fa fa-eye-slash a\" (mouseup)=\"displayPassword('password')\" (mousedown)=\"displayPassword('password')\"></span>\n        <label for=\"password_confirmation\">Confirm Password</label>\n        <input formControlName=\"password_confirmation\" type=\"password\" id=\"password_confirmation\" class=\"floatLabel\" name=\"password_confirmation\" (focus)=\"moveLabelUp('password_confirmation')\" (blur)=\"moveLabelDown('password_confirmation')\" data-toggle=\"tooltip\"\n            data-placement=\"right\" title=\"Password does not match!\" required minlength=\"8\" pattern=\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\">\n        <span class=\"fa fa-eye-slash b\" (mouseup)=\"displayPassword('password_confirmation')\" (mousedown)=\"displayPassword('password_confirmation')\"></span>\n        <div class=\"alert alert-danger\" id=\"password-match\" hidden>\n            <b>Passwords do not match.</b>\n        </div>\n    </div>\n    <!-- button -->\n    <div class=\"form-group\">\n        <button type=\"submit\">Create free account</button>\n    </div>\n</form>\n"
 
 /***/ },
 
-/***/ 775:
+/***/ 777:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(403);
+module.exports = __webpack_require__(404);
 
 
 /***/ }
 
-},[775]);
+},[777]);
 //# sourceMappingURL=main.bundle.map

@@ -12,7 +12,7 @@ import { DetailViewComponent } from './detail-view/detail-view.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { LoginComponent } from './login/login.component';
 import { MonthViewComponent } from './month-view/month-view.component';
-import { Routes } from './app.route';
+import { appRoutes } from './app.route';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 
@@ -20,6 +20,8 @@ import { LoggedInGuard } from './shared/logged-in.guard';
 
 import { GoalService } from './goal/goal.service';
 import { UserService } from './user/user.service';
+
+import { DetailViewModule } from './detail-view/detail-view.module';
 
 @NgModule({
     declarations: [
@@ -30,15 +32,16 @@ import { UserService } from './user/user.service';
         SideBarComponent,
         CreateNewGoalComponent,
         DetailViewComponent,
-        MonthViewComponent,
     ],
     imports: [
+        DetailViewModule,
         BrowserModule,
         FormsModule,
         JsonpModule,
         HttpModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(Routes)
+        RouterModule.forRoot(appRoutes)
+        // RouterModule.forChild(goalRoutes)
     ],
     providers: [UserService, LoggedInGuard, GoalService, Angular2TokenService],
     bootstrap: [AppComponent]
