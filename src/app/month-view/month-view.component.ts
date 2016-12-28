@@ -21,12 +21,49 @@ export class MonthViewComponent implements OnInit {
         this.route.params.switchMap((params: Params) => this.goalService.getGoalsById(params['id']))
             .subscribe((res) => {
                 this.goal = res.json();
+                this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
+                this.displayGoalOnCalendar();
             }, error => console.log(error));
-        this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
     }
 
-    displayGoalOnCalendar(){
-      // let date = this.goal
+    enableEdit(){
+      let today = new Date();
+      let startDate = new Date(this.goal.start_date);
+    }
+
+    toggleDate(id: string, isPassed: boolean) {
+        let date = <HTMLElement>document.getElementById(id);
+        if (isPassed) {
+            date.classList.add('pass');
+        } else {
+            date.classList.add('fail');
+        }
+    }
+
+    displayGoalOnCalendar() {
+        // console.log(this.goal.calendars);
+        let calendars = this.goal.calendars;
+        let monthName = <HTMLElement>document.getElementById('monthName');
+        let month = this.getMonth(monthName.innerHTML);
+        let year = <HTMLElement>document.getElementById('year');
+        for (let i = 1; i <= 42; i++) {
+            let day = <HTMLElement>document.getElementById(i + "");
+            console.log('Check: ' + i);
+            for (let calendar of calendars) {
+                let fullDate = new Date(calendar.date_of_calendar);
+                let status = calendar.status;
+                day.classList.remove('pass');
+                day.classList.remove('fail');
+                if (day.innerHTML == (fullDate.getDate() + "") && month == fullDate.getMonth() && fullDate.getFullYear() == parseInt(year.innerHTML) ) {
+                    if (status == "1") {
+                        this.toggleDate(i + "", true);
+                    } else if (status == "2") {
+                        this.toggleDate(i + "", false);
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     getMonthName(month: number) {
@@ -80,6 +117,7 @@ export class MonthViewComponent implements OnInit {
         let previousMonth = month > 0 ? month - 1 : 11;
         let y = month == 0 ? parseInt(year.innerHTML) - 1 : parseInt(year.innerHTML);
         this.displayCalendar(previousMonth, y);
+        this.displayGoalOnCalendar();
     }
     nextMonth() {
         let monthName = <HTMLElement>document.getElementById('monthName');
@@ -88,37 +126,34 @@ export class MonthViewComponent implements OnInit {
         let nextMonth = month < 11 ? month + 1 : 0;
         let y = month == 11 ? parseInt(year.innerHTML) + 1 : parseInt(year.innerHTML);
         this.displayCalendar(nextMonth, y);
+        this.displayGoalOnCalendar();
     }
     displayDate(id: number) {
-      // console.log(this.goal);
         let date = <HTMLElement>document.getElementById(id + "");
         let monthName = <HTMLElement>document.getElementById('monthName');
-        let month = this.getMonth(monthName.innerHTML);
+        let month = this.getMonth(monthName.innerHTML) + 1;
         let year = <HTMLElement>document.getElementById('year');
         let fullDate = year.innerHTML + "-" + month + "-" + date.innerHTML;
-        // console.log(fullDate);
+        console.log(fullDate);
         if (date.classList.item(0) == null || date.classList.item(0) == 'active') {
             if (date.classList.item(1) == 'pass') {
                 date.classList.remove('pass');
                 date.classList.add('fail');
-                this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => {console.log(res); this.router.navigate(["/monthview/" + this.goal.id]);}, error => console.log(error));
+                this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
             } else if (date.classList.item(1) == 'fail') {
                 date.classList.remove('fail');
-                this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => {console.log(res); this.router.navigate(["/monthview/" + this.goal.id]);}, error => console.log(error));
+                this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
             } else {
                 date.classList.add('pass');
-                this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(res => {console.log(res); this.router.navigate(["/monthview/" + this.goal.id]);}, error => console.log(error));
+                this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
             }
         } else if (date.classList.item(0) == 'pass') {
-            console.log(date.classList.item(0));
-            console.log(date.classList.item(1));
             date.classList.remove('pass');
             date.classList.add('fail');
-            this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => {console.log(res); this.router.navigate(["/monthview/" + this.goal.id]);}, error => console.log(error));
+            this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
         } else {
-            console.log(date.classList);
             date.classList.remove('fail');
-            this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => {console.log(res); this.router.navigate(["/monthview/" + this.goal.id]);}, error => console.log(error));
+            this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
         }
     }
 }

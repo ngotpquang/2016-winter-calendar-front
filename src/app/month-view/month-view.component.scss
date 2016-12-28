@@ -5,10 +5,11 @@
 ul {
     list-style-type: none;
 }
-
 $main: #1E824C;
 
 .item {
+    width: 60%;
+    align: center;
     font-family: inherit;
     position: relative;
     margin: 2em auto;
@@ -19,7 +20,6 @@ $main: #1E824C;
         padding: 30px 25px;
         width: 100%;
         // background: #ccc;
-
         ul {
             margin: 0;
             padding: 0;
@@ -68,10 +68,7 @@ $main: #1E824C;
     .days {
         // background: #eee;
         margin: 0 auto;
-        padding-left: 0.9em;
-        padding-right: 0.9em;
-        padding-top: 0.9em;
-        padding-bottom: 0.5em;
+        padding: 0.9em 0.9em 0.5em;
         position: relative;
 
         li {
@@ -92,24 +89,36 @@ $main: #1E824C;
             &.hide {
                 display: none;
             }
+
             &.hide-background {
                 background-color: white;
             }
-
             @mixin x {
-              background-clip: border-box;
-              background-size: 50%;
-              text-align: left;
+                background-clip: border-box;
+                background-size: 50%;
+                text-align: left;
             }
 
-            &.pass, &.fail {
-              background: url('../../img/passed.png') no-repeat center;
-              @include x;
+            &.fail,
+            &.pass {
+                background: url('../../img/passed.png') no-repeat center;
+                @include x;
             }
+
             &.fail {
-              background: url('../../img/failed.png') no-repeat center;
-              @include x;
+                background: url('../../img/failed.png') no-repeat center;
+                @include x;
             }
         }
     }
+}
+@media screen and (max-width: 500px) and (min-width: 200px)  {
+  .item {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 800px) and (min-width: 500px)  {
+  .item {
+    width: 60%;
+  }
 }
