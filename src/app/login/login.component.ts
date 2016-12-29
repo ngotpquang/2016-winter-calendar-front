@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
         this.userService.logIn(user.email, user.password ).subscribe(
             res => {
                 localStorage.setItem('currentUser', JSON.stringify(res.json().data));
-                this.commonFunctions.changeTitleAfterLogined("Your dashboard");
                 this.router.navigate(['/detailview']);
+                this.commonFunctions.changeTitleAfterLogined("Your dashboard");
             },
             error => console.log(error)
         );

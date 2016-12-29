@@ -615,8 +615,8 @@ var LoginComponent = (function () {
         console.log(JSON.stringify(this.loginForm.value));
         this.userService.logIn(user.email, user.password).subscribe(function (res) {
             localStorage.setItem('currentUser', JSON.stringify(res.json().data));
-            _this.commonFunctions.changeTitleAfterLogined("Your dashboard");
             _this.router.navigate(['/detailview']);
+            _this.commonFunctions.changeTitleAfterLogined("Your dashboard");
         }, function (error) { return console.log(error); });
     };
     LoginComponent.prototype.displayPassword = function (string) {
@@ -786,30 +786,35 @@ var MonthViewComponent = (function () {
         var month = this.getMonth(monthName.innerHTML) + 1;
         var year = document.getElementById('year');
         var fullDate = year.innerHTML + "-" + month + "-" + date.innerHTML;
-        console.log(fullDate);
-        if (date.classList.item(0) == null || date.classList.item(0) == 'active') {
-            if (date.classList.item(1) == 'pass') {
+        var markDate = new Date(fullDate).setHours(0, 0, 0, 0);
+        var startDate = new Date(this.goal.start_date).setHours(0, 0, 0, 0);
+        var today = new Date().setHours(0, 0, 0, 0);
+        console.log(markDate + "|" + today + "|" + startDate);
+        if (markDate >= startDate && markDate <= today) {
+            if (date.classList.item(0) == null || date.classList.item(0) == 'active') {
+                if (date.classList.item(1) == 'pass') {
+                    date.classList.remove('pass');
+                    date.classList.add('fail');
+                    this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(function (res) { console.log(res); _this.goal = res.json(); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
+                }
+                else if (date.classList.item(1) == 'fail') {
+                    date.classList.remove('fail');
+                    this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(function (res) { console.log(res); _this.goal = res.json(); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
+                }
+                else {
+                    date.classList.add('pass');
+                    this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(function (res) { console.log(res); _this.goal = res.json(); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
+                }
+            }
+            else if (date.classList.item(0) == 'pass') {
                 date.classList.remove('pass');
                 date.classList.add('fail');
                 this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(function (res) { console.log(res); _this.goal = res.json(); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
             }
-            else if (date.classList.item(1) == 'fail') {
+            else {
                 date.classList.remove('fail');
                 this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(function (res) { console.log(res); _this.goal = res.json(); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
             }
-            else {
-                date.classList.add('pass');
-                this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(function (res) { console.log(res); _this.goal = res.json(); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
-            }
-        }
-        else if (date.classList.item(0) == 'pass') {
-            date.classList.remove('pass');
-            date.classList.add('fail');
-            this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(function (res) { console.log(res); _this.goal = res.json(); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
-        }
-        else {
-            date.classList.remove('fail');
-            this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(function (res) { console.log(res); _this.goal = res.json(); _this.router.navigate(["/monthview/" + _this.goal.id]); }, function (error) { return console.log(error); });
         }
     };
     MonthViewComponent = __decorate([
