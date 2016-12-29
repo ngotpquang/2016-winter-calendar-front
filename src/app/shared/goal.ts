@@ -12,7 +12,6 @@ export class Goal {
   end_date: EndDate;
   calendars:  Calendar[];
 
-
   constructor(email, token, goal_name, start_date, description, repetition: Repetition, end_date: EndDate){
     this.email = email;
     this.token = token;

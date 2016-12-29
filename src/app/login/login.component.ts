@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('currentUser', JSON.stringify(res.json().data));
                 this.router.navigate(['/detailview']);
                 this.commonFunctions.changeTitleAfterLogined("Your dashboard");
+                this.router.navigate(['/detailview']);
             },
             error => console.log(error)
         );
