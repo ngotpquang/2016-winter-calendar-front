@@ -22,6 +22,7 @@ var MonthViewComponent = (function () {
         this.route.params.switchMap(function (params) { return _this.goalService.getGoalsById(params['id']); })
             .subscribe(function (res) {
             _this.goal = res.json();
+            console.log(_this.goal);
             _this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
             _this.displayGoalOnCalendar();
         }, function (error) { return console.log(error); });
@@ -46,7 +47,6 @@ var MonthViewComponent = (function () {
         var year = document.getElementById('year');
         for (var i = 1; i <= 42; i++) {
             var day = document.getElementById(i + "");
-            console.log('Check: ' + i);
             for (var _i = 0, calendars_1 = calendars; _i < calendars_1.length; _i++) {
                 var calendar = calendars_1[_i];
                 var fullDate = new Date(calendar.date_of_calendar);

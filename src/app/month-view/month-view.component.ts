@@ -21,6 +21,7 @@ export class MonthViewComponent implements OnInit {
         this.route.params.switchMap((params: Params) => this.goalService.getGoalsById(params['id']))
             .subscribe((res) => {
                 this.goal = res.json();
+                console.log(this.goal);
                 this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
                 this.displayGoalOnCalendar();
             }, error => console.log(error));
@@ -48,7 +49,7 @@ export class MonthViewComponent implements OnInit {
         let year = <HTMLElement>document.getElementById('year');
         for (let i = 1; i <= 42; i++) {
             let day = <HTMLElement>document.getElementById(i + "");
-            console.log('Check: ' + i);
+            // console.log('Check: ' + i);
             for (let calendar of calendars) {
                 let fullDate = new Date(calendar.date_of_calendar);
                 let status = calendar.status;

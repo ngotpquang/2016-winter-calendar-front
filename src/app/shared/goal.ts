@@ -5,6 +5,7 @@ export class Goal {
   goal_name: string;
   start_date;
   best_chain: string;
+  current_chain: string;
   progress: string;
   description : string;
   repetition: Repetition;

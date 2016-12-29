@@ -1,9 +1,9 @@
 <div id="mySidenav" class="sidenav">
 <a href="javascript:void(0)" class="closebtn" (click)="toggleSideBar('0')"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-<a href="#">Detail View</a>
-<a href="#">Week View</a>
-<a href="#">Month View</a>
-<a href="#">Year View</a>
-<a href="#">Setting</a>
+<a routerLink='/detailview' (click)="toggleSideBar('0')">Detail View</a>
+<a (click)="toggleSideBar('0')">Week View</a>
+<!-- <a routerLink='/monthview' (click)="toggleSideBar('0')" disabled>Month View</a> -->
+<a (click)="toggleSideBar('0')" disabled>Year View</a>
+<a (click)="toggleSideBar('0')" disabled>Setting</a>
 </div>
-<span id="openSideBar"><i class="fa fa-bars" aria-hidden="true" (click)="toggleSideBar('200px')"></i></span>
+<span id="openSideBar"><i class="fa fa-bars" aria-hidden="true" (click)="toggleSideBar('170px')"></i></span>
