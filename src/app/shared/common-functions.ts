@@ -137,7 +137,6 @@ export class CommonFunctions implements OnInit {
         }
         let titleContent = <HTMLInputElement>document.getElementById("title-content");
         titleContent.innerHTML = title;
-
     }
 
 }

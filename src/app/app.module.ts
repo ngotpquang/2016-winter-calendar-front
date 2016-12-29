@@ -20,7 +20,6 @@ import { LoggedInGuard } from './shared/logged-in.guard';
 
 import { GoalService } from './goal/goal.service';
 import { UserService } from './user/user.service';
-
 import { DetailViewModule } from './detail-view/detail-view.module';
 
 @NgModule({
@@ -41,7 +40,6 @@ import { DetailViewModule } from './detail-view/detail-view.module';
         HttpModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes)
-        // RouterModule.forChild(goalRoutes)
     ],
     providers: [UserService, LoggedInGuard, GoalService, Angular2TokenService],
     bootstrap: [AppComponent]
