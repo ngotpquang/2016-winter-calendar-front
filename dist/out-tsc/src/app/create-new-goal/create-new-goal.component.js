@@ -38,7 +38,7 @@ var CreateNewGoalComponent = (function () {
         });
     }
     CreateNewGoalComponent.prototype.ngOnInit = function () {
-        this.weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        this.weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         this.repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
         this.repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
         this.commonFunctions = new CommonFunctions();
@@ -61,13 +61,13 @@ var CreateNewGoalComponent = (function () {
         var day_of_week = null;
         if (input.type_of_repetition == 2) {
             day_of_week =
-                (input.day_of_week_Mon == true ? "Mon, " : "") +
-                    (input.day_of_week_Tue == true ? "Tue, " : "") +
-                    (input.day_of_week_Wed == true ? "Wed, " : "") +
-                    (input.day_of_week_Thu == true ? "Thu, " : "") +
-                    (input.day_of_week_Fri == true ? "Fri, " : "") +
-                    (input.day_of_week_Sat == true ? "Sat, " : "") +
-                    (input.day_of_week_Sun == true ? "Sun" : "");
+                (input.day_of_week_Sun == true ? "0, " : "") +
+                    (input.day_of_week_Mon == true ? "1, " : "") +
+                    (input.day_of_week_Tue == true ? "2, " : "") +
+                    (input.day_of_week_Wed == true ? "3, " : "") +
+                    (input.day_of_week_Thu == true ? "4, " : "") +
+                    (input.day_of_week_Fri == true ? "5, " : "") +
+                    (input.day_of_week_Sat == true ? "6, " : "");
         }
         var start_date;
         if (input.start_date == null) {

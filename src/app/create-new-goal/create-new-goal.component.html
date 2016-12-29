@@ -26,7 +26,7 @@
 				<div class="clear"></div>
 			<!-- TODO -->
 				<div class="left" id="weeklyRepetition" hidden="hidden" style="margin-top: 2em;">
-						<span *ngFor="let day of weekDays"><input type="checkbox" formControlName="day_of_week_{{day}}" name="{{day}}" value="{{day}}" /> {{day}} </span>
+						<span *ngFor="let day of weekDays; let i = index;"><input type="checkbox" formControlName="day_of_week_{{day}}" name="{{day}}" value="{{i}}" /> {{day}} </span>
 					</div>
 			<div class="clear"></div>
 		<!-- FIXME -->
