@@ -1,47 +1,62 @@
 $main: #1E824C;
+
 .sidenav {
+    border-right: 1px solid white;
     height: 100%;
     width: 0;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 40px;
-    transition: 0.5s;
+    background-color: $main;
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 15px;
+    transition: all 0.5s;
+
+    b {
+        padding: 8px 8px 8px 32px;
+    }
+
     a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
-        font-size: 16px;
-        color: #818181;
+        font-size: 14px;
+        color: white;
         display: block;
         // transition: 0.3s;
-        &:hover, .offcanvas &:focus {
-          color: #f1f1f1;
+        &:hover,
+        .offcanvas &:focus {
+            text-decoration: underline;
+        }
+
+        &:nth-child(5n) {
+            border-bottom: 1px solid white;
         }
     }
-    a:nth-child(5n){
-      border-bottom: 1px solid white;
-    }
+
     .closebtn {
-      position: absolute;
-      top: 0;
-      right: 20px;
-      font-size: 16px;
-      margin-left: 40px;
+        position: absolute;
+        top: 0;
+        right: 20px;
+        font-size: 14px;
+        margin-left: 40px;
     }
 }
 
 span {
-  position: absolute;
-  left: 20px;
-  top: 35px;
-  font-size: 20px;
+    position: absolute;
+    left: 20px;
+    top: 22px;
+    font-size: 20px;
 }
-
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 14px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 14px;
+    }
 }

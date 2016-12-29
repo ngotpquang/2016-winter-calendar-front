@@ -2,6 +2,7 @@ $main: #1E824C;
 
 .view {
     margin: 2em auto;
+    position: relative;
 
     .goal-panel {
         width: 44%;
@@ -10,6 +11,12 @@ $main: #1E824C;
         margin: 1em 1.5em;
         padding: 0.5em;
         border-bottom: 1.5px solid $main;
+        transition: all 0.2s;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #eee;
+        }
 
         .goal-title {
             margin-bottom: 2em;
@@ -42,7 +49,7 @@ $main: #1E824C;
         }
 
         .description {
-            margin-left: 2em;
+            margin: 0.2em 0 0.2em 2em;
         }
 
         .goal-detail {
@@ -76,6 +83,65 @@ $main: #1E824C;
         .clear {
             clear: both;
         }
+    }
+
+    a {
+        &.float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: $main;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        &:hover {
+            box-shadow: 2px 2px 4px #555;
+        }
+    }
+
+    .my-float {
+        margin-top: 22px;
+    }
+
+    .label-container {
+        position: fixed;
+        bottom: 48px;
+        right: 105px;
+        display: table;
+        visibility: hidden;
+    }
+
+    .label-text {
+        color: #FFF;
+        font-weight: bold;
+        background: $main;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    .label-arrow {
+        display: table-cell;
+        vertical-align: middle;
+        color: $main;
+        opacity: 1;
+    }
+
+    a.float + div.label-container {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.2s, opacity 0.5s ease-in-out;
+    }
+
+    a.float:hover + div.label-container {
+        visibility: visible;
+        opacity: 1;
     }
 }
 @media screen and (max-width: 1239px) {

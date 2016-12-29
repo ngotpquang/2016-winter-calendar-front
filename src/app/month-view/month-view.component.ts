@@ -140,21 +140,21 @@ export class MonthViewComponent implements OnInit {
             if (date.classList.item(1) == 'pass') {
                 date.classList.remove('pass');
                 date.classList.add('fail');
-                this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+                this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
             } else if (date.classList.item(1) == 'fail') {
                 date.classList.remove('fail');
-                this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+                this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
             } else {
                 date.classList.add('pass');
-                this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+                this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
             }
         } else if (date.classList.item(0) == 'pass') {
             date.classList.remove('pass');
             date.classList.add('fail');
-            this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+            this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
         } else {
             date.classList.remove('fail');
-            this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => { console.log(res); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+            this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
         }
     }
 }
