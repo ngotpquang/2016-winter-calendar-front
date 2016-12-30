@@ -13,11 +13,9 @@ import { GoalService } from '../goal/goal.service';
     styleUrls:['./edit-goal.component.scss']
 })
 export class EditGoalComponent implements OnInit{
+    id: string;
     goal: Goal;
-    public weekDays: string[];
-    repetitions:Repetition[]=[
-        new Repetition("Daily",1),
-    ];
+    repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
     public repetitionLimitedTimes: string[];
     public commonFunctions: CommonFunctions;
     submitted = false;
@@ -25,12 +23,12 @@ export class EditGoalComponent implements OnInit{
     constructor(private goalService:GoalService, private route:ActivatedRoute, private location:Location){
     };
     ngOnInit():void{
-        let id:string = this.route.params['_value']['id'];
+        this.id = this.route.params['_value']['id'];
         this.commonFunctions = new CommonFunctions();
-        this.goalService.getGoalsById(id).toPromise().then((data)=>{
+        this.goalService.getGoalsById(this.id).toPromise().then((data)=>{
+            console.log(data['_body']);
             this.goal = JSON.parse(data['_body']);
             this.isDataLoaded = true;
-            console.log(this.goal.start_date);
         });
     };
     get diagnostic() { 
@@ -40,5 +38,15 @@ export class EditGoalComponent implements OnInit{
     log():void{
         console.log(this.goal);
     }
-    editGoal():void{}
+    editGoal():void{
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.goal.token = currentUser.token;
+        this.goal.email = currentUser.email;
+        console.log(this.goal);
+        this.goalService.editGoal(this.id,this.goal).then(()=>window.location.reload());
+    }
+    toNumber():void{
+        let num = parseInt(this.goal.repetition.type_of_repetition.toString(),10);
+        this.goal.repetition.type_of_repetition = num;
+    }
 }
