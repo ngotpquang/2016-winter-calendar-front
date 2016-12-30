@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
         this.userService.logIn(user.email, user.password ).subscribe(
             res => {
                 localStorage.setItem('currentUser', JSON.stringify(res.json().data));
+                this.userService.setLoggedIn(true);
                 this.router.navigate(['/detailview']);
                 this.commonFunctions.changeTitleAfterLogined("Your dashboard");
-                this.router.navigate(['/detailview']);
             },
             error => console.log(error)
         );

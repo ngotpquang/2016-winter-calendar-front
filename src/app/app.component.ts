@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
                 let titleContent = <HTMLInputElement>document.getElementById("title-content");
                 titleContent.innerHTML = "Seinfeld Calendar";
                 logoutButton.hidden = true;
+                this.userService.setLoggedIn(false);
                 this.router.navigate(['/']);
             },
             error => console.log(error)
