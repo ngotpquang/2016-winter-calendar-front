@@ -1,3 +1,5 @@
+import { CanActivate } from '@angular/router';
+import { EditGoalComponent } from './edit-goal/edit-goal.component';
 // Import our dependencies
 import { AppComponent } from './app.component';
 
@@ -17,4 +19,5 @@ export const appRoutes = [
     { path: 'signup', component: SignUpComponent },
     { path: 'createnewgoal', component: CreateNewGoalComponent, canActivate: [LoggedInGuard] },
     { path: 'detailview', component: DetailViewComponent, canActivate: [LoggedInGuard] },
+    { path: 'editgoal/:id', component:EditGoalComponent, CanActivate:[LoggedInGuard]},
 ];

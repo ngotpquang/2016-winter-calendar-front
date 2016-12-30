@@ -1,3 +1,4 @@
+import { EditGoalComponent } from './edit-goal/edit-goal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +32,7 @@ import { DetailViewModule } from './detail-view/detail-view.module';
         SideBarComponent,
         CreateNewGoalComponent,
         DetailViewComponent,
+        EditGoalComponent
     ],
     imports: [
         DetailViewModule,
