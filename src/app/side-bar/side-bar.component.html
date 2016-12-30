@@ -1,10 +1,12 @@
-<div id="mySidenav" class="sidenav" (blur)="toggleSideBar('0')">
-    <b>Ngo Quang</b>
-    <a href="javascript:void(0)" class="closebtn" (click)="toggleSideBar('0')"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+<div id="mySidenav" class="sidenav" (mouseleave)="toggleSideBar('0')">
+    <div class="user-name" *ngIf="currentUser != null">
+        <span class="fa fa-user-circle-o"></span>
+        <p (click)="toggleSideBar('0')">{{currentUser.name}}</p>
+    </div>
     <a routerLink='/detailview' (click)="toggleSideBar('0')">Detail View</a>
-    <a (click)="toggleSideBar('0')">Week View</a>
-    <!-- <a routerLink='/monthview' (click)="toggleSideBar('0')" disabled>Month View</a> -->
-    <a (click)="toggleSideBar('0')" disabled>Year View</a>
-    <a (click)="toggleSideBar('0')" disabled>Setting</a>
+    <!-- <a (click)="toggleSideBar('0')">Week View</a>
+    <a routerLink='/monthview' (click)="toggleSideBar('0')" disabled>Month View</a> -->
+    <!-- <a (click)="toggleSideBar('0')" disabled>Year View</a>
+    <a (click)="toggleSideBar('0')" disabled>Setting</a> -->
 </div>
-<span id="openSideBar"><i class="fa fa-bars" aria-hidden="true" (click)="toggleSideBar('170px')"></i></span>
+<span id="openSideBar"><i class="fa fa-bars" aria-hidden="true" (mouseover)="toggleSideBar('200px')"></i></span>

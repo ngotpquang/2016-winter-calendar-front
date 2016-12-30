@@ -16,7 +16,6 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         super('loading');
         goalService.getAllGoals().subscribe(res => {
             this.goals = res.json();
-            localStorage.setItem('goals', this.goals);
             this.ready();
         },
             error => console.log(error));
