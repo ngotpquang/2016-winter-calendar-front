@@ -1,3 +1,4 @@
+import { EditGoalComponent } from './edit-goal/edit-goal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +33,7 @@ import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator
         SideBarComponent,
         CreateNewGoalComponent,
         DetailViewComponent,
+        EditGoalComponent
     ],
     imports: [
         DetailViewModule,
