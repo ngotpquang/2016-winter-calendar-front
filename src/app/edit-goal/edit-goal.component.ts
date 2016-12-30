@@ -14,6 +14,7 @@ import { GoalService } from '../goal/goal.service';
 })
 export class EditGoalComponent implements OnInit {
     id: string;
+    unit: string;
     goal: Goal;
     repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
     repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
@@ -28,6 +29,7 @@ export class EditGoalComponent implements OnInit {
         this.goalService.getGoalsById(this.id).toPromise().then((data)=>{
             console.log(data['_body']);
             this.goal = JSON.parse(data['_body']);
+            this.toRepetitionUnit();
             this.isDataLoaded = true;
         });
     };
@@ -52,5 +54,29 @@ export class EditGoalComponent implements OnInit {
     toNumber0(): void {
         let num = parseInt(this.goal.end_date.type_of_end_date.toString(), 10);
         this.goal.end_date.type_of_end_date = num;
+    }
+    toRepetitionUnit(): void {
+        var type = this.goal.repetition.type_of_repetition;
+        switch(type){
+            case 1: {
+                this.unit = 'day';
+            }
+            break;
+            case 2: {
+                this.unit = 'week';
+            }
+            break;
+            case 3: {
+                this.unit = 'moth';
+            }
+            break;
+            case 4: {
+                this.unit = 'year';
+            }
+            break;
+            default:
+            break;
+        }
+        console.log(this.unit);
     }
 }
