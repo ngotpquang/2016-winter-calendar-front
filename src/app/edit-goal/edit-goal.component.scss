@@ -1,0 +1,126 @@
+$main: #1E824C;
+$shadow: #86E2D5;
+$cascade: #95A5A6;
+
+.form-group {
+    width: 80%;
+    margin: 0 auto;
+    font-family: inherit;
+
+    h2 {
+        font-size: 26px;
+        font-weight: 600;
+        text-align: left;
+        color: $main;
+        border-bottom: 1px solid $main;
+        padding-bottom: 3px;
+        margin-bottom: 20px;
+    }
+
+    a {
+        font-size: inherit;
+        font-family: inherit;
+        color: $main;
+        text-decoration: none;
+        transition: all 1s ease-out;
+
+        &:hover {
+            text-decoration: underline;
+            color: lighten($main, 10%);
+        }
+
+        &:active {
+            color: $cascade;
+        }
+    }
+
+    label {
+        font-size: 12.5px;
+        color: $main;
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.5em;
+        margin-top: 1em;
+        margin-left: 1em;
+    }
+
+    input[type="date"],
+    input[type="datetime-local"],
+    input[type="number"],
+    input[type="password"],
+    input[type="text"],
+    select,
+    textarea {
+        font-family: inherit;
+        font-size: inherit;
+        color: #222;
+        border: 1px solid $main;
+        border-radius: 10px;
+        font-size: inherit;
+        height: 25px;
+        padding: 0.2em;
+        width: 100%;
+        transition: all 0.2s;
+
+        &:focus,
+        &:hover,
+        &:active {
+            outline: none;
+            box-shadow: 0 0 5px 0 $shadow;
+        }
+    }
+
+    textarea {
+        height: auto;
+        // width: 100%;
+    }
+
+    select {
+        // width: 100%;
+        background-color: white;
+        height: 32px;
+        transition: all 0.2s;
+    }
+
+    .left {
+        float: left;
+        width: 45%;
+    }
+
+    .right {
+        float: right;
+        width: 45%;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    div {
+        color: $main;
+        font-size: 12.5px;
+    }
+
+    button {
+        // display: block;
+        border: 1px solid white;
+        border-radius: 10px;
+        background-color: $main;
+        color: white;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0.5em;
+        width: 2em;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: white;
+            color: $main;
+            font-weight: bold;
+            border: 1.5px solid $main;
+        }
+    }
+}
