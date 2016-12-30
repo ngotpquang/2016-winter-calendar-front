@@ -62,6 +62,7 @@ export class CreateNewGoalComponent implements OnInit {
     }
     addNewGoal() {
         let input = this.createNewGoalForm.value;
+        console.log(input);
         let day_of_week = null;
         if (input.type_of_repetition == 2) {
             day_of_week =
@@ -87,10 +88,24 @@ export class CreateNewGoalComponent implements OnInit {
                 specific_end_date = input.specific_end_date;
             }
         }
+        if (input.type_of_repetition == null) {
+            input.type_of_repetition = 1;
+        }
+        if (input.how_often == null) {
+            input.how_often = 1;
+        }
+        if (input.type_of_end_date == null) {
+            input.type_of_end_date = 1;
+        }
+        if (input.autoUpdateFailed == null){
+          input.autoUpdateFailed = false;
+        }
+        console.log(input);
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         let goal = new Goal(currentUser.email, currentUser.token, input.goal_name, start_date, input.description,
             new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
-            new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event));
+            new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event), input.autoUpdateFailed);
+        console.log(goal);
         this.goalService.addNewGoal(goal).subscribe(res => {
             console.log(res);
             this.router.navigate(['/detailview']);
