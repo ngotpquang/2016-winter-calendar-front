@@ -11,6 +11,8 @@ import { LoggedInGuard } from './shared/logged-in.guard';
 import { MonthViewComponent } from './month-view/month-view.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
+//Quang - 20161230
+import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 
 // Define which component should be loaded based on the current URL
 export const appRoutes = [
@@ -19,5 +21,6 @@ export const appRoutes = [
     { path: 'signup', component: SignUpComponent },
     { path: 'createnewgoal', component: CreateNewGoalComponent, canActivate: [LoggedInGuard] },
     { path: 'detailview', component: DetailViewComponent, canActivate: [LoggedInGuard] },
+    { path: 'loading', component: LoadingIndicatorComponent },
     { path: 'editgoal/:id', component:EditGoalComponent, CanActivate:[LoggedInGuard]},
 ];

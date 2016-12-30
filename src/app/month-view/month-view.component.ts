@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import '../rxjs-operator';
 
+import { LoadingPage } from '../loading-indicator/loading-page';
 import { Goal, Repetition, EndDate } from '../shared/goal';
 import { GoalService } from '../goal/goal.service';
 
@@ -15,13 +16,15 @@ export class MonthViewComponent implements OnInit {
     private goal: Goal;
     constructor(private route: ActivatedRoute,
         private router: Router,
-        private goalService: GoalService) { }
+        private goalService: GoalService) {
+    }
 
     ngOnInit() {
+
         this.route.params.switchMap((params: Params) => this.goalService.getGoalsById(params['id']))
             .subscribe((res) => {
                 this.goal = res.json();
-                console.log(this.goal);
+                // console.log(this.goal);
                 this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
                 this.displayGoalOnCalendar();
             }, error => console.log(error));
@@ -135,9 +138,9 @@ export class MonthViewComponent implements OnInit {
         let month = this.getMonth(monthName.innerHTML) + 1;
         let year = <HTMLElement>document.getElementById('year');
         let fullDate = year.innerHTML + "-" + month + "-" + date.innerHTML;
-        let markDate = new Date(fullDate).setHours(0,0,0,0);
-        let startDate = new Date(this.goal.start_date).setHours(0,0,0,0);
-        let today = new Date().setHours(0,0,0,0);
+        let markDate = new Date(fullDate).setHours(0, 0, 0, 0);
+        let startDate = new Date(this.goal.start_date).setHours(0, 0, 0, 0);
+        let today = new Date().setHours(0, 0, 0, 0);
         console.log(markDate + "|" + today + "|" + startDate);
         if (markDate >= startDate && markDate <= today) {
             if (date.classList.item(0) == null || date.classList.item(0) == 'active') {

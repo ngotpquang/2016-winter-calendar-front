@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable'
 import { Router } from '@angular/router';
 
+import { LoadingPage } from '../loading-indicator/loading-page';
 import { UserService } from '../user/user.service';
 import { CommonFunctions } from '../shared/common-functions';
 import '../rxjs-operator'
@@ -12,9 +13,10 @@ import '../rxjs-operator'
     templateUrl: './sign-up.component.html',
     styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent extends LoadingPage implements OnInit {
     commonFunctions: CommonFunctions;
     constructor(private router: Router, private userService: UserService) {
+      super('loaded');
     }
 
     ngOnInit() {
@@ -29,11 +31,13 @@ export class SignUpComponent implements OnInit {
     });
     doSignUp(event) {
         let user = this.signUpForm.value;
-        console.log(user);
+        // console.log(user);
+        this.standby();
         this.userService.signUp(user.name, user.email, user.password).subscribe((res) => {
             localStorage.setItem('currentUser', JSON.stringify(res.json().data));
-            this.commonFunctions.changeTitleAfterLogined("Your dashboard");
+            this.userService.setLoggedIn(true);
             this.router.navigate(['/detailview']);
+            this.commonFunctions.changeTitleAfterLogined("Your dashboard");
         },
             error => console.log(error)
         );

@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
     title: string;
     listButton;
     commonFunctions: CommonFunctions;
-    constructor(private router: Router, private userService: UserService) { }
+    constructor(private router: Router, private userService: UserService) {
+    }
     ngOnInit() {
         this.title = "Seinfeld Calendar";
         let currentUser = localStorage.getItem('currentUser');
@@ -30,7 +31,6 @@ export class AppComponent implements OnInit {
         let currentUser = localStorage.getItem('currentUser');
         this.userService.logOut().subscribe(
             res => {
-                console.log(res);
                 localStorage.removeItem('currentUser');
                 this.listButton = [{ route: 'login', value: 'Login' }, { route: 'signup', value: 'Sign Up' }];
                 let defaultButton = document.getElementsByClassName("default-button");
@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
                 let titleContent = <HTMLInputElement>document.getElementById("title-content");
                 titleContent.innerHTML = "Seinfeld Calendar";
                 logoutButton.hidden = true;
+                this.userService.setLoggedIn(false);
                 this.router.navigate(['/']);
             },
             error => console.log(error)

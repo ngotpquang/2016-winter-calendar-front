@@ -28,19 +28,23 @@ export class UserService {
     }
 
     logOut() {
-      let currentUser = localStorage.getItem('currentUser');
-      if (currentUser != null){
-        return this.http
-            .delete(
-            'https://wintercalendar.herokuapp.com/api/v1/auth/sign_out', new RequestOptions({
-              headers: headers,
-              body: currentUser
-            })
-            );
-      }
+        let currentUser = localStorage.getItem('currentUser');
+        if (currentUser != null) {
+            return this.http
+                .delete(
+                'https://wintercalendar.herokuapp.com/api/v1/auth/sign_out', new RequestOptions({
+                    headers: headers,
+                    body: currentUser
+                })
+                );
+        }
     }
 
     isLoggedIn() {
         return this.loggedIn;
+    }
+
+    setLoggedIn(logined: boolean) {
+        this.loggedIn = logined;
     }
 }

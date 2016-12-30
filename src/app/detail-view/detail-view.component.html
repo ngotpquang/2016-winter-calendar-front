@@ -1,82 +1,89 @@
-<div class="view">
-    <div class="item">
-        <div class="item1" *ngFor="let goal of goals; let i = index;">
-            <div class="goal-panel" *ngIf="i % 2 == 0" style="float: left;">
-                <div class="goal-title">
-                    <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
-                    <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div>
-                </div>
-                <div class="clear"></div>
-                <div class="feature">
-                    <input id="check" type="checkbox" name="" value="">
-                    <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
-                    <div class="favorite"><span class="fa fa-star-o"></span></div>
-                </div>
-                <div class="clear"></div>
-                <!-- <div class="description">
-                {{goal.description}}
-              </div> -->
-                <div class="goal-detail">
-                    <span class="number-of-days-done">{{goal.current_chain}} day</span>
-                    <span class="space"></span>
-                    <span class="best-chain">{{goal.best_chain}} best</span>
-                    <span class="space"></span>
-                    <span class="passed-day-in-total">{{goal.progress}}</span>
-                    <span class="space"></span>
+<div [ngSwitch]="loading">
+    <div *ngSwitchCase="'loading'">
+        <app-loading-indicator></app-loading-indicator>
+    </div>
+    <div *ngSwitchCase="'loaded'">
+        <div class="view">
+            <div class="item">
+                <div class="item1" *ngFor="let goal of goals; let i = index;">
+                    <div class="goal-panel" *ngIf="i % 2 == 0" style="float: left;">
+                        <div class="goal-title">
+                            <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
+                            <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="feature">
+                            <input id="check" type="checkbox" name="" value="">
+                            <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
+                            <div class="favorite"><span class="fa fa-star-o"></span></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!-- <div class="description">
+                    {{goal.description}}
+                  </div> -->
+                        <div class="goal-detail">
+                            <span class="number-of-days-done">{{goal.current_chain}} day</span>
+                            <span class="space"></span>
+                            <span class="best-chain">{{goal.best_chain}} best</span>
+                            <span class="space"></span>
+                            <span class="passed-day-in-total">{{goal.progress}}</span>
+                            <span class="space"></span>
 
-                    <span class="type-of-repetition">
-          <div [ngSwitch]="goal.repetition.type_of_repetition">
-            <div *ngSwitchCase="1">Daily</div>
-            <div *ngSwitchCase="2">Weekly</div>
-            <div *ngSwitchCase="3">Monthly</div>
-            <div *ngSwitchCase="4">Yearly</div>
-            <div *ngSwitchDefault>Daily</div>
-          </div></span>
+                            <span class="type-of-repetition">
+              <div [ngSwitch]="goal.repetition.type_of_repetition">
+                <div *ngSwitchCase="1">Daily</div>
+                <div *ngSwitchCase="2">Weekly</div>
+                <div *ngSwitchCase="3">Monthly</div>
+                <div *ngSwitchCase="4">Yearly</div>
+                <div *ngSwitchDefault>Daily</div>
+              </div></span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="goal-panel" *ngIf="i % 2 != 0" style="float: right;">
+                        <div class="goal-title">
+                            <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
+                            <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="feature">
+                            <input id="check" type="checkbox" name="" value="">
+                            <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
+                            <div class="favorite"><span class="fa fa-star-o"></span></div>
+                        </div>
+                        <div class="clear"></div>
+                        <!-- <div class="description">
+                    {{goal.description}}
+                  </div> -->
+                        <div class="goal-detail">
+                            <span class="number-of-days-done">{{goal.current_chain}} day</span>
+                            <span class="space"></span>
+                            <span class="best-chain">{{goal.best_chain}} best</span>
+                            <span class="space"></span>
+                            <span class="passed-day-in-total">{{goal.progress}}</span>
+                            <span class="space"></span>
+
+                            <span class="type-of-repetition">
+              <div [ngSwitch]="goal.repetition.type_of_repetition">
+                <div *ngSwitchCase="1">Daily</div>
+                <div *ngSwitchCase="2">Weekly</div>
+                <div *ngSwitchCase="3">Monthly</div>
+                <div *ngSwitchCase="4">Yearly</div>
+                <div *ngSwitchDefault>Daily</div>
+              </div></span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
                 </div>
-                <div class="clear"></div>
             </div>
-            <div class="goal-panel" *ngIf="i % 2 != 0" style="float: right;">
-                <div class="goal-title">
-                    <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
-                    <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div>
-                </div>
-                <div class="clear"></div>
-                <div class="feature">
-                    <input id="check" type="checkbox" name="" value="">
-                    <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
-                    <div class="favorite"><span class="fa fa-star-o"></span></div>
-                </div>
-                <div class="clear"></div>
-                <!-- <div class="description">
-                {{goal.description}}
-              </div> -->
-                <div class="goal-detail">
-                    <span class="number-of-days-done">{{goal.current_chain}} day</span>
-                    <span class="space"></span>
-                    <span class="best-chain">{{goal.best_chain}} best</span>
-                    <span class="space"></span>
-                    <span class="passed-day-in-total">{{goal.progress}}</span>
-                    <span class="space"></span>
-
-                    <span class="type-of-repetition">
-          <div [ngSwitch]="goal.repetition.type_of_repetition">
-            <div *ngSwitchCase="1">Daily</div>
-            <div *ngSwitchCase="2">Weekly</div>
-            <div *ngSwitchCase="3">Monthly</div>
-            <div *ngSwitchCase="4">Yearly</div>
-            <div *ngSwitchDefault>Daily</div>
-          </div></span>
-                </div>
-                <div class="clear"></div>
+            <div class="clear"></div>
+            <a routerLink="/createnewgoal" class="float">
+                <i class="fa fa-plus my-float"></i>
+            </a>
+            <div class="label-container">
+                <div class="label-text">New goal</div>
+                <i class="fa fa-play label-arrow"></i>
             </div>
         </div>
-    </div>
-    <div class="clear"></div>
-    <a routerLink="/createnewgoal" class="float">
-        <i class="fa fa-plus my-float"></i>
-    </a>
-    <div class="label-container">
-        <div class="label-text">New goal</div>
-        <i class="fa fa-play label-arrow"></i>
     </div>
 </div>

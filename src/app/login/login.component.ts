@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable'
 import { Router } from '@angular/router';
 
+import { LoadingPage } from '../loading-indicator/loading-page';
 import { UserService } from '../user/user.service';
 import { CommonFunctions } from '../shared/common-functions';
 import '../rxjs-operator'
@@ -12,9 +13,10 @@ import '../rxjs-operator'
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends LoadingPage implements OnInit {
     commonFunctions: CommonFunctions;
     constructor(private router: Router, private userService: UserService) {
+        super('loaded');
     }
 
     ngOnInit() {
@@ -28,13 +30,14 @@ export class LoginComponent implements OnInit {
 
     doLogin() {
         let user = this.loginForm.value;
-        console.log(JSON.stringify(this.loginForm.value));
-        this.userService.logIn(user.email, user.password ).subscribe(
+        this.standby();
+        this.userService.logIn(user.email, user.password).subscribe(
             res => {
+                this.ready();
                 localStorage.setItem('currentUser', JSON.stringify(res.json().data));
+                this.userService.setLoggedIn(true);
                 this.router.navigate(['/detailview']);
                 this.commonFunctions.changeTitleAfterLogined("Your dashboard");
-                this.router.navigate(['/detailview']);
             },
             error => console.log(error)
         );
