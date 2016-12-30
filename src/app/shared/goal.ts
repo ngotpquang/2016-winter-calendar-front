@@ -10,9 +10,10 @@ export class Goal {
   description : string;
   repetition: Repetition;
   end_date: EndDate;
+  is_auto: boolean;
   calendars:  Calendar[];
 
-  constructor(email, token, goal_name, start_date, description, repetition: Repetition, end_date: EndDate){
+  constructor(email, token, goal_name, start_date, description, repetition: Repetition, end_date: EndDate, is_auto){
     this.email = email;
     this.token = token;
     this.goal_name = goal_name;
@@ -20,6 +21,7 @@ export class Goal {
     this.description = description;
     this.repetition = repetition;
     this.end_date = end_date;
+    this.is_auto = is_auto;
   }
 
 }

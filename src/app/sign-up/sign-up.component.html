@@ -1,24 +1,29 @@
-<form [formGroup]="signUpForm" (ngSubmit)="doSignUp()">
-    <!--  General -->
-    <div class="form-group">
-        <h2 class="heading">Sign up</h2>
-        <label for="name">Name</label>
-        <input formControlName="name" type="text" id="name" class="floatLabel" name="name" (focus)="moveLabelUp('name')" (blur)="moveLabelDown('name')" required>
-        <label for="email">Email</label>
-        <input formControlName="email" type="email" id="email" class="floatLabel" name="email" (focus)="moveLabelUp('email')" (blur)="moveLabelDown('email')" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-        <label for="password">Password</label>
-        <input formControlName="password" type="password" id="password" class="floatLabel" name="password" (focus)="moveLabelUp('password')" (blur)="moveLabelDown('password')" required minlength='8' pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-        <span class="fa fa-eye-slash a" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
-        <label for="password_confirmation">Confirm Password</label>
-        <input formControlName="password_confirmation" type="password" id="password_confirmation" class="floatLabel" name="password_confirmation" (focus)="moveLabelUp('password_confirmation')" (blur)="moveLabelDown('password_confirmation')" data-toggle="tooltip"
-            data-placement="right" title="Password does not match!" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-        <span class="fa fa-eye-slash b" (mouseup)="displayPassword('password_confirmation')" (mousedown)="displayPassword('password_confirmation')"></span>
-        <div class="alert alert-danger" id="password-match" hidden>
-            <b>Passwords do not match.</b>
-        </div>
+<div [ngSwitch]="loading">
+    <div *ngSwitchCase="'loading'"><app-loading-indicator></app-loading-indicator></div>
+    <div *ngSwitchCase="'loaded'">
+        <form [formGroup]="signUpForm" (ngSubmit)="doSignUp()">
+            <!--  General -->
+            <div class="form-group">
+                <h2 class="heading">Sign up</h2>
+                <label for="name">Name</label>
+                <input formControlName="name" type="text" id="name" class="floatLabel" name="name" (focus)="moveLabelUp('name')" (blur)="moveLabelDown('name')" required>
+                <label for="email">Email</label>
+                <input formControlName="email" type="email" id="email" class="floatLabel" name="email" (focus)="moveLabelUp('email')" (blur)="moveLabelDown('email')" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <label for="password">Password</label>
+                <input formControlName="password" type="password" id="password" class="floatLabel" name="password" (focus)="moveLabelUp('password')" (blur)="moveLabelDown('password')" required minlength='8' pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+                <span class="fa fa-eye-slash a" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
+                <label for="password_confirmation">Confirm Password</label>
+                <input formControlName="password_confirmation" type="password" id="password_confirmation" class="floatLabel" name="password_confirmation" (focus)="moveLabelUp('password_confirmation')" (blur)="moveLabelDown('password_confirmation')" data-toggle="tooltip"
+                    data-placement="right" title="Password does not match!" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+                <span class="fa fa-eye-slash b" (mouseup)="displayPassword('password_confirmation')" (mousedown)="displayPassword('password_confirmation')"></span>
+                <div class="alert alert-danger" id="password-match" hidden>
+                    <b>Passwords do not match.</b>
+                </div>
+            </div>
+            <!-- button -->
+            <div class="form-group">
+                <button type="submit">Create free account</button>
+            </div>
+        </form>
     </div>
-    <!-- button -->
-    <div class="form-group">
-        <button type="submit">Create free account</button>
-    </div>
-</form>
+</div>

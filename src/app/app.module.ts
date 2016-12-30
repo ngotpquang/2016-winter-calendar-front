@@ -21,6 +21,7 @@ import { LoggedInGuard } from './shared/logged-in.guard';
 import { GoalService } from './goal/goal.service';
 import { UserService } from './user/user.service';
 import { DetailViewModule } from './detail-view/detail-view.module';
+import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 
 @NgModule({
     declarations: [

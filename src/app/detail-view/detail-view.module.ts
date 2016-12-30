@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { MonthViewComponent } from '../month-view/month-view.component';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 import { detailViewRoutes } from './detail-view.route';
 
 @NgModule({
@@ -10,6 +11,7 @@ import { detailViewRoutes } from './detail-view.route';
     CommonModule,
     RouterModule.forChild(detailViewRoutes)
   ],
-  declarations: [MonthViewComponent]
+  exports: [LoadingIndicatorComponent],
+  declarations: [MonthViewComponent, LoadingIndicatorComponent]
 })
 export class DetailViewModule { }

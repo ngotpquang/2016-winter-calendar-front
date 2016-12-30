@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 import { CommonFunctions } from '../shared/common-functions';
+import { LoadingPage } from '../loading-indicator/loading-page';
 import { Goal, Repetition, EndDate } from '../shared/goal';
 import { GoalService } from '../goal/goal.service';
 
@@ -12,12 +12,14 @@ import { GoalService } from '../goal/goal.service';
     templateUrl: './create-new-goal.component.html',
     styleUrls: ['./create-new-goal.component.scss']
 })
-export class CreateNewGoalComponent implements OnInit {
+export class CreateNewGoalComponent extends LoadingPage implements OnInit {
     public weekDays: string[];
     public repetitionTypes: string[];
     public repetitionLimitedTimes: string[];
     public commonFunctions: CommonFunctions;
-    constructor(private goalService: GoalService, private router: Router) { }
+    constructor(private goalService: GoalService, private router: Router) {
+        super('loaded');
+    }
 
     ngOnInit() {
         this.weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -62,7 +64,8 @@ export class CreateNewGoalComponent implements OnInit {
     }
     addNewGoal() {
         let input = this.createNewGoalForm.value;
-        console.log(input);
+        this.standby();
+        // console.log(input);
         let day_of_week = null;
         if (input.type_of_repetition == 2) {
             day_of_week =
@@ -97,8 +100,8 @@ export class CreateNewGoalComponent implements OnInit {
         if (input.type_of_end_date == null) {
             input.type_of_end_date = 1;
         }
-        if (input.autoUpdateFailed == null){
-          input.autoUpdateFailed = false;
+        if (input.autoUpdateFailed == null) {
+            input.autoUpdateFailed = false;
         }
         console.log(input);
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

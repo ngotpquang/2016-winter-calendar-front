@@ -1,18 +1,18 @@
 <header id="header">
-  <side-bar></side-bar>
-  <span class="title-content"><a routerLink=""><span class="fa fa-calendar-check-o"></span> <span id="title-content">{{title}}</span></a>
-  </span>
-      <div class="title-button default-button" *ngFor="let button of listButton">
-          <button (click)="onClick(button.route)" id="{{button.route}}">{{button.value}}</button>
-      </div>
-      <div class="title-button" id="logout-button" hidden="hidden">
-          <button (click)="logout()">Logout</button>
-      </div>
-  <div class="clear">
-  </div>
+    <side-bar></side-bar>
+    <span class="title-content"><a routerLink=""><span class="fa fa-calendar-check-o"></span> <span id="title-content">{{title}}</span></a>
+    </span>
+    <div class="title-button default-button" *ngFor="let button of listButton">
+        <button (click)="onClick(button.route)" id="{{button.route}}">{{button.value}}</button>
+    </div>
+    <div class="title-button" id="logout-button" hidden="hidden">
+        <button (click)="logout()">Logout</button>
+    </div>
+    <div class="clear">
+    </div>
 </header>
 <main id="main">
-  <section>
-    <router-outlet></router-outlet>
-  </section>
+    <section>
+        <router-outlet></router-outlet>
+    </section>
 </main>

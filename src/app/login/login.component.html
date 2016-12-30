@@ -1,22 +1,29 @@
-<form [formGroup]="loginForm" (ngSubmit)="doLogin()">
-    <!--  General -->
-    <div class="form-group">
-        <h2 class="heading">Login</h2>
-        <label for="email">Email</label>
-        <input formControlName="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-        <label for="password">Password</label>
-        <input formControlName="password" type="password" name="password" required minlength='8'>
-        <span class="fa fa-eye-slash" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
-        <div class="alert alert-warning" id="wrong-input" hidden>
-            <b>Wrong username/password</b>
-        </div>
-        <p style="text-align: center; color: #888;">
-            New to Seinfeld Calendar? <a class="sign-up" routerLink="/signup">Sign Up now</a>
-        </p>
+<div [ngSwitch]="loading">
+    <div *ngSwitchCase="'loading'">
+        <app-loading-indicator></app-loading-indicator>
     </div>
-    <!-- button -->
-    <div class="form-group">
-        <button type="submit">Login</button>
-        <div class="" style="text-align: center; font-size: 14px; margin-top: 1.5em;"><a href="#" style="color: #999">Forgot your password?</a></div>
+    <div *ngSwitchCase="'loaded'">
+        <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+            <!--  General -->
+            <div class="form-group">
+                <h2 class="heading">Login</h2>
+                <label for="email">Email</label>
+                <input formControlName="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <label for="password">Password</label>
+                <input formControlName="password" type="password" name="password" required minlength='8'>
+                <span class="fa fa-eye-slash" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
+                <div class="alert alert-warning" id="wrong-input" hidden>
+                    <b>Wrong username/password</b>
+                </div>
+                <p style="text-align: center; color: #888;">
+                    New to Seinfeld Calendar? <a class="sign-up" routerLink="/signup">Sign Up now</a>
+                </p>
+            </div>
+            <!-- button -->
+            <div class="form-group">
+                <button type="submit">Login</button>
+                <div class="" style="text-align: center; font-size: 14px; margin-top: 1.5em;"><a href="#" style="color: #999">Forgot your password?</a></div>
+            </div>
+        </form>
     </div>
-</form>
+</div>

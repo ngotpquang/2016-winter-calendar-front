@@ -108,20 +108,14 @@ export class CommonFunctions implements OnInit {
     getAllDaysOfMonth(day, month) {
         let d = new Date(),
             results = [];
-
         d.setDate(1);
-
-        // Get the first {day} in the month
         while (d.getDay() !== day) {
             d.setDate(d.getDate() + 1);
         }
-
-        // Get all the other {day} in the month
         while (d.getMonth() === month) {
             results.push(new Date(d.getTime()));
             d.setDate(d.getDate() + 7);
         }
-
         return results;
     }
 
