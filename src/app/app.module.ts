@@ -1,3 +1,4 @@
+import { YearViewComponent } from './year-view/year-view.component';
 import { EditGoalComponent } from './edit-goal/edit-goal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -33,7 +34,8 @@ import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator
         SideBarComponent,
         CreateNewGoalComponent,
         DetailViewComponent,
-        EditGoalComponent
+        EditGoalComponent,
+        YearViewComponent
     ],
     imports: [
         DetailViewModule,
