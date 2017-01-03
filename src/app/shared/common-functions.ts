@@ -130,8 +130,12 @@ export class CommonFunctions implements OnInit {
         if (logoutButton != null) {
             logoutButton.hidden = false;
         }
-        let titleContent = <HTMLInputElement>document.getElementById("title-content");
-        titleContent.innerHTML = title;
+        this.changeTitleContent(title);
+    }
+
+    changeTitleContent(title: string){
+      let titleContent = <HTMLInputElement>document.getElementById("title-content");
+      titleContent.innerHTML = title;
     }
 
 }

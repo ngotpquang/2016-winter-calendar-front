@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { CommonFunctions } from '../shared/common-functions';
 import { Goal, Repetition, EndDate } from '../shared/goal';
 import { GoalService } from '../goal/goal.service';
 import { LoadingPage } from '../loading-indicator/loading-page';
@@ -12,16 +13,20 @@ import { LoadingPage } from '../loading-indicator/loading-page';
 })
 export class DetailViewComponent extends LoadingPage implements OnInit {
     public goals;
+    public commonFunctions: CommonFunctions;
     constructor(private router: Router, private goalService: GoalService) {
         super('loading');
-        goalService.getAllGoals().subscribe(res => {
-            this.goals = res.json();
-            this.ready();
-        },
-            error => console.log(error));
     }
 
     ngOnInit() {
+        this.commonFunctions = new CommonFunctions();
+        this.commonFunctions.changeTitleContent("Your dashboard");
+        this.goalService.getAllGoals(false, 1).subscribe(res => {
+            this.goals = res.json();
+
+            this.ready();
+        },
+            error => console.log(error));
     }
 
     displayMonthView(goal: Goal): void {

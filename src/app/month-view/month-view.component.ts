@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import '../rxjs-operator';
 
+import { CommonFunctions } from '../shared/common-functions';
 import { LoadingPage } from '../loading-indicator/loading-page';
 import { Goal, Repetition, EndDate } from '../shared/goal';
 import { GoalService } from '../goal/goal.service';
@@ -15,16 +16,19 @@ import { GoalService } from '../goal/goal.service';
 export class MonthViewComponent implements OnInit {
     private goal: Goal;
     private hiddenWeekdays = true;
+    public commonFunctions: CommonFunctions;
     constructor(private route: ActivatedRoute,
         private router: Router,
         private goalService: GoalService) {
     }
 
     ngOnInit() {
+        this.commonFunctions = new CommonFunctions();
         this.openModal(true);
         this.route.params.switchMap((params: Params) => this.goalService.getGoalsById(params['id']))
             .subscribe((res) => {
                 this.goal = res.json();
+                this.commonFunctions.changeTitleContent(this.goal.goal_name);
                 this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
                 this.displayGoalOnCalendar();
                 this.openModal(false);
