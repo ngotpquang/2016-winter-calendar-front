@@ -13,7 +13,7 @@
 		<div class="right">
 			<label for="from" class="fix">From</label>
 			<input type="datetime-local" id="start-date" name="start-date" [value]="goal.start_date | date:'yyyy-MM-ddTHH:mm'"
-                (change)="goal.start_date=$event.target.value; setDay();"/>
+                (change)="goal.start_date=$event.target.value; setDay(); setDate();"/>
 		</div>
 		<div class="clear"></div>
 		<label id="label-description" for="description">Description</label>
@@ -39,7 +39,7 @@
 			<input type="radio" [checked]="goal.repetition.type_of_month === 1" (click)="goal.repetition.type_of_month = 1"
 			name="type_of_month"  value = "1" /> on the same day each month
 			<input type="radio" [checked]="goal.repetition.type_of_month === 2" (click)="goal.repetition.type_of_month = 2"
-			name="type_of_month"  value = "2" /> on every <span id="dayDefineValue">first {{day}}</span>
+			name="type_of_month"  value = "2" /> on every <span id="dayDefineValue">{{date}} {{day}}</span>
 		</div>
 		<div class="clear"></div>
 		<div class="left">

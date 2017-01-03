@@ -15,9 +15,9 @@ import { GoalService } from '../goal/goal.service';
 export class EditGoalComponent implements OnInit {
     id: string;
     unit: string;
-    typeOfMonth: string;
     goal: Goal;
     day: string;
+    date: string;
     repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
     repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
     weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -36,7 +36,6 @@ export class EditGoalComponent implements OnInit {
             this.goal = JSON.parse(data['_body']);
             this.toRepetitionUnit();
             let rep = this.goal.repetition;
-            this.typeOfMonth = this.goal.repetition.type_of_month.toString();
             if (rep.type_of_repetition === 2) {
                 if (rep.day_of_week != null){
                     let strDoW = rep.day_of_week.split(',');
@@ -47,6 +46,7 @@ export class EditGoalComponent implements OnInit {
                 }
             }
             this.setDay();
+            this.setDate();
             this.isDataLoaded = true;
         });
     };
@@ -77,10 +77,26 @@ export class EditGoalComponent implements OnInit {
                 break;
         }
     }
+    setDate(): void {
+        let date: Date = new Date(this.goal.start_date);
+        let numDate = date.getDate();
+        console.log(numDate);
+        let num = numDate / 7;
+        console.log(num);
+        if (num < 2) {
+            this.date = 'first';
+        } else if (num < 3) {
+            this.date = 'second';
+        } else if (num < 4 ) {
+            this.date = 'third';
+        } else {
+            this.date = 'last';
+        }
+    }
     log(): void {
         console.log(this.goal);
         console.log(this.day);
-        console.log(this.typeOfMonth);
+        console.log(this.date);
     }
     cancel(): void {
         this.location.back();
