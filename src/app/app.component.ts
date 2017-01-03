@@ -27,8 +27,20 @@ export class AppComponent implements OnInit {
         }
 
     }
+
+    openModal(showed: boolean) {
+        let modal = document.getElementById('notification-logout');
+        let span = document.getElementsByClassName("close")[0];
+        if (showed) {
+            modal.style.display = "block";
+        } else {
+            modal.style.display = "none";
+        }
+    }
+
     logout() {
         let currentUser = localStorage.getItem('currentUser');
+        this.openModal(true);
         this.userService.logOut().subscribe(
             res => {
                 localStorage.removeItem('currentUser');
@@ -43,6 +55,7 @@ export class AppComponent implements OnInit {
                 titleContent.innerHTML = "Seinfeld Calendar";
                 logoutButton.hidden = true;
                 this.userService.setLoggedIn(false);
+                this.openModal(false);
                 this.router.navigate(['/']);
             },
             error => console.log(error)

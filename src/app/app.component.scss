@@ -11,6 +11,91 @@ header {
 	font-family: 'Raleway', sans-serif;
 	padding: 1em;
 	color: white;
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		padding-top: 200px;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgba(0, 0, 0, 0.9);
+	}
+	.modal-content {
+		position: relative;
+		background-color: #fefefe;
+		margin: auto;
+		padding: 0;
+		border-radius: 10px;
+		width: 40%;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+		-webkit-animation-name: animatetop;
+		-webkit-animation-duration: 0.5s;
+		animation-name: animatetop;
+		animation-duration: 0.5s;
+
+		.modal-header {
+			padding: 2px 8px;
+			background-color: $main;
+			color: white;
+			border-radius: 10px 10px 0 0;
+			p {
+				font-size: 22px;
+				font-weight: bold;
+			}
+		}
+
+		.modal-body {
+			padding: 2px 16px;
+			color: $main;
+			font-size: 18px;
+		}
+
+		.modal-footer {
+			padding: 2px 8px;
+			background-color: $main;
+			color: white;
+			border-radius: 0 0 10px 10px;
+			font-size: 14px;
+		}
+	}
+	/* Add Animation */
+	@-webkit-keyframes animatetop {
+		from {
+			top: -300px;
+			opacity: 0;
+		}
+
+		to {
+			top: 0;
+			opacity: 1;
+		}
+	}
+	@keyframes animatetop {
+		from {
+			top: -300px;
+			opacity: 0;
+		}
+
+		to {
+			top: 0;
+			opacity: 1;
+		}
+	}
+
+	.close {
+		color: white;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+		&:hover, &:focus {
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
 
 	.title-content {
 		font-size: 2em;
@@ -34,9 +119,9 @@ header {
 			margin-left: 0.5em;
 			transition: all 0.3s;
 
-			&:hover,
+			&:active,
 			&:focus,
-			&:active {
+			&:hover {
 				outline: none;
 				background-color: $main;
 				color: white;
@@ -51,10 +136,14 @@ header {
 			}
 		}
 	}
+
 	a {
 		color: white;
 		text-decoration: none;
-		&:hover, &:focus, &:active {
+
+		&:active,
+		&:focus,
+		&:hover {
 			text-decoration: none;
 			color: white;
 		}

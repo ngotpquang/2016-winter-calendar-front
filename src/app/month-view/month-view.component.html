@@ -1,4 +1,9 @@
-<div class="item">
+<div id="notification-loading" class="modal">
+    <div class="modal-content">
+        <app-loading-indicator></app-loading-indicator>
+    </div>
+</div>
+<div class="item" [class.hidden]="hiddenWeekdays">
     <div class="month">
         <ul>
             <li class="prev" (click)="previousMonth()">❮</li>
@@ -8,7 +13,7 @@
         </ul>
     </div>
 
-    <ul class="weekdays">
+    <ul class="weekdays" [class.hidden]="hiddenWeekdays">
         <li>Mon</li>
         <li>Tue</li>
         <li>Wed</li>
@@ -62,4 +67,3 @@
       <li id="42" (click)="displayDate(42)">&nbsp;</li>
     </ul>
 </div>
-<div class="div"></div>

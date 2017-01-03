@@ -14,19 +14,32 @@ import { GoalService } from '../goal/goal.service';
 })
 export class MonthViewComponent implements OnInit {
     private goal: Goal;
+    private hiddenWeekdays = true;
     constructor(private route: ActivatedRoute,
         private router: Router,
         private goalService: GoalService) {
     }
 
     ngOnInit() {
-
+        this.openModal(true);
         this.route.params.switchMap((params: Params) => this.goalService.getGoalsById(params['id']))
             .subscribe((res) => {
                 this.goal = res.json();
                 this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
                 this.displayGoalOnCalendar();
+                this.openModal(false);
+                this.hiddenWeekdays = false;
             }, error => console.log(error));
+    }
+
+    openModal(showed: boolean) {
+        let modal = document.getElementById('notification-loading');
+        let span = document.getElementsByClassName("close")[0];
+        if (showed) {
+            modal.style.display = "block";
+        } else {
+            modal.style.display = "none";
+        }
     }
 
     enableEdit() {
