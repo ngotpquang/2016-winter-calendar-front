@@ -12,14 +12,44 @@ $main: #1E824C;
     overflow-x: hidden;
     /* Disable horizontal scroll */
     padding-top: 15px;
-    transition: all 0.5s;
+    transition: width 0.5s;
 
-    b {
-        padding: 8px 8px 8px 32px;
+    .no-user {
+        p,b {
+          margin-left: 0.8em;
+            a {
+              padding: 0;
+              display: inline;
+              text-decoration: underline;
+
+              &:hover, &:focus, &:active {
+                font-weight: bold;
+              }
+            }
+        }
+    }
+
+    .user-name {
+        span {
+            position: relative;
+            top: 0;
+            left: 75px;
+            // font-family: inherit;
+            font-size: 50px;
+        }
+
+        p {
+            text-align: center;
+            margin: 0.5em 0.5em 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        border-bottom: 1.5px solid white;
+        padding-bottom: 0.8em;
     }
 
     a {
-        padding: 8px 8px 8px 32px;
+        padding: 8px 8px 8px 16px;
         text-decoration: none;
         font-size: 14px;
         color: white;
