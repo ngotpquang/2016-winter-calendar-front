@@ -24,7 +24,6 @@ export class MonthViewComponent implements OnInit {
         this.route.params.switchMap((params: Params) => this.goalService.getGoalsById(params['id']))
             .subscribe((res) => {
                 this.goal = res.json();
-                // console.log(this.goal);
                 this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
                 this.displayGoalOnCalendar();
             }, error => console.log(error));

@@ -29,15 +29,15 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
     }
 
     public createNewGoalForm = new FormGroup({
-        goal_name: new FormControl(),
+        goal_name: new FormControl('', Validators.required),
         start_date: new FormControl(),
-        description: new FormControl(),
-        type_of_repetition: new FormControl(),
-        how_often: new FormControl(),
-        type_of_end_date: new FormControl(),
-        autoUpdateFailed: new FormControl(),
+        description: new FormControl('', Validators.required),
+        type_of_repetition: new FormControl('1'),
+        how_often: new FormControl('1'),
+        type_of_end_date: new FormControl('1'),
+        autoUpdateFailed: new FormControl(true),
         specific_end_date: new FormControl(),
-        number_of_event: new FormControl(),
+        number_of_event: new FormControl('1'),
         type_of_month: new FormControl(),
         day_of_week_Mon: new FormControl(),
         day_of_week_Tue: new FormControl(),
@@ -64,55 +64,60 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
     }
     addNewGoal() {
         let input = this.createNewGoalForm.value;
-        this.standby();
-        // console.log(input);
-        let day_of_week = null;
-        if (input.type_of_repetition == 2) {
-            day_of_week =
-                (input.day_of_week_Sun == true ? "0, " : "") +
-                (input.day_of_week_Mon == true ? "1, " : "") +
-                (input.day_of_week_Tue == true ? "2, " : "") +
-                (input.day_of_week_Wed == true ? "3, " : "") +
-                (input.day_of_week_Thu == true ? "4, " : "") +
-                (input.day_of_week_Fri == true ? "5, " : "") +
-                (input.day_of_week_Sat == true ? "6, " : "");
-        }
-        let start_date;
-        if (input.start_date == null) {
-            start_date = this.roundUpTime().toString();
+        if (input.goal_name != ""){
+          this.standby();
+          // console.log(input);
+          let day_of_week = null;
+          if (input.type_of_repetition == 2) {
+              day_of_week =
+                  (input.day_of_week_Sun == true ? "0, " : "") +
+                  (input.day_of_week_Mon == true ? "1, " : "") +
+                  (input.day_of_week_Tue == true ? "2, " : "") +
+                  (input.day_of_week_Wed == true ? "3, " : "") +
+                  (input.day_of_week_Thu == true ? "4, " : "") +
+                  (input.day_of_week_Fri == true ? "5, " : "") +
+                  (input.day_of_week_Sat == true ? "6, " : "");
+          }
+          let start_date;
+          if (input.start_date == null) {
+              start_date = this.roundUpTime().toString();
+          } else {
+              start_date = input.start_date;
+          }
+          let specific_end_date = null;
+          if (input.type_of_end_date == 2) {
+              if (input.specific_end_date == null) {
+                  specific_end_date = this.untilDate().toString();
+              } else {
+                  specific_end_date = input.specific_end_date;
+              }
+          }
+          if (input.type_of_repetition == null) {
+              input.type_of_repetition = 1;
+          }
+          if (input.how_often == null) {
+              input.how_often = 1;
+          }
+          if (input.type_of_end_date == null) {
+              input.type_of_end_date = 1;
+          }
+          if (input.autoUpdateFailed == null) {
+              input.autoUpdateFailed = false;
+          }
+          console.log(input);
+          let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+          let goal = new Goal(currentUser.email, currentUser.token, input.goal_name, start_date, input.description,
+              new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
+              new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event), input.autoUpdateFailed);
+          console.log(goal);
+          this.goalService.addNewGoal(goal).subscribe(res => {
+              console.log(res);
+              this.router.navigate(['/detailview']);
+          },
+              error => console.log(error));
         } else {
-            start_date = input.start_date;
+          let alert = <HTMLElement>document.getElementById('goal-name-alert');
+          alert.hidden = false;
         }
-        let specific_end_date = null;
-        if (input.type_of_end_date == 2) {
-            if (input.specific_end_date == null) {
-                specific_end_date = this.untilDate().toString();
-            } else {
-                specific_end_date = input.specific_end_date;
-            }
-        }
-        if (input.type_of_repetition == null) {
-            input.type_of_repetition = 1;
-        }
-        if (input.how_often == null) {
-            input.how_often = 1;
-        }
-        if (input.type_of_end_date == null) {
-            input.type_of_end_date = 1;
-        }
-        if (input.autoUpdateFailed == null) {
-            input.autoUpdateFailed = false;
-        }
-        console.log(input);
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        let goal = new Goal(currentUser.email, currentUser.token, input.goal_name, start_date, input.description,
-            new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
-            new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event), input.autoUpdateFailed);
-        console.log(goal);
-        this.goalService.addNewGoal(goal).subscribe(res => {
-            console.log(res);
-            this.router.navigate(['/detailview']);
-        },
-            error => console.log(error));
     }
 }
