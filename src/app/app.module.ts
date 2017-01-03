@@ -38,7 +38,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         DetailViewComponent,
         EditGoalComponent,
         YearViewComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
         MonthInYearComponent
     ],
     imports: [
