@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable'
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ import '../rxjs-operator'
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent extends LoadingPage implements OnInit {
+    @Output() currentUser = new EventEmitter<any>();
     commonFunctions: CommonFunctions;
     constructor(private router: Router, private userService: UserService) {
         super('loaded');
@@ -36,6 +37,7 @@ export class LoginComponent extends LoadingPage implements OnInit {
                 this.ready();
                 localStorage.setItem('currentUser', JSON.stringify(res.json().data));
                 this.userService.setLoggedIn(true);
+                this.currentUser.emit(JSON.stringify(res.json().data));
                 this.router.navigate(['/detailview']);
                 this.commonFunctions.changeTitleAfterLogined("Your dashboard");
             },

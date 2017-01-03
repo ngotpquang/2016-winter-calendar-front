@@ -1,9 +1,17 @@
 <div id="mySidenav" class="sidenav" (mouseleave)="toggleSideBar('0')">
+    <div class="no-user" *ngIf="currentUser == null">
+        <b>
+            Welcome guest!
+        </b>
+        <p>
+            Please <a routerLink='/login' (click)="toggleSideBar('0')">login</a> or <a routerLink='/signup' (click)="toggleSideBar('0')">sign up</a> to use our application.
+        </p>
+    </div>
     <div class="user-name" *ngIf="currentUser != null">
         <span class="fa fa-user-circle-o"></span>
         <p (click)="toggleSideBar('0')">{{currentUser.name}}</p>
     </div>
-    <a routerLink='/detailview' (click)="toggleSideBar('0')">Detail View</a>
+    <a routerLink='/detailview' (click)="toggleSideBar('0')" *ngIf="currentUser != null">Detail View</a>
     <!-- <a (click)="toggleSideBar('0')">Week View</a>
     <a routerLink='/monthview' (click)="toggleSideBar('0')" disabled>Month View</a> -->
     <!-- <a (click)="toggleSideBar('0')" disabled>Year View</a>

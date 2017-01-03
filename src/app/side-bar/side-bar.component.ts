@@ -1,31 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'side-bar',
-  templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.scss']
+    selector: 'side-bar',
+    templateUrl: './side-bar.component.html',
+    styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
-  private currentUser;
-  constructor() { }
+    currentUser;
+    constructor() { }
 
-  ngOnInit() {
-    let user = localStorage.getItem('currentUser');
-    if (user != null){
-      this.currentUser = JSON.parse(user);
+    ngOnInit() {
+        console.log(this.currentUser);
     }
-  }
 
-  /* Set the width of the side navigation to 250px */
-  toggleSideBar(size: string) {
-      document.getElementById("mySidenav").style.width = size;
-      document.getElementById("main").style.marginLeft = size;
-      document.getElementById("header").style.marginLeft = size;
-      console.log(size);
-      if (size !== '0'){
-        document.getElementById("openSideBar").hidden = true;
-      } else {
-        document.getElementById("openSideBar").hidden = false;
-      }
-  }
+    /* Set the width of the side navigation to 250px */
+    toggleSideBar(size: string) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        document.getElementById("mySidenav").style.width = size;
+        // document.getElementById("main").style.marginLeft = size;
+        // document.getElementById("header").style.marginLeft = size;
+        if (size !== '0') {
+            document.getElementById("openSideBar").hidden = true;
+        } else {
+            document.getElementById("openSideBar").hidden = false;
+        }
+    }
 }

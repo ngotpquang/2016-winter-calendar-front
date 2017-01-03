@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingPage } from '../loading-indicator/loading-page';
 
 @Component({
-  selector: 'app-introduction',
+  selector: 'app-root',
   templateUrl: './introduction.component.html',
   styleUrls: ['./introduction.component.scss']
 })
