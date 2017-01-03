@@ -25,6 +25,7 @@ import { GoalService } from './goal/goal.service';
 import { UserService } from './user/user.service';
 import { DetailViewModule } from './detail-view/detail-view.module';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator
         DetailViewComponent,
         EditGoalComponent,
         YearViewComponent,
+        PageNotFoundComponent
         MonthInYearComponent
     ],
     imports: [

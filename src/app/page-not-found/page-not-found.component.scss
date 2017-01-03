@@ -1,0 +1,16 @@
+$main: #1E824C;
+.page-not-found {
+  position: relative;
+  margin: 5em;
+  p {
+    font-size: 18px;
+    a {
+      color: $main;
+      font-weight: bold;
+      text-decoration: none;
+      &:hover, &:focus, &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+}

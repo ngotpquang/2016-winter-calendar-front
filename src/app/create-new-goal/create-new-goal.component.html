@@ -11,7 +11,7 @@
 				</div>
 				<div class="right">
 					<label for="from" class="fix">From</label>
-					<input formControlName="start_date" type="datetime-local" id="start-date" name="start-date" value="{{roundUpTime() | date:'yyyy-MM-ddTHH:mm'}}" />
+					<input formControlName="start_date" type="datetime-local" id="start-date" name="start-date" (change)="changeMonthlyType()" value="{{roundUpTime() | date:'yyyy-MM-ddTHH:mm'}}" />
 				</div>
 				<div class="clear"></div>
 				<label id="label-description" for="description">Description</label>
