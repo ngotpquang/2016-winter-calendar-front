@@ -6,7 +6,8 @@
 				<h2 class="heading">New goal</h2>
 				<div class="left">
 					<label for="goal-name">Goal name</label>
-					<input formControlName="goal_name" type="text" id="goal-name" name="goal-name" required>
+					<input formControlName="goal_name" type="text" id="goal-name" name="goal-name" required placeholder="What do you want to do...">
+					<div class="alert" id="goal-name-alert" hidden>Goal name is required!</div>
 				</div>
 				<div class="right">
 					<label for="from" class="fix">From</label>
@@ -14,7 +15,7 @@
 				</div>
 				<div class="clear"></div>
 				<label id="label-description" for="description">Description</label>
-				<textarea rows='4' formControlName="description" type="textarea" id="description" name="description" required></textarea>
+				<textarea rows='4' formControlName="description" type="textarea" id="description" name="description" required placeholder="Tell me more about your goal..."></textarea>
 				<div class="left">
 					<label id="label-repetition" for="repetition" class='fix'>Repetition</label>
 					<select formControlName="type_of_repetition" class="repetition-type" id="repetition-type" (change)="changeRepetitionType()">

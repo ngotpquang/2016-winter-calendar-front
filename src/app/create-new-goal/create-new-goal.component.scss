@@ -85,6 +85,13 @@ $cascade: #95A5A6;
     .left {
         float: left;
         width: 45%;
+        .alert{
+          margin-bottom: 0.5em;
+          margin-left: 1em;
+          margin-top: 0.5em;
+          font-weight: bold;
+          color: #D80027
+        }
     }
 
     .right {
