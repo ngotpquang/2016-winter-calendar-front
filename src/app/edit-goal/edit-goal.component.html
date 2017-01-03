@@ -1,10 +1,15 @@
+<div *ngIf="!isDataLoaded">
+        <app-loading-indicator></app-loading-indicator>
+    </div>
 <form *ngIf="isDataLoaded" #editGoalForm="ngForm" (ngSubmit)="editGoal()">
 	<div class="form-group">
 		<h2 class="heading">Edit goal</h2>
 		<div class="left">
 			<label for="goal-name">Goal name</label>
 			<input [(ngModel)]="goal.goal_name" type="text" id="goal-name" name="goal-name" #goalName="ngModel" required>
+			<div [hidden]="goalName.valid || goalName.pristine" class="alert">Name is required !!!</div>
 		</div>
+		
 		<div class="right">
 			<label for="from" class="fix">From</label>
 			<input type="datetime-local" id="start-date" name="start-date" [value]="goal.start_date | date:'yyyy-MM-ddTHH:mm'"
@@ -13,6 +18,7 @@
 		<div class="clear"></div>
 		<label id="label-description" for="description">Description</label>
 		<textarea rows='4' [(ngModel)]="goal.description" type="textarea" id="description" name="description" #description="ngModel" required></textarea>
+		<div [hidden]="description.valid || description.pristine" class="alert">Description is required !!!</div>
 		<div class="left">
 			<label id="label-repetition" for="repetition-type" class='fix'>Repetition</label>
             <select [(ngModel)]="goal.repetition.type_of_repetition" (change)="toNumber(); toRepetitionUnit();"  class="repetition-type" id="repetition-type" name="repetition-type">
@@ -25,14 +31,14 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="repetitionFrequencyType">{{unit}}(s)</span>
 		</div>
 		<div class="left">
-			<input type="checkbox" id="is-auto" name='is-auto' value="autoUpdateFailed" style="width: 5%;" style="margin-top: 2em;"/>Auto update failed days.
+			<input [(ngModel)]="goal.is_auto" type="checkbox" id="is-auto" name='is-auto' value="autoUpdateFailed" style="width: 5%;" style="margin-top: 2em;"/>Auto update failed days.
 		</div>
 		<div class="clear"></div>
 	</div>
 	<div class="form-group">
 		<div class="right" style="font-size: 16px;">
+			<button type="button" (click)="cancel()" class="right">Cancel</button>
 			<button type="submit" class="right">Edit goal</button>
-            <button type="button" (click)="log()"class="right">Log</button>
 			<div class="clear"></div>
 		</div>
 	</div>

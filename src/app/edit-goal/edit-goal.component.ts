@@ -21,13 +21,14 @@ export class EditGoalComponent implements OnInit {
     public commonFunctions: CommonFunctions;
     submitted = false;
     isDataLoaded = false;
-    constructor(private goalService:GoalService, private route:ActivatedRoute, private location:Location){
+    constructor(private goalService:GoalService, private route:ActivatedRoute, 
+    private location:Location, private router:Router){
     };
     ngOnInit(): void {
         this.id = this.route.params['_value']['id'];
         this.commonFunctions = new CommonFunctions();
         this.goalService.getGoalsById(this.id).toPromise().then((data)=>{
-            console.log(data['_body']);
+            //console.log(data['_body']);
             this.goal = JSON.parse(data['_body']);
             this.toRepetitionUnit();
             this.isDataLoaded = true;
@@ -40,12 +41,15 @@ export class EditGoalComponent implements OnInit {
     log(): void{
         console.log(this.goal);
     }
+    cancel():void{
+        this.location.back();
+    }
     editGoal(): void {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.goal.token = currentUser.token;
         this.goal.email = currentUser.email;
-        console.log(this.goal);
-        this.goalService.editGoal(this.id, this.goal).then(() => window.location.reload());
+        //console.log(this.goal);
+        this.goalService.editGoal(this.id, this.goal).then(() => this.router.navigate(['/detailview']));
     }
     toNumber(): void {
         let num = parseInt(this.goal.repetition.type_of_repetition.toString(), 10);
@@ -77,6 +81,6 @@ export class EditGoalComponent implements OnInit {
             default:
             break;
         }
-        console.log(this.unit);
+        //console.log(this.unit);
     }
 }
