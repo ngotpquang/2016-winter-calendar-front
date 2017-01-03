@@ -1,0 +1,7 @@
+<ul class="year months">
+    <li *ngFor="let month of months">
+        <div class="month">
+            <a [routerLink]="['/monthview',id]">{{month}}</a>
+        </div>
+    </li>
+</ul>

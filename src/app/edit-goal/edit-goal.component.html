@@ -13,12 +13,11 @@
 		<div class="right">
 			<label for="from" class="fix">From</label>
 			<input type="datetime-local" id="start-date" name="start-date" [value]="goal.start_date | date:'yyyy-MM-ddTHH:mm'"
-                (change)="goal.start_date=$event.target.value"/>
+                (change)="goal.start_date=$event.target.value; setDay();"/>
 		</div>
 		<div class="clear"></div>
 		<label id="label-description" for="description">Description</label>
-		<textarea rows='4' [(ngModel)]="goal.description" type="textarea" id="description" name="description" #description="ngModel" required></textarea>
-		<div [hidden]="description.valid || description.pristine" class="alert">Description is required !!!</div>
+		<textarea rows='4' [(ngModel)]="goal.description" type="textarea" id="description" name="description" #description="ngModel"></textarea>
 		<div class="left">
 			<label id="label-repetition" for="repetition-type" class='fix'>Repetition</label>
             <select [(ngModel)]="goal.repetition.type_of_repetition" (change)="toNumber(); toRepetitionUnit();"  class="repetition-type" id="repetition-type" name="repetition-type">
@@ -30,8 +29,46 @@
 			<input name="how-often" type="number" min='1' [(ngModel)]="goal.repetition.how_often" class="inline-input" style="width: 10%; margin-top: 2.7em;"/>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="repetitionFrequencyType">{{unit}}(s)</span>
 		</div>
+
+		<div class="left" id="weeklyRepetition" *ngIf="goal.repetition.type_of_repetition === 2" style="margin-top: 2em;">
+			<span *ngFor="let day of weekDays; let i = index;"><input [(ngModel)]="toggleWeekDays[i]" name="toggle{{i}}"
+			(change)="updateDoW()" type="checkbox" name="{{day}}" value="{{i}}" /> {{day}} </span>
+		</div>
+		<div class="clear"></div>
+		<div class="left" id="monthlyRepetition" *ngIf="goal.repetition.type_of_repetition === 3" style="margin-top: 2em;">
+			<input type="radio" [checked]="goal.repetition.type_of_month === 1" (click)="goal.repetition.type_of_month = 1"
+			name="type_of_month"  value = "1" /> on the same day each month
+			<input type="radio" [checked]="goal.repetition.type_of_month === 2" (click)="goal.repetition.type_of_month = 2"
+			name="type_of_month"  value = "2" /> on every <span id="dayDefineValue">first {{day}}</span>
+		</div>
+		<div class="clear"></div>
 		<div class="left">
-			<input [(ngModel)]="goal.is_auto" type="checkbox" id="is-auto" name='is-auto' value="autoUpdateFailed" style="width: 5%;" style="margin-top: 2em;"/>Auto update failed days.
+			<select class="repetition-limited-time" id="repetition-limited-time" [(ngModel)]="goal.end_date.type_of_end_date" (change)="toNumber1()" 
+			style="margin-top: 2em;" name="endDateType">
+				<option *ngFor="let rlt of repetitionLimitedTimes; let i = index;" value="{{i + 1}}">{{rlt}}</option>
+			</select>
+		</div>
+		<div class="right">
+			<input type="date" id="until-date" *ngIf="goal.end_date.type_of_end_date==2" [value]="goal.end_date.specific_end_date"
+			(change)="goal.end_date.specific_end_date=$event.target.value" style="margin-top: 2em;" />
+			<span id="number-events" *ngIf="goal.end_date.type_of_end_date==3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" [(ngModel)]="goal.end_date.number_of_event" name="numberOfEvents"
+			 min='1' style="width: 10%; margin-top: 2em;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event(s)</span>
+		</div>
+		<div class="clear"></div>
+		<div class="left" hidden="hidden">
+			<label id="reminders" for="reminders">Reminders</label>
+			<button type="button">Add reminder</button>
+			<select>
+				<option value="0">At time of event</option>
+				<option value="1" selected>10 minutes before</option>
+				<option value="2">30 minutes before</option>
+			</select>
+		</div>
+		<div class="clear"></div>
+		<div class="left">
+			<input [(ngModel)]="goal.is_auto" type="checkbox" id="is-auto" name='is-auto' value="autoUpdateFailed" style="width: 5%;" style="margin-top: 2em;"
+			/>Auto update failed days.
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -39,6 +76,7 @@
 		<div class="right" style="font-size: 16px;">
 			<button type="button" (click)="cancel()" class="right">Cancel</button>
 			<button type="submit" class="right">Edit goal</button>
+			<button type="button" (click)="log()" class="right">Log</button>
 			<div class="clear"></div>
 		</div>
 	</div>
