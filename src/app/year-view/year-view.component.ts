@@ -1,10 +1,10 @@
+import { MonthInYearComponent } from './month-in-year-view.component';
 import { MonthViewComponent } from './../month-view/month-view.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GoalService } from './../goal/goal.service';
 import { Goal } from './../shared/goal';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-
 @Component({
     selector: 'app-year-view',
     templateUrl: './year-view.component.html',
