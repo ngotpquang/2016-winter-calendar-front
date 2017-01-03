@@ -11,13 +11,10 @@ export class IntroductionComponent extends LoadingPage implements OnInit {
 
   constructor() {
     super('loading');
-    console.log(this.loading);
   }
 
   ngOnInit() {
-    console.log(this.loading);
     this.ready();
-    console.log(this.loading);
   }
 
 }

@@ -43,6 +43,12 @@ export class GoalService {
         .toPromise().then(()=>goal);
 
     }
+
+    setFavorite(id: string){
+      let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      return this.http.put('https://wintercalendar.herokuapp.com/api/v1/goals/' + id + '/favorite', JSON.stringify({token: currentUser.token}));
+    }
+    
     private handleError(error: any):Promise<any>{
         console.error("An error occured", error);
         return Promise.reject(error.message||error);

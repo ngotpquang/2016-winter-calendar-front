@@ -16,7 +16,7 @@
                         <div class="feature">
                             <input id="check" type="checkbox" name="" value="">
                             <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
-                            <div class="favorite"><span class="fa fa-star-o"></span></div>
+                            <div class="favorite" [class.color]="goal.is_favorite" id="fav-{{goal.id}}"><span class="fa fa-star" (click)="favorite(goal)"></span></div>
                         </div>
                         <div class="clear"></div>
                         <!-- <div class="description">
@@ -51,7 +51,7 @@
                         <div class="feature">
                             <input id="check" type="checkbox" name="" value="">
                             <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
-                            <div class="favorite"><span class="fa fa-star-o"></span></div>
+                            <div class="favorite" [class.color]="goal.is_favorite" id="fav-{{goal.id}}"><span class="fa fa-star" (click)="favorite(goal)"></span></div>
                         </div>
                         <div class="clear"></div>
                         <!-- <div class="description">

@@ -24,9 +24,22 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
     ngOnInit() {
     }
 
-    displayMonthView(goal: Goal) {
-        console.log(goal.id);
+    displayMonthView(goal: Goal): void {
         this.router.navigate(['/monthview', goal.id]);
+    }
+
+    favorite(goal: Goal): void {
+        this.goalService.setFavorite(goal.id).subscribe(res => {
+            console.log(res.json());
+            let favorite = <HTMLElement>document.getElementById("fav-" + goal.id);
+            if (res.json() == true) {
+                console.log(goal.is_favorite);
+                favorite.classList.add('color');
+            } else {
+                favorite.classList.remove('color');
+            }
+        },
+            error => console.log(error));
     }
 
 }

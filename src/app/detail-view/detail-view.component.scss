@@ -14,12 +14,15 @@ $main: #1E824C;
         transition: all 0.2s;
 
         &:hover {
-            cursor: pointer;
             background-color: #eee;
         }
 
         .goal-title {
             margin-bottom: 2em;
+
+            &:hover {
+                cursor: pointer;
+            }
 
             #title {
                 font-size: 16px;
@@ -44,7 +47,17 @@ $main: #1E824C;
             }
 
             .favorite {
+                color: #ddd;
                 float: right;
+
+                &.color {
+                    color: #D80027;
+                }
+
+                &:hover {
+                  box-shadow: 1px 1px 1px #ddd;
+                  cursor: pointer;
+                }
             }
         }
 

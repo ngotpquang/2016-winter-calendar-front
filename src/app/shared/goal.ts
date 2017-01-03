@@ -12,6 +12,8 @@ export class Goal {
   end_date: EndDate;
   is_auto: boolean;
   calendars:  Calendar[];
+  is_favorite: boolean;
+  is_archived: boolean;
 
   constructor(email, token, goal_name, start_date, description, repetition: Repetition, end_date: EndDate, is_auto){
     this.email = email;
@@ -22,6 +24,8 @@ export class Goal {
     this.repetition = repetition;
     this.end_date = end_date;
     this.is_auto = is_auto;
+    this.is_favorite = false;
+    this.is_archived = false;
   }
 
 }
