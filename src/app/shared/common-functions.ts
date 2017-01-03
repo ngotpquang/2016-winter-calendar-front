@@ -34,7 +34,7 @@ export class CommonFunctions implements OnInit {
         let year = date.getFullYear() + 1;
         return new Date(year, month, day, hour, minute);
     }
-    changeRepetitionType() {
+    changeRepetitionType(startDate: Date) {
         let val = (<HTMLInputElement>document.getElementById('repetition-type')).value;
         switch (val) {
             case this.repetitionTypes[0]:
@@ -48,7 +48,7 @@ export class CommonFunctions implements OnInit {
                 (<HTMLInputElement>document.getElementById('repetitionFrequencyType')).innerHTML = 'week(s)';
                 break;
             case this.repetitionTypes[2]:
-                (<HTMLInputElement>document.getElementById('dayDefineValue')).innerHTML = this.getDay();
+                (<HTMLInputElement>document.getElementById('dayDefineValue')).innerHTML = this.getDay(startDate);
                 this.togglePanel('weeklyRepetition', true);
                 this.togglePanel('monthlyRepetition', false);
                 (<HTMLInputElement>document.getElementById('repetitionFrequencyType')).innerHTML = 'month(s)';
@@ -79,12 +79,11 @@ export class CommonFunctions implements OnInit {
         }
     }
 
-    getDay() {
-        let today = new Date();
+    getDay(today: Date) {
         let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let orderNumbers = ["first ", "second ", "third ", "fourth "];
         let result = "";
-        let days = this.getAllDaysOfMonth(today.getDay(), today.getMonth());
+        let days = this.getAllDaysOfMonth(today.getDay(), today.getMonth(), today.getFullYear());
         for (let day in days) {
             if (today.getDate() === days[day].getDate()) {
                 if (day == ((days.length - 1) + "")) {
@@ -105,10 +104,12 @@ export class CommonFunctions implements OnInit {
         }
         return result;
     }
-    getAllDaysOfMonth(day, month) {
+    getAllDaysOfMonth(day, month, fullYear) {
         let d = new Date(),
             results = [];
         d.setDate(1);
+        d.setMonth(month);
+        d.setFullYear(fullYear);
         while (d.getDay() !== day) {
             d.setDate(d.getDate() + 1);
         }
