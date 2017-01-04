@@ -1,7 +1,17 @@
-<ul class="year months">
-    <li *ngFor="let month of months">
-        <div class="month">
-            <a [routerLink]="['/monthview',id]">{{month}}</a>
-        </div>
-    </li>
-</ul>
+
+<div class="item">
+    <div class="year">
+        <ul>
+            <li class="prev" (click)="previousYear()">❮</li>
+            <li class="next" (click)="nextYear()">❯</li>
+            <li style="text-align:center" id="monthName" value="">2017</li>
+            <li style="font-size:12px; text-align:center" id="year" value="">Summary</li>
+        </ul>
+    </div>
+</div>
+<div *ngIf="!isDataLoaded">
+        <app-loading-indicator></app-loading-indicator>
+</div>
+<div *ngIf="isDataLoaded" class="row">
+    <app-month-in-year *ngFor="let month of months; let i = index " year=2017 month={{i}} monthName={{month}} [goalInMonth]="goal"></app-month-in-year>
+</div>

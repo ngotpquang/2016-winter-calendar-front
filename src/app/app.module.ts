@@ -1,3 +1,4 @@
+import { MonthInYearComponent } from './year-view/month-in-year-view.component';
 import { YearViewComponent } from './year-view/year-view.component';
 import { EditGoalComponent } from './edit-goal/edit-goal.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,6 +39,7 @@ import { ArchivedGoalsComponent } from './archived-goals/archived-goals.componen
         EditGoalComponent,
         YearViewComponent,
         PageNotFoundComponent,
+        MonthInYearComponent,
         ArchivedGoalsComponent
     ],
     imports: [

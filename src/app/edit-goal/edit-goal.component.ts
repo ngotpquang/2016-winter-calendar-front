@@ -31,8 +31,7 @@ export class EditGoalComponent implements OnInit {
     ngOnInit(): void {
         this.id = this.route.params['_value']['id'];
         this.commonFunctions = new CommonFunctions();
-        this.goalService.getGoalsById(this.id).toPromise().then((data)=>{
-            // console.log(data['_body']);
+        this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
             this.commonFunctions.changeTitleContent(this.goal.goal_name);
             this.toRepetitionUnit();
@@ -81,15 +80,15 @@ export class EditGoalComponent implements OnInit {
     setDate(): void {
         let date: Date = new Date(this.goal.start_date);
         let numDate = date.getDate();
-        console.log(numDate);
         let num = numDate / 7;
-        console.log(num);
-        if (num < 2) {
+        if (num < 1) {
             this.date = 'first';
-        } else if (num < 3) {
+        } else if (num < 2) {
             this.date = 'second';
-        } else if (num < 4 ) {
+        } else if (num < 3 ) {
             this.date = 'third';
+        } else if (num < 4) {
+            this.date = 'forth';
         } else {
             this.date = 'last';
         }

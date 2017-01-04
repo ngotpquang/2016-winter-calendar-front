@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+$main: #1E824C;
+
+.item {
+    width: 60%;
+    align: center;
+    font-family: inherit;
+    position: relative;
+    margin: 2em auto;
+    border: 1px solid $main;
+    border-radius: 10px;
+
+    .year {
+        padding: .5em;
+        width: 100%;
+        // background: #ccc;
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                color: $main;
+                font-size: 25px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+            }
+        }
+
+        .prev {
+            float: left;
+            padding-top: 5px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .next {
+            float: right;
+            padding-top: 5px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
