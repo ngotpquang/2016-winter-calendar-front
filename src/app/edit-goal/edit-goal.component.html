@@ -9,7 +9,7 @@
 			<input [(ngModel)]="goal.goal_name" type="text" id="goal-name" name="goal-name" #goalName="ngModel" required>
 			<div [hidden]="goalName.valid || goalName.pristine" class="alert">Name is required !!!</div>
 		</div>
-		
+
 		<div class="right">
 			<label for="from" class="fix">From</label>
 			<input type="datetime-local" id="start-date" name="start-date" [value]="goal.start_date | date:'yyyy-MM-ddTHH:mm'"
@@ -43,7 +43,7 @@
 		</div>
 		<div class="clear"></div>
 		<div class="left">
-			<select class="repetition-limited-time" id="repetition-limited-time" [(ngModel)]="goal.end_date.type_of_end_date" (change)="toNumber1()" 
+			<select class="repetition-limited-time" id="repetition-limited-time" [(ngModel)]="goal.end_date.type_of_end_date" (change)="toNumber1()"
 			style="margin-top: 2em;" name="endDateType">
 				<option *ngFor="let rlt of repetitionLimitedTimes; let i = index;" value="{{i + 1}}">{{rlt}}</option>
 			</select>
@@ -74,9 +74,8 @@
 	</div>
 	<div class="form-group">
 		<div class="right" style="font-size: 16px;">
-			<button type="button" (click)="cancel()" class="right">Cancel</button>
-			<button type="submit" class="right">Edit goal</button>
-			<button type="button" (click)="log()" class="right">Log</button>
+      <button type="submit">Save</button>
+			<button type="button" (click)="cancel()" id="cancel">Cancel</button>
 			<div class="clear"></div>
 		</div>
 	</div>

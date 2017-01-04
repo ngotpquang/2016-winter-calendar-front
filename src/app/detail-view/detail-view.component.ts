@@ -25,6 +25,9 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         localStorage.setItem('isReversed', '0');
         this.goalService.getAllGoals(false, 1).subscribe(res => {
             this.goals = res.json();
+            console.log(this.goals);
+            this.goals = this.commonFunctions.getAllGoalsActived(this.goals);
+            console.log(this.goals);
             this.ready();
         },
             error => console.log(error));
