@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
     styleUrls: ['./year-view.component.scss']
 })
 export class YearViewComponent implements OnInit{
+    year: number = 2017;
     id: string;
     goal: Goal;
     months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
@@ -28,5 +29,12 @@ export class YearViewComponent implements OnInit{
             this.isDataLoaded = true;
             console.log(this.goal);
         });
+    }
+    nextYear(): void {
+        this.year += 1;
+    }
+
+    previousYear(): void {
+        this.year -= 1;
     }
 }

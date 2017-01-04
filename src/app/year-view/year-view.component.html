@@ -12,5 +12,5 @@
         <app-loading-indicator></app-loading-indicator>
 </div>
 <div *ngIf="isDataLoaded" class="row">
-    <app-month-in-year *ngFor="let month of months; let i = index " year=2017 month={{i}} monthName={{month}} [goalInMonth]="goal"></app-month-in-year>
+    <app-month-in-year *ngFor="let month of months; let i = index " [year]="year" month={{i}} monthName={{month}} [goalInMonth]="goal"></app-month-in-year>
 </div>
