@@ -1,4 +1,5 @@
 $main: #1E824C;
+$red: #D80027;
 
 .view {
     margin: 2em auto;
@@ -51,12 +52,7 @@ $main: #1E824C;
                 float: right;
 
                 &.color {
-                    color: #D80027;
-                }
-
-                &:hover {
-                    box-shadow: 1px 1px 1px #ddd;
-                    cursor: pointer;
+                    color: $red;
                 }
             }
         }

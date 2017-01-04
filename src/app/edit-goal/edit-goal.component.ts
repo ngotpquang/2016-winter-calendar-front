@@ -21,7 +21,7 @@ export class EditGoalComponent implements OnInit {
     repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
     repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
     weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    toggleWeekDays: boolean[] = [false, false, false, false, false, false, false ]; 
+    toggleWeekDays: boolean[] = [false, false, false, false, false, false, false ];
     public commonFunctions: CommonFunctions;
     submitted = false;
     isDataLoaded = false;
@@ -33,6 +33,7 @@ export class EditGoalComponent implements OnInit {
         this.commonFunctions = new CommonFunctions();
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
+            this.commonFunctions.changeTitleContent(this.goal.goal_name);
             this.toRepetitionUnit();
             let rep = this.goal.repetition;
             if (rep.type_of_repetition === 2) {
@@ -101,6 +102,7 @@ export class EditGoalComponent implements OnInit {
         this.location.back();
     }
     editGoal(): void {
+      this.isDataLoaded = false;
         if (this.goal.description == null) {
             this.goal.description = '';
         }

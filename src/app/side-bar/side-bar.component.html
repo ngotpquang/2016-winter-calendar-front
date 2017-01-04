@@ -12,6 +12,7 @@
         <p (click)="toggleSideBar('0')">{{currentUser.name}}</p>
     </div>
     <a routerLink='/detailview' (click)="toggleSideBar('0')" *ngIf="currentUser != null">Detail View</a>
+      <a routerLink='/archivedgoals' (click)="toggleSideBar('0')" *ngIf="currentUser != null">Archived Goals</a>
     <!-- <a (click)="toggleSideBar('0')">Week View</a>
     <a routerLink='/monthview' (click)="toggleSideBar('0')" disabled>Month View</a> -->
     <!-- <a (click)="toggleSideBar('0')" disabled>Year View</a>

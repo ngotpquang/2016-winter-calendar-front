@@ -1,5 +1,7 @@
 import { OnInit } from '@angular/core';
 
+import { Goal } from './goal';
+
 export class CommonFunctions implements OnInit {
     repetitionTypes = ['1', '2', '3', '4'];
     repetitionLimitedTimes = ['1', '2', '3'];
@@ -133,9 +135,33 @@ export class CommonFunctions implements OnInit {
         this.changeTitleContent(title);
     }
 
-    changeTitleContent(title: string){
-      let titleContent = <HTMLInputElement>document.getElementById("title-content");
-      titleContent.innerHTML = title;
+    changeTitleContent(title: string) {
+        let titleContent = <HTMLInputElement>document.getElementById("title-content");
+        titleContent.innerHTML = title;
+    }
+
+    getUserLogined() {
+        return localStorage.getItem('currentUser');
+    }
+
+    getAllGoalsActived(goals: Goal[]) {
+        let listResult = new Array<Goal>();
+        for (let goal of goals) {
+            if (goal.is_archived != true) {
+                listResult.push(goal);
+            }
+        }
+        return listResult;
+    }
+
+    getAllGoalsArchived(goals: Goal[]) {
+        let listResult = new Array<Goal>();
+        for (let goal of goals) {
+            if (goal.is_archived == true) {
+                listResult.push(goal);
+            }
+        }
+        return listResult;
     }
 
 }

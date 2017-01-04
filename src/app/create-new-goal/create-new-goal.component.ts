@@ -110,14 +110,11 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
             if (input.autoUpdateFailed == null) {
                 input.autoUpdateFailed = false;
             }
-            console.log(input);
             let currentUser = JSON.parse(localStorage.getItem('currentUser'));
             let goal = new Goal(currentUser.email, currentUser.token, input.goal_name, start_date, input.description,
                 new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
                 new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event), input.autoUpdateFailed);
-            console.log(goal);
             this.goalService.addNewGoal(goal).subscribe(res => {
-                console.log(res);
                 this.router.navigate(['/detailview']);
             },
                 error => console.log(error));

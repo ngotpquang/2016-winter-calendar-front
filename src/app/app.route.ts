@@ -4,6 +4,7 @@ import { EditGoalComponent } from './edit-goal/edit-goal.component';
 // Import our dependencies
 import { AppComponent } from './app.component';
 
+import { ArchivedGoalsComponent } from './archived-goals/archived-goals.component';
 import { CreateNewGoalComponent } from './create-new-goal/create-new-goal.component';
 import { DetailViewComponent } from './detail-view/detail-view.component';
 import { IntroductionComponent } from './introduction/introduction.component';
@@ -23,6 +24,7 @@ export const appRoutes = [
     { path: 'signup', component: SignUpComponent },
     { path: 'createnewgoal', component: CreateNewGoalComponent, canActivate: [LoggedInGuard] },
     { path: 'detailview', component: DetailViewComponent, canActivate: [LoggedInGuard] },
+    { path: 'archivedgoals', component: ArchivedGoalsComponent, canActivate: [LoggedInGuard] },
     { path: 'loading', component: LoadingIndicatorComponent },
     { path: 'editgoal/:id', component: EditGoalComponent, CanActivate: [LoggedInGuard]},
     { path: 'yearview/:id', component: YearViewComponent, CanActivate: [LoggedInGuard]},
