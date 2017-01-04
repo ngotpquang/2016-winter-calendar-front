@@ -26,7 +26,7 @@ $main: #1E824C;
 
             li {
                 color: $main;
-                font-size: 25px;
+                font-size: 16px;
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 3px;
@@ -35,7 +35,7 @@ $main: #1E824C;
 
         .prev {
             float: left;
-            padding-top: 5px;
+            padding-top: 0px;
 
             &:hover {
                 cursor: pointer;
@@ -44,7 +44,7 @@ $main: #1E824C;
 
         .next {
             float: right;
-            padding-top: 5px;
+            padding-top: 0px;
 
             &:hover {
                 cursor: pointer;
