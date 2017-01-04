@@ -31,8 +31,7 @@ export class EditGoalComponent implements OnInit {
     ngOnInit(): void {
         this.id = this.route.params['_value']['id'];
         this.commonFunctions = new CommonFunctions();
-        this.goalService.getGoalsById(this.id).toPromise().then((data)=>{
-            // console.log(data['_body']);
+        this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
             this.toRepetitionUnit();
             let rep = this.goal.repetition;

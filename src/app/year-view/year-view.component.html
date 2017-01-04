@@ -1,3 +1,4 @@
+
 <div class="item">
     <div class="year">
         <ul>
@@ -8,6 +9,9 @@
         </ul>
     </div>
 </div>
-<div class="row">
-    <app-month-in-year *ngFor="let month of months; let i = index " year=2017 month={{i}} monthName={{month}} ></app-month-in-year>
+<div *ngIf="!isDataLoaded">
+        <app-loading-indicator></app-loading-indicator>
+</div>
+<div *ngIf="isDataLoaded" class="row">
+    <app-month-in-year *ngFor="let month of months; let i = index " year=2017 month={{i}} monthName={{month}} goal={{goal}} ></app-month-in-year>
 </div>
