@@ -64,7 +64,9 @@ export class MonthInYearComponent implements OnInit {
         let id = this.goalInMonth.id;
         let strDate = date.toString();
         let status = this.state[obj].toString();
-        this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
+        window.setTimeout((() => {
+            this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
+        }), 1000);
     }
     /*isDateEqual(a: Date, b: Date): boolean {
         if (a.getDate() === b.getDate() && a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()){
