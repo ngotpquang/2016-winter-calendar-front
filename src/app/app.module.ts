@@ -39,7 +39,7 @@ import { ArchivedGoalsComponent } from './archived-goals/archived-goals.componen
         EditGoalComponent,
         YearViewComponent,
         PageNotFoundComponent,
-        MonthInYearComponent
+        MonthInYearComponent,
         ArchivedGoalsComponent
     ],
     imports: [
