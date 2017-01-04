@@ -138,4 +138,8 @@ export class CommonFunctions implements OnInit {
       titleContent.innerHTML = title;
     }
 
+    getUserLogined() {
+      return localStorage.getItem('currentUser');
+    }
+
 }

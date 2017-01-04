@@ -55,8 +55,8 @@ $main: #1E824C;
                 }
 
                 &:hover {
-                  box-shadow: 1px 1px 1px #ddd;
-                  cursor: pointer;
+                    box-shadow: 1px 1px 1px #ddd;
+                    cursor: pointer;
                 }
             }
         }
@@ -168,4 +168,210 @@ $main: #1E824C;
 }
 @media screen and (max-width: 470px) {
     // TODO
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 10%;
+    overflow: auto;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+
+    .modal-content {
+        border-top: 1px solid $main;
+        position: fixed;
+        bottom: 0;
+        background-color: #eee;
+        width: 100%;
+        box-shadow: 0 -2px 7px #777;
+        -webkit-animation-name: slideIn;
+        -webkit-animation-duration: 0.4s;
+        animation-name: slideIn;
+        animation-duration: 0.4s;
+
+        .modal-header {
+            padding: 2px 16px;
+            background-color: $main;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+            align: center;
+
+            .icon {
+                color: $main;
+                margin: 0.5em 0 0.5em 6.5em;
+            }
+
+            .text {
+                color: $main;
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
+
+            .space {
+                width: 3em;
+            }
+
+            .close {
+                color: black;
+                float: right;
+                font-size: 20px;
+                font-weight: bold;
+
+                &:focus,
+                &:hover {
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: $main;
+            color: white;
+        }
+    }
+}
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+@keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-x {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 270px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border-radius: 10px;
+        width: 40%;
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.5s;
+        animation-name: animatetop;
+        animation-duration: 0.5s;
+
+        .modal-header {
+            padding: 2px 8px;
+            background-color: $main;
+            color: white;
+            border-radius: 10px 10px 0 0;
+
+            p {
+                font-size: 22px;
+                font-weight: bold;
+            }
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+            color: $main;
+            font-size: 18px;
+        }
+
+        .modal-footer {
+            padding: 2px 8px;
+            background-color: $main;
+            color: white;
+            border-radius: 0 0 10px 10px;
+            font-size: 14px;
+        }
+    }
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
+    &:focus,
+    &:hover {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 }
