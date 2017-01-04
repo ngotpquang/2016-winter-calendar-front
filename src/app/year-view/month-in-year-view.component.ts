@@ -22,6 +22,8 @@ export class MonthInYearComponent implements OnInit {
     classli: string[] = [];
     anchor: number;
     isLoaded: boolean = false;
+    myTimeOut: number;
+
     constructor(private goalService: GoalService) {}
     ngOnInit(): void {
         this.month = parseInt(this.month.toString(), 10);
@@ -64,8 +66,10 @@ export class MonthInYearComponent implements OnInit {
         let id = this.goalInMonth.id;
         let strDate = date.toString();
         let status = this.state[obj].toString();
-        window.setTimeout((() => {
+        clearTimeout(this.myTimeOut);
+        this.myTimeOut = window.setTimeout((() => {
             this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
+            console.log('put!!!');
         }), 1000);
     }
     /*isDateEqual(a: Date, b: Date): boolean {
