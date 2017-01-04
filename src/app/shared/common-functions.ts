@@ -164,4 +164,53 @@ export class CommonFunctions implements OnInit {
         return listResult;
     }
 
+    getRepetitionType(type: number): string {
+        switch (type) {
+            case 1:
+                return "Daily";
+            case 2:
+                return "Weekly";
+            case 3:
+                return "Monthly";
+            case 4:
+                return "Yearly";
+        }
+    }
+
+    getRepetitionName(type: number): string {
+        switch (type) {
+            case 1:
+                return " day(s).";
+            case 2:
+                return " week(s).";
+            case 3:
+                return " month(s.)";
+            case 4:
+                return " year(s).";
+        }
+    }
+
+    getEndDateType(type: number): string {
+        switch (type) {
+            case 1:
+                return "Forever.";
+            case 2:
+                return "Until ";
+            case 3:
+                return "For ";
+        }
+    }
+
+    displayStartDate(date: string): string {
+        let day = date.split('T')[0];
+        day = day.split("-")[2] + "/" + day.split("-")[1] + "/" + day.split("-")[0];
+        let time = date.split('T')[1].split('.')[0].split(':')[0] + ":" + date.split('T')[1].split('.')[0].split(':')[1];
+        return time + " " + day;
+    }
+    displayEndDate(date: string): string {
+        let day = date.split('T')[0];
+        day = day.split("-")[2] + "/" + day.split("-")[1] + "/" + day.split("-")[0];
+        return day;
+    }
+
 }
