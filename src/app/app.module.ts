@@ -6,8 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonpModule, HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { Angular2TokenService } from 'angular2-token';
-
 import { AppComponent } from './app.component';
 import { CreateNewGoalComponent } from './create-new-goal/create-new-goal.component';
 import { DetailViewComponent } from './detail-view/detail-view.component';
@@ -20,11 +18,13 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 
 import { LoggedInGuard } from './shared/logged-in.guard';
 
+import { ArchivedGoalsModule } from './archived-goals/archived-goals.module';
 import { GoalService } from './goal/goal.service';
 import { UserService } from './user/user.service';
 import { DetailViewModule } from './detail-view/detail-view.module';
 import { LoadingIndicatorComponent } from './loading-indicator/loading-indicator.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ArchivedGoalsComponent } from './archived-goals/archived-goals.component';
 
 @NgModule({
     declarations: [
@@ -37,9 +37,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         DetailViewComponent,
         EditGoalComponent,
         YearViewComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        ArchivedGoalsComponent
     ],
     imports: [
+        ArchivedGoalsModule,
         DetailViewModule,
         BrowserModule,
         FormsModule,
@@ -48,7 +50,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes)
     ],
-    providers: [UserService, LoggedInGuard, GoalService, Angular2TokenService],
+    providers: [UserService, LoggedInGuard, GoalService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

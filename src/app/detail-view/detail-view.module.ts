@@ -11,7 +11,7 @@ import { detailViewRoutes } from './detail-view.route';
     CommonModule,
     RouterModule.forChild(detailViewRoutes)
   ],
-  exports: [LoadingIndicatorComponent],
+  exports: [LoadingIndicatorComponent, MonthViewComponent],
   declarations: [MonthViewComponent, LoadingIndicatorComponent]
 })
 export class DetailViewModule { }

@@ -17,8 +17,7 @@ export class SideBarComponent implements OnInit {
     toggleSideBar(size: string) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         document.getElementById("mySidenav").style.width = size;
-        // document.getElementById("main").style.marginLeft = size;
-        // document.getElementById("header").style.marginLeft = size;
+        // let main = <HTMLElement>document.getElementsByTagName('body')[0];
         if (size !== '0') {
             document.getElementById("openSideBar").hidden = true;
         } else {
