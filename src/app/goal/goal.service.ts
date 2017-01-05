@@ -19,10 +19,11 @@ export class GoalService {
             { headers: headers });
     }
 
-    getAllGoals(is_reversed: boolean, sort_type: number) {
+    getAllGoals(is_reversed: boolean, sort_type: string) {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let sortType = parseInt(sort_type);
         return this.http
-            .get('https://wintercalendar.herokuapp.com/api/v1/goals?token=' + currentUser.token + '&sort_type=' + sort_type + '&is_reversed=' + is_reversed);
+            .get('https://wintercalendar.herokuapp.com/api/v1/goals?token=' + currentUser.token + '&sort_type=' + sortType + '&is_reversed=' + is_reversed);
     }
 
     getGoalsById(id: string) {

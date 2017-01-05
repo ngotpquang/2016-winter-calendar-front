@@ -14,7 +14,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="feature">
-                            <input class="checking" type="checkbox" name="" value="{{goal.id}}" (change)="showModal(goal.id)">
+                            <input class="checking" type="checkbox" name="" value="{{goal.id}}" (change)="showContextMenu(goal.id)">
                             <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
                             <div class="favorite" [class.color]="goal.is_favorite" id="fav-{{goal.id}}"><span class="fa fa-star"></span></div>
                         </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="feature">
-                            <input class="checking" type="checkbox" name="" value="{{goal.id}}" (change)="showModal(goal.id)">
+                            <input class="checking" type="checkbox" name="" value="{{goal.id}}" (change)="showContextMenu(goal.id)">
                             <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
                             <div class="favorite" [class.color]="goal.is_favorite" id="fav-{{goal.id}}"><span class="fa fa-star"></span></div>
                         </div>
@@ -86,16 +86,49 @@
                 <div class="label-text">New goal</div>
                 <i class="fa fa-play label-arrow"></i>
             </div>
+            <a (click)="showSortMenu()" class="float1">
+                <i class="fa fa-sort my-float"></i>
+            </a>
+            <div class="label-container1">
+                <div class="label-text">Sort</div>
+                <i class="fa fa-caret-left fa-2x label-arrow1"></i>
+            </div>
         </div>
     </div>
 </div>
 <div id="context-menu" class="modal">
     <div class="modal-content">
         <div class="modal-body">
-            <span class="close" (click)="showModal(false)">&times;</span>
+            <!-- <span class="close" (click)="showModal(false)">&times;</span> -->
             <span class="fa fa-trash icon" style="color: #D80027;"></span><span class="text" style="color: #D80027;" (click)="deleteGoals()"> Delete</span>
             <span class="space"></span>
             <span class="fa fa-check-circle icon"></span><span class="text" (click)="archiveGoals()"> Unarchive</span>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</div>
+<div id="sort-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-body sort">
+          <span class="close1" (click)="showSortMenu()">Close &times;</span>
+            <span><b>Sort by</b></span>
+            <span class="space"></span>
+            <input type="radio" id="date-created" name="sort-type" value="1" [checked]="sortType == 1" (change)="sort()"> <span>Day created</span>
+            <span class="space"></span>
+            <input type="radio" id="name" name="sort-type" value="2" [checked]="sortType == 2" (change)="sort()"> <span>Name</span>
+            <span class="space"></span>
+            <input type="radio" id="start-date" name="sort-type" value="3" [checked]="sortType == 3" (change)="sort()"> <span>Start date</span>
+            <span class="space"></span>
+            <input type="radio" id="frequecy" name="sort-type" value="4" [checked]="sortType == 4" (change)="sort()"> <span>Frequency</span>
+            <span class="space"></span>
+            <input type="radio" id="current-chain" name="sort-type" value="5" [checked]="sortType == 5" (change)="sort()"> <span>Current chain</span>
+            <span class="space"></span>
+            <input type="radio" id="best-chain" name="sort-type" value="6" [checked]="sortType == 6" (change)="sort()"> <span>Best chain</span>
+            <span class="space"></span>
+            <input type="radio" id="ratio" name="sort-type" value="7" [checked]="sortType == 7" (change)="sort()"> <span>Ratio</span>
+            <span class="space"></span>
+            <input type="checkbox" id="reverse-order" name="reverse" value="0" [checked]="isReversed" (change)="sort()"> <span>Reverse</span>
         </div>
         <div class="modal-footer">
         </div>

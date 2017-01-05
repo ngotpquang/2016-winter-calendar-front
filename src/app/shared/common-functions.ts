@@ -239,4 +239,94 @@ export class CommonFunctions implements OnInit {
         }
     }
 
+    getListFavoriteGoals(goals: Goal[]): Goal[] {
+        let resultGoals = new Array<Goal>();
+        for (let goal of goals) {
+            if (goal.is_favorite == true) {
+                resultGoals.push(goal);
+            }
+        }
+        return resultGoals;
+    }
+
+    getListNotFavoriteGoals(goals: Goal[]): Goal[] {
+        let resultGoals = new Array<Goal>();
+        for (let goal of goals) {
+            if (goal.is_favorite != true) {
+                resultGoals.push(goal);
+            }
+        }
+        return resultGoals;
+    }
+
+    sortGoals(goals: Goal[], sortType: string): Goal[] {
+        switch (sortType) {
+            case "1":
+                return goals.sort((goal1, goal2) => {
+                    let att1 = parseInt(goal1.id);
+                    let att2 = parseInt(goal2.id);
+                    return att1 - att2;
+                });
+            case "2":
+                return goals.sort((goal1, goal2) => {
+                    let att1 = goal1.goal_name.toLowerCase();
+                    let att2 = goal2.goal_name.toLowerCase();
+                    if (att1 < att2) {
+                        return -1;
+                    }
+                    if (att1 > att2) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            case "3":
+                return goals.sort((goal1, goal2) => {
+                    let att1 = goal1.start_date.toLowerCase();
+                    let att2 = goal2.start_date.toLowerCase();
+                    if (att1 < att2) {
+                        return -1;
+                    }
+                    if (att1 > att2) {
+                        return 1;
+                    }
+                    return 0;
+                });
+
+            case "4":
+                return goals.sort((goal1, goal2) => {
+                    let att1 = goal1.repetition.type_of_repetition;
+                    let att2 = goal2.repetition.type_of_repetition;
+                    return att1 - att2;
+                });
+            case "5":
+                return goals.sort((goal1, goal2) => {
+                    let att1 = parseInt(goal1.current_chain);
+                    let att2 = parseInt(goal2.current_chain);
+                    return att1 - att2;
+                });
+            case "6":
+                return goals.sort((goal1, goal2) => {
+                    let att1 = parseInt(goal1.best_chain);
+                    let att2 = parseInt(goal2.best_chain);
+                    return att1 - att2;
+                });
+            case "7":
+                return goals.sort((goal1, goal2) => {
+                    let att1 = goal1.progress;
+                    let att2 = goal2.progress;
+                    let result1 = parseFloat(att1.split('/')[0]) / parseFloat(att1.split('/')[1]);
+                    let result2 = parseFloat(att2.split('/')[0]) / parseFloat(att2.split('/')[1]);
+                    return result1 - result2;
+                });
+        }
+    }
+
+    setFavoriteGoal(goals: Goal[], id: string): void{
+      for (let goal of goals){
+        if (goal.id == id){
+          goal.is_favorite = !goal.is_favorite;
+        }
+      }
+    }
+
 }

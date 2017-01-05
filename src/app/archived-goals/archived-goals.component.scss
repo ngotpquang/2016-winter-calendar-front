@@ -10,7 +10,6 @@ span {
     background: transparent;
 }
 $main: #1E824C;
-$red: #D80027;
 
 .view {
     margin: 2em auto;
@@ -97,7 +96,12 @@ $red: #D80027;
                 float: right;
 
                 &.color {
-                    color: $red;
+                    color: #D80027;
+                }
+
+                &:hover {
+                    box-shadow: 1px 1px 1px #ddd;
+                    cursor: pointer;
                 }
             }
         }
@@ -144,8 +148,21 @@ $red: #D80027;
             position: fixed;
             width: 60px;
             height: 60px;
-            bottom: 40px;
-            right: 40px;
+            bottom: 30px;
+            right: 15px;
+            background-color: $main;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        &.float1 {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            left: 15px;
             background-color: $main;
             color: #FFF;
             border-radius: 50px;
@@ -164,8 +181,16 @@ $red: #D80027;
 
     .label-container {
         position: fixed;
-        bottom: 48px;
+        bottom: 40px;
         right: 105px;
+        display: table;
+        visibility: hidden;
+    }
+
+    .label-container1 {
+        position: fixed;
+        bottom: 40px;
+        left: 105px;
         display: table;
         visibility: hidden;
     }
@@ -187,6 +212,17 @@ $red: #D80027;
         opacity: 1;
     }
 
+    .label-arrow1 {
+        display: table-cell;
+        vertical-align: middle;
+        color: $main;
+        opacity: 1;
+        position: absolute;
+        left: -10px;
+        top: 7px;
+        opacity: 1;
+    }
+
     a.float + div.label-container {
         visibility: hidden;
         opacity: 0;
@@ -194,6 +230,17 @@ $red: #D80027;
     }
 
     a.float:hover + div.label-container {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    a.float1 + div.label-container1 {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.2s, opacity 0.5s ease-in-out;
+    }
+
+    a.float1:hover + div.label-container1 {
         visibility: visible;
         opacity: 1;
     }
@@ -226,10 +273,10 @@ $red: #D80027;
     animation-duration: 0.4s;
 
     .modal-content {
+        border-radius: 0;
         border-top: 1px solid $main;
         position: fixed;
         bottom: 0;
-        border-radius: 0;
         background-color: #eee;
         width: 100%;
         box-shadow: 0 -2px 7px #777;
@@ -266,16 +313,32 @@ $red: #D80027;
                 width: 3em;
             }
 
-            .close {
-                color: black;
-                float: right;
-                font-size: 20px;
-                font-weight: bold;
+            &.sort {
+                padding: 20px 16px;
 
-                &:focus,
-                &:hover {
-                    text-decoration: none;
-                    cursor: pointer;
+                input {
+                    color: $main;
+                }
+
+                span {
+                    &.close1 {
+                        color: $main;
+                        float: right;
+                        font-size: 14px;
+                        font-weight: bold;
+
+                        &:focus,
+                        &:hover {
+                            text-decoration: underline;
+                            cursor: pointer;
+                        }
+                    }
+                    color: $main;
+                    display: inline-block;
+
+                    .space {
+                        width: 3em;
+                    }
                 }
             }
         }
