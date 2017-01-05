@@ -1,3 +1,4 @@
+import { element, by } from 'protractor';
 import { CommonFunctions } from './../shared/common-functions';
 import { Http } from '@angular/http';
 import { MonthInYearComponent } from './month-in-year-view.component';
@@ -24,6 +25,8 @@ export class YearViewComponent implements OnInit{
     private route: ActivatedRoute, private router: Router) {}
     ngOnInit(): void {
         this.id = this.route.params['_value']['id'];
+        this.year = this.route.params['_value']['year'];
+        this.year = parseInt(this.year.toString(), 10);
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
             this.isDataLoaded = true;
@@ -32,9 +35,11 @@ export class YearViewComponent implements OnInit{
     }
     nextYear(): void {
         this.year += 1;
+        this.router.navigate(['/yearview/', this.id, this.year]);
     }
 
     previousYear(): void {
         this.year -= 1;
+        this.router.navigate(['/yearview/', this.id, this.year]);
     }
 }

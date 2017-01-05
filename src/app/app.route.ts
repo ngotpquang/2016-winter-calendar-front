@@ -27,6 +27,6 @@ export const appRoutes = [
     { path: 'archivedgoals', component: ArchivedGoalsComponent, canActivate: [LoggedInGuard] },
     { path: 'loading', component: LoadingIndicatorComponent },
     { path: 'editgoal/:id', component: EditGoalComponent, CanActivate: [LoggedInGuard]},
-    { path: 'yearview/:id', component: YearViewComponent, CanActivate: [LoggedInGuard]},
+    { path: 'yearview/:id/:year', component: YearViewComponent, CanActivate: [LoggedInGuard]},
     { path: '**', component: PageNotFoundComponent },
 ];

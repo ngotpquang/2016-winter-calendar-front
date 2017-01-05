@@ -4,7 +4,7 @@
         <ul>
             <li class="prev" (click)="previousYear()">❮</li>
             <li class="next" (click)="nextYear()">❯</li>
-            <li style="text-align:center" id="monthName" value="">2017</li>
+            <li style="text-align:center" id="monthName" value="">{{year}}</li>
         </ul>
     </div>
 </div>
@@ -12,5 +12,5 @@
         <app-loading-indicator></app-loading-indicator>
 </div>
 <div *ngIf="isDataLoaded" class="row">
-    <app-month-in-year *ngFor="let month of months; let i = index " [year]="year" month={{i}} monthName={{month}} [goalInMonth]="goal"></app-month-in-year>
+    <app-month-in-year *ngFor="let month of months; let i = index " [goalInMonth]="goal" [setYear]="year" month={{i}} monthName={{month}}></app-month-in-year>
 </div>
