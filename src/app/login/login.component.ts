@@ -30,6 +30,7 @@ export class LoginComponent extends LoadingPage implements OnInit {
 
     doLogin() {
         let user = this.loginForm.value;
+        this.commonFunctions.changeBackground(false);
         this.standby();
         this.userService.logIn(user.email, user.password).subscribe(
             res => {

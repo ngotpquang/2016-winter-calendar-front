@@ -20,6 +20,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
 
     ngOnInit() {
         this.commonFunctions = new CommonFunctions();
+        this.commonFunctions.changeBackground(false);
         this.commonFunctions.changeTitleContent("Your dashboard");
         localStorage.setItem('sortType', '1');
         localStorage.setItem('isReversed', '0');
@@ -33,6 +34,9 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
 
     displayMonthView(goal: Goal): void {
         this.router.navigate(['/monthview', goal.id]);
+    }
+    displayYearView(goal: Goal): void {
+        this.router.navigate(['/yearview', goal.id]);
     }
 
     favorite(goal: Goal): void {

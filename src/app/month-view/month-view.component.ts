@@ -25,6 +25,7 @@ export class MonthViewComponent implements OnInit {
 
     ngOnInit() {
         this.commonFunctions = new CommonFunctions();
+        this.commonFunctions.changeBackground(false);
         this.openModal(true);
         let currentUser = localStorage.getItem('currentUser');
         let id = this.route.params['_value']['id'];
