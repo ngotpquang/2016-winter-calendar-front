@@ -1,4 +1,3 @@
-import { LoadingPage } from './../loading-indicator/loading-page';
 import { UserService } from './../user/user.service';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
@@ -7,20 +6,24 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './forgot-password.component.html',
     styleUrls: ['./forgot-password.component.scss']
 })
-export class ForgotPasswordComponent extends LoadingPage implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
     submitted: boolean = false;
+    wrong: boolean = false;
     email: string = '';
+    loading: boolean = false;
     constructor(private userService: UserService) {
-        super('loaded');
     }
     ngOnInit(): void {
     }
     doSubmit(): void {
-        this.standby();
+        this.submitted = true;
+        this.loading = true;
         this.userService.forgotPassword(this.email).subscribe(res => {
-            console.log(res);
+            this.loading = false;
         },  error => {
-            console.log(error);
+            this.wrong = true;
+            this.loading = false;
+            this.submitted = false;
         }
         );
     }
