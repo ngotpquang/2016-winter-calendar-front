@@ -31,6 +31,7 @@ export class EditGoalComponent implements OnInit {
     ngOnInit(): void {
         this.id = this.route.params['_value']['id'];
         this.commonFunctions = new CommonFunctions();
+        this.commonFunctions.changeBackground(false);
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
             this.commonFunctions.changeTitleContent(this.goal.goal_name);

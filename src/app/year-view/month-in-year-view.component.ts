@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MonthInYearComponent implements OnInit {
     @Input()
-    year: number = 2017;
+    year: number = new Date().getFullYear();
     @Input()
     set setYear(year: number){
         this.year = year;

@@ -24,7 +24,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
     ngOnInit() {
         this.commonFunctions = new CommonFunctions();
         this.commonFunctions.changeBackground(false);
-        this.commonFunctions.changeTitleContent("Archived Goals");
+        this.commonFunctions.changeTitleContent("Archived goals");
         this.sortType = localStorage.getItem('sortType') == null ? "1" : localStorage.getItem('sortType');
         this.isReversed = localStorage.getItem('isReversed') == null ? false : (localStorage.getItem('isReversed') == '0' ? false : true);
         this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
