@@ -1,3 +1,15 @@
+div,
+label,
+span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -8,115 +20,284 @@ ul {
 $main: #1E824C;
 $red: #D80027;
 
-.item {
-    width: 60%;
-    align: center;
-    font-family: inherit;
+.left-view {
+    margin-top: 3em;
     position: relative;
-    margin: 2em auto;
-    border: 1px solid $main;
-    border-radius: 10px;
+    // border: 1px solid $main;
+    // border-radius: 10px;
+    // background-color: #eef;
+    width: 30%;
+    float: left;
+    height: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 2em;
 
-    .month {
-        padding: 1em;
-        width: 100%;
-        // background: #ccc;
-        ul {
-            margin: 0;
-            padding: 0;
+    p {
+        margin: 2em 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: $main;
+    }
 
-            li {
-                color: $main;
-                font-size: 25px;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 3px;
-            }
-        }
+    label {
+        font-weight: bold;
+        float: left;
+        width: 32%;
+    }
 
-        .prev {
-            float: left;
-            padding-top: 10px;
+    span {
+        display: block;
 
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        .next {
-            float: right;
-            padding-top: 10px;
-
-            &:hover {
-                cursor: pointer;
-            }
+        &#description, &#repetition {
+            margin-left: 32%;
+            // display: block;
         }
     }
 
-    .weekdays {
-        margin: 0;
-        padding: 10px 0;
-        background-color: $main;
+    a {
+        color: $main;
+        text-decoration: none;
+        background-color: white;
+        border: 1px solid $main;
+        border-radius: 10px;
+        padding: 0.5em 0.5em;
+        position: absolute;
+        top: 2.2em;
+        right: 1em;
+        transition: all 0.3s;
+        float: right;
 
-        &.hidden {
-            display: none;
-        }
-
-        li {
-            display: inline-block;
-            width: 13.6%;
+        &:active,
+        &:focus,
+        &:hover {
+            cursor: pointer;
+            background-color: $main;
             color: white;
+            border: 1px solid $main;
+        }
+    }
+}
+
+.right-view {
+
+    a {
+        &.float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 40px;
+            background-color: $main;
+            color: #FFF;
+            border-radius: 50px;
             text-align: center;
+            transition: all 0.3s;
+        }
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 2px 2px 4px #555;
         }
     }
 
-    .days {
-        background: #eef;
-        margin: 0 auto;
-        padding: 0.9em 0.9em 0.5em;
+    .my-float {
+        margin-top: 22px;
+    }
+
+    .label-container {
+        position: fixed;
+        bottom: 38px;
+        right: 105px;
+        display: table;
+        visibility: hidden;
+    }
+
+    .label-text {
+        color: #FFF;
+        font-weight: bold;
+        background: $main;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    .label-arrow {
+        display: table-cell;
+        vertical-align: middle;
+        color: $main;
+        opacity: 1;
+    }
+
+    a.float + div.label-container {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.2s, opacity 0.5s ease-in-out;
+    }
+
+    a.float:hover + div.label-container {
+        visibility: visible;
+        opacity: 1;
+    }
+    width: 65%;
+    float: right;
+
+    .item {
+        width: 80%;
+        align: center;
+        font-family: inherit;
         position: relative;
+        margin: 2em auto;
+        border: 1px solid $main;
         border-radius: 10px;
 
-        li {
-            list-style-type: none;
-            display: inline-block;
-            width: 13.7%;
-            font-size: 15px;
-            height: 2em;
-            text-align: center;
-            margin-bottom: 5px;
-            padding: 2em 0;
-            color: black;
-            transition: all 0.2s ease-in-out;
+        .month {
+            padding: 1em;
+            width: 100%;
 
-            &.active {
-                font-weight: bold;
+            ul {
+                margin: 0;
+                padding: 0;
+
+                li {
+                    color: $main;
+                    font-size: 25px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    letter-spacing: 3px;
+                }
             }
 
-            &.hide {
+            .prev {
+                float: left;
+                padding-top: 10px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .next {
+                float: right;
+                padding-top: 10px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .weekdays {
+            margin: 0;
+            padding: 10px 0;
+            background-color: $main;
+
+            &.hidden {
                 display: none;
             }
 
-            &.hide-background {
-                background-color: #eef;
+            li {
+                display: inline-block;
+                width: 13.6%;
+                color: white;
+                text-align: center;
             }
-            @mixin x {
-                background-clip: border-box;
-                background-size: 25%;
-                color: #eef;
-                text-align: right;
-            }
+        }
 
-            &.fail,
-            &.pass {
-                background: url('../../img/passed.png') no-repeat center;
-                @include x;
-            }
+        .days {
+            background: #eef;
+            margin: 0 auto;
+            padding: 0.9em 0.9em 0.5em;
+            position: relative;
+            border-radius: 10px;
 
-            &.fail {
-                background: url('../../img/failed.png') no-repeat center;
-                @include x;
+            li {
+                list-style-type: none;
+                display: inline-block;
+                width: 13.7%;
+                font-size: 15px;
+                height: 2em;
+                text-align: center;
+                margin-bottom: 5px;
+                padding: 2em 0;
+                color: black;
+                transition: all 0.2s ease-in-out;
+
+                &.active {
+                    background-color: rgba(30, 130, 76, 0.3);
+                    font-weight: bold;
+                }
+
+                &.hide {
+                    display: none;
+                }
+
+                &.hide-background {
+                    background-color: #eef;
+                }
+                @mixin x {
+                    background-clip: border-box;
+                    background-size: 25%;
+                    color: #eef;
+                    text-align: right;
+                }
+
+                &.fail,
+                &.pass {
+                    background: url('../../img/passed.png') no-repeat center;
+                    @include x;
+
+                    &.active {
+                        background-color: rgba(30, 130, 76, 0.3);
+                        color: rgba(30, 130, 76, 0);
+                    }
+                }
+
+                &.fail {
+                    background: url('../../img/failed.png') no-repeat center;
+                    @include x;
+                }
             }
+        }
+    }
+
+    .tooltiptext {
+        width: 20em;
+        background-color: #eee;
+        color: $red;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        border: 1px solid $red;
+        position: fixed;
+        z-index: 1;
+        bottom: 1em;
+        left: 60%;
+        transition: all 0.5s ease-in-out;
+        opacity: 0;
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+    .tooltiptext1 {
+        width: 27em;
+        background-color: #eee;
+        color: $red;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        border: 1px solid $red;
+        position: fixed;
+        z-index: 1;
+        bottom: 1em;
+        left: 58%;
+        transition: all 0.5s ease-in-out;
+        opacity: 0;
+
+        &.visible {
+            opacity: 1;
         }
     }
 }
@@ -228,24 +409,4 @@ $red: #D80027;
 }
 @media screen and (max-width: 800px) and (min-width: 500px) {
     // TODO
-}
-
-.tooltiptext {
-    width: 20em;
-    background-color: #eee;
-    color: $red;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    border: 1px solid $red;
-    position: fixed;
-    z-index: 1;
-    bottom: 1em;
-    left: 41.5%;
-    transition: all 0.5s;
-    opacity: 0;
-
-    &.visible {
-        opacity: 1;
-    }
 }

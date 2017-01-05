@@ -37,30 +37,25 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
       this.router.navigate(['/monthview', goal.id]);
   }
 
-  favorite(goal: Goal): void {
-      this.goalService.setFavorite(goal.id).subscribe(res => {
-          console.log(res.json());
-          let favorite = <HTMLElement>document.getElementById("fav-" + goal.id);
-          if (res.json() == true) {
-              console.log(goal.is_favorite);
-              favorite.classList.add('color');
-          } else {
-              favorite.classList.remove('color');
-          }
-      },
-          error => console.log(error));
-  }
+  showModal(goalId) {
+    let goalPanel = document.getElementById("item-" + goalId);
+    let backgroundColor = goalPanel.style.backgroundColor;
+    console.log(backgroundColor);
+    if (backgroundColor != "rgb(238, 238, 255)") {
+        goalPanel.style.backgroundColor = "#eef";
+    } else {
+        goalPanel.style.backgroundColor = "#fff";
+    }
 
-  showModal() {
-      let checks = document.getElementsByClassName('checking');
-      let modal = document.getElementById('context-menu');
-      let span = document.getElementsByClassName("close")[0];
-      modal.style.display = "none";
-      for (let index in checks) {
-          if ((<HTMLInputElement>checks[index]).checked == true) {
-              modal.style.display = "block";
-          }
-      }
+    let checks = document.getElementsByClassName('checking');
+    let modal = document.getElementById('context-menu');
+    let span = document.getElementsByClassName("close")[0];
+    modal.style.display = "none";
+    for (let index in checks) {
+        if ((<HTMLInputElement>checks[index]).checked == true) {
+            modal.style.display = "block";
+        }
+    }
   }
 
   openModal(showed: boolean) {

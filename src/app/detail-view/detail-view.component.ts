@@ -49,7 +49,16 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
             error => console.log(error));
     }
 
-    showModal() {
+    showModal(goalId) {
+        let goalPanel = document.getElementById("item-" + goalId);
+        let backgroundColor = goalPanel.style.backgroundColor;
+        console.log(backgroundColor);
+        if (backgroundColor != "rgb(238, 238, 255)") {
+            goalPanel.style.backgroundColor = "#eef";
+        } else {
+            goalPanel.style.backgroundColor = "#fff";
+        }
+
         let checks = document.getElementsByClassName('checking');
         let modal = document.getElementById('context-menu');
         let span = document.getElementsByClassName("close")[0];
@@ -90,22 +99,22 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         })
     }
     archiveGoals() {
-      this.openModal(true);
-      let modal = document.getElementById('context-menu');
-      let checks = document.getElementsByClassName('checking');
-      let archiveIds = "";
-      for (let index in checks) {
-          if ((<HTMLInputElement>checks[index]).checked == true) {
-              let id = (<HTMLInputElement>checks[index]).value;
-              archiveIds += id + ", ";
-          }
-      }
-      this.goalService.archiveGoal(archiveIds).subscribe(res => {
-          console.log("Archiving goals");
-          window.location.reload();
-      }, error => {
-          console.log(error);
-      })
+        this.openModal(true);
+        let modal = document.getElementById('context-menu');
+        let checks = document.getElementsByClassName('checking');
+        let archiveIds = "";
+        for (let index in checks) {
+            if ((<HTMLInputElement>checks[index]).checked == true) {
+                let id = (<HTMLInputElement>checks[index]).value;
+                archiveIds += id + ", ";
+            }
+        }
+        this.goalService.archiveGoal(archiveIds).subscribe(res => {
+            console.log("Archiving goals");
+            window.location.reload();
+        }, error => {
+            console.log(error);
+        })
     }
 
 }

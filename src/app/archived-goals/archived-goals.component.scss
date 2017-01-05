@@ -1,3 +1,14 @@
+div,
+label,
+span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
 $main: #1E824C;
 $red: #D80027;
 
@@ -184,6 +195,7 @@ $red: #D80027;
         border-top: 1px solid $main;
         position: fixed;
         bottom: 0;
+        border-radius: 0;
         background-color: #eee;
         width: 100%;
         box-shadow: 0 -2px 7px #777;

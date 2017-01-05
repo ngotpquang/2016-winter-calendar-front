@@ -14,9 +14,10 @@ import { GoalService } from '../goal/goal.service';
     styleUrls: ['./month-view.component.scss']
 })
 export class MonthViewComponent implements OnInit {
-    private goal: Goal;
+    public goal: Goal;
     private hiddenWeekdays = true;
     public commonFunctions: CommonFunctions;
+    private timeOut;
     constructor(private route: ActivatedRoute,
         private router: Router,
         private goalService: GoalService) {
@@ -25,15 +26,21 @@ export class MonthViewComponent implements OnInit {
     ngOnInit() {
         this.commonFunctions = new CommonFunctions();
         this.openModal(true);
-        this.route.params.switchMap((params: Params) => this.goalService.getGoalsById(params['id']))
-            .subscribe((res) => {
-                this.goal = res.json();
-                this.commonFunctions.changeTitleContent(this.goal.goal_name);
-                this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
-                this.displayGoalOnCalendar();
-                this.openModal(false);
-                this.hiddenWeekdays = false;
-            }, error => console.log(error));
+        let currentUser = localStorage.getItem('currentUser');
+        let id = this.route.params['_value']['id'];
+        console.log(id);
+        this.goalService.getGoalsById(id).subscribe((res) => {
+            this.goal = res.json();
+            this.commonFunctions.changeTitleContent(this.goal.goal_name);
+            this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
+            this.displayGoalOnCalendar();
+            this.displayGoalInfor();
+            this.openModal(false);
+            this.hiddenWeekdays = false;
+        }, error => {
+          console.log(error['status']);
+          this.router.navigate(['/pagenotfound']);
+        });
     }
 
     openModal(showed: boolean) {
@@ -43,6 +50,58 @@ export class MonthViewComponent implements OnInit {
             modal.style.display = "block";
         } else {
             modal.style.display = "none";
+        }
+    }
+
+    editGoal() {
+        this.router.navigate(['/editgoal', this.goal.id]);
+    }
+
+    displayGoalInfor() {
+        let startDate = <HTMLElement>document.getElementById('start-date');
+        let description = <HTMLElement>document.getElementById('description');
+        let repetition = <HTMLElement>document.getElementById('repetition');
+        let bestChain = <HTMLElement>document.getElementById('best-chain');
+        let progress = <HTMLElement>document.getElementById('progress');
+        let currentChain = <HTMLElement>document.getElementById('current-chain');
+        let endDate = <HTMLElement>document.getElementById('end-date');
+        let routeListView = <HTMLElement>document.getElementById('route-list-view');
+
+        startDate.innerHTML = this.commonFunctions.displayStartDate(this.goal.start_date);
+        description.innerHTML = this.goal.description == "" ? "(no description)" : this.goal.description;
+        repetition.innerHTML = this.commonFunctions.getRepetitionType(this.goal.repetition.type_of_repetition)
+            + ", every " + this.goal.repetition.how_often + this.commonFunctions.getRepetitionName(this.goal.repetition.type_of_repetition);
+        if (this.goal.repetition.type_of_repetition == 3) {
+            if (this.goal.repetition.type_of_month == "1") {
+                repetition.innerHTML += "<br>On the same start day of each month";
+            } else {
+                repetition.innerHTML += "<br>On every " + this.commonFunctions.getDay(new Date(this.goal.start_date));
+            }
+        } else if (this.goal.repetition.type_of_repetition == 2) {
+            repetition.innerHTML += "<br>On every " + this.commonFunctions.getDayName(this.goal.repetition.day_of_week);
+        }
+        currentChain.innerHTML = this.goal.current_chain + " day(s)";
+        bestChain.innerHTML = this.goal.best_chain + " day(s)";
+        progress.innerHTML = this.goal.progress + " day(s)";
+        endDate.innerHTML = this.commonFunctions.getEndDateType(this.goal.end_date.type_of_end_date);
+        if (this.goal.end_date.type_of_end_date == 2) {
+            endDate.innerHTML = this.commonFunctions.getEndDateType(this.goal.end_date.type_of_end_date) + this.commonFunctions.displayEndDate(this.goal.end_date.specific_end_date) + ".";
+        } else if (this.goal.end_date.type_of_end_date == 3) {
+            endDate.innerHTML = this.commonFunctions.getEndDateType(this.goal.end_date.type_of_end_date) + this.goal.end_date.number_of_event + " event(s)";
+        }
+
+        if (this.goal.is_archived == true) {
+            routeListView.innerHTML = "Back to archived list";
+        } else {
+            routeListView.innerHTML = "Back to detail view";
+        }
+    }
+
+    routeListView() {
+        if (this.goal.is_archived == true) {
+            this.router.navigate(['/archivedgoals']);
+        } else {
+            this.router.navigate(['/detailview']);
         }
     }
 
@@ -150,10 +209,13 @@ export class MonthViewComponent implements OnInit {
     }
     displayDate(id: number) {
         if (this.goal.is_archived == true) {
+            console.log("archived");
             let displayInfor = document.getElementById("show-infor");
             displayInfor.classList.add('visible');
-            setTimeout(() => { displayInfor.classList.remove('visible'); }, 1000);
+            setTimeout(() => { displayInfor.classList.remove('visible'); }, 2000);
         } else {
+            console.log("not archived");
+            clearTimeout(this.timeOut);
             let date = <HTMLElement>document.getElementById(id + "");
             let monthName = <HTMLElement>document.getElementById('monthName');
             let month = this.getMonth(monthName.innerHTML) + 1;
@@ -162,28 +224,67 @@ export class MonthViewComponent implements OnInit {
             let markDate = new Date(fullDate).setHours(0, 0, 0, 0);
             let startDate = new Date(this.goal.start_date).setHours(0, 0, 0, 0);
             let today = new Date().setHours(0, 0, 0, 0);
-
+            if (this.goal.end_date.type_of_end_date == 2) {
+                let endDate = new Date(this.goal.end_date.specific_end_date).setHours(0, 0, 0, 0);
+                if (today > endDate) {
+                    today = endDate;
+                }
+            }
             if (markDate >= startDate && markDate <= today) {
                 if (date.classList.item(0) == null || date.classList.item(0) == 'active') {
                     if (date.classList.item(1) == 'pass') {
                         date.classList.remove('pass');
                         date.classList.add('fail');
-                        this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+                        this.timeOut = setTimeout(() => {
+                            this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => {
+                                console.log(res.json()); this.goal = res.json();
+                                this.displayGoalInfor();
+                                this.router.navigate(["/monthview/" + this.goal.id]);
+                            }, error => console.log(error));
+                        }, 1000);
                     } else if (date.classList.item(1) == 'fail') {
                         date.classList.remove('fail');
-                        this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+                        this.timeOut = setTimeout(() => {
+                            this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => {
+                                console.log(res.json()); this.goal = res.json();
+                                this.displayGoalInfor();
+                                this.router.navigate(["/monthview/" + this.goal.id]);
+                            }, error => console.log(error));
+                        }, 1000);
                     } else {
                         date.classList.add('pass');
-                        this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+                        this.timeOut = setTimeout(() => {
+                            this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(res => {
+                                console.log(res.json()); this.goal = res.json();
+                                this.displayGoalInfor();
+                                this.router.navigate(["/monthview/" + this.goal.id]);
+                            }, error => console.log(error));
+                        }, 1000);
                     }
                 } else if (date.classList.item(0) == 'pass') {
                     date.classList.remove('pass');
                     date.classList.add('fail');
-                    this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+                    this.timeOut = setTimeout(() => {
+                        this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => {
+                            console.log(res.json()); this.goal = res.json();
+                            this.displayGoalInfor();
+                            this.router.navigate(["/monthview/" + this.goal.id]);
+                        }, error => console.log(error));
+                    }, 1000);
                 } else {
                     date.classList.remove('fail');
-                    this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => { console.log(res); this.goal = res.json(); this.router.navigate(["/monthview/" + this.goal.id]); }, error => console.log(error));
+                    this.timeOut = setTimeout(() => {
+                        this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => {
+                            console.log(res.json()); this.goal = res.json();
+                            this.displayGoalInfor();
+                            this.router.navigate(["/monthview/" + this.goal.id]);
+                        }, error => console.log(error));
+                    }, 1000);
                 }
+            } else {
+                let displayInfor = document.getElementById("show-infor1");
+                displayInfor.classList.add('visible');
+                setTimeout(() => { displayInfor.classList.remove('visible'); }, 2000);
             }
 
         }
