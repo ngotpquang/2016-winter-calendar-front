@@ -180,13 +180,13 @@ export class CommonFunctions implements OnInit {
     getRepetitionName(type: number): string {
         switch (type) {
             case 1:
-                return " day(s).";
+                return " day(s)";
             case 2:
-                return " week(s).";
+                return " week(s)";
             case 3:
-                return " month(s.)";
+                return " month(s)";
             case 4:
-                return " year(s).";
+                return " year(s)";
         }
     }
 
@@ -211,6 +211,20 @@ export class CommonFunctions implements OnInit {
         let day = date.split('T')[0];
         day = day.split("-")[2] + "/" + day.split("-")[1] + "/" + day.split("-")[0];
         return day;
+    }
+
+    getDayName(string) :string{
+      let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      let result = "";
+      let days = string.split(", ");
+      for (let day in days){
+        for (let dayName in dayNames){
+          if(days[day] === dayName){
+            result += dayNames[dayName] + ", ";
+          }
+        }
+      }
+      return result.slice(0, -2);
     }
 
 }

@@ -7,6 +7,7 @@
   <p>
     Goal details
   </p>
+  <a (click)="routeListView()" id="route-list-view"></a>
   <label for="description">Description: </label>
   <span id="description">
   </span>
@@ -36,7 +37,7 @@
   </span>
   <br />
   <br />
-  <a (click)="routeListView()" id="route-list-view"></a>
+
 </div>
 <div class="right-view">
   <div class="item" [class.hidden]="hiddenWeekdays">
@@ -111,4 +112,5 @@
       <i class="fa fa-play label-arrow"></i>
   </div>
   <span class="tooltiptext" id="show-infor">Goal is archived and not able to edit!</span>
+  <span class="tooltiptext1" id="show-infor1">Day is in future or before start day!</span>
 </div>

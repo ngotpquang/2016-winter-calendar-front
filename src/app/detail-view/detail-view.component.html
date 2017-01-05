@@ -6,7 +6,7 @@
         <div class="view">
             <div class="item">
                 <div class="item1" *ngFor="let goal of goals; let i = index;">
-                    <div class="goal-panel" *ngIf="i % 2 == 0" style="float: left;">
+                    <div class="goal-panel" id="item-{{goal.id}}" *ngIf="i % 2 == 0" style="float: left;">
                         <div class="goal-title">
                             <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
                             <a style="margin-left:20px;" [routerLink]="['/editgoal',goal.id]"><img src="../img/edit.svg" height="16" width="16"></a>
@@ -14,7 +14,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="feature">
-                            <input class="checking" type="checkbox" name="" value="{{goal.id}}" (change)="showModal()">
+                            <input class="checking" type="checkbox" name="" value="{{goal.id}}" (change)="showModal(goal.id)">
                             <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
                             <div class="favorite" [class.color]="goal.is_favorite" id="fav-{{goal.id}}"><span class="fa fa-star" (click)="favorite(goal)"></span></div>
                         </div>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="clear"></div>
                     </div>
-                    <div class="goal-panel" *ngIf="i % 2 != 0" style="float: right;">
+                    <div class="goal-panel" id="item-{{goal.id}}" *ngIf="i % 2 != 0" style="float: right;">
                         <div class="goal-title">
                             <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
                             <a style="margin-left:20px;" [routerLink]="['/editgoal',goal.id]"><img src="../img/edit.svg" height="16" width="16"></a>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="feature">
-                            <input class="checking" type="checkbox" name="" value="{{goal.id}}" (change)="showModal(true)">
+                            <input class="checking" type="checkbox" name="" value="{{goal.id}}" (change)="showModal(goal.id)">
                             <span class="start-date">Start date: {{goal.start_date | date: 'yyyy, MMM dd'}}</span>
                             <div class="favorite" [class.color]="goal.is_favorite" id="fav-{{goal.id}}"><span class="fa fa-star" (click)="favorite(goal)"></span></div>
                         </div>
@@ -92,10 +92,10 @@
 <div id="context-menu" class="modal">
     <div class="modal-content">
         <div class="modal-body">
-            <span class="close" (click)="showModal(false)">&times;</span>
-            <span class="fa fa-trash icon" style="color: #D80027;"></span><span class="text" style="color: #D80027;" (click)="deleteGoals()"> Delete</span>
+            <!-- <span class="close" (click)="openModal(false)">&times;</span> -->
+            <span class="fa fa-trash icon" style="color: #D80027;"></span> <span class="text" style="color: #D80027;" (click)="deleteGoals()">Delete</span>
             <span class="space"></span>
-            <span class="fa fa-archive icon"></span><span class="text" (click)="archiveGoals()"> Archive</span>
+            <span class="fa fa-archive icon"></span> <span class="text" (click)="archiveGoals()">Archive</span>
         </div>
         <div class="modal-footer">
         </div>

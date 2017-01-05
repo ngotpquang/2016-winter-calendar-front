@@ -1,3 +1,15 @@
+div,
+label,
+span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -9,17 +21,20 @@ $main: #1E824C;
 $red: #D80027;
 
 .left-view {
-    margin-top: 2em;
-    border: 1px solid $main;
-    border-radius: 10px;
-    background-color: #eee;
+    margin-top: 3em;
+    position: relative;
+    // border: 1px solid $main;
+    // border-radius: 10px;
+    // background-color: #eef;
     width: 30%;
     float: left;
+    height: 100%;
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 2em;
 
     p {
+        margin: 2em 0;
         font-size: 18px;
         font-weight: bold;
         color: $main;
@@ -31,13 +46,25 @@ $red: #D80027;
         width: 32%;
     }
 
+    span {
+        display: block;
+
+        &#description, &#repetition {
+            margin-left: 32%;
+            // display: block;
+        }
+    }
+
     a {
         color: $main;
         text-decoration: none;
         background-color: white;
         border: 1px solid $main;
         border-radius: 10px;
-        padding: 0.5em 1em;
+        padding: 0.5em 0.5em;
+        position: absolute;
+        top: 2.2em;
+        right: 1em;
         transition: all 0.3s;
         float: right;
 
@@ -53,6 +80,7 @@ $red: #D80027;
 }
 
 .right-view {
+
     a {
         &.float {
             position: fixed;
@@ -127,7 +155,7 @@ $red: #D80027;
         .month {
             padding: 1em;
             width: 100%;
-            // background: #ccc;
+
             ul {
                 margin: 0;
                 padding: 0;
@@ -246,7 +274,26 @@ $red: #D80027;
         z-index: 1;
         bottom: 1em;
         left: 41.5%;
-        transition: all 0.5s;
+        transition: all 0.5s ease-in-out;
+        opacity: 0;
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+    .tooltiptext1 {
+        width: 24em;
+        background-color: #eee;
+        color: $red;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        border: 1px solid $red;
+        position: fixed;
+        z-index: 1;
+        bottom: 1em;
+        left: 53%;
+        transition: all 0.5s ease-in-out;
         opacity: 0;
 
         &.visible {
