@@ -9,7 +9,7 @@ export class CommonFunctions implements OnInit {
     ngOnInit() {
     }
 
-    togglePanel(panelId, arg) {
+    togglePanel(panelId, arg): void {
         let panel = (<HTMLInputElement>document.getElementById(panelId));
         if (arg) {
             panel.hidden = true;
@@ -18,7 +18,7 @@ export class CommonFunctions implements OnInit {
         }
     }
 
-    roundUpTime() {
+    roundUpTime(): Date {
         let date = new Date();
         let minute = date.getMinutes() <= 30 ? 30 : 0;
         let hour = date.getMinutes() <= 30 ? date.getHours() : (date.getHours() < 23 ? date.getHours() + 1 : 0);
@@ -27,7 +27,7 @@ export class CommonFunctions implements OnInit {
         let year = date.getFullYear();
         return new Date(year, month, day, hour, minute);
     }
-    untilDate() {
+    untilDate(): Date {
         let date = new Date();
         let minute = date.getMinutes();
         let hour = date.getHours();
@@ -36,7 +36,7 @@ export class CommonFunctions implements OnInit {
         let year = date.getFullYear() + 1;
         return new Date(year, month, day, hour, minute);
     }
-    changeRepetitionType(startDate: Date) {
+    changeRepetitionType(startDate: Date): void {
         let val = (<HTMLInputElement>document.getElementById('repetition-type')).value;
         switch (val) {
             case this.repetitionTypes[0]:
@@ -63,7 +63,7 @@ export class CommonFunctions implements OnInit {
         }
     }
 
-    changeRepetitionLimitedTime() {
+    changeRepetitionLimitedTime(): void {
         let val = (<HTMLInputElement>document.getElementById('repetition-limited-time')).value;
         switch (val) {
             case this.repetitionLimitedTimes[0]:
@@ -81,7 +81,7 @@ export class CommonFunctions implements OnInit {
         }
     }
 
-    getDay(today: Date) {
+    getDay(today: Date): string {
         let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let orderNumbers = ["first ", "second ", "third ", "fourth "];
         let result = "";
@@ -106,7 +106,7 @@ export class CommonFunctions implements OnInit {
         }
         return result;
     }
-    getAllDaysOfMonth(day, month, fullYear) {
+    getAllDaysOfMonth(day, month, fullYear): Date[] {
         let d = new Date(),
             results = [];
         d.setDate(1);
@@ -122,7 +122,7 @@ export class CommonFunctions implements OnInit {
         return results;
     }
 
-    changeTitleAfterLogined(title: string) {
+    changeTitleAfterLogined(title: string): void {
         let defaultButton = document.getElementsByClassName("default-button");
         if (defaultButton.length != 0) {
             (<HTMLInputElement>defaultButton[0]).hidden = true;
@@ -135,7 +135,7 @@ export class CommonFunctions implements OnInit {
         this.changeTitleContent(title);
     }
 
-    changeTitleContent(title: string) {
+    changeTitleContent(title: string): void {
         let titleContent = <HTMLInputElement>document.getElementById("title-content");
         titleContent.innerHTML = title;
     }
@@ -144,7 +144,7 @@ export class CommonFunctions implements OnInit {
         return localStorage.getItem('currentUser');
     }
 
-    getAllGoalsActived(goals: Goal[]) {
+    getAllGoalsActived(goals: Goal[]): Goal[] {
         let listResult = new Array<Goal>();
         for (let goal of goals) {
             if (goal.is_archived != true) {
@@ -154,7 +154,7 @@ export class CommonFunctions implements OnInit {
         return listResult;
     }
 
-    getAllGoalsArchived(goals: Goal[]) {
+    getAllGoalsArchived(goals: Goal[]): Goal[] {
         let listResult = new Array<Goal>();
         for (let goal of goals) {
             if (goal.is_archived == true) {
@@ -213,18 +213,30 @@ export class CommonFunctions implements OnInit {
         return day;
     }
 
-    getDayName(string) :string{
-      let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      let result = "";
-      let days = string.split(", ");
-      for (let day in days){
-        for (let dayName in dayNames){
-          if(days[day] === dayName){
-            result += dayNames[dayName] + ", ";
-          }
+    getDayName(string): string {
+        let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        let result = "";
+        let days = string.split(", ");
+        for (let day in days) {
+            for (let dayName in dayNames) {
+                if (days[day] === dayName) {
+                    result += dayNames[dayName] + ", ";
+                }
+            }
         }
-      }
-      return result.slice(0, -2);
+        return result.slice(0, -2);
+    }
+
+    changeBackground(isIntroduction: boolean): void {
+        let body = document.getElementsByTagName('body')[0];
+        if (isIntroduction) {
+            if (body.classList.contains('introduction')) {
+            } else {
+                body.classList.add('introduction');
+            }
+        } else {
+            body.classList.remove('introduction');
+        }
     }
 
 }

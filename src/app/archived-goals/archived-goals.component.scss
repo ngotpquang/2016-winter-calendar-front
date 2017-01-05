@@ -30,10 +30,44 @@ $red: #D80027;
         }
 
         .goal-title {
+            position: relative;
             margin-bottom: 2em;
+
+            .tooltiptext {
+                visibility: hidden;
+                width: 120px;
+                background-color: white;
+                color: $main;
+                text-align: center;
+                padding: 5px 0;
+                border-radius: 10px;
+                border: 1px solid $main;
+                position: absolute;
+                left: 2em;
+                width: 13em;
+                top: 1.5em;
+                z-index: 1;
+
+                a {
+                    color: $main;
+                    text-decoration: none;
+                    background: none;
+                    box-shadow: none;
+
+                    &:active,
+                    &:focus,
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
 
             &:hover {
                 cursor: pointer;
+
+                .tooltiptext {
+                    visibility: visible;
+                }
             }
 
             #title {

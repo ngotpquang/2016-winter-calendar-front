@@ -9,7 +9,7 @@
                     <div class="goal-panel" id="item-{{goal.id}}" *ngIf="i % 2 == 0" style="float: left;">
                         <div class="goal-title">
                             <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
-                            <!-- <a style="margin-left:20px;" [routerLink]="['/editgoal',goal.id]"><img src="../img/edit.svg" height="16" width="16"></a> -->
+                            <span class="tooltiptext">&nbsp;&nbsp;<a (click)="displayMonthView(goal)">Month view</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a (click)="displayYearView(goal)">Year view</a>&nbsp;&nbsp;</span>
                             <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div>
                         </div>
                         <div class="clear"></div>
@@ -44,7 +44,7 @@
                     <div class="goal-panel" id="item-{{goal.id}}" *ngIf="i % 2 != 0" style="float: right;">
                         <div class="goal-title">
                             <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
-                            <!-- <a style="margin-left:20px;" [routerLink]="['/editgoal',goal.id]"><img src="../img/edit.svg" height="16" width="16"></a> -->
+                            <span class="tooltiptext">&nbsp;&nbsp;<a (click)="displayMonthView(goal)">Month view</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a (click)="displayYearView(goal)">Year view</a>&nbsp;&nbsp;</span>
                             <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div>
                         </div>
                         <div class="clear"></div>

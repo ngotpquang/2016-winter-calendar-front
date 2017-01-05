@@ -14,6 +14,7 @@ export class IntroductionComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.commonFunctions.changeBackground(true);
         this.commonFunctions.changeTitleContent('Seinfeld Calendar');
     }
 
