@@ -57,9 +57,4 @@ export class UserService {
                 {headers: headers}
         );
     }
-
-    private handleError(error: any): Promise<any>{
-        console.log('An error occurred', error);
-        return Promise.reject(error.message || error);
-    }
 }
