@@ -207,7 +207,7 @@ export class MonthViewComponent implements OnInit {
             console.log("archived");
             let displayInfor = document.getElementById("show-infor");
             displayInfor.classList.add('visible');
-            setTimeout(() => { displayInfor.classList.remove('visible'); }, 1000);
+            setTimeout(() => { displayInfor.classList.remove('visible'); }, 2000);
         } else {
             console.log("not archived");
             clearTimeout(this.timeOut);
@@ -236,7 +236,7 @@ export class MonthViewComponent implements OnInit {
                                 this.displayGoalInfor();
                                 this.router.navigate(["/monthview/" + this.goal.id]);
                             }, error => console.log(error));
-                        }, 2000);
+                        }, 1000);
                     } else if (date.classList.item(1) == 'fail') {
                         date.classList.remove('fail');
                         this.timeOut = setTimeout(() => {
@@ -245,7 +245,7 @@ export class MonthViewComponent implements OnInit {
                                 this.displayGoalInfor();
                                 this.router.navigate(["/monthview/" + this.goal.id]);
                             }, error => console.log(error));
-                        }, 2000);
+                        }, 1000);
                     } else {
                         date.classList.add('pass');
                         this.timeOut = setTimeout(() => {
@@ -254,7 +254,7 @@ export class MonthViewComponent implements OnInit {
                                 this.displayGoalInfor();
                                 this.router.navigate(["/monthview/" + this.goal.id]);
                             }, error => console.log(error));
-                        }, 2000);
+                        }, 1000);
                     }
                 } else if (date.classList.item(0) == 'pass') {
                     date.classList.remove('pass');
@@ -265,7 +265,7 @@ export class MonthViewComponent implements OnInit {
                             this.displayGoalInfor();
                             this.router.navigate(["/monthview/" + this.goal.id]);
                         }, error => console.log(error));
-                    }, 2000);
+                    }, 1000);
                 } else {
                     date.classList.remove('fail');
                     this.timeOut = setTimeout(() => {
@@ -274,12 +274,12 @@ export class MonthViewComponent implements OnInit {
                             this.displayGoalInfor();
                             this.router.navigate(["/monthview/" + this.goal.id]);
                         }, error => console.log(error));
-                    }, 2000);
+                    }, 1000);
                 }
             } else {
                 let displayInfor = document.getElementById("show-infor1");
                 displayInfor.classList.add('visible');
-                setTimeout(() => { displayInfor.classList.remove('visible'); }, 1000);
+                setTimeout(() => { displayInfor.classList.remove('visible'); }, 2000);
             }
 
         }
