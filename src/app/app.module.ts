@@ -1,3 +1,5 @@
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MonthInYearComponent } from './year-view/month-in-year-view.component';
 import { YearViewComponent } from './year-view/year-view.component';
 import { EditGoalComponent } from './edit-goal/edit-goal.component';
@@ -40,7 +42,9 @@ import { ArchivedGoalsComponent } from './archived-goals/archived-goals.componen
         YearViewComponent,
         PageNotFoundComponent,
         MonthInYearComponent,
-        ArchivedGoalsComponent
+        ArchivedGoalsComponent,
+        ResetPasswordComponent,
+        ForgotPasswordComponent
     ],
     imports: [
         ArchivedGoalsModule,

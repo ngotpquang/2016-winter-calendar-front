@@ -11,6 +11,21 @@ export class MonthInYearComponent implements OnInit {
     @Input()
     year: number = 2017;
     @Input()
+    set setYear(year: number){
+        this.year = year;
+        if (this.goalInMonth != null) {
+            this.isLoaded = false;
+            for (let i = 0; i < 42; i++) {
+                this.dates[i] = null;
+                this.classli[i] = null;
+                this.state[i] = 0;
+            }
+            this.generateDate();
+            this.checkGoal();
+            this.isLoaded = true;
+        }
+    }
+    @Input()
     month: number = 0;
     @Input()
     monthName: string = 'January';
@@ -22,7 +37,7 @@ export class MonthInYearComponent implements OnInit {
     classli: string[] = [];
     anchor: number;
     isLoaded: boolean = false;
-    myTimeOut: number;
+    myTimeOut: number[] = [];
 
     constructor(private goalService: GoalService) {}
     ngOnInit(): void {
@@ -55,8 +70,10 @@ export class MonthInYearComponent implements OnInit {
             start ++;
         }
         let today = new Date();
-        if ( today.getMonth() === this.month ) {
-            this.classli[today.getDate() + this.anchor] = 'active';
+        if (today.getFullYear() === this.year) {
+            if ( today.getMonth() === this.month ) {
+                this.classli[today.getDate() + this.anchor] = 'active';
+            }
         }
     }
     onClickLi(obj): void {
@@ -66,12 +83,13 @@ export class MonthInYearComponent implements OnInit {
         let id = this.goalInMonth.id;
         let strDate = date.toString();
         let status = this.state[obj].toString();
-        clearTimeout(this.myTimeOut);
-        this.myTimeOut = window.setTimeout((() => {
+        clearTimeout(this.myTimeOut[obj]);
+        this.myTimeOut[obj] = window.setTimeout((() => {
             this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
             console.log('put!!!');
         }), 1000);
     }
+
     /*isDateEqual(a: Date, b: Date): boolean {
         if (a.getDate() === b.getDate() && a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()){
             return true;

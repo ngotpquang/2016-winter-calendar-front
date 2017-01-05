@@ -48,4 +48,18 @@ export class UserService {
     setLoggedIn(logined: boolean) {
         this.loggedIn = logined;
     }
+
+    forgotPassword(email: string) {
+        return this.http
+            .post(
+                'https://wintercalendar.herokuapp.com/api/v1/auth/reset_password',
+                JSON.stringify({email}),
+                {headers: headers}
+        );
+    }
+
+    private handleError(error: any): Promise<any>{
+        console.log('An error occurred', error);
+        return Promise.reject(error.message || error);
+    }
 }
