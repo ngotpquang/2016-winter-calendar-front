@@ -1,3 +1,5 @@
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { YearViewComponent } from './year-view/year-view.component';
 import { CanActivate } from '@angular/router';
 import { EditGoalComponent } from './edit-goal/edit-goal.component';
@@ -27,6 +29,8 @@ export const appRoutes = [
     { path: 'archivedgoals', component: ArchivedGoalsComponent, canActivate: [LoggedInGuard] },
     { path: 'loading', component: LoadingIndicatorComponent },
     { path: 'editgoal/:id', component: EditGoalComponent, CanActivate: [LoggedInGuard]},
-    { path: 'yearview/:id/:year', component: YearViewComponent, CanActivate: [LoggedInGuard]},
+    { path: 'yearview/:id', component: YearViewComponent, CanActivate: [LoggedInGuard]},
+    { path: 'reset_password/:token', component: ResetPasswordComponent},
+    { path: 'forgot_password', component: ForgotPasswordComponent},
     { path: '**', component: PageNotFoundComponent },
 ];
