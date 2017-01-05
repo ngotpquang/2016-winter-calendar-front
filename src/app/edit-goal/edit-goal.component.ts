@@ -21,12 +21,12 @@ export class EditGoalComponent implements OnInit {
     repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
     repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
     weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    toggleWeekDays: boolean[] = [false, false, false, false, false, false, false ];
+    toggleWeekDays: boolean[] = [false, false, false, false, false, false, false];
     public commonFunctions: CommonFunctions;
     submitted = false;
     isDataLoaded = false;
     constructor(private goalService: GoalService, private route: ActivatedRoute,
-    private location: Location, private router: Router){
+        private location: Location, private router: Router) {
     };
     ngOnInit(): void {
         this.id = this.route.params['_value']['id'];
@@ -37,20 +37,23 @@ export class EditGoalComponent implements OnInit {
             this.toRepetitionUnit();
             let rep = this.goal.repetition;
             if (rep.type_of_repetition === 2) {
-                if (rep.day_of_week != null){
+                if (rep.day_of_week != null) {
                     let strDoW = rep.day_of_week.split(',');
-                    for (let i = 0; i < strDoW.length; i++){
-                        let index = parseInt(strDoW[i].toString(),10);
+                    for (let i = 0; i < strDoW.length; i++) {
+                        let index = parseInt(strDoW[i].toString(), 10);
                         this.toggleWeekDays[index] = true;
                     }
                 }
-            }
+            };
             this.setDay();
             this.setDate();
             this.isDataLoaded = true;
+        }, (error) => {
+            console.log(error['status']);
+            this.router.navigate(['/pagenotfound']);
         });
     };
-    setDay(): void{
+    setDay(): void {
         let date: Date = new Date(this.goal.start_date);
         let numDay = date.getDay();
         switch (numDay) {
@@ -85,7 +88,7 @@ export class EditGoalComponent implements OnInit {
             this.date = 'first';
         } else if (num < 2) {
             this.date = 'second';
-        } else if (num < 3 ) {
+        } else if (num < 3) {
             this.date = 'third';
         } else if (num < 4) {
             this.date = 'forth';
@@ -102,7 +105,7 @@ export class EditGoalComponent implements OnInit {
         this.location.back();
     }
     editGoal(): void {
-      this.isDataLoaded = false;
+        this.isDataLoaded = false;
         if (this.goal.description == null) {
             this.goal.description = '';
         }
@@ -115,7 +118,7 @@ export class EditGoalComponent implements OnInit {
     updateDoW(): void {
         if (this.goal.repetition.type_of_repetition === 2) {
             this.goal.repetition.day_of_week = '';
-            for (let i = 0; i < this.toggleWeekDays.length; i++){
+            for (let i = 0; i < this.toggleWeekDays.length; i++) {
                 if (this.toggleWeekDays[i]) {
                     this.goal.repetition.day_of_week += '' + i + ', ';
                 }
@@ -130,8 +133,8 @@ export class EditGoalComponent implements OnInit {
         let num = parseInt(this.goal.end_date.type_of_end_date.toString(), 10);
         this.goal.end_date.type_of_end_date = num;
     }
-    toNumber1(): void{
-        let num = parseInt(this.goal.end_date.type_of_end_date.toString(),10);
+    toNumber1(): void {
+        let num = parseInt(this.goal.end_date.type_of_end_date.toString(), 10);
         this.goal.end_date.type_of_end_date = num;
     }
     toRepetitionUnit(): void {
@@ -140,21 +143,21 @@ export class EditGoalComponent implements OnInit {
             case 1: {
                 this.unit = 'day';
             }
-            break;
+                break;
             case 2: {
                 this.unit = 'week';
             }
-            break;
+                break;
             case 3: {
                 this.unit = 'moth';
             }
-            break;
+                break;
             case 4: {
                 this.unit = 'year';
             }
-            break;
+                break;
             default:
-            break;
+                break;
         }
         // console.log(this.unit);
     }

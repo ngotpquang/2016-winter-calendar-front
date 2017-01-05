@@ -14,7 +14,6 @@ import '../rxjs-operator'
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent extends LoadingPage implements OnInit {
-    @Output() currentUser = new EventEmitter<any>();
     commonFunctions: CommonFunctions;
     constructor(private router: Router, private userService: UserService) {
         super('loaded');
@@ -37,8 +36,8 @@ export class LoginComponent extends LoadingPage implements OnInit {
                 this.ready();
                 localStorage.setItem('currentUser', JSON.stringify(res.json().data));
                 this.userService.setLoggedIn(true);
-                this.currentUser.emit(JSON.stringify(res.json().data));
-                this.router.navigate(['/detailview']);
+                let redirect = this.userService.redirectUrl ? this.userService.redirectUrl : '/detailview';
+                this.router.navigate([redirect]);
                 this.commonFunctions.changeTitleAfterLogined("Your dashboard");
             },
             error => console.log(error)

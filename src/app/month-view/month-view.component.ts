@@ -26,16 +26,21 @@ export class MonthViewComponent implements OnInit {
     ngOnInit() {
         this.commonFunctions = new CommonFunctions();
         this.openModal(true);
-        this.route.params.switchMap((params: Params) => this.goalService.getGoalsById(params['id']))
-            .subscribe((res) => {
-                this.goal = res.json();
-                this.commonFunctions.changeTitleContent(this.goal.goal_name);
-                this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
-                this.displayGoalOnCalendar();
-                this.displayGoalInfor();
-                this.openModal(false);
-                this.hiddenWeekdays = false;
-            }, error => console.log(error));
+        let currentUser = localStorage.getItem('currentUser');
+        let id = this.route.params['_value']['id'];
+        console.log(id);
+        this.goalService.getGoalsById(id).subscribe((res) => {
+            this.goal = res.json();
+            this.commonFunctions.changeTitleContent(this.goal.goal_name);
+            this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
+            this.displayGoalOnCalendar();
+            this.displayGoalInfor();
+            this.openModal(false);
+            this.hiddenWeekdays = false;
+        }, error => {
+          console.log(error['status']);
+          this.router.navigate(['/pagenotfound']);
+        });
     }
 
     openModal(showed: boolean) {

@@ -8,6 +8,7 @@ import '../rxjs-operator';
 @Injectable()
 export class UserService {
     private loggedIn = false;
+    redirectUrl: string;
     constructor(private http: Http) {
         this.loggedIn = !!localStorage.getItem('currentUser');
     }
