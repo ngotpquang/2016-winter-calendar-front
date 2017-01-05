@@ -31,14 +31,23 @@ export class YearViewComponent implements OnInit{
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
             this.isDataLoaded = true;
-            console.log(this.goal);
         });
     }
     nextYear(): void {
+        this.isDataLoaded = false;
         this.year += 1;
+        this.goalService.getGoalsById(this.id).toPromise().then((data) => {
+            this.goal = JSON.parse(data['_body']);
+            this.isDataLoaded = true;
+        });
     }
 
     previousYear(): void {
+        this.isDataLoaded = false;
         this.year -= 1;
+        this.goalService.getGoalsById(this.id).toPromise().then((data) => {
+            this.goal = JSON.parse(data['_body']);
+            this.isDataLoaded = true;
+        });
     }
 }

@@ -78,16 +78,27 @@ export class MonthInYearComponent implements OnInit {
     }
     onClickLi(obj): void {
         let day = obj - this.anchor;
-        this.state[obj] = (this.state[obj] + 1) % 3;
         let date = new Date(this.year, this.month, day);
-        let id = this.goalInMonth.id;
-        let strDate = date.toString();
-        let status = this.state[obj].toString();
-        clearTimeout(this.myTimeOut[obj]);
-        this.myTimeOut[obj] = window.setTimeout((() => {
-            this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
-            console.log('put!!!');
-        }), 1000);
+        let currentDate = new Date();
+        let startDate = new Date(this.goalInMonth.start_date);
+        if (this.goalInMonth.end_date.specific_end_date != null) {
+            let endDate = new Date(this.goalInMonth.end_date.specific_end_date);
+            if (date.getTime() - endDate.getTime() > 0){
+                return;
+            }
+        }
+        if (date.getTime() - currentDate.getTime() > 0 || date.getTime() - startDate.getTime() < 0) {
+            return;
+        }else {
+            this.state[obj] = (this.state[obj] + 1) % 3;
+            let id = this.goalInMonth.id;
+            let strDate = date.toString();
+            let status = this.state[obj].toString();
+            clearTimeout(this.myTimeOut[obj]);
+            this.myTimeOut[obj] = window.setTimeout((() => {
+                this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
+            }), 1000);
+        }
     }
 
     /*isDateEqual(a: Date, b: Date): boolean {
