@@ -52,17 +52,24 @@ export class UserService {
     forgotPassword(email: string) {
         return this.http
             .post(
-                'https://wintercalendar.herokuapp.com/api/v1/auth/reset_password',
-                JSON.stringify({email}),
-                {headers: headers}
-        );
+            'https://wintercalendar.herokuapp.com/api/v1/auth/reset_password',
+            JSON.stringify({ email }),
+            { headers: headers }
+            );
     }
-    postNewPassword(reset_password_token: string, new_password: string){
+    postNewPassword(reset_password_token: string, new_password: string) {
         return this.http
             .post(
-                'https://wintercalendar.herokuapp.com/api/v1/auth/new_password',
-                JSON.stringify({reset_password_token, new_password}),
-                {headers: headers}
+            'https://wintercalendar.herokuapp.com/api/v1/auth/new_password',
+            JSON.stringify({ reset_password_token, new_password }),
+            { headers: headers }
             );
+    }
+
+    confirmEmail(confirmed_token: string) {
+        return this.http.post('https://wintercalendar.herokuapp.com/api/v1/auth/confirm_email',
+            JSON.stringify({ confirmed_token }),
+            { headers: headers }
+          );
     }
 }

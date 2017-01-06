@@ -126,6 +126,17 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         }
     }
 
+    showDeleteMenu(): void {
+        let sortModal = document.getElementById('notification-delete');
+        let display = sortModal.style.display;
+        if (display != 'block') {
+            sortModal.style.display = "block";
+        } else {
+            sortModal.style.display = "none";
+        }
+
+    }
+
     deleteGoals() {
         this.openLoading(true);
         let modal = document.getElementById('context-menu');

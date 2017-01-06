@@ -15,11 +15,13 @@ import '../rxjs-operator';
 })
 export class LoginComponent extends LoadingPage implements OnInit {
     commonFunctions: CommonFunctions;
+    private unauthorized: boolean = false;
     constructor(private router: Router, private userService: UserService) {
         super('loaded');
     }
 
     ngOnInit() {
+        this.unauthorized = false;
         this.commonFunctions = new CommonFunctions();
         this.commonFunctions.changeBackground(false);
     }
@@ -42,7 +44,11 @@ export class LoginComponent extends LoadingPage implements OnInit {
                 this.router.navigate([redirect]);
                 this.commonFunctions.changeTitleAfterLogined("Your dashboard");
             },
-            error => console.log(error)
+            error => {
+                console.log(error);
+                this.unauthorized = true;
+                this.ready();
+            }
         );
     }
 

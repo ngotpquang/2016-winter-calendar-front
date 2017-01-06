@@ -17,9 +17,9 @@ export class AppComponent implements OnInit {
     }
     ngOnInit() {
         this.title = "Seinfeld Calendar";
+        this.commonFunctions = new CommonFunctions();
         let currentUser = localStorage.getItem('currentUser');
         if (currentUser != null) {
-            this.commonFunctions = new CommonFunctions();
             this.commonFunctions.changeTitleAfterLogined("Your dashboard");
             this.title = "Your dashboard";
         } else {
@@ -61,12 +61,11 @@ export class AppComponent implements OnInit {
                     (<HTMLInputElement>defaultButton[0]).hidden = false;
                     (<HTMLInputElement>defaultButton[1]).hidden = false;
                 }
-                let titleContent = <HTMLInputElement>document.getElementById("title-content");
-                titleContent.innerHTML = "Seinfeld Calendar";
+                this.commonFunctions.changeTitleContent("Seinfeld Calendar");
                 logoutButton.hidden = true;
                 this.userService.setLoggedIn(false);
                 this.openModal(false);
-                this.router.navigate(['/']);
+                this.router.navigate(['/login']);
             },
             error => console.log(error)
         );

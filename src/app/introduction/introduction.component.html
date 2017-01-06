@@ -1,7 +1,7 @@
 <div class="introduction">
   <div class="welcome" [hidden]="currentUser != null">
     <p>
-      Hello {{currentUser != null ? "currentUser.name" : "guest"}}! How are you today? Ready to <a routerLink="/createnewgoal">challenge</a> yourself?
+      Hello guest! How are you today? Ready to <a routerLink="/createnewgoal">challenge</a> yourself?
     </p>
     <img src="../img/welcome.png" alt="welcome" width="120px" style="vertical-align: middle; float: right;">
     <div class="clear"></div>
@@ -18,7 +18,7 @@
   <div class="logged-in" [hidden]="currentUser == null">
     <img src="../img/run.png" alt="start" width="120px" style="vertical-align: middle;">
     <p>
-      Check your <a routerLink="/detailview">dashboard</a> or challenge yourself with <a routerLink="/createnewgoal">new goal</a>!
+      Hi <b>{{currentUser != null ? currentUser.name : ""}}</b>! Check your <a routerLink="/detailview">dashboard</a> or challenge yourself with <a routerLink="/createnewgoal">new goal</a>!
     </p>
     <div class="clear"></div>
   </div>
