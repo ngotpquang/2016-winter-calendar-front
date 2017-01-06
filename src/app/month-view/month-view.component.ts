@@ -231,7 +231,7 @@ export class MonthViewComponent implements OnInit {
             let markDate = new Date(fullDate).setHours(0, 0, 0, 0);
             let startDate = new Date(this.goal.start_date.split('T')[0]).setHours(0, 0, 0, 0);
             let today = new Date().setHours(0, 0, 0, 0);
-            if (this.goal.end_date.type_of_end_date == 2) {
+            if (this.goal.end_date.type_of_end_date == 2 || this.goal.end_date.type_of_end_date == 3) {
                 let endDate = new Date(this.goal.end_date.specific_end_date).setHours(0, 0, 0, 0);
                 if (today > endDate) {
                     today = endDate;
