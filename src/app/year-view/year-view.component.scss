@@ -6,7 +6,43 @@ ul {
     list-style-type: none;
 }
 $main: #1E824C;
+button {
+        // display: block;
+        border: 1px solid $main;
+        border-radius: 10px;
+        background-color: $main;
+        color: white;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0.5em;
+        width: 7.5em;
+        transition: all 0.3s;
+        cursor: pointer;
+        float: left;
 
+        &#detailBtn {
+            background-color: #eee;
+            color: $main;
+            border: 1px solid $main;
+            margin-right: 1em;
+
+            &:active,
+            &:focus,
+            &:hover {
+                background-color: white;
+            }
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+            outline: none;
+            background-color: white;
+            color: $main;
+            font-weight: bold;
+            border: 1.5px solid $main;
+        }
+    }
 .item {
     width: 60%;
     align: center;
