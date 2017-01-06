@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 
 import { LoadingPage } from '../loading-indicator/loading-page';
 import { UserService } from '../user/user.service';
 import { CommonFunctions } from '../shared/common-functions';
-import '../rxjs-operator'
+import '../rxjs-operator';
 
 @Component({
     selector: 'app-login',
