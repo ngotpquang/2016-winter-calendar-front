@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { LoadingPage } from '../loading-indicator/loading-page';
 import { UserService } from '../user/user.service';
 import { CommonFunctions } from '../shared/common-functions';
-import '../rxjs-operator'
+import '../rxjs-operator';
 
 @Component({
     selector: 'app-login',
