@@ -53,6 +53,12 @@ export class EditGoalComponent implements OnInit {
             this.router.navigate(['/pagenotfound']);
         });
     };
+    setTempDate() {
+        let offSet = new Date().getTimezoneOffset();
+        let fullTime = new Date(this.goal.start_date).getTime();
+        let temp = fullTime + (offSet * 60 * 1000);
+        this.goal.start_date = new Date(temp);
+    }
     setDay(): void {
         let date: Date = new Date(this.goal.start_date);
         let numDay = date.getDay();
@@ -112,7 +118,7 @@ export class EditGoalComponent implements OnInit {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.goal.token = currentUser.token;
         this.goal.email = currentUser.email;
-        // console.log(this.goal);
+
         this.goalService.editGoal(this.id, this.goal).then(() => this.router.navigate(['/detailview']));
     }
     updateDoW(): void {
@@ -162,3 +168,4 @@ export class EditGoalComponent implements OnInit {
         // console.log(this.unit);
     }
 }
+
