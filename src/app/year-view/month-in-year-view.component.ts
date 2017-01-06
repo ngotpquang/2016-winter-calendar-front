@@ -81,7 +81,6 @@ export class MonthInYearComponent implements OnInit {
         let date = new Date(this.year, this.month, day);
         let currentDate = new Date();
         let startDate = new Date(this.goalInMonth.start_date);
-        console.log(date.getTime() - startDate.getTime());
         if (this.goalInMonth.end_date.specific_end_date != null) {
             let endDate = new Date(this.goalInMonth.end_date.specific_end_date);
             if (date.getTime() - endDate.getTime() > 0){
