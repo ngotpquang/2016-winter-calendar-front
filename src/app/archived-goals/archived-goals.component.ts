@@ -13,7 +13,8 @@ import { LoadingPage } from '../loading-indicator/loading-page';
     styleUrls: ['./archived-goals.component.scss']
 })
 export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
-
+    private sortType: string;
+    private isReversed: boolean;
     public goals;
     public commonFunctions: CommonFunctions;
     constructor(private router: Router, private goalService: GoalService) {
@@ -23,10 +24,10 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
     ngOnInit() {
         this.commonFunctions = new CommonFunctions();
         this.commonFunctions.changeBackground(false);
-        this.commonFunctions.changeTitleContent("Archived Goals");
-        localStorage.setItem('sortType', '1');
-        localStorage.setItem('isReversed', '0');
-        this.goalService.getAllGoals(false, 1).subscribe(res => {
+        this.commonFunctions.changeTitleContent("Archived goals");
+        this.sortType = localStorage.getItem('sortType') == null ? "1" : localStorage.getItem('sortType');
+        this.isReversed = localStorage.getItem('isReversed') == null ? false : (localStorage.getItem('isReversed') == '0' ? false : true);
+        this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
             this.goals = res.json();
             this.goals = this.commonFunctions.getAllGoalsArchived(this.goals);
             this.ready();
@@ -41,7 +42,44 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
         this.router.navigate(['/yearview', goal.id]);
     }
 
-    showModal(goalId) {
+    showSortMenu(): void {
+        let sortModal = document.getElementById('sort-modal');
+        let display = sortModal.style.display;
+        if (display != 'block') {
+            sortModal.style.display = "block";
+        } else {
+            sortModal.style.display = "none";
+        }
+
+    }
+
+    sort(): void {
+        let sortType = document.getElementsByName('sort-type');
+        let isReversed = <HTMLInputElement>document.getElementById('reverse-order');
+        localStorage.setItem('isReversed', isReversed.checked ? '1' : '0');
+        this.isReversed = isReversed.checked;
+        let sortTypeValue;
+        for (let st in sortType) {
+            let s = (<HTMLInputElement>sortType[st])
+            if (s.checked) {
+                sortTypeValue = s.value;
+                this.sortType = sortTypeValue;
+                localStorage.setItem('sortType', sortTypeValue);
+                break;
+            }
+        }
+        console.log(isReversed.checked + "|" + sortTypeValue);
+
+        let favoriteGoals = this.commonFunctions.sortGoals(this.commonFunctions.getListFavoriteGoals(this.goals), sortTypeValue);
+        let notFavoriteGoals = this.commonFunctions.sortGoals(this.commonFunctions.getListNotFavoriteGoals(this.goals), sortTypeValue);
+        if (this.isReversed) {
+            favoriteGoals.reverse();
+            notFavoriteGoals.reverse();
+        }
+        this.goals = favoriteGoals.concat(notFavoriteGoals);
+    }
+
+    showContextMenu(goalId) {
         let goalPanel = document.getElementById("item-" + goalId);
         let backgroundColor = goalPanel.style.backgroundColor;
         console.log(backgroundColor);
@@ -62,7 +100,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
         }
     }
 
-    openModal(showed: boolean) {
+    openLoading(showed: boolean) {
         let modal = document.getElementById('deleting');
         let span = document.getElementsByClassName("close")[0];
         if (showed) {
@@ -73,7 +111,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
     }
 
     deleteGoals() {
-        this.openModal(true);
+        this.openLoading(true);
         let modal = document.getElementById('context-menu');
         let checks = document.getElementsByClassName('checking');
         let deleteIds = "";
@@ -91,7 +129,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
         })
     }
     archiveGoals() {
-        this.openModal(true);
+        this.openLoading(true);
         let modal = document.getElementById('context-menu');
         let checks = document.getElementsByClassName('checking');
         let archiveIds = "";

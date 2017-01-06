@@ -21,6 +21,7 @@ export class SignUpComponent extends LoadingPage implements OnInit {
 
     ngOnInit() {
         this.commonFunctions = new CommonFunctions();
+        this.commonFunctions.changeBackground(false);
     }
 
     public signUpForm = new FormGroup({
@@ -31,13 +32,15 @@ export class SignUpComponent extends LoadingPage implements OnInit {
     });
     doSignUp(event) {
         let user = this.signUpForm.value;
-        // console.log(user);
+        this.commonFunctions.changeBackground(false);
         this.standby();
         this.userService.signUp(user.name, user.email, user.password).subscribe((res) => {
             localStorage.setItem('currentUser', JSON.stringify(res.json().data));
+            console.log(localStorage.getItem('currentUser'));
             this.userService.setLoggedIn(true);
-            this.router.navigate(['/detailview']);
             this.commonFunctions.changeTitleAfterLogined("Your dashboard");
+            this.router.navigate(['/detailview']);
+
         },
             error => console.log(error)
         );

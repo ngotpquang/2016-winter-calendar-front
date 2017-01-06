@@ -21,6 +21,7 @@ export class LoginComponent extends LoadingPage implements OnInit {
 
     ngOnInit() {
         this.commonFunctions = new CommonFunctions();
+        this.commonFunctions.changeBackground(false);
     }
 
     public loginForm = new FormGroup({

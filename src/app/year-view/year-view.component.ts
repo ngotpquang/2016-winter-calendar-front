@@ -30,6 +30,7 @@ export class YearViewComponent implements OnInit{
         this.year = parseInt(this.year.toString(), 10);
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
+            this.commonFuntion.changeTitleContent(this.goal.goal_name);
             this.isDataLoaded = true;
         });
     }

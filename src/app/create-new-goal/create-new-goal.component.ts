@@ -26,6 +26,7 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
         this.repetitionTypes = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
         this.repetitionLimitedTimes = ['Forever', 'Until a date', 'For a number of events'];
         this.commonFunctions = new CommonFunctions();
+        this.commonFunctions.changeBackground(false);
     }
 
     public createNewGoalForm = new FormGroup({

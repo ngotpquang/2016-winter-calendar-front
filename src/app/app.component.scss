@@ -1,3 +1,15 @@
+div,
+label,
+span {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
 #header,
 #main {
 	transition: margin-left 0.3s;
@@ -11,6 +23,7 @@ header {
 	font-family: 'Raleway', sans-serif;
 	padding: 1em;
 	color: white;
+
 	.modal {
 		display: none;
 		position: fixed;
@@ -23,6 +36,7 @@ header {
 		overflow: auto;
 		background-color: rgba(0, 0, 0, 0.9);
 	}
+
 	.modal-content {
 		position: relative;
 		background-color: #fefefe;
@@ -41,6 +55,7 @@ header {
 			background-color: $main;
 			color: white;
 			border-radius: 10px 10px 0 0;
+
 			p {
 				font-size: 22px;
 				font-weight: bold;
@@ -90,7 +105,9 @@ header {
 		float: right;
 		font-size: 28px;
 		font-weight: bold;
-		&:hover, &:focus {
+
+		&:focus,
+		&:hover {
 			color: #000;
 			text-decoration: none;
 			cursor: pointer;

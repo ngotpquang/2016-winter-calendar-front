@@ -39,8 +39,8 @@ export class MonthViewComponent implements OnInit {
             this.openModal(false);
             this.hiddenWeekdays = false;
         }, error => {
-          console.log(error['status']);
-          this.router.navigate(['/pagenotfound']);
+            console.log(error['status']);
+            this.router.navigate(['/pagenotfound']);
         });
     }
 
@@ -55,7 +55,13 @@ export class MonthViewComponent implements OnInit {
     }
 
     editGoal() {
-        this.router.navigate(['/editgoal', this.goal.id]);
+        if (this.goal.is_archived) {
+            let displayInfor = document.getElementById("show-infor");
+            displayInfor.classList.add('visible');
+            setTimeout(() => { displayInfor.classList.remove('visible'); }, 2000);
+        } else {
+            this.router.navigate(['/editgoal', this.goal.id]);
+        }
     }
 
     displayGoalInfor() {
@@ -210,7 +216,7 @@ export class MonthViewComponent implements OnInit {
     }
     displayDate(id: number) {
         if (this.goal.is_archived == true) {
-            console.log("archived");
+            // console.log("archived");
             let displayInfor = document.getElementById("show-infor");
             displayInfor.classList.add('visible');
             setTimeout(() => { displayInfor.classList.remove('visible'); }, 2000);

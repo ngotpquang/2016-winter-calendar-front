@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    openModal(showed: boolean) {
+    openModal(showed: boolean): void {
         let modal = document.getElementById('notification-logout');
         let span = document.getElementsByClassName("close")[0];
         if (showed) {
@@ -38,7 +38,17 @@ export class AppComponent implements OnInit {
         }
     }
 
-    logout() {
+    loginModal(showed: boolean): void {
+        let modal = document.getElementById('login-modal');
+        let span = document.getElementsByClassName("close")[0];
+        if (showed) {
+            modal.style.display = "block";
+        } else {
+            modal.style.display = "none";
+        }
+    }
+
+    logout(): void {
         let currentUser = localStorage.getItem('currentUser');
         this.openModal(true);
         this.userService.logOut().subscribe(
@@ -61,7 +71,7 @@ export class AppComponent implements OnInit {
             error => console.log(error)
         );
     }
-    onClick(string) {
+    onClick(string): void {
         this.router.navigate(['/' + string]);
     }
 }

@@ -12,6 +12,8 @@ import { LoadingPage } from '../loading-indicator/loading-page';
     styleUrls: ['./detail-view.component.scss']
 })
 export class DetailViewComponent extends LoadingPage implements OnInit {
+    private sortType: string;
+    private isReversed: boolean;
     public goals;
     public commonFunctions: CommonFunctions;
     constructor(private router: Router, private goalService: GoalService) {
@@ -22,9 +24,9 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         this.commonFunctions = new CommonFunctions();
         this.commonFunctions.changeBackground(false);
         this.commonFunctions.changeTitleContent("Your dashboard");
-        localStorage.setItem('sortType', '1');
-        localStorage.setItem('isReversed', '0');
-        this.goalService.getAllGoals(false, 1).subscribe(res => {
+        this.sortType = localStorage.getItem('sortType') == null ? "1" : localStorage.getItem('sortType');
+        this.isReversed = localStorage.getItem('isReversed') == null ? false : (localStorage.getItem('isReversed') == '0' ? false : true);
+        this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
             this.goals = res.json();
             this.goals = this.commonFunctions.getAllGoalsActived(this.goals);
             this.ready();
@@ -39,21 +41,61 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         this.router.navigate(['/yearview', goal.id]);
     }
 
+    showSortMenu(): void {
+        let sortModal = document.getElementById('sort-modal');
+        let display = sortModal.style.display;
+        if (display != 'block') {
+            sortModal.style.display = "block";
+        } else {
+            sortModal.style.display = "none";
+        }
+
+    }
+
+    sort(): void {
+        let sortType = document.getElementsByName('sort-type');
+        let isReversed = <HTMLInputElement>document.getElementById('reverse-order');
+        localStorage.setItem('isReversed', isReversed.checked ? '1' : '0');
+        this.isReversed = isReversed.checked;
+        let sortTypeValue;
+        for (let st in sortType) {
+            let s = (<HTMLInputElement>sortType[st])
+            if (s.checked) {
+                sortTypeValue = s.value;
+                this.sortType = sortTypeValue;
+                localStorage.setItem('sortType', sortTypeValue);
+                break;
+            }
+        }
+        console.log(isReversed.checked + "|" + sortTypeValue);
+
+        let favoriteGoals = this.commonFunctions.sortGoals(this.commonFunctions.getListFavoriteGoals(this.goals), sortTypeValue);
+        let notFavoriteGoals = this.commonFunctions.sortGoals(this.commonFunctions.getListNotFavoriteGoals(this.goals), sortTypeValue);
+        if (this.isReversed) {
+            favoriteGoals.reverse();
+            notFavoriteGoals.reverse();
+        }
+        this.goals = favoriteGoals.concat(notFavoriteGoals);
+    }
+
     favorite(goal: Goal): void {
         this.goalService.setFavorite(goal.id).subscribe(res => {
             console.log(res.json());
             let favorite = <HTMLElement>document.getElementById("fav-" + goal.id);
             if (res.json() == true) {
+
                 console.log(goal.is_favorite);
                 favorite.classList.add('color');
             } else {
                 favorite.classList.remove('color');
             }
+            this.commonFunctions.setFavoriteGoal(this.goals, goal.id);
+            this.sort();
         },
             error => console.log(error));
     }
 
-    showModal(goalId) {
+    showContextMenu(goalId) {
         let goalPanel = document.getElementById("item-" + goalId);
         let backgroundColor = goalPanel.style.backgroundColor;
         console.log(backgroundColor);
@@ -74,7 +116,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         }
     }
 
-    openModal(showed: boolean) {
+    openLoading(showed: boolean) {
         let modal = document.getElementById('deleting');
         let span = document.getElementsByClassName("close")[0];
         if (showed) {
@@ -85,7 +127,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
     }
 
     deleteGoals() {
-        this.openModal(true);
+        this.openLoading(true);
         let modal = document.getElementById('context-menu');
         let checks = document.getElementsByClassName('checking');
         let deleteIds = "";
@@ -103,7 +145,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         })
     }
     archiveGoals() {
-        this.openModal(true);
+        this.openLoading(true);
         let modal = document.getElementById('context-menu');
         let checks = document.getElementsByClassName('checking');
         let archiveIds = "";
