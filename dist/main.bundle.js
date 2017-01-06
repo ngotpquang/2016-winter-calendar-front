@@ -967,6 +967,7 @@ var ArchivedGoalsComponent = (function (_super) {
     };
     ArchivedGoalsComponent.prototype.deleteGoals = function () {
         var _this = this;
+        this.showDeleteMenu();
         var modal = document.getElementById('context-menu');
         var checks = document.getElementsByClassName('checking');
         var deleteIds = "";
@@ -983,6 +984,7 @@ var ArchivedGoalsComponent = (function (_super) {
             _this.goalService.getAllGoals(_this.isReversed, _this.sortType).subscribe(function (res) {
                 _this.goals = res.json();
                 _this.goals = _this.commonFunctions.getAllGoalsArchived(_this.goals);
+                modal.style.display = "none";
                 _this.router.navigate(['/archivedgoals']);
             }, function (error) { return console.log(error); });
         }, function (error) {
@@ -1007,6 +1009,7 @@ var ArchivedGoalsComponent = (function (_super) {
             _this.goalService.getAllGoals(_this.isReversed, _this.sortType).subscribe(function (res) {
                 _this.goals = res.json();
                 _this.goals = _this.commonFunctions.getAllGoalsArchived(_this.goals);
+                modal.style.display = "none";
                 _this.router.navigate(['/archivedgoals']);
             }, function (error) { return console.log(error); });
         }, function (error) {
@@ -1331,7 +1334,7 @@ var DetailViewComponent = (function (_super) {
     };
     DetailViewComponent.prototype.deleteGoals = function () {
         var _this = this;
-        this.openLoading(true);
+        this.showDeleteMenu();
         var modal = document.getElementById('context-menu');
         var checks = document.getElementsByClassName('checking');
         var deleteIds = "";
@@ -1348,6 +1351,7 @@ var DetailViewComponent = (function (_super) {
             _this.goalService.getAllGoals(_this.isReversed, _this.sortType).subscribe(function (res) {
                 _this.goals = res.json();
                 _this.goals = _this.commonFunctions.getAllGoalsActived(_this.goals);
+                modal.style.display = "none";
                 _this.router.navigate(['/detailview']);
             }, function (error) { return console.log(error); });
         }, function (error) {
@@ -1372,6 +1376,7 @@ var DetailViewComponent = (function (_super) {
             _this.goalService.getAllGoals(_this.isReversed, _this.sortType).subscribe(function (res) {
                 _this.goals = res.json();
                 _this.goals = _this.commonFunctions.getAllGoalsActived(_this.goals);
+                modal.style.display = "none";
                 _this.router.navigate(['/detailview']);
             }, function (error) { return console.log(error); });
         }, function (error) {
@@ -3142,7 +3147,7 @@ module.exports = "<div class=\"background-loading\">\n    <div class=\"pacman\">
 /***/ 692:
 /***/ function(module, exports) {
 
-module.exports = "<div [ngSwitch]=\"loading\">\n    <div *ngSwitchCase=\"'loading'\">\n        <app-loading-indicator></app-loading-indicator>\n    </div>\n    <div *ngSwitchCase=\"'loaded'\">\n        <form [formGroup]=\"loginForm\" (ngSubmit)=\"doLogin()\">\n            <!--  General -->\n            <div class=\"form-group\">\n                <h2 class=\"heading\">Login</h2>\n                <label for=\"email\">Email</label>\n                <input formControlName=\"email\" type=\"email\" name=\"email\" pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\" required>\n                <label for=\"password\">Password</label>\n                <input formControlName=\"password\" type=\"password\" name=\"password\" id=\"password\" required minlength='6'>\n                <span class=\"fa fa-eye-slash\" [class.wrong]=\"unauthorized\" (mouseup)=\"displayPassword('password')\" (mousedown)=\"displayPassword('password')\"></span>\n                <div class=\"alert alert-warning\" id=\"wrong-input\" [hidden]=\"!unauthorized\">\n                    <b>Wrong username/password</b>\n                </div>\n                <p style=\"text-align: center; color: #888; margin-top: 1em;\">\n                    New to Seinfeld Calendar? <a class=\"sign-up\" routerLink=\"/signup\">Sign Up now</a>\n                </p>\n            </div>\n            <!-- button -->\n            <div class=\"form-group\">\n                <button type=\"submit\">Login</button>\n                <div class=\"\" style=\"text-align: center; font-size: 14px; margin-top: 1.5em;\"><a [routerLink]=\"['/forgot_password']\" style=\"color: #999\">Forgot your password?</a></div>\n            </div>\n        </form>\n    </div>\n</div>\n"
+module.exports = "<div [ngSwitch]=\"loading\">\n    <div *ngSwitchCase=\"'loading'\">\n        <app-loading-indicator></app-loading-indicator>\n    </div>\n    <div *ngSwitchCase=\"'loaded'\">\n        <form [formGroup]=\"loginForm\" (ngSubmit)=\"doLogin()\">\n            <!--  General -->\n            <div class=\"form-group\">\n                <h2 class=\"heading\">Login</h2>\n                <label for=\"email\">Email</label>\n                <input formControlName=\"email\" type=\"email\" name=\"email\" pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\" required>\n                <label for=\"password\">Password</label>\n                <input formControlName=\"password\" type=\"password\" name=\"password\" id=\"password\" required minlength='6'>\n                <span class=\"fa fa-eye-slash\" [class.wrong]=\"unauthorized\" (mouseover)=\"displayPassword('password')\" (mouseleave)=\"displayPassword('password')\"></span>\n                <div class=\"alert alert-warning\" id=\"wrong-input\" [hidden]=\"!unauthorized\">\n                    <b>Wrong username/password</b>\n                </div>\n                <p style=\"text-align: center; color: #888; margin-top: 1em;\">\n                    New to Seinfeld Calendar? <a class=\"sign-up\" routerLink=\"/signup\">Sign Up now</a>\n                </p>\n            </div>\n            <!-- button -->\n            <div class=\"form-group\">\n                <button type=\"submit\">Login</button>\n                <div class=\"\" style=\"text-align: center; font-size: 14px; margin-top: 1.5em;\"><a [routerLink]=\"['/forgot_password']\" style=\"color: #999\">Forgot your password?</a></div>\n            </div>\n        </form>\n    </div>\n</div>\n"
 
 /***/ },
 
@@ -3177,7 +3182,7 @@ module.exports = "<div id=\"mySidenav\" class=\"sidenav\" (mouseleave)=\"toggleS
 /***/ 697:
 /***/ function(module, exports) {
 
-module.exports = "<div [ngSwitch]=\"loading\">\n    <div *ngSwitchCase=\"'loading'\"><app-loading-indicator></app-loading-indicator></div>\n    <div *ngSwitchCase=\"'loaded'\">\n        <form [formGroup]=\"signUpForm\" (ngSubmit)=\"doSignUp()\">\n            <!--  General -->\n            <div class=\"form-group\">\n                <h2 class=\"heading\">Sign up</h2>\n                <label for=\"name\">Name</label>\n                <input formControlName=\"name\" type=\"text\" id=\"name\" class=\"floatLabel\" name=\"name\" required>\n                <label for=\"email\">Email</label>\n                <input formControlName=\"email\" type=\"email\" id=\"email\" class=\"floatLabel\" name=\"email\" required pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\">\n                <label for=\"password\">Password</label>\n                <!-- pattern=\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\" -->\n                <input formControlName=\"password\" type=\"password\" id=\"password\" class=\"floatLabel\" name=\"password\" required minlength='6'>\n                <span class=\"fa fa-eye-slash a\" (mouseup)=\"displayPassword('password')\" (mousedown)=\"displayPassword('password')\"></span>\n                <label for=\"password_confirmation\">Confirm Password</label>\n                <input formControlName=\"password_confirmation\" type=\"password\" id=\"password_confirmation\" class=\"floatLabel\" name=\"password_confirmation\" data-toggle=\"tooltip\"\n                    data-placement=\"right\" title=\"Password does not match!\" required minlength=\"6\">\n                <span class=\"fa fa-eye-slash b\" (mouseup)=\"displayPassword('password_confirmation')\" (mousedown)=\"displayPassword('password_confirmation')\"></span>\n                <div class=\"alert alert-danger\" id=\"password-match\" hidden>\n                    <b>Passwords do not match.</b>\n                </div>\n            </div>\n            <!-- button -->\n            <div class=\"form-group\">\n                <button type=\"submit\">Create free account</button>\n            </div>\n        </form>\n    </div>\n</div>\n"
+module.exports = "<div [ngSwitch]=\"loading\">\n    <div *ngSwitchCase=\"'loading'\"><app-loading-indicator></app-loading-indicator></div>\n    <div *ngSwitchCase=\"'loaded'\">\n        <form [formGroup]=\"signUpForm\" (ngSubmit)=\"doSignUp()\">\n            <!--  General -->\n            <div class=\"form-group\">\n                <h2 class=\"heading\">Sign up</h2>\n                <label for=\"name\">Name</label>\n                <input formControlName=\"name\" type=\"text\" id=\"name\" class=\"floatLabel\" name=\"name\" required>\n                <label for=\"email\">Email</label>\n                <input formControlName=\"email\" type=\"email\" id=\"email\" class=\"floatLabel\" name=\"email\" required pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\">\n                <label for=\"password\">Password</label>\n                <!-- pattern=\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\" -->\n                <input formControlName=\"password\" type=\"password\" id=\"password\" class=\"floatLabel\" name=\"password\" required minlength='6'>\n                <span class=\"fa fa-eye-slash a\" (mouseover)=\"displayPassword('password')\" (mouseleave)=\"displayPassword('password')\"></span>\n                <label for=\"password_confirmation\">Confirm Password</label>\n                <input formControlName=\"password_confirmation\" type=\"password\" id=\"password_confirmation\" class=\"floatLabel\" name=\"password_confirmation\" data-toggle=\"tooltip\"\n                    data-placement=\"right\" title=\"Password does not match!\" required minlength=\"6\">\n                <span class=\"fa fa-eye-slash b\" (mouseover)=\"displayPassword('password_confirmation')\" (mouseleave)=\"displayPassword('password_confirmation')\"></span>\n                <div class=\"alert alert-danger\" id=\"password-match\" hidden>\n                    <b>Passwords do not match.</b>\n                </div>\n            </div>\n            <!-- button -->\n            <div class=\"form-group\">\n                <button type=\"submit\">Create free account</button>\n            </div>\n        </form>\n    </div>\n</div>\n"
 
 /***/ },
 

@@ -12,11 +12,11 @@
                 <label for="password">Password</label>
                 <!-- pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" -->
                 <input formControlName="password" type="password" id="password" class="floatLabel" name="password" required minlength='6'>
-                <span class="fa fa-eye-slash a" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
+                <span class="fa fa-eye-slash a" (mouseover)="displayPassword('password')" (mouseleave)="displayPassword('password')"></span>
                 <label for="password_confirmation">Confirm Password</label>
                 <input formControlName="password_confirmation" type="password" id="password_confirmation" class="floatLabel" name="password_confirmation" data-toggle="tooltip"
                     data-placement="right" title="Password does not match!" required minlength="6">
-                <span class="fa fa-eye-slash b" (mouseup)="displayPassword('password_confirmation')" (mousedown)="displayPassword('password_confirmation')"></span>
+                <span class="fa fa-eye-slash b" (mouseover)="displayPassword('password_confirmation')" (mouseleave)="displayPassword('password_confirmation')"></span>
                 <div class="alert alert-danger" id="password-match" hidden>
                     <b>Passwords do not match.</b>
                 </div>

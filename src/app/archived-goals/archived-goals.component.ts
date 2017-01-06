@@ -123,6 +123,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
     }
 
     deleteGoals() {
+        this.showDeleteMenu();
         let modal = document.getElementById('context-menu');
         let checks = document.getElementsByClassName('checking');
         let deleteIds = "";
@@ -139,6 +140,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
             this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
                 this.goals = res.json();
                 this.goals = this.commonFunctions.getAllGoalsArchived(this.goals);
+                modal.style.display = "none";
                 this.router.navigate(['/archivedgoals']);
             },
                 error => console.log(error));
@@ -164,6 +166,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
             this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
                 this.goals = res.json();
                 this.goals = this.commonFunctions.getAllGoalsArchived(this.goals);
+                modal.style.display = "none";
                 this.router.navigate(['/archivedgoals']);
             },
                 error => console.log(error));

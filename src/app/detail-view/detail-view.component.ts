@@ -139,7 +139,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
     }
 
     deleteGoals() {
-        this.openLoading(true);
+        this.showDeleteMenu();
         let modal = document.getElementById('context-menu');
         let checks = document.getElementsByClassName('checking');
         let deleteIds = "";
@@ -156,6 +156,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
             this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
                 this.goals = res.json();
                 this.goals = this.commonFunctions.getAllGoalsActived(this.goals);
+                modal.style.display = "none";
                 this.router.navigate(['/detailview']);
             },
                 error => console.log(error));
@@ -180,6 +181,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
             this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
                 this.goals = res.json();
                 this.goals = this.commonFunctions.getAllGoalsActived(this.goals);
+                modal.style.display = "none";
                 this.router.navigate(['/detailview']);
             },
                 error => console.log(error));
