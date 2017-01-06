@@ -87,7 +87,7 @@ export class MonthInYearComponent implements OnInit {
                 return;
             }
         }
-        if (date.getTime() - currentDate.getTime() > 0 || date.getTime() - startDate.getTime() < 0) {
+        if (date.getTime() - currentDate.getTime() > 0 || date.getTime() - startDate.getTime() < -(8.64e+7)) {
             return;
         }else {
             this.state[obj] = (this.state[obj] + 1) % 3;
