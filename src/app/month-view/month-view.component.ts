@@ -17,7 +17,7 @@ export class MonthViewComponent implements OnInit {
     public goal: Goal;
     private hiddenWeekdays = true;
     public commonFunctions: CommonFunctions;
-    private timeOut;
+    private timeOut: Array<any> = [42];
     constructor(private route: ActivatedRoute,
         private router: Router,
         private goalService: GoalService) {
@@ -29,7 +29,7 @@ export class MonthViewComponent implements OnInit {
         this.openModal(true);
         let currentUser = localStorage.getItem('currentUser');
         let id = this.route.params['_value']['id'];
-        console.log(id);
+        // console.log(id);
         this.goalService.getGoalsById(id).subscribe((res) => {
             this.goal = res.json();
             this.commonFunctions.changeTitleContent(this.goal.goal_name);
@@ -222,14 +222,14 @@ export class MonthViewComponent implements OnInit {
             setTimeout(() => { displayInfor.classList.remove('visible'); }, 2000);
         } else {
             console.log("not archived");
-            clearTimeout(this.timeOut);
+            clearTimeout(this.timeOut[id]);
             let date = <HTMLElement>document.getElementById(id + "");
             let monthName = <HTMLElement>document.getElementById('monthName');
             let month = this.getMonth(monthName.innerHTML) + 1;
             let year = <HTMLElement>document.getElementById('year');
             let fullDate = year.innerHTML + "-" + month + "-" + date.innerHTML;
             let markDate = new Date(fullDate).setHours(0, 0, 0, 0);
-            let startDate = new Date(this.goal.start_date).setHours(0, 0, 0, 0);
+            let startDate = new Date(this.goal.start_date.split('T')[0]).setHours(0, 0, 0, 0);
             let today = new Date().setHours(0, 0, 0, 0);
             if (this.goal.end_date.type_of_end_date == 2) {
                 let endDate = new Date(this.goal.end_date.specific_end_date).setHours(0, 0, 0, 0);
@@ -237,12 +237,13 @@ export class MonthViewComponent implements OnInit {
                     today = endDate;
                 }
             }
+            console.log(this.goal.start_date + "|" + new Date(this.goal.start_date.split('T')[0]) + "\n" + new Date(fullDate) + "\n" + new Date());
             if (markDate >= startDate && markDate <= today) {
                 if (date.classList.item(0) == null || date.classList.item(0) == 'active') {
                     if (date.classList.item(1) == 'pass') {
                         date.classList.remove('pass');
                         date.classList.add('fail');
-                        this.timeOut = setTimeout(() => {
+                        this.timeOut[id] = setTimeout(() => {
                             this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => {
                                 console.log(res.json()); this.goal = res.json();
                                 this.displayGoalInfor();
@@ -251,7 +252,7 @@ export class MonthViewComponent implements OnInit {
                         }, 1000);
                     } else if (date.classList.item(1) == 'fail') {
                         date.classList.remove('fail');
-                        this.timeOut = setTimeout(() => {
+                        this.timeOut[id] = setTimeout(() => {
                             this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => {
                                 console.log(res.json()); this.goal = res.json();
                                 this.displayGoalInfor();
@@ -260,7 +261,7 @@ export class MonthViewComponent implements OnInit {
                         }, 1000);
                     } else {
                         date.classList.add('pass');
-                        this.timeOut = setTimeout(() => {
+                        this.timeOut[id] = setTimeout(() => {
                             this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(res => {
                                 console.log(res.json()); this.goal = res.json();
                                 this.displayGoalInfor();
@@ -271,7 +272,7 @@ export class MonthViewComponent implements OnInit {
                 } else if (date.classList.item(0) == 'pass') {
                     date.classList.remove('pass');
                     date.classList.add('fail');
-                    this.timeOut = setTimeout(() => {
+                    this.timeOut[id] = setTimeout(() => {
                         this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => {
                             console.log(res.json()); this.goal = res.json();
                             this.displayGoalInfor();
@@ -280,7 +281,7 @@ export class MonthViewComponent implements OnInit {
                     }, 1000);
                 } else {
                     date.classList.remove('fail');
-                    this.timeOut = setTimeout(() => {
+                    this.timeOut[id] = setTimeout(() => {
                         this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => {
                             console.log(res.json()); this.goal = res.json();
                             this.displayGoalInfor();

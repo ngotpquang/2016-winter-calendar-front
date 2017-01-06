@@ -15,8 +15,10 @@ export class IntroductionComponent implements OnInit {
     }
 
     ngOnInit() {
+        // window.location.reload();
         this.commonFunctions.changeBackground(true);
-        this.currentUser = localStorage.getItem('currentUser');
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(this.currentUser);
         this.commonFunctions.changeTitleContent('Seinfeld Calendar');
     }
 

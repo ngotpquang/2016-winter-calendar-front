@@ -35,12 +35,16 @@ export class SignUpComponent extends LoadingPage implements OnInit {
         this.commonFunctions.changeBackground(false);
         this.standby();
         this.userService.signUp(user.name, user.email, user.password).subscribe((res) => {
-            localStorage.setItem('currentUser', JSON.stringify(res.json().data));
-            console.log(localStorage.getItem('currentUser'));
-            this.userService.setLoggedIn(true);
-            this.commonFunctions.changeTitleAfterLogined("Your dashboard");
-            this.router.navigate(['/detailview']);
-
+            let confirmed_token = res.json().data;
+            // console.log(confirmed_token);
+            // console.log(confirmed_token.confirmed_token);
+            this.userService.confirmEmail(confirmed_token.confirmed_token).subscribe((res) => {
+              localStorage.setItem('currentUser', JSON.stringify(res.json().data));
+              // console.log(localStorage.getItem('currentUser'));
+              this.userService.setLoggedIn(true);
+              this.commonFunctions.changeTitleAfterLogined("Your dashboard");
+              this.router.navigate(['/detailview']);
+            })
         },
             error => console.log(error)
         );

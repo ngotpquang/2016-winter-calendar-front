@@ -83,9 +83,9 @@ $cascade: #95A5A6;
         transition: all 0.3s;
         cursor: pointer;
 
-        &:hover,
+        &:active,
         &:focus,
-        &:active {
+        &:hover {
             outline: none;
             background-color: white;
             color: $main;
@@ -100,5 +100,13 @@ $cascade: #95A5A6;
         left: 95%;
         color: #aaa;
         cursor: pointer;
+
+        &.wrong {
+            top: 56%;
+        }
+    }
+
+    .alert {
+        margin: 1em auto;
     }
 }

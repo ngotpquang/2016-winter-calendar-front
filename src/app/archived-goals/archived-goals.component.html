@@ -10,7 +10,7 @@
                         <div class="goal-title">
                             <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
                             <span class="tooltiptext">&nbsp;&nbsp;<a (click)="displayMonthView(goal)">Month view</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a (click)="displayYearView(goal)">Year view</a>&nbsp;&nbsp;</span>
-                            <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div>
+                            <!-- <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div> -->
                         </div>
                         <div class="clear"></div>
                         <div class="feature">
@@ -45,7 +45,7 @@
                         <div class="goal-title">
                             <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
                             <span class="tooltiptext">&nbsp;&nbsp;<a (click)="displayMonthView(goal)">Month view</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a (click)="displayYearView(goal)">Year view</a>&nbsp;&nbsp;</span>
-                            <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div>
+                            <!-- <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div> -->
                         </div>
                         <div class="clear"></div>
                         <div class="feature">
@@ -86,7 +86,7 @@
                 <div class="label-text">New goal</div>
                 <i class="fa fa-play label-arrow"></i>
             </div>
-            <a (click)="showSortMenu()" class="float1">
+            <a (click)="showSortMenu()" class="float1" [hidden]="goals.length == 0">
                 <i class="fa fa-sort my-float"></i>
             </a>
             <div class="label-container1">
@@ -94,13 +94,18 @@
                 <i class="fa fa-caret-left fa-2x label-arrow1"></i>
             </div>
         </div>
+        <div class="no-goal" [hidden]="goals.length != 0">
+            <img src="../img/oops.png" alt="welcome" width="120px" style="vertical-align: middle;">
+            <p>Opps! No goals. <a routerLink="/createnewgoal">Let's challenge yourself!</a></p>
+            <div class="clear"></div>
+        </div>
     </div>
 </div>
 <div id="context-menu" class="modal">
     <div class="modal-content">
         <div class="modal-body">
             <!-- <span class="close" (click)="showModal(false)">&times;</span> -->
-            <span class="fa fa-trash icon" style="color: #D80027;"></span><span class="text" style="color: #D80027;" (click)="deleteGoals()"> Delete</span>
+            <span class="fa fa-trash icon" style="color: #D80027;"></span><span class="text" style="color: #D80027;" (click)="showDeleteMenu()"> Delete</span>
             <span class="space"></span>
             <span class="fa fa-check-circle icon"></span><span class="text" (click)="archiveGoals()"> Unarchive</span>
         </div>
@@ -108,10 +113,10 @@
         </div>
     </div>
 </div>
-<div id="sort-modal" class="modal">
+<div id="sort-modal" class="modal" (mouseleave)="showSortMenu()">
     <div class="modal-content">
         <div class="modal-body sort">
-          <span class="close1" (click)="showSortMenu()">Close &times;</span>
+            <span class="close1" (click)="showSortMenu()">Close &times;</span>
             <span><b>Sort by</b></span>
             <span class="space"></span>
             <input type="radio" id="date-created" name="sort-type" value="1" [checked]="sortType == 1" (change)="sort()"> <span>Day created</span>
@@ -131,6 +136,18 @@
             <input type="checkbox" id="reverse-order" name="reverse" value="0" [checked]="isReversed" (change)="sort()"> <span>Reverse</span>
         </div>
         <div class="modal-footer">
+        </div>
+    </div>
+</div>
+<div id="notification-delete" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close" style="font-size: 8px;"(click)="showDeleteMenu()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p style="font-size: 16px;">Do you really wants to delete your goals?</p>
+            <button type="button" name="button" id="ok" (click)="deleteGoals()">Ok</button>
+            <button type="button" name="button" (click)="showDeleteMenu()">Cancel</button>
         </div>
     </div>
 </div>

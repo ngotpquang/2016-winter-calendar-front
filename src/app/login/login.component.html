@@ -10,9 +10,9 @@
                 <label for="email">Email</label>
                 <input formControlName="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                 <label for="password">Password</label>
-                <input formControlName="password" type="password" name="password" required minlength='8'>
-                <span class="fa fa-eye-slash" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
-                <div class="alert alert-warning" id="wrong-input" hidden>
+                <input formControlName="password" type="password" name="password" id="password" required minlength='6'>
+                <span class="fa fa-eye-slash" [class.wrong]="unauthorized" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
+                <div class="alert alert-warning" id="wrong-input" [hidden]="!unauthorized">
                     <b>Wrong username/password</b>
                 </div>
                 <p style="text-align: center; color: #888; margin-top: 1em;">

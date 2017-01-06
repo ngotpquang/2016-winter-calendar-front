@@ -1,6 +1,7 @@
 div,
 label,
-span {
+span,
+p {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -43,7 +44,7 @@ header {
 		margin: auto;
 		padding: 0;
 		border-radius: 10px;
-		width: 40%;
+		width: 60%;
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 		-webkit-animation-name: animatetop;
 		-webkit-animation-duration: 0.5s;
@@ -51,21 +52,25 @@ header {
 		animation-duration: 0.5s;
 
 		.modal-header {
-			padding: 2px 8px;
+			padding: 6px 8px;
 			background-color: $main;
 			color: white;
 			border-radius: 10px 10px 0 0;
 
 			p {
-				font-size: 22px;
+				font-size:26px;
 				font-weight: bold;
+				margin: 0.5em auto;
 			}
 		}
 
 		.modal-body {
-			padding: 2px 16px;
+			padding: 6px 16px;
 			color: $main;
-			font-size: 18px;
+			font-size: 20px;
+			p {
+				margin: 0.5em auto;
+			}
 		}
 
 		.modal-footer {

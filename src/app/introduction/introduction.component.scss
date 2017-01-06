@@ -12,7 +12,7 @@ p {
 
 .introduction {
     a {
-        color: $main;
+        color: lighten($main, 10%);
         text-decoration: none;
 
         &:active,
@@ -41,9 +41,13 @@ p {
         }
 
         &:hover {
-            background-color: rgba(0,0,0,0.4);
-            box-shadow: 0 1px 1px $main;
+            // background-color: rgba(255,255,255,0.4);
+            box-shadow: 3px 3px 5px rgba(255,255,255,0.9);
             padding: 1.2em 0.6em;
+
+            a {
+                color: #D80027;
+            }
         }
     }
 
@@ -63,9 +67,13 @@ p {
         }
 
         &:hover {
-            background-color: rgba(0,0,0,0.4);
-            box-shadow: 0 1px 1px $main;
+            // background-color: rgba(255,255,255,0.4);
+            box-shadow: 3px 3px 5px rgba(255,255,255,0.9);
             padding: 1.2em 0.6em;
+
+            a {
+                color: #D80027;
+            }
         }
     }
 
@@ -82,12 +90,17 @@ p {
 
         p {
             margin-top: 1.6em;
+            float: right;
         }
 
         &:hover {
-            background-color: rgba(0,0,0,0.4);
-            box-shadow: 0 1px 1px $main;
+            // background-color: rgba(255,255,255,0.4);
+            box-shadow: 3px 3px 5px rgba(255,255,255,0.9);
             padding: 1.2em 0.6em;
+
+            a {
+                color: #D80027;
+            }
         }
     }
 

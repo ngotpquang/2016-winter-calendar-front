@@ -23,11 +23,9 @@ $main: #1E824C;
         padding: 0.5em;
         border-bottom: 1.5px solid $main;
         transition: all 0.2s;
-
-        &:hover {
-            background-color: #eee;
-        }
-
+        // &:hover {
+        //     background-color: #eee;
+        // }
         .goal-title {
             position: relative;
             margin-bottom: 2em;
@@ -309,6 +307,45 @@ $main: #1E824C;
                 }
             }
 
+            button {
+
+                // display: block;
+                border: 1px solid $main;
+                border-radius: 10px;
+                background-color: $main;
+                color: white;
+                font-family: inherit;
+                font-size: inherit;
+                padding: 0.5em;
+                width: 6em;
+                margin-left: 0.4em;
+                transition: all 0.3s;
+
+                &:active,
+                &:focus,
+                &:hover {
+                    outline: none;
+                    background-color: white;
+                    color: $main;
+                    font-weight: bold;
+                    border: 1px solid $main;
+                }
+
+                &#ok {
+                    background: #ddd;
+                    color: $main;
+                    font-weight: normal;
+                    margin-left: 20em;
+
+                    &:active,
+                    &:focus,
+                    &:hover {
+                        outline: none;
+                        background-color: white;
+                    }
+                }
+            }
+
             .space {
                 width: 3em;
             }
@@ -478,5 +515,37 @@ $main: #1E824C;
         color: #000;
         text-decoration: none;
         cursor: pointer;
+    }
+}
+
+.no-goal {
+    a {
+        color: $main;
+        text-decoration: none;
+
+        &:active,
+        &:focus,
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    color: #222;
+    font-size: 24px;
+    position: relative;
+    margin: 2em auto;
+    padding: 1em 0.5em;
+    transition: all 0.5s;
+
+    img {
+        float: left;
+        margin-right: 1em;
+    }
+
+    p {
+        margin-top: 1.7em;
+    }
+
+    .clear {
+        clear: both;
     }
 }
