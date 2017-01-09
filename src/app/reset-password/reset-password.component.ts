@@ -19,6 +19,7 @@ export class ResetPasswordComponent implements OnInit {
     tokenExpire: boolean = false;
     email: string;
     commonFunctions: CommonFunctions = new CommonFunctions();
+    isLoading: boolean = false;
     constructor(private http: Http, private route: ActivatedRoute, private userService: UserService,
     private router: Router) {}
     ngOnInit(): void {
@@ -40,6 +41,7 @@ export class ResetPasswordComponent implements OnInit {
                 this.passwordMatch = false;
             }
         if (this.passwordMatch) {
+            this.isLoading = true;
             this.userService.postNewPassword(this.reset_password_token,this.password).subscribe((res) => {
                 let info = res['_body'];
                 let obj = (JSON.parse(info));
