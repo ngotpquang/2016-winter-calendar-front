@@ -1,7 +1,7 @@
 <div [ngSwitch]="loading">
     <div *ngSwitchCase="'loading'"><app-loading-indicator></app-loading-indicator></div>
     <div *ngSwitchCase="'loaded'">
-        <form [formGroup]="signUpForm" (ngSubmit)="doSignUp()">
+        <form [formGroup]="signUpForm" (ngSubmit)="doSignUp()" *ngIf="!submitted">
             <!--  General -->
             <div class="form-group">
                 <h2 class="heading">Sign up</h2>
@@ -24,6 +24,16 @@
             <!-- button -->
             <div class="form-group">
                 <button type="submit">Create free account</button>
+            </div>
+        </form>
+        <form *ngIf="submitted">
+            <!--  General -->
+            <div class="form-group">
+                <h2 class="heading">Please Verify Your Email.</h2>
+                <p class="announce">
+                Congratulation! An email contains the link to verify your email has been sent to the email <b><i>{{email}}</i></b>.
+                Please follow the instructions in that email to finish your registration.
+                </p>
             </div>
         </form>
     </div>

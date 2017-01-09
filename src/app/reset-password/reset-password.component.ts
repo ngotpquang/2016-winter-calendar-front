@@ -34,9 +34,8 @@ export class ResetPasswordComponent implements OnInit {
         }
     }
     doSubmit(): void{
-        console.log(this.password);
-        console.log(this.passwordConfirm);
-        this.userService.postNewPassword(this.reset_password_token,this.password).subscribe((res) => {
+        if (this.passwordMatch) {
+            this.userService.postNewPassword(this.reset_password_token,this.password).subscribe((res) => {
                 let info = res['_body'];
                 let obj = (JSON.parse(info));
                 this.email = obj['data']['email'];
@@ -45,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
                     this.userService.setLoggedIn(true);
                     let redirect = this.userService.redirectUrl ? this.userService.redirectUrl : '/detailview';
                     this.router.navigate([redirect]);
-                    this.commonFunctions.changeTitleAfterLogined("Your dashboard");
+                    this.commonFunctions.changeTitleAfterLogined('Your dashboard');
                 },
                 (error) => console.log(error)
                 );
@@ -55,6 +54,9 @@ export class ResetPasswordComponent implements OnInit {
                 this.tokenExpire = true;
             }
         );
+        }else {
+            this.passwordMatch = false;
+        }
     }
     checkMatch(): void {
         window.clearTimeout(this.myTimeOut);

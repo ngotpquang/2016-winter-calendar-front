@@ -143,3 +143,4 @@ export class MonthInYearComponent implements OnInit {
         }
     }
 }
+// image marking goal having some problems about their size
