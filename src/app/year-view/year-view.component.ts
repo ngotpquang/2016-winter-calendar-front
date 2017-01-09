@@ -25,8 +25,9 @@ export class YearViewComponent implements OnInit{
     private route: ActivatedRoute, private router: Router) {}
     ngOnInit(): void {
         this.id = this.route.params['_value']['id'];
-        let date = new Date();
-        this.year = date.getFullYear();
+        this.year = this.route.params['_value']['year'];
+        /*let date = new Date();
+        this.year = date.getFullYear();*/
         this.year = parseInt(this.year.toString(), 10);
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
@@ -40,6 +41,7 @@ export class YearViewComponent implements OnInit{
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
             this.isDataLoaded = true;
+            this.router.navigate(['/yearview', this.id, this.year]);
         });
     }
 
@@ -49,6 +51,7 @@ export class YearViewComponent implements OnInit{
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
             this.isDataLoaded = true;
+            this.router.navigate(['/yearview', this.id, this.year]);
         });
     }
 
