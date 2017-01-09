@@ -165,6 +165,12 @@ export class MonthViewComponent implements OnInit {
         return monthNames.indexOf(monthName);
     }
 
+    navigateToYearView(): void {
+      let year = <HTMLElement>document.getElementById('year');
+      let fullYear = year.innerHTML;
+      this.router.navigate(['/yearview', this.goal.id, fullYear]);
+    }
+
     displayCalendar(month, fullYear) {
         let monthName = <HTMLElement>document.getElementById('monthName');
         let year = <HTMLElement>document.getElementById('year');

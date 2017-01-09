@@ -1,5 +1,5 @@
 <div *ngIf="isLoaded" class="col-md-2 nopadding haveborder">
-<div class="month"> 
+<div class="month">
   <ul>
     <li style="text-align: center">
       {{monthName}}<br>
@@ -16,11 +16,11 @@
   <li>Sa</li>
   <li>Su</li>
 </ul>
-<ul class="days"> 
+<ul class="days">
   <li *ngFor="let date of dates; let i = index" (click)="onClickLi(i)">
     <span class="{{classli[i]}}">
-      <span *ngIf="state[i]==1"><img src="../../img/passed.png" style="width:50%; height:50%;"></span>
-      <span *ngIf="state[i]==2"><img src="../../img/failed.png" style="width:50%; height:50%;"></span>
+      <span *ngIf="state[i]==1"><img src="../assets/img/passed.png" style="width:50%; height:50%;"></span>
+      <span *ngIf="state[i]==2"><img src="../assets/img/failed.png" style="width:50%; height:50%;"></span>
       <span *ngIf="state[i]==0">{{date}}</span>
     </span>
     </li>

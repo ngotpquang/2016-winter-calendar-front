@@ -3,20 +3,20 @@
     <p>
       Hello guest! How are you today? Ready to <a routerLink="/createnewgoal">challenge</a> yourself?
     </p>
-    <img src="../img/welcome.png" alt="welcome" width="120px" style="vertical-align: middle; float: right;">
+    <img src="../../assets/img/welcome.png" alt="welcome" width="120px" style="vertical-align: middle; float: right;">
     <div class="clear"></div>
   </div>
   <div class="info" [hidden]="currentUser != null">
-    <img src="../img/calendar.png" alt="calendar" width="120px" style="vertical-align: middle;">
+    <img src="../../assets/img/calendar.png" alt="calendar" width="120px" style="vertical-align: middle;">
     <p>
       Seinfeld Calendar is an awesome app which assists you to set your goals and tracking their progress.
-      <a routerLink="/signup">Create a new account</a> or <a routerLink="/signin">sign in</a> to start using this app.
+      <a routerLink="/signup">Create a new account</a> or <a routerLink="/login">sign in</a> to start using this app.
     </p>
     <div class="clear"></div>
   </div>
   <!-- [hidden]="currentUser == null" -->
   <div class="logged-in" [hidden]="currentUser == null">
-    <img src="../img/run.png" alt="start" width="120px" style="vertical-align: middle;">
+    <img src="../../assets/img/run.png" alt="start" width="120px" style="vertical-align: middle;">
     <p>
       Hi <b>{{currentUser != null ? currentUser.name : ""}}</b>! Check your <a routerLink="/detailview">dashboard</a> or challenge yourself with <a routerLink="/createnewgoal">new goal</a>!
     </p>
