@@ -6,6 +6,7 @@ import { YearViewComponent } from './year-view/year-view.component';
 import { EditGoalComponent } from './edit-goal/edit-goal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonpModule, HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -58,7 +59,8 @@ import { ArchivedGoalsComponent } from './archived-goals/archived-goals.componen
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes)
     ],
-    providers: [UserService, LoggedInGuard, GoalService],
+    providers: [UserService, LoggedInGuard, GoalService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
