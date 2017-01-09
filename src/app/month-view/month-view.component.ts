@@ -233,11 +233,14 @@ export class MonthViewComponent implements OnInit {
             let today = new Date().setHours(0, 0, 0, 0);
             if (this.goal.end_date.type_of_end_date == 2 || this.goal.end_date.type_of_end_date == 3) {
                 let endDate = new Date(this.goal.end_date.specific_end_date).setHours(0, 0, 0, 0);
-                if (today > endDate) {
-                    today = endDate;
+                console.log(endDate);
+                if (endDate > 0) {
+                    if (today > endDate) {
+                        today = endDate;
+                    }
                 }
             }
-            console.log(this.goal.start_date + "|" + new Date(this.goal.start_date.split('T')[0]) + "\n" + new Date(fullDate) + "\n" + new Date());
+            // console.log(this.goal.start_date + "|" + new Date(this.goal.start_date.split('T')[0]) + "\n" + new Date(fullDate) + "\n" + new Date());
             if (markDate >= startDate && markDate <= today) {
                 if (date.classList.item(0) == null || date.classList.item(0) == 'active') {
                     if (date.classList.item(1) == 'pass') {
