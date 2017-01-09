@@ -15,10 +15,11 @@ import '../rxjs-operator'
 })
 export class SignUpComponent extends LoadingPage implements OnInit {
     commonFunctions: CommonFunctions;
+    isPasswordNotMatch: boolean = false;
     email: string = '';
     submitted: boolean = false;
     constructor(private router: Router, private userService: UserService) {
-      super('loaded');
+        super('loaded');
     }
 
     ngOnInit() {
@@ -34,26 +35,20 @@ export class SignUpComponent extends LoadingPage implements OnInit {
     });
     doSignUp(event) {
         let user = this.signUpForm.value;
-        this.commonFunctions.changeBackground(false);
-        this.standby();
-        this.userService.signUp(user.name, user.email, user.password).subscribe((res) => {
-            this.email = user.email;
-            console.log(this.email);
-            this.ready();
-            this.submitted = true;
-            /*let confirmed_token = res.json().data;
-            console.log(confirmed_token);
-            console.log(confirmed_token.confirmed_token);
-            this.userService.confirmEmail(confirmed_token.confirmed_token).subscribe((res) => {
-              localStorage.setItem('currentUser', JSON.stringify(res.json().data));
-              console.log(localStorage.getItem('currentUser'));
-              this.userService.setLoggedIn(true);
-              this.commonFunctions.changeTitleAfterLogined("Your dashboard");
-              this.router.navigate(['/detailview']);
-            })*/
-        },
-            error => console.log(error)
-        );
+        if (user.password != user.password_confirmation) {
+            this.isPasswordNotMatch = true;
+        } else {
+            this.commonFunctions.changeBackground(false);
+            this.standby();
+            this.userService.signUp(user.name, user.email, user.password).subscribe((res) => {
+                this.email = user.email;
+                console.log(this.email);
+                this.ready();
+                this.submitted = true;
+            },
+                error => console.log(error)
+            );
+        }
     }
 
     displayPassword(string) {
