@@ -166,6 +166,13 @@ $red: #D80027;
                     font-weight: bold;
                     text-transform: uppercase;
                     letter-spacing: 3px;
+                    &:nth-child(4n){
+                      &:hover {
+                        cursor: pointer;
+                        color: $red;
+                        text-decoration: underline;
+                      }
+                    }
                 }
             }
 
@@ -245,7 +252,7 @@ $red: #D80027;
 
                 &.fail,
                 &.pass {
-                    background: url('../../img/passed.png') no-repeat center;
+                    background: url('../assets/img/passed.png') no-repeat center;
                     @include x;
 
                     &.active {
@@ -255,7 +262,7 @@ $red: #D80027;
                 }
 
                 &.fail {
-                    background: url('../../img/failed.png') no-repeat center;
+                    background: url('../assets/img/failed.png') no-repeat center;
                     @include x;
                 }
             }

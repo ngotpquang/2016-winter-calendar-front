@@ -4,11 +4,12 @@
   "license": "MIT",
   "angular-cli": {},
   "engines": {
-    "node": "6.9.2"
+    "node": "6.9.2",
+    "npm": "3.10.9"
   },
   "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install",
-    "start": "ng serve",
+    "postinstall": "ng build",
+    "start": "start app.js",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
@@ -25,15 +26,12 @@
     "@angular/platform-browser-dynamic": "2.2.3",
     "@angular/router": "3.2.3",
     "angular2-token": "^0.2.0-beta.5",
-    "bower": "^1.8.0",
     "core-js": "^2.4.1",
     "express": "^4.14.0",
     "font-awesome": "^4.7.0",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.23"
-  },
-  "devDependencies": {
+    "zone.js": "^0.6.23",
     "@angular/compiler-cli": "2.2.3",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
@@ -52,5 +50,8 @@
     "tslint": "^4.0.2",
     "typescript": "~2.0.3",
     "webdriver-manager": "10.2.5"
+  },
+  "devDependencies": {
+
   }
 }
