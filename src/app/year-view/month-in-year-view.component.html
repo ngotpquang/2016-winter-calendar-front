@@ -1,7 +1,7 @@
 <div *ngIf="isLoaded" class="col-md-2 nopadding haveborder">
 <div class="month">
   <ul>
-    <li style="text-align: center">
+    <li style="text-align: center" (click)="showMonthView()">
       {{monthName}}<br>
     </li>
   </ul>

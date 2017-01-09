@@ -36,7 +36,9 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
     }
 
     displayMonthView(goal: Goal): void {
-        this.router.navigate(['/monthview', goal.id]);
+        let fullYear = new Date().getFullYear();
+        let month = new Date().getMonth() + 1;
+        this.router.navigate(['/monthview', goal.id, fullYear, month]);
     }
     displayYearView(goal: Goal): void {
         let fullYear = new Date().getFullYear();

@@ -2,6 +2,7 @@ import { GoalService } from './../goal/goal.service';
 import { Goal, Calendar } from './../shared/goal';
 import { YearViewComponent } from './year-view.component';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
     selector: 'app-month-in-year',
     templateUrl: './month-in-year-view.component.html',
@@ -39,7 +40,7 @@ export class MonthInYearComponent implements OnInit {
     isLoaded: boolean = false;
     myTimeOut: number[] = [];
 
-    constructor(private goalService: GoalService) {}
+    constructor(private goalService: GoalService, private router: Router) {}
     ngOnInit(): void {
         this.month = parseInt(this.month.toString(), 10);
         this.year = parseInt(this.year.toString(), 10);
@@ -99,6 +100,10 @@ export class MonthInYearComponent implements OnInit {
                 this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
             }), 1000);
         }
+    }
+
+    showMonthView(): void {
+      this.router.navigate(['/monthview', this.goalInMonth.id, this.year, this.month + 1]);
     }
 
     /*isDateEqual(a: Date, b: Date): boolean {

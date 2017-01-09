@@ -166,11 +166,11 @@ $red: #D80027;
                     font-weight: bold;
                     text-transform: uppercase;
                     letter-spacing: 3px;
+                    transition: all 0.3s;
                     &:nth-child(4n){
                       &:hover {
                         cursor: pointer;
                         color: $red;
-                        text-decoration: underline;
                       }
                     }
                 }

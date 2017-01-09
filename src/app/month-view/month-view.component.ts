@@ -29,11 +29,13 @@ export class MonthViewComponent implements OnInit {
         this.openModal(true);
         let currentUser = localStorage.getItem('currentUser');
         let id = this.route.params['_value']['id'];
+        let year = this.route.params['_value']['year'];
+        let month = this.route.params['_value']['month'] - 1;
         // console.log(id);
         this.goalService.getGoalsById(id).subscribe((res) => {
             this.goal = res.json();
             this.commonFunctions.changeTitleContent(this.goal.goal_name);
-            this.displayCalendar(new Date().getMonth(), new Date().getFullYear());
+            this.displayCalendar(month, year);
             this.displayGoalOnCalendar();
             this.displayGoalInfor();
             this.openModal(false);
