@@ -1,0 +1,160 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seinfeld Calendar</title>
+    <base href="/">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <style media="screen">
+        @-webkit-keyframes up {
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+            50% {
+                transform: rotate(-30deg)
+            }
+        }
+
+        @-moz-keyframes up {
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+            50% {
+                transform: rotate(-30deg)
+            }
+        }
+
+        @keyframes up {
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+            50% {
+                transform: rotate(-30deg)
+            }
+        }
+
+        @-webkit-keyframes down {
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+            50% {
+                transform: rotate(30deg)
+            }
+        }
+
+        @-moz-keyframes down {
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+            50% {
+                transform: rotate(30deg)
+            }
+        }
+
+        @keyframes down {
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+            50% {
+                transform: rotate(30deg)
+            }
+        }
+
+        @-webkit-keyframes r-to-l {
+            100% {
+                margin-left: -1px
+            }
+        }
+
+        @-moz-keyframes r-to-l {
+            100% {
+                margin-left: -1px
+            }
+        }
+
+        @keyframes r-to-l {
+            100% {
+                margin-left: -1px
+            }
+        }
+
+        .background-loading {
+            background: #000;
+            overflow: hidden;
+            margin: 0
+        }
+
+        .background-loading .pacman:before,
+        .background-loading .pacman:after {
+            content: '';
+            position: absolute;
+            background: #1E824C;
+            width: 100px;
+            height: 50px;
+            left: 50%;
+            top: 50%;
+            margin-left: -50px;
+            margin-top: -50px;
+            border-radius: 50px 50px 0 0;
+            -webkit-animation: up .5s infinite;
+            -moz-animation: up .5s infinite;
+            animation: up .5s infinite
+        }
+
+        .background-loading .pacman:after {
+            margin-top: -1px;
+            border-radius: 0 0 50px 50px;
+            -webkit-animation: down .5s infinite;
+            -moz-animation: down .5s infinite;
+            animation: down .5s infinite
+        }
+
+        .background-loading .dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 10px;
+            height: 10px;
+            margin-top: -5px;
+            margin-left: 30px;
+            border-radius: 50%;
+            background: #aaa;
+            z-index: -1;
+            box-shadow: 30px 0 0 #aaa, 60px 0 0 #aaa, 90px 0 0 #aaa, 120px 0 0 #aaa, 150px 0 0 #aaa;
+            -webkit-animation: r-to-l .5s infinite;
+            -moz-animation: r-to-l .5s infinite;
+            animation: r-to-l .5s infinite
+        }
+
+        body.introduction {
+            background: url('img/background.png') no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body style="margin: 0;">
+    <app-root>
+        <div class="background-loading">
+            <div class="pacman"></div>
+            <div class="dot"></div>
+        </div>
+    </app-root>
+<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
+
+</html>
