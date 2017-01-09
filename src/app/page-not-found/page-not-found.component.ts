@@ -15,6 +15,7 @@ export class PageNotFoundComponent implements OnInit {
 
     ngOnInit() {
         this.commonFunctions.changeBackground(false);
+        this.commonFunctions.changeTitleContent('Not found');
     }
 
 }

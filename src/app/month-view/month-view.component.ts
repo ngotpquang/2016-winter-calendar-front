@@ -241,7 +241,7 @@ export class MonthViewComponent implements OnInit {
             let today = new Date().setHours(0, 0, 0, 0);
             if (this.goal.end_date.type_of_end_date == 2 || this.goal.end_date.type_of_end_date == 3) {
                 let endDate = new Date(this.goal.end_date.specific_end_date).setHours(0, 0, 0, 0);
-                console.log(endDate);
+                // console.log(endDate);
                 if (endDate > 0) {
                     if (today > endDate) {
                         today = endDate;
@@ -258,7 +258,7 @@ export class MonthViewComponent implements OnInit {
                             this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => {
                                 console.log(res.json()); this.goal = res.json();
                                 this.displayGoalInfor();
-                                this.router.navigate(["/monthview/" + this.goal.id]);
+                                this.router.navigate(["/monthview", this.goal.id, year.innerHTML, month]);
                             }, error => console.log(error));
                         }, 1000);
                     } else if (date.classList.item(1) == 'fail') {
@@ -267,7 +267,7 @@ export class MonthViewComponent implements OnInit {
                             this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => {
                                 console.log(res.json()); this.goal = res.json();
                                 this.displayGoalInfor();
-                                this.router.navigate(["/monthview/" + this.goal.id]);
+                                this.router.navigate(["/monthview", this.goal.id, year.innerHTML, month]);
                             }, error => console.log(error));
                         }, 1000);
                     } else {
@@ -276,7 +276,7 @@ export class MonthViewComponent implements OnInit {
                             this.goalService.markGoal(this.goal.id, fullDate, "1").subscribe(res => {
                                 console.log(res.json()); this.goal = res.json();
                                 this.displayGoalInfor();
-                                this.router.navigate(["/monthview/" + this.goal.id]);
+                                this.router.navigate(["/monthview", this.goal.id, year.innerHTML, month]);
                             }, error => console.log(error));
                         }, 1000);
                     }
@@ -287,7 +287,7 @@ export class MonthViewComponent implements OnInit {
                         this.goalService.markGoal(this.goal.id, fullDate, "2").subscribe(res => {
                             console.log(res.json()); this.goal = res.json();
                             this.displayGoalInfor();
-                            this.router.navigate(["/monthview/" + this.goal.id]);
+                            this.router.navigate(["/monthview", this.goal.id, year.innerHTML, month]);
                         }, error => console.log(error));
                     }, 1000);
                 } else {
@@ -296,7 +296,7 @@ export class MonthViewComponent implements OnInit {
                         this.goalService.markGoal(this.goal.id, fullDate, "0").subscribe(res => {
                             console.log(res.json()); this.goal = res.json();
                             this.displayGoalInfor();
-                            this.router.navigate(["/monthview/" + this.goal.id]);
+                            this.router.navigate(["/monthview", this.goal.id, year.innerHTML, month]);
                         }, error => console.log(error));
                     }, 1000);
                 }

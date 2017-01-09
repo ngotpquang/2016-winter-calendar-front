@@ -1,4 +1,6 @@
 $main: #1E824C;
+$background: #eee;
+$red: #D80027;
 
 p {
     margin: 0;
@@ -11,6 +13,16 @@ p {
 }
 
 .introduction {
+    hr {
+        border-color: $main;
+        background-color: $main;
+        width: 50%;
+        float: left;
+        margin-top: 1em;
+        transition: all 0.5s;
+        // height: 2px;
+    }
+
     a {
         color: lighten($main, 10%);
         text-decoration: none;
@@ -21,13 +33,14 @@ p {
             text-decoration: underline;
         }
     }
-    color: #eee;
+    color: black;
     font-size: 28px;
 
     .welcome {
+        background: $background;
         position: relative;
         margin-top: 2em;
-        border-bottom: 2px solid $main;
+        // border-bottom: 2px solid $main;
         padding: 1em 0.5em;
         transition: all 0.5s;
 
@@ -41,20 +54,24 @@ p {
         }
 
         &:hover {
-            // background-color: rgba(255,255,255,0.4);
-            box-shadow: 3px 3px 5px rgba(255,255,255,0.9);
-            padding: 1.2em 0.6em;
+            background-color: rgba(255,255,255,0.4);
 
             a {
                 color: #D80027;
+            }
+            hr {
+              width: 75%;
+              border-color: $red;
+              background-color: $red;
             }
         }
     }
 
     .info {
-        border-bottom: 2px solid $main;
+        background: $background;
+        // border-bottom: 2px solid $main;
         position: relative;
-        margin: 2em auto;
+        margin-top: 2em;
         padding: 1em 0.5em;
         transition: all 0.5s;
 
@@ -67,18 +84,22 @@ p {
         }
 
         &:hover {
-            // background-color: rgba(255,255,255,0.4);
-            box-shadow: 3px 3px 5px rgba(255,255,255,0.9);
-            padding: 1.2em 0.6em;
+          background-color: rgba(255,255,255,0.4);
 
-            a {
-                color: #D80027;
-            }
+          a {
+              color: #D80027;
+          }
+          hr {
+            width: 75%;
+            border-color: $red;
+            background-color: $red;
+          }
         }
     }
 
     .logged-in {
-        border-bottom: 2px solid $main;
+        background: $background;
+        // border-bottom: 2px solid $main;
         position: relative;
         margin: 2em auto;
         padding: 1em 0.5em;
@@ -94,13 +115,16 @@ p {
         }
 
         &:hover {
-            // background-color: rgba(255,255,255,0.4);
-            box-shadow: 3px 3px 5px rgba(255,255,255,0.9);
-            padding: 1.2em 0.6em;
+          background-color: rgba(255,255,255,0.4);
 
-            a {
-                color: #D80027;
-            }
+          a {
+              color: #D80027;
+          }
+          hr {
+            width: 75%;
+            border-color: $red;
+            background-color: $red;
+          }
         }
     }
 
