@@ -109,5 +109,28 @@ $cascade: #95A5A6;
             top: 91.5%;
             left: 95%;
         }
+
+        &.match1 {
+            top: 62%;
+            left: 95%;
+        }
+
+        &.match2 {
+            top: 81.5%;
+            left: 95%;
+        }
+    }
+
+    .alert1 {
+        width: 30%;
+        color: #D80027;
+        border: 1px solid #D80027;
+        border-radius: 10px;
+        padding: 0.5em;
+        margin: 0 35%;
+        margin-top: 1em;
+        b {
+          margin: 0 1.6em;
+        }
     }
 }

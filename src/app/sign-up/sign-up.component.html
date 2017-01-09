@@ -6,19 +6,19 @@
             <div class="form-group">
                 <h2 class="heading">Sign up</h2>
                 <label for="name">Name</label>
-                <input formControlName="name" type="text" id="name" class="floatLabel" name="name" required>
+                <input formControlName="name" type="text" id="name" name="name" required>
                 <label for="email">Email</label>
-                <input formControlName="email" type="email" id="email" class="floatLabel" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <input formControlName="email" type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                 <label for="password">Password</label>
                 <!-- pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" -->
-                <input formControlName="password" type="password" id="password" class="floatLabel" name="password" required minlength='6'>
-                <span class="fa fa-eye-slash a" (mouseup)="displayPassword('password')" (mousedown)="displayPassword('password')"></span>
+                <input formControlName="password" type="password" id="password"  name="password" required minlength='6'>
+                <span class="fa fa-eye-slash a" [class.match1]="isPasswordNotMatch" (mouseover)="displayPassword('password')" (mouseleave)="displayPassword('password')"></span>
                 <label for="password_confirmation">Confirm Password</label>
                 <input formControlName="password_confirmation" type="password" id="password_confirmation" class="floatLabel" name="password_confirmation" data-toggle="tooltip"
                     data-placement="right" title="Password does not match!" required minlength="6">
-                <span class="fa fa-eye-slash b" (mouseup)="displayPassword('password_confirmation')" (mousedown)="displayPassword('password_confirmation')"></span>
-                <div class="alert alert-danger" id="password-match" hidden>
-                    <b>Passwords do not match.</b>
+                <span class="fa fa-eye-slash b" [class.match2]="isPasswordNotMatch" (mouseover)="displayPassword('password_confirmation')" (mouseleave)="displayPassword('password_confirmation')"></span>
+                <div class="alert1" id="password-match" [hidden]="!isPasswordNotMatch">
+                    <b>Passwords do not match</b>
                 </div>
             </div>
             <!-- button -->

@@ -26,8 +26,8 @@ export const appRoutes = [
     { path: 'loading', component: LoadingIndicatorComponent },
     { path: 'editgoal/:id', component: EditGoalComponent, CanActivate: [LoggedInGuard]},
     { path: 'yearview/:id', component: YearViewComponent, CanActivate: [LoggedInGuard]},
-    { path: 'reset_password/:token', component: ResetPasswordComponent},
+    { path: 'resetpassword/:token', component: ResetPasswordComponent},
     { path: 'activeaccount/:token', component: ActiveAccountComponent},
-    { path: 'forgot_password', component: ForgotPasswordComponent},
+    { path: 'forgotpassword', component: ForgotPasswordComponent},
     { path: '**', component: PageNotFoundComponent },
 ];

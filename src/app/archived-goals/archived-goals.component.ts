@@ -22,6 +22,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
     }
 
     ngOnInit() {
+        console.log("init");
         this.commonFunctions = new CommonFunctions();
         this.commonFunctions.changeBackground(false);
         this.commonFunctions.changeTitleContent("Archived goals");
@@ -122,7 +123,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
     }
 
     deleteGoals() {
-        this.openLoading(true);
+        this.showDeleteMenu();
         let modal = document.getElementById('context-menu');
         let checks = document.getElementsByClassName('checking');
         let deleteIds = "";
@@ -134,13 +135,21 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
         }
         this.goalService.deleteGoal(deleteIds).subscribe(res => {
             console.log("Deleting goals");
-            window.location.reload();
+            this.sortType = localStorage.getItem('sortType') == null ? "1" : localStorage.getItem('sortType');
+            this.isReversed = localStorage.getItem('isReversed') == null ? false : (localStorage.getItem('isReversed') == '0' ? false : true);
+            this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
+                this.goals = res.json();
+                this.goals = this.commonFunctions.getAllGoalsArchived(this.goals);
+                modal.style.display = "none";
+                this.router.navigate(['/archivedgoals']);
+            },
+                error => console.log(error));
+
         }, error => {
             console.log(error);
         })
     }
     archiveGoals() {
-        this.openLoading(true);
         let modal = document.getElementById('context-menu');
         let checks = document.getElementsByClassName('checking');
         let archiveIds = "";
@@ -152,7 +161,16 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
         }
         this.goalService.archiveGoal(archiveIds).subscribe(res => {
             console.log("Archiving goals");
-            window.location.reload();
+            this.sortType = localStorage.getItem('sortType') == null ? "1" : localStorage.getItem('sortType');
+            this.isReversed = localStorage.getItem('isReversed') == null ? false : (localStorage.getItem('isReversed') == '0' ? false : true);
+            this.goalService.getAllGoals(this.isReversed, this.sortType).subscribe(res => {
+                this.goals = res.json();
+                this.goals = this.commonFunctions.getAllGoalsArchived(this.goals);
+                modal.style.display = "none";
+                this.router.navigate(['/archivedgoals']);
+            },
+                error => console.log(error));
+
         }, error => {
             console.log(error);
         })
