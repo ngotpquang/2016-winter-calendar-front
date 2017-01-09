@@ -33,7 +33,12 @@ export class ResetPasswordComponent implements OnInit {
             this.type1 = this.type1 === 'text' ? 'password' : 'text';
         }
     }
-    doSubmit(): void{
+    doSubmit(): void {
+        if (this.passwordConfirm === this.password){
+                this.passwordMatch = true;
+            }else {
+                this.passwordMatch = false;
+            }
         if (this.passwordMatch) {
             this.userService.postNewPassword(this.reset_password_token,this.password).subscribe((res) => {
                 let info = res['_body'];
@@ -55,7 +60,7 @@ export class ResetPasswordComponent implements OnInit {
             }
         );
         }else {
-            this.passwordMatch = false;
+            return;
         }
     }
     checkMatch(): void {
