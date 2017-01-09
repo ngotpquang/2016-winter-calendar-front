@@ -20,6 +20,8 @@ export class ResetPasswordComponent implements OnInit {
     email: string;
     commonFunctions: CommonFunctions = new CommonFunctions();
     isLoading: boolean = false;
+    classa: string = 'a';
+    classb: string = 'b';
     constructor(private http: Http, private route: ActivatedRoute, private userService: UserService,
     private router: Router) {}
     ngOnInit(): void {
@@ -35,11 +37,7 @@ export class ResetPasswordComponent implements OnInit {
         }
     }
     doSubmit(): void {
-        if (this.passwordConfirm === this.password){
-                this.passwordMatch = true;
-            }else {
-                this.passwordMatch = false;
-            }
+        this.updateMatch();
         if (this.passwordMatch) {
             this.isLoading = true;
             this.userService.postNewPassword(this.reset_password_token,this.password).subscribe((res) => {
@@ -68,12 +66,21 @@ export class ResetPasswordComponent implements OnInit {
     checkMatch(): void {
         window.clearTimeout(this.myTimeOut);
         this.passwordMatch = true;
+        this.classa = 'a';
+        this.classb = 'b';
         this.myTimeOut = window.setTimeout(() => {
-            if (this.passwordConfirm === this.password){
-                this.passwordMatch = true;
-            }else {
-                this.passwordMatch = false;
-            }
+            this.updateMatch();
         }, 2000);
+    }
+    updateMatch(): void {
+        if (this.passwordConfirm === this.password){
+            this.passwordMatch = true;
+            this.classa = 'a';
+            this.classb = 'b';
+        }else {
+            this.passwordMatch = false;
+            this.classa = 'a1';
+            this.classb = 'b1';
+        }
     }
 }
