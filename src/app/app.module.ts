@@ -1,3 +1,4 @@
+import { ActiveAccountComponent } from './active-account/active-account.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MonthInYearComponent } from './year-view/month-in-year-view.component';
@@ -44,7 +45,8 @@ import { ArchivedGoalsComponent } from './archived-goals/archived-goals.componen
         MonthInYearComponent,
         ArchivedGoalsComponent,
         ResetPasswordComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        ActiveAccountComponent
     ],
     imports: [
         ArchivedGoalsModule,

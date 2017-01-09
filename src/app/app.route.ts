@@ -1,3 +1,4 @@
+import { ActiveAccountComponent } from './active-account/active-account.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { YearViewComponent } from './year-view/year-view.component';
@@ -26,6 +27,7 @@ export const appRoutes = [
     { path: 'editgoal/:id', component: EditGoalComponent, CanActivate: [LoggedInGuard]},
     { path: 'yearview/:id', component: YearViewComponent, CanActivate: [LoggedInGuard]},
     { path: 'reset_password/:token', component: ResetPasswordComponent},
+    { path: 'activeaccount/:token', component: ActiveAccountComponent},
     { path: 'forgot_password', component: ForgotPasswordComponent},
     { path: '**', component: PageNotFoundComponent },
 ];
