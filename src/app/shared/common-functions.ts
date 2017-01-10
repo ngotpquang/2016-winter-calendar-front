@@ -329,4 +329,26 @@ export class CommonFunctions implements OnInit {
       }
     }
 
+    timeForReminder(time: string): string {
+      switch (time){
+        case '0': return "0";
+        case '1': return "10";
+        case '2': return "30";
+        case '3': return "60";
+        case '4': return "120";
+        case '5': return "180";
+        case '6': return "1800";
+        case '7': return "";
+      }
+    }
+
+    pushReminder(result: string[], input: string){
+      for (let item of result){
+        if (input == item){
+          return ;
+        }
+      }
+      result.push(input);
+    }
+
 }
