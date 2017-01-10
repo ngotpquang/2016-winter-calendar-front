@@ -80,3 +80,15 @@ body {font-family: Verdana, sans-serif;}
     background: #1abc9c;
     color: white !important;
 }
+
+img {
+    max-width: 15%;
+    height: auto;
+}
+
+@media screen and (min-width: 992px) {
+    img { 
+        max-width: 50%;
+        height: auto;
+    }
+}
