@@ -168,5 +168,24 @@ export class EditGoalComponent implements OnInit {
         }
         // console.log(this.unit);
     }
-}
 
+    checkNewEndDate(obj): void {
+        this.goal.end_date.specific_end_date = obj.target.value;
+        let inputDate = new Date(obj.target.value);
+        let endDate = new Date(this.goal.end_date.specific_end_date);
+        let startDate = new Date(this.goal.start_date);
+        if (endDate.getTime() - startDate.getTime() < -(8.64e+7)) {
+            this.goal.end_date.specific_end_date = this.convertDate(startDate);
+            (<HTMLInputElement>document.getElementById('until-date')).value = this.goal.end_date.specific_end_date ;
+            return;
+        }else {
+            return;
+        }
+    }
+    convertDate(date: Date): string {
+        function pad(s) { return (s < 10) ? '0' + s : s; }
+        let d = date;
+        return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-');
+    }
+}
+// [value]="goal.end_date.specific_end_date | date:'yyyy-MM-dd'"
