@@ -26,6 +26,11 @@ export class EditGoalComponent implements OnInit {
     submitted = false;
     isDataLoaded = false;
     isSuitableYear = true;
+    remindersList = ['At the time of event', '10 minutes before', '30 minutes before',
+            '1 hour before', '2 hours before', '3 hours before', '12 hours before', 'Set time'];
+    timeBefores = ['time_before_1', 'time_before_2', 'time_before_3', 'time_before_4', 'time_before_5'];
+    reminder = [];
+    reminderIndex: number = 0;
     constructor(private goalService: GoalService, private route: ActivatedRoute,
         private location: Location, private router: Router) {
     };
@@ -35,6 +40,7 @@ export class EditGoalComponent implements OnInit {
         this.commonFunctions.changeBackground(false);
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
+            console.log(this.goal);
             this.commonFunctions.changeTitleContent(this.goal.goal_name);
             this.toRepetitionUnit();
 
@@ -238,5 +244,8 @@ export class EditGoalComponent implements OnInit {
         function pad(s) { return (s < 10) ? '0' + s : s; }
         let d = date;
         return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-');
+    }
+    addReminder(): void {
+        this.reminder.push('reminder' + this.reminderIndex);
     }
 }

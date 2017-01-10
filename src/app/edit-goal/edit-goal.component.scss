@@ -142,5 +142,18 @@ $cascade: #95A5A6;
             font-weight: bold;
             border: 1.5px solid $main;
         }
+        &#add-reminder {
+            width: 30%;
+            background-color: white;
+            color: $main;
+            border: 1px solid $main;
+            float: right;
+            margin-top: 2em;
+
+            &:focus,
+            &:hover {
+                background-color: #eee;
+            }
+        }
     }
 }
