@@ -82,6 +82,7 @@ export class CommonFunctions implements OnInit {
     }
 
     getDay(today: Date): string {
+        console.log("Z");
         let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let orderNumbers = ["first ", "second ", "third ", "fourth "];
         let result = "";
@@ -321,34 +322,48 @@ export class CommonFunctions implements OnInit {
         }
     }
 
-    setFavoriteGoal(goals: Goal[], id: string): void{
-      for (let goal of goals){
-        if (goal.id == id){
-          goal.is_favorite = !goal.is_favorite;
+    setFavoriteGoal(goals: Goal[], id: string): void {
+        for (let goal of goals) {
+            if (goal.id == id) {
+                goal.is_favorite = !goal.is_favorite;
+            }
         }
-      }
     }
 
     timeForReminder(time: string): string {
-      switch (time){
-        case '0': return "0";
-        case '1': return "10";
-        case '2': return "30";
-        case '3': return "60";
-        case '4': return "120";
-        case '5': return "180";
-        case '6': return "1800";
-        case '7': return "";
-      }
+        switch (time) {
+            case '0': return "0";
+            case '1': return "10";
+            case '2': return "30";
+            case '3': return "60";
+            case '4': return "120";
+            case '5': return "180";
+            case '6': return "1800";
+            case '7': return "";
+        }
     }
 
-    pushReminder(result: string[], input: string){
-      for (let item of result){
-        if (input == item){
-          return ;
+    pushReminder(result: string[], input: string) {
+        for (let item of result) {
+            if (input == item) {
+                return;
+            }
         }
-      }
-      result.push(input);
+        result.push(input);
+    }
+
+    formatStartDate(startDate: Date): string{
+      let result = "";
+      result += startDate.getFullYear() + "-";
+      let month = startDate.getMonth() + 1;
+      result += (month < 10 ? "0" + month : month) + "-";
+      let date = startDate.getDate();
+      result += (date < 10 ? "0" + date : date) + "T"
+      let hour = startDate.getHours();
+      result += (hour < 10 ? "0" + hour : hour) + ":";
+      let minutes = startDate.getMinutes();
+      result += minutes < 10 ? "0" + minutes : minutes;
+      return result;
     }
 
 }

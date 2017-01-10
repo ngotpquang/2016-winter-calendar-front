@@ -19,6 +19,8 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
     public remindersList: string[];
     public timeBefores: string[];
     private hiddenReminderButton: boolean = false;
+    public startTime: string;
+    private timeoutChangeStartDate;
     public commonFunctions: CommonFunctions;
     constructor(private goalService: GoalService, private router: Router) {
         super('loaded');
@@ -32,6 +34,10 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
             '1 hour before', '2 hours before', '3 hours before', '12 hours before', 'Set time'];
         this.timeBefores = ['time_before_1', 'time_before_2', 'time_before_3', 'time_before_4', 'time_before_5'];
         this.commonFunctions = new CommonFunctions();
+        let today = this.commonFunctions.roundUpTime()
+        // today.setHours(this.commonFunctions.roundUpTime().getHours() - 7);
+        this.startTime = this.commonFunctions.formatStartDate(today);
+        console.log(this.startTime);
         this.commonFunctions.changeTitleContent('Create a new goal');
         this.commonFunctions.changeBackground(false);
     }
@@ -78,9 +84,30 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
     }
 
     changeMonthlyType() {
-        let input = this.createNewGoalForm.value;
-        let startDate = new Date(input.start_date);
-        (<HTMLInputElement>document.getElementById('dayDefineValue')).innerHTML = this.commonFunctions.getDay(startDate);
+        clearTimeout(this.timeoutChangeStartDate);
+        setTimeout(() => {
+            let input = this.createNewGoalForm.value;
+            let startDate;
+            if (isNaN(Date.parse(input.start_date))) {
+                startDate = this.roundUpTime();
+            } else {
+                startDate = new Date(input.start_date);
+                startDate.setHours(startDate.getHours() - 7);
+                if (startDate.getFullYear() > 2100) {
+                    startDate.setFullYear(2100);
+                    startDate.setHours(this.roundUpTime().getHours(), this.roundUpTime().getMinutes(), 0, 0);
+                } else if (startDate.getFullYear() < 2000) {
+                    startDate.setFullYear(2000);
+                    startDate.setHours(this.roundUpTime().getHours(), this.roundUpTime().getMinutes(), 0, 0);
+                }
+            }
+            console.log(startDate);
+            let startDateInput = (<HTMLInputElement>document.getElementById('start-date'));
+            startDateInput.value = this.commonFunctions.formatStartDate(startDate);
+            this.startTime = this.commonFunctions.formatStartDate(startDate);
+            console.log(this.startTime);
+            (<HTMLInputElement>document.getElementById('dayDefineValue')).innerHTML = this.commonFunctions.getDay(startDate);
+        }, 1000);
     }
 
     changeRepetitionLimitedTime() {
@@ -194,12 +221,13 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
                     (input.day_of_week_Fri == true ? "5, " : "") +
                     (input.day_of_week_Sat == true ? "6, " : "");
             }
-            let start_date;
-            if (input.start_date == null) {
-                start_date = this.roundUpTime().toString();
-            } else {
-                start_date = input.start_date;
-            }
+            // let start_date;
+            // if (input.start_date == null) {
+            //     start_date = this.roundUpTime().toString();
+            // } else {
+            //     start_date = input.start_date;
+            // }
+            console.log(this.startTime);
             let specific_end_date = null;
             if (input.type_of_end_date == 2) {
                 if (input.specific_end_date == null) {
@@ -272,20 +300,20 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
             // console.log(input.time_before_3);
             // console.log(input.time_before_4);
             // console.log(input.time_before_5);
-            console.log("Result: " + time_before.toString());
+            // console.log("Result: " + time_before.toString());
 
 
-                let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-                let goal = new Goal(currentUser.email, currentUser.token, input.goal_name, start_date, input.description,
-                    new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
-                    new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event), input.autoUpdateFailed, time_before.toString());
-                this.goalService.addNewGoal(goal).subscribe(res => {
-                    this.router.navigate(['/detailview']);
-                },
-                    error => console.log(error));
-            } else {
-                let alert = <HTMLElement>document.getElementById('goal-name-alert');
-                alert.hidden = false;
+            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let goal = new Goal(currentUser.email, currentUser.token, input.goal_name, this.startTime, input.description,
+                new Repetition(input.type_of_repetition, input.how_often, day_of_week, input.type_of_month),
+                new EndDate(input.type_of_end_date, specific_end_date, input.number_of_event), input.autoUpdateFailed, time_before.toString());
+            this.goalService.addNewGoal(goal).subscribe(res => {
+                this.router.navigate(['/detailview']);
+            },
+                error => console.log(error));
+        } else {
+            let alert = <HTMLElement>document.getElementById('goal-name-alert');
+            alert.hidden = false;
         }
     }
 }
