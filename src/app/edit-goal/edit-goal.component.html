@@ -13,7 +13,7 @@
 		<div class="right">
 			<label for="from" class="fix">From</label>
 			<input type="datetime-local" id="start-date" name="start-date" [value]="goal.start_date| date:'yyyy-MM-ddTHH:mm'" autocomplete="off"
-            (change)="goal.start_date=$event.target.value; setTempDate(); setDay(); setDate();"/>
+            (blur)="goal.start_date=$event.target.value; setTempDate(); setDay(); setDate();"/>
 		</div>
 		<div class="clear"></div>
 		<label id="label-description" for="description">Description</label>
@@ -51,7 +51,7 @@
 		<div class="right">
 			<input type="date" id="until-date" *ngIf="goal.end_date.type_of_end_date==2"
 			 [value]="goal.end_date.specific_end_date | date:'yyyy-MM-dd'"
-			(input)="checkNewEndDate($event);" style="margin-top: 2em;" />
+			(blur)="checkNewEndDate($event);" style="margin-top: 2em;" />
 			<span id="number-events" *ngIf="goal.end_date.type_of_end_date==3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" [(ngModel)]="goal.end_date.number_of_event" name="numberOfEvents"
 			 min='1' style="width: 10%; margin-top: 2em;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event(s)</span>
