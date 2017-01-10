@@ -25,6 +25,7 @@ export class EditGoalComponent implements OnInit {
     public commonFunctions: CommonFunctions;
     submitted = false;
     isDataLoaded = false;
+    isSuitableYear = true;
     constructor(private goalService: GoalService, private route: ActivatedRoute,
         private location: Location, private router: Router) {
     };
@@ -61,8 +62,20 @@ export class EditGoalComponent implements OnInit {
         });
     };
     setTempDate() {
+        this.isSuitableYear = true;
         let offSet = new Date().getTimezoneOffset();
-        let fullTime = new Date(this.goal.start_date).getTime();
+        let date = new Date(this.goal.start_date);
+        if  (date.getFullYear() < 2000) {
+            alert('This start year is too small');
+            date.setFullYear(2000);
+            this.isSuitableYear = false;
+        }
+        if (date.getFullYear() > 2100) {
+            alert('This start year is too big');
+            date.setFullYear(2100);
+            this.isSuitableYear = false;
+        }
+        let fullTime = date.getTime();
         let temp = fullTime + (offSet * 60 * 1000);
         this.goal.start_date = new Date(temp);
     }
@@ -123,7 +136,6 @@ export class EditGoalComponent implements OnInit {
         let offSet = new Date().getTimezoneOffset();
         let fullTime = new Date(this.goal.start_date).getTime();
         let temp = fullTime - (offSet * 60 * 1000);
-        console.log( offSet / 60);
         this.goal.start_date = new Date(temp);
 
         if (this.goal.description == null) {
@@ -133,7 +145,9 @@ export class EditGoalComponent implements OnInit {
         this.goal.token = currentUser.token;
         this.goal.email = currentUser.email;
 
-        this.goalService.editGoal(this.id, this.goal).then(() => this.router.navigate(['/detailview']));
+        this.goalService.editGoal(this.id, this.goal).then(() => this.router.navigate(['/detailview'])).catch((error) => {
+            console.log(error);
+        });
     }
     updateDoW(): void {
         if (this.goal.repetition.type_of_repetition === 2) {
@@ -202,10 +216,17 @@ export class EditGoalComponent implements OnInit {
     }
 
     checkNewEndDate(obj): void {
-        this.goal.end_date.specific_end_date = obj.target.value;
-        let endDate = new Date(this.goal.end_date.specific_end_date);
+        let endDate = new Date(obj.target.value);
+        if (endDate.getFullYear() > 2100) {
+            endDate.setFullYear(2100);
+            alert('The end year is too big');
+            this.goal.end_date.specific_end_date = endDate;
+        }else {
+            this.goal.end_date.specific_end_date = endDate;
+        }
         let startDate = new Date(this.goal.start_date);
         if (endDate.getTime() - startDate.getTime() < -(8.64e+7)) {
+            alert('The end date can not be before the start date');
             this.goal.end_date.specific_end_date = this.convertDate(startDate);
             (<HTMLInputElement>document.getElementById('until-date')).value = this.goal.end_date.specific_end_date ;
             return;
@@ -219,4 +240,3 @@ export class EditGoalComponent implements OnInit {
         return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-');
     }
 }
-// [value]="goal.end_date.specific_end_date | date:'yyyy-MM-dd'"
