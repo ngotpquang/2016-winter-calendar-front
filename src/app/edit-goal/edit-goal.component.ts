@@ -143,6 +143,25 @@ export class EditGoalComponent implements OnInit {
     toNumber1(): void {
         let num = parseInt(this.goal.end_date.type_of_end_date.toString(), 10);
         this.goal.end_date.type_of_end_date = num;
+        switch (num) {
+            case 2: {
+                if (this.goal.end_date.specific_end_date == null) {
+                    this.goal.end_date.specific_end_date = this.commonFunctions.untilDate();
+                }
+                break;
+            }
+            // tslint:disable-next-line:no-switch-case-fall-through
+            case 3: {
+                if (this.goal.end_date.number_of_event == null){
+                    this.goal.end_date.number_of_event = 1;
+                }
+                break;
+            }
+            // tslint:disable-next-line:no-switch-case-fall-through
+            default: {
+                break;
+            }
+        }
     }
     toRepetitionUnit(): void {
         let type = this.goal.repetition.type_of_repetition;
@@ -168,5 +187,23 @@ export class EditGoalComponent implements OnInit {
         }
         // console.log(this.unit);
     }
-}
 
+    checkNewEndDate(obj): void {
+        this.goal.end_date.specific_end_date = obj.target.value;
+        let endDate = new Date(this.goal.end_date.specific_end_date);
+        let startDate = new Date(this.goal.start_date);
+        if (endDate.getTime() - startDate.getTime() < -(8.64e+7)) {
+            this.goal.end_date.specific_end_date = this.convertDate(startDate);
+            (<HTMLInputElement>document.getElementById('until-date')).value = this.goal.end_date.specific_end_date ;
+            return;
+        }else {
+            return;
+        }
+    }
+    convertDate(date: Date): string {
+        function pad(s) { return (s < 10) ? '0' + s : s; }
+        let d = date;
+        return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-');
+    }
+}
+// [value]="goal.end_date.specific_end_date | date:'yyyy-MM-dd'"

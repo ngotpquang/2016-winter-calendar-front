@@ -88,3 +88,22 @@ button {
         }
     }
 }
+@media screen and (max-width: 685px){
+        .item{
+            clear:both;
+        }
+        button {
+            &#detailBtn {
+                background-color: #eee;
+                color: $main;
+                border: 1px solid $main;
+                position: relative;
+                top:0;
+                bottom: 0;
+                left: 40%;
+                right: 0;
+                margin: auto;
+                max-width: 20%;
+            }
+        }
+    }

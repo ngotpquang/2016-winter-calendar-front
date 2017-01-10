@@ -18,7 +18,7 @@ export class YearViewComponent implements OnInit{
     id: string;
     goal: Goal;
     months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-     'December', 'October', 'November', 'December'];
+     'September', 'October', 'November', 'December'];
     isDataLoaded: boolean = false;
     commonFuntion: CommonFunctions = new CommonFunctions();
     constructor (private goalService: GoalService, private location: Location,
