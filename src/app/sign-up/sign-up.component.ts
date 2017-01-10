@@ -46,13 +46,17 @@ export class SignUpComponent extends LoadingPage implements OnInit {
                 this.ready();
                 this.submitted = true;
             },
-                error => console.log(error)
+                (error) => {
+                    this.ready();
+                    let errorDisplay = JSON.parse(error['_body']);
+                    alert(errorDisplay['error']);
+                }
             );
         }
     }
 
     displayPassword(string) {
         let passwordInput = <HTMLInputElement>document.getElementById(string);
-        passwordInput.type = passwordInput.type == 'text' ? 'password' : 'text'
+        passwordInput.type = passwordInput.type === 'text' ? 'password' : 'text';
     }
 }
