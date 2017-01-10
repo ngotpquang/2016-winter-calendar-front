@@ -56,6 +56,6 @@ export class YearViewComponent implements OnInit{
     }
 
     backToDetail(): void{
-        this.router.navigate(['detailview']);
+        this.router.navigate(['/detailview']);
     }
 }

@@ -25,6 +25,11 @@ body {font-family: Verdana, sans-serif;}
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 3px;
+    transition: all 0.3s;
+    &:hover{
+      color: #D80027;
+      cursor: pointer;
+    }
 }
 
 /* Previous button inside month header */

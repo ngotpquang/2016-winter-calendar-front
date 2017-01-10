@@ -37,10 +37,13 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
     }
 
     displayMonthView(goal: Goal): void {
-        this.router.navigate(['/monthview', goal.id]);
+      let fullYear = new Date().getFullYear();
+      let month = new Date().getMonth() + 1;
+      this.router.navigate(['/monthview', goal.id, fullYear, month]);
     }
     displayYearView(goal: Goal): void {
-        this.router.navigate(['/yearview', goal.id]);
+      let fullYear = new Date().getFullYear();
+      this.router.navigate(['/yearview', goal.id, fullYear]);
     }
 
     showSortMenu(): void {
