@@ -61,13 +61,13 @@
 		<div class="clear"></div>
 		<div class="left">
 			<label id="reminders" for="reminders">Reminders</label>
-			<div class="reminder-group" *ngFor="let item of reminder" id="{{item}}">
+			<div class="reminder-group" *ngFor="let item of reminders; let iI = index" id="{{item}}">
 			<select [class.first]="item == 'time_before_1'" id="select-{{item}}"
-				name="{{item}}" class="time-before" (change)="changeToSetTime(item)">
+				name="{{item}}" class="time-before" [(ngModel)]="reminderTypes[iI]">
 				<option *ngFor="let time of remindersList; let i = index" value="{{i}}">{{time}}</option>
 			</select>
-			<span class="fa fa-times" [class.first]="item == 'time_before_1'" style="float: right" (click)="deleteReminder()"></span>
-			<input type="time" id="input-{{item}}" hidden="hidden" value=""/>
+			<span class="fa fa-times" [class.first]="item == 'time_before_1'" style="float: right" (click)="deleteReminder(item)"></span>
+			<input type="time" id="input-{{item}}" *ngIf="reminderTypes[iI]=='3'" value=""/>
 			</div>
 			<button type="button" name="addReminder" id="add-reminder" (click)="addReminder()" [hidden]="hiddenReminderButton">Add reminder</button>
 		</div>
