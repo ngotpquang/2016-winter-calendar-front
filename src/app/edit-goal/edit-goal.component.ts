@@ -190,7 +190,6 @@ export class EditGoalComponent implements OnInit {
 
     checkNewEndDate(obj): void {
         this.goal.end_date.specific_end_date = obj.target.value;
-        let inputDate = new Date(obj.target.value);
         let endDate = new Date(this.goal.end_date.specific_end_date);
         let startDate = new Date(this.goal.start_date);
         if (endDate.getTime() - startDate.getTime() < -(8.64e+7)) {
