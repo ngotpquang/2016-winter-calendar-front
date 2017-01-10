@@ -282,8 +282,8 @@ export class CommonFunctions implements OnInit {
                 });
             case "3":
                 return goals.sort((goal1, goal2) => {
-                    let att1 = goal1.start_date.toLowerCase();
-                    let att2 = goal2.start_date.toLowerCase();
+                    let att1 = goal1.start_date.split('T')[1];
+                    let att2 = goal2.start_date.split('T')[1];
                     if (att1 < att2) {
                         return -1;
                     }

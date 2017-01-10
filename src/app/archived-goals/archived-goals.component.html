@@ -10,7 +10,7 @@
                         <div class="goal-title">
                             <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
                             <span class="tooltiptext">&nbsp;&nbsp;<a (click)="displayMonthView(goal)">Month view</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a (click)="displayYearView(goal)">Year view</a>&nbsp;&nbsp;</span>
-                            <!-- <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div> -->
+                            <div class="reminder"><span class="fa fa-clock-o"></span> {{goal.start_date.split('T')[1].substring(0, 5)}}</div>
                         </div>
                         <div class="clear"></div>
                         <div class="feature">
@@ -45,7 +45,7 @@
                         <div class="goal-title">
                             <b id="title" (click)="displayMonthView(goal)">{{goal.goal_name}}</b>
                             <span class="tooltiptext">&nbsp;&nbsp;<a (click)="displayMonthView(goal)">Month view</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a (click)="displayYearView(goal)">Year view</a>&nbsp;&nbsp;</span>
-                            <!-- <div class="reminder"><span class="fa fa-clock-o"></span> xx:xx</div> -->
+                            <div class="reminder"><span class="fa fa-clock-o"></span> {{goal.start_date.split('T')[1].substring(0, 5)}}</div>
                         </div>
                         <div class="clear"></div>
                         <div class="feature">
@@ -123,7 +123,7 @@
             <span class="space"></span>
             <input type="radio" id="name" name="sort-type" value="2" [checked]="sortType == 2" (change)="sort()"> <span>Name</span>
             <span class="space"></span>
-            <input type="radio" id="start-date" name="sort-type" value="3" [checked]="sortType == 3" (change)="sort()"> <span>Start date</span>
+            <input type="radio" id="start-date" name="sort-type" value="3" [checked]="sortType == 3" (change)="sort()"> <span>Start time</span>
             <span class="space"></span>
             <input type="radio" id="frequecy" name="sort-type" value="4" [checked]="sortType == 4" (change)="sort()"> <span>Frequency</span>
             <span class="space"></span>
