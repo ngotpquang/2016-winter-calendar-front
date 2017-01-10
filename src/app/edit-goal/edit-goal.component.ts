@@ -143,6 +143,25 @@ export class EditGoalComponent implements OnInit {
     toNumber1(): void {
         let num = parseInt(this.goal.end_date.type_of_end_date.toString(), 10);
         this.goal.end_date.type_of_end_date = num;
+        switch (num) {
+            case 2: {
+                if (this.goal.end_date.specific_end_date == null) {
+                    this.goal.end_date.specific_end_date = this.commonFunctions.untilDate();
+                }
+                break;
+            }
+            // tslint:disable-next-line:no-switch-case-fall-through
+            case 3: {
+                if (this.goal.end_date.number_of_event == null){
+                    this.goal.end_date.number_of_event = 1;
+                }
+                break;
+            }
+            // tslint:disable-next-line:no-switch-case-fall-through
+            default: {
+                break;
+            }
+        }
     }
     toRepetitionUnit(): void {
         let type = this.goal.repetition.type_of_repetition;
@@ -171,7 +190,6 @@ export class EditGoalComponent implements OnInit {
 
     checkNewEndDate(obj): void {
         this.goal.end_date.specific_end_date = obj.target.value;
-        let inputDate = new Date(obj.target.value);
         let endDate = new Date(this.goal.end_date.specific_end_date);
         let startDate = new Date(this.goal.start_date);
         if (endDate.getTime() - startDate.getTime() < -(8.64e+7)) {
