@@ -84,21 +84,26 @@ export class MonthInYearComponent implements OnInit {
         if (this.goalInMonth.end_date.specific_end_date != null) {
             let endDate = new Date(this.goalInMonth.end_date.specific_end_date);
             if (date.getTime() - endDate.getTime() > 0) {
+                alert('This date is further than the end date for this goal');
                 return;
             }
         }
-        if (date.getTime() - currentDate.getTime() > 0 || date.getTime() - startDate.getTime() < -(8.64e+7)) {
+        if (date.getTime() - currentDate.getTime() > 0) {
+            alert('This date does not even come');
             return;
-        }else {
-            this.state[obj] = (this.state[obj] + 1) % 3;
-            let id = this.goalInMonth.id;
-            let strDate = date.toString();
-            let status = this.state[obj].toString();
-            clearTimeout(this.myTimeOut[obj]);
-            this.myTimeOut[obj] = window.setTimeout((() => {
-                this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
-            }), 1000);
         }
+        if (date.getTime() - startDate.getTime() < -(8.64e+7)) {
+            alert('You have not start this goal yet on this date');
+            return;
+        }
+        this.state[obj] = (this.state[obj] + 1) % 3;
+        let id = this.goalInMonth.id;
+        let strDate = date.toString();
+        let status = this.state[obj].toString();
+        clearTimeout(this.myTimeOut[obj]);
+        this.myTimeOut[obj] = window.setTimeout((() => {
+            this.goalService.markGoal(id, strDate, status).toPromise().then(() => { return; });
+        }), 1000);
     }
 
     /*isDateEqual(a: Date, b: Date): boolean {
