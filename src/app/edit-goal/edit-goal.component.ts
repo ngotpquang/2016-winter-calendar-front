@@ -36,6 +36,12 @@ export class EditGoalComponent implements OnInit {
             this.goal = JSON.parse(data['_body']);
             this.commonFunctions.changeTitleContent(this.goal.goal_name);
             this.toRepetitionUnit();
+
+            let offSet = new Date().getTimezoneOffset();
+            let fullTime = new Date(this.goal.start_date).getTime();
+            let temp = fullTime + (offSet * 60 * 1000);
+            this.goal.start_date = new Date(temp);
+
             let rep = this.goal.repetition;
             if (rep.type_of_repetition === 2) {
                 if (rep.day_of_week != null) {
@@ -113,6 +119,13 @@ export class EditGoalComponent implements OnInit {
     }
     editGoal(): void {
         this.isDataLoaded = false;
+
+        let offSet = new Date().getTimezoneOffset();
+        let fullTime = new Date(this.goal.start_date).getTime();
+        let temp = fullTime - (offSet * 60 * 1000);
+        console.log( offSet / 60);
+        this.goal.start_date = new Date(temp);
+
         if (this.goal.description == null) {
             this.goal.description = '';
         }
