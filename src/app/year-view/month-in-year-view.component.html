@@ -19,8 +19,8 @@
 <ul class="days">
   <li *ngFor="let date of dates; let i = index" (click)="onClickLi(i)">
     <span class="{{classli[i]}}">
-      <span *ngIf="state[i]==1"><img src="../assets/img/passed.png" style="width:50%; height:50%;"></span>
-      <span *ngIf="state[i]==2"><img src="../assets/img/failed.png" style="width:50%; height:50%;"></span>
+      <span *ngIf="state[i]==1"><img src="../assets/img/passed.png"></span>
+      <span *ngIf="state[i]==2"><img src="../assets/img/failed.png"></span>
       <span *ngIf="state[i]==0">{{date}}</span>
     </span>
     </li>
