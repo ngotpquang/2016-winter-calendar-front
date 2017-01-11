@@ -84,9 +84,9 @@ $cascade: #95A5A6;
         transition: all 0.3s;
         cursor: pointer;
 
-        &:hover,
+        &:active,
         &:focus,
-        &:active {
+        &:hover {
             outline: none;
             background-color: white;
             color: $main;
@@ -111,12 +111,12 @@ $cascade: #95A5A6;
         }
 
         &.match1 {
-            top: 62%;
+            top: 59%;
             left: 95%;
         }
 
         &.match2 {
-            top: 81.5%;
+            top: 78.5%;
             left: 95%;
         }
     }
@@ -127,10 +127,96 @@ $cascade: #95A5A6;
         border: 1px solid #D80027;
         border-radius: 10px;
         padding: 0.5em;
-        margin: 0 35%;
-        margin-top: 1em;
+        margin: 2em 35% 0;
+
         b {
-          margin: 0 1.6em;
+            margin: 0 1.6em;
+        }
+    }
+}
+@media screen and (min-width: 1920px) {
+    .form-group {
+        button {
+            width: 101.5%;
+        }
+
+        span {
+            &.a {
+                top: 70%;
+                left: 97%;
+            }
+
+            &.b {
+                top: 91.5%;
+                left: 97%;
+            }
+
+            &.match1 {
+                top: 59%;
+                left: 97%;
+            }
+
+            &.match2 {
+                top: 78.5%;
+                left: 97%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 1919px) and (min-width: 1366px) {
+    .form-group {
+
+        .alert1 {
+            width: 41%;
+            margin: 2em 31% 0;
+        }
+    }
+}
+@media screen and (max-width: 1335px) and (min-width: 768px) {
+    .form-group {
+        width: 70%;
+
+        button {
+            width: 102%;
+        }
+
+        .alert1 {
+            width: 50%;
+            margin: 2em 26% 0;
+        }
+
+        span {
+            &.match1 {
+                top: 59%;
+                left: 97%;
+            }
+
+            &.match2 {
+                top: 78.5%;
+                left: 97%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 765px) and (min-width: 375px) {
+    .form-group {
+        width: 95%;
+
+        button {
+            width: 104%;
+        }
+
+        span {
+            display: none;
+        }
+
+        .alert1 {
+            width: 103%;
+            margin: 2em 0 0;
+
+            b {
+                margin: 0 0.5em;
+            }
         }
     }
 }

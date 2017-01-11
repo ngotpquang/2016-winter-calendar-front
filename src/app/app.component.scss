@@ -1,7 +1,7 @@
 div,
 label,
-span,
-p {
+p,
+span {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -58,7 +58,7 @@ header {
 			border-radius: 10px 10px 0 0;
 
 			p {
-				font-size:26px;
+				font-size: 26px;
 				font-weight: bold;
 				margin: 0.5em auto;
 			}
@@ -68,6 +68,7 @@ header {
 			padding: 6px 16px;
 			color: $main;
 			font-size: 20px;
+
 			p {
 				margin: 0.5em auto;
 			}
@@ -194,10 +195,15 @@ main {
 .clear {
 	clear: both;
 }
+@media screen and (max-width: 1335px) and (min-width: 768px) {}
+@media screen and (max-width: 765px) and (min-width: 375px) {
 
-// @media screen and (max-width: 375px) {
-//     header {
-// 			width: 38em;
-// 			overflow: auto;
-// 		}
-// }
+	.title-button {
+		font-size: 12px;
+
+		button {
+			width: 5em;
+			padding: 0.4em;
+		}
+	}
+}

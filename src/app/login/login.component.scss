@@ -79,7 +79,7 @@ $cascade: #95A5A6;
         font-family: inherit;
         font-size: inherit;
         padding: 0.5em;
-        width: 101%;
+        width: 101.5%;
         transition: all 0.3s;
         cursor: pointer;
 
@@ -108,5 +108,34 @@ $cascade: #95A5A6;
 
     .alert {
         margin: 1em auto;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .form-group {
+        span{
+        left: 97%;
+        }
+    }
+}
+@media screen and (max-width: 1335px) and (min-width: 768px) {
+    .form-group {
+        width: 70%;
+
+        button {
+            width: 102%;
+        }
+    }
+}
+@media screen and (max-width: 765px) and (min-width: 375px) {
+    .form-group {
+        width: 95%;
+
+        button {
+            width: 104%;
+        }
+
+        span {
+            display: none;
+        }
     }
 }
