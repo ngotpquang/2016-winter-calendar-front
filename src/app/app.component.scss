@@ -206,6 +206,9 @@ main {
 
 	.title-button {
 		font-size: 12px;
+		&#logout-button {
+			margin-top: 0.6em;
+		}
 
 		button {
 			width: 5em;
