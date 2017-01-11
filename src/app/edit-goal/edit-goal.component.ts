@@ -284,8 +284,10 @@ export class EditGoalComponent implements OnInit {
         let length = this.reminderValues.length;
         for (let i = 0; i < length; i++) {
             let tmp = this.reminderValues[i];
-            if (this.uniqueArray.indexOf(tmp) < 0) {
-                this.uniqueArray.push(tmp);
+            if (tmp !== '') {
+                if (this.uniqueArray.indexOf(tmp) < 0) {
+                    this.uniqueArray.push(tmp);
+                }
             }
         }
     }
