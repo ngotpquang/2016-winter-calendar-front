@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="calendar.png">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <style media="screen">
         @-webkit-keyframes up {
@@ -142,13 +142,23 @@
         }
 
         body.introduction {
-            background: white;
+            background: #F1F1F1;
             /*background-size: cover;*/
+        }
+
+        html, body {
+          width: 100%;
+        }
+
+        @media screen and (max-width: 545px) {
+            html, body {
+                overflow: auto;
+            }
         }
     </style>
 </head>
 
-<body style="margin: 0;">
+<body style="margin: 0; background: #F1F1F1;">
     <app-root>
         <div class="background-loading">
             <div class="pacman"></div>
