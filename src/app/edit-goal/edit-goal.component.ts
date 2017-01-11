@@ -49,7 +49,6 @@ export class EditGoalComponent implements OnInit {
         this.commonFunctions.changeBackground(false);
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
-            console.log(this.goal);
             this.commonFunctions.changeTitleContent(this.goal.goal_name);
             this.toRepetitionUnit();
 
@@ -70,10 +69,13 @@ export class EditGoalComponent implements OnInit {
             };
             this.setDay();
             this.setDate();
-            this.isDataLoaded = true;
 
-            this.reminderString = this.goal.time_before;
-            this.stringToReminders();
+            let tmpString = this.goal.time_before;
+            if (tmpString !== '') {
+                this.reminderString = this.goal.time_before;
+                this.stringToReminders();
+            }
+            this.isDataLoaded = true;
         }, (error) => {
             console.log(error['status']);
             this.router.navigate(['/pagenotfound']);
@@ -295,22 +297,18 @@ export class EditGoalComponent implements OnInit {
         this.reminderString = this.uniqueArray.join(',').trim();
     }
     stringToReminders() {
-        if (this.reminderString != null) {
-            this.reminderValues = this.reminderString.split(',');
-            let len = this.reminderValues.length;
-            for (let i = 0; i < len; i++) {
-                let tmp = this.reminderValues[i];
-                if (tmp.indexOf(':') < 0) {
-                    this.reminderTypes[i] = this.convertArray.indexOf(tmp).toString();
-                }else {
-                    this.reminderTypes[i] = '7';
-                    this.defaultTime = tmp;
-                }
-                this.reminders.push('reminder' + this.reminderLength);
-                this.reminderLength++;
+        this.reminderValues = this.reminderString.split(',');
+        let len = this.reminderValues.length;
+        for (let i = 0; i < len; i++) {
+            let tmp = this.reminderValues[i];
+            if (tmp.indexOf(':') < 0) {
+                this.reminderTypes[i] = this.convertArray.indexOf(tmp).toString();
+            }else {
+                this.reminderTypes[i] = '7';
+                this.defaultTime = tmp;
             }
-        }else {
-            return;
+            this.reminders.push('reminder' + this.reminderLength);
+            this.reminderLength++;
         }
     }
     checkNumber(obj) {
