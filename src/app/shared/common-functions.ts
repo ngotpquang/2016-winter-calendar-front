@@ -338,7 +338,7 @@ export class CommonFunctions implements OnInit {
             case '3': return "60";
             case '4': return "120";
             case '5': return "180";
-            case '6': return "1800";
+            case '6': return "720";
             case '7': return "";
         }
     }
