@@ -176,7 +176,7 @@ $cascade: #95A5A6;
         }
     }
 }
-@media screen and (min-width: 1366px) and (max-width: 1919px) {
+@media screen and (min-width: 1323px) and (max-width: 1919px) {
     .form-group {
         width: 85%;
 
@@ -187,13 +187,11 @@ $cascade: #95A5A6;
         }
     }
 }
-@media screen and (min-width: 768px) and (max-width: 1365px) {
+@media screen and (min-width: 768px) and (max-width: 1322px) {
     .form-group {
         width: 95%;
 
         button {
-            width: 100% !important;
-
             &#add-reminder {
                 width: 100%;
             }
