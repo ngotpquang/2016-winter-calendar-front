@@ -273,6 +273,7 @@ export class EditGoalComponent implements OnInit {
             this.reminderTypes.splice(index, 1);
             this.reminderValues.splice(index, 1);
         }
+        this.log();
     }
     setReminderValues(para1, para2): void {
         let num = parseInt(para2, 10);
@@ -295,9 +296,11 @@ export class EditGoalComponent implements OnInit {
         this.reminderString = this.uniqueArray.join(',').trim();
     }
     stringToReminders() {
-        if (this.reminderString != null) {
+        this.log();
+        if (this.reminderString !== '') {
             this.reminderValues = this.reminderString.split(',');
             let len = this.reminderValues.length;
+            console.log(len);
             for (let i = 0; i < len; i++) {
                 let tmp = this.reminderValues[i];
                 if (tmp.indexOf(':') < 0) {
