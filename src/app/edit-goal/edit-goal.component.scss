@@ -7,11 +7,6 @@ $cascade: #95A5A6;
     margin: 0 auto;
     font-family: inherit;
 
-    .alert {
-        color: #FF0000;
-        font-size: 20px;
-    }
-
     h2 {
         font-size: 26px;
         font-weight: 600;
@@ -54,6 +49,7 @@ $cascade: #95A5A6;
     input[type="number"],
     input[type="password"],
     input[type="text"],
+    input[type="time"],
     select,
     textarea {
         font-family: inherit;
@@ -75,6 +71,11 @@ $cascade: #95A5A6;
         }
     }
 
+    input[type="time"]{
+      width: 90%;
+      margin-top: 0.5em;
+    }
+
     textarea {
         height: auto;
         // width: 100%;
@@ -85,11 +86,41 @@ $cascade: #95A5A6;
         background-color: white;
         height: 32px;
         transition: all 0.2s;
+
+        &.time-before {
+            width: 90%;
+            margin-top: 2em;
+
+            &.first {
+                margin-top: 0.5em;
+            }
+        }
     }
 
     .left {
         float: left;
         width: 45%;
+
+        .alert {
+            margin-bottom: 0.5em;
+            margin-left: 1em;
+            margin-top: 0.5em;
+            font-weight: bold;
+            color: #D80027;
+        }
+
+        .reminder-group {
+            position: relative;
+
+            span {
+                position: absolute;
+                top: 60%;
+                right: 0;
+                &.first{
+                  top: 40%;
+                }
+            }
+        }
     }
 
     .right {
@@ -141,6 +172,19 @@ $cascade: #95A5A6;
             color: $main;
             font-weight: bold;
             border: 1.5px solid $main;
+        }
+        &#add-reminder {
+            width: 30%;
+            background-color: white;
+            color: $main;
+            border: 1px solid $main;
+            float: right;
+            margin-top: 2em;
+
+            &:focus,
+            &:hover {
+                background-color: #eee;
+            }
         }
     }
 }

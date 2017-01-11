@@ -56,16 +56,24 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" [(ngModel)]="goal.end_date.number_of_event" name="numberOfEvents"
 			 min='1' style="width: 10%; margin-top: 2em;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event(s)</span>
 		</div>
+		
+		<!-- Remider -->
 		<div class="clear"></div>
-		<div class="left" hidden="hidden">
+		<div class="left">
 			<label id="reminders" for="reminders">Reminders</label>
-			<button type="button">Add reminder</button>
-			<select>
-				<option value="0">At time of event</option>
-				<option value="1" selected>10 minutes before</option>
-				<option value="2">30 minutes before</option>
+			<div class="reminder-group" *ngFor="let item of reminders; let iI = index" id="{{item}}">
+			<select [class.first]="item == 'time_before_1'" id="select-{{item}}" (change)="setReminderValues(iI,$event.target.value)"
+				name="{{item}}" class="time-before" [(ngModel)]="reminderTypes[iI]">
+				<option *ngFor="let time of remindersList; let i = index" value="{{i}}">{{time}}</option>
 			</select>
+			<span class="fa fa-times" [class.first]="item == 'time_before_1'" style="float: right" (click)="deleteReminder(item)"></span>
+			<input type="time" id="input-{{item}}" *ngIf="reminderTypes[iI]=='7'" (blur)="reminderValues[iI]=$event.target.value" [value]="defaultTime"/>
+			</div>
+			<button type="button" name="addReminder" id="add-reminder" (click)="addReminder()" [hidden]="hiddenReminderButton">Add reminder</button>
 		</div>
+		<!-- End of Remider -->
+
+		<div class="right"></div>
 		<div class="clear"></div>
 		<div class="left">
 			<input [(ngModel)]="goal.is_auto" type="checkbox" id="is-auto" name='is-auto' value="autoUpdateFailed" style="width: 5%;" style="margin-top: 2em;"
@@ -76,7 +84,7 @@
 	<div class="form-group">
 		<div class="right" style="font-size: 16px;">
       <button type="submit">Save</button>
-			<button type="button" (click)="cancel()" id="cancel">Cancel</button>
+			<button type="button" (click)="log()" id="cancel">Cancel</button>
 			<div class="clear"></div>
 		</div>
 	</div>

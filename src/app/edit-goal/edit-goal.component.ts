@@ -26,6 +26,20 @@ export class EditGoalComponent implements OnInit {
     submitted = false;
     isDataLoaded = false;
     isSuitableYear = true;
+
+    remindersList = ['At the time of event', '10 minutes before', '30 minutes before',
+            '1 hour before', '2 hours before', '3 hours before', '12 hours before', 'Set time'];
+
+    uniqueArray: string[] = [];
+    reminders: string[] = [];
+    reminderValues: string[] = [];
+    reminderTypes: string[] = [];
+    reminderString: string;
+    reminderLength: number = 0;
+    defaultTime= '00:00';
+    convertArray: string[] = ['0', '10', '30', '60', '120', '180', '720', '00:00'];
+
+
     constructor(private goalService: GoalService, private route: ActivatedRoute,
         private location: Location, private router: Router) {
     };
@@ -35,6 +49,7 @@ export class EditGoalComponent implements OnInit {
         this.commonFunctions.changeBackground(false);
         this.goalService.getGoalsById(this.id).toPromise().then((data) => {
             this.goal = JSON.parse(data['_body']);
+            console.log(this.goal);
             this.commonFunctions.changeTitleContent(this.goal.goal_name);
             this.toRepetitionUnit();
 
@@ -56,6 +71,9 @@ export class EditGoalComponent implements OnInit {
             this.setDay();
             this.setDate();
             this.isDataLoaded = true;
+
+            this.reminderString = this.goal.time_before;
+            this.stringToReminders();
         }, (error) => {
             console.log(error['status']);
             this.router.navigate(['/pagenotfound']);
@@ -123,9 +141,13 @@ export class EditGoalComponent implements OnInit {
         }
     }
     log(): void {
-        console.log(this.goal);
-        console.log(this.day);
-        console.log(this.date);
+        this.createTheUniqueArray();
+        this.remindersToString();
+        console.log('Reminders: ' + this.reminders);
+        console.log('ReminderValues: ' + this.reminderValues);
+        console.log('ReminderTypes: ' + this.reminderTypes);
+        console.log('UniqueArray: ' + this.uniqueArray);
+        console.log('ReminderString: ' + this.reminderString);
     }
     cancel(): void {
         this.location.back();
@@ -144,7 +166,9 @@ export class EditGoalComponent implements OnInit {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.goal.token = currentUser.token;
         this.goal.email = currentUser.email;
-
+        this.createTheUniqueArray();
+        this.remindersToString();
+        this.goal.time_before = this.reminderString;
         this.goalService.editGoal(this.id, this.goal).then(() => this.router.navigate(['/detailview'])).catch((error) => {
             console.log(error);
         });
@@ -177,14 +201,12 @@ export class EditGoalComponent implements OnInit {
                 }
                 break;
             }
-            // tslint:disable-next-line:no-switch-case-fall-through
             case 3: {
-                if (this.goal.end_date.number_of_event == null){
+                if (this.goal.end_date.number_of_event == null) {
                     this.goal.end_date.number_of_event = 1;
                 }
                 break;
             }
-            // tslint:disable-next-line:no-switch-case-fall-through
             default: {
                 break;
             }
@@ -212,7 +234,6 @@ export class EditGoalComponent implements OnInit {
             default:
                 break;
         }
-        // console.log(this.unit);
     }
 
     checkNewEndDate(obj): void {
@@ -238,5 +259,52 @@ export class EditGoalComponent implements OnInit {
         function pad(s) { return (s < 10) ? '0' + s : s; }
         let d = date;
         return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-');
+    }
+    addReminder(): void {
+        this.reminders.push('reminder' + this.reminderLength);
+        this.reminderTypes.push('');
+        this.reminderValues.push('');
+        this.reminderLength++;
+    }
+    deleteReminder(name: string): void {
+        let index = this.reminders.indexOf(name);
+        if (index > -1) {
+            this.reminders.splice(index, 1);
+            this.reminderTypes.splice(index, 1);
+            this.reminderValues.splice(index, 1);
+        }
+    }
+    setReminderValues(para1, para2): void {
+        let num = parseInt(para2, 10);
+        this.reminderValues[para1] = this.convertArray[num];
+        this.createTheUniqueArray();
+    }
+    createTheUniqueArray() {
+        this.uniqueArray = [];
+        let length = this.reminderValues.length;
+        for (let i = 0; i < length; i++) {
+            let tmp = this.reminderValues[i];
+            if (this.uniqueArray.indexOf(tmp) < 0) {
+                this.uniqueArray.push(tmp);
+            }
+        }
+    }
+    remindersToString() {
+        this.reminderString = this.uniqueArray.join(',').trim();
+    }
+    stringToReminders() {
+        this.reminderValues = this.reminderString.split(',');
+        let len = this.reminderValues.length;
+        for (let i = 0; i < len; i++) {
+            let tmp = this.reminderValues[i];
+            if (tmp.indexOf(':') < 0) {
+                this.reminderTypes[i] = this.convertArray.indexOf(tmp).toString();
+            }else {
+                this.reminderTypes[i] = '7';
+                this.defaultTime = tmp;
+            }
+            this.reminders.push('reminder' + this.reminderLength);
+            this.reminderLength++;
+        }
     }
 }
