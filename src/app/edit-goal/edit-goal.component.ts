@@ -295,18 +295,34 @@ export class EditGoalComponent implements OnInit {
         this.reminderString = this.uniqueArray.join(',').trim();
     }
     stringToReminders() {
-        this.reminderValues = this.reminderString.split(',');
-        let len = this.reminderValues.length;
-        for (let i = 0; i < len; i++) {
-            let tmp = this.reminderValues[i];
-            if (tmp.indexOf(':') < 0) {
-                this.reminderTypes[i] = this.convertArray.indexOf(tmp).toString();
-            }else {
-                this.reminderTypes[i] = '7';
-                this.defaultTime = tmp;
+        if (this.reminderString != null) {
+            this.reminderValues = this.reminderString.split(',');
+            let len = this.reminderValues.length;
+            for (let i = 0; i < len; i++) {
+                let tmp = this.reminderValues[i];
+                if (tmp.indexOf(':') < 0) {
+                    this.reminderTypes[i] = this.convertArray.indexOf(tmp).toString();
+                }else {
+                    this.reminderTypes[i] = '7';
+                    this.defaultTime = tmp;
+                }
+                this.reminders.push('reminder' + this.reminderLength);
+                this.reminderLength++;
             }
-            this.reminders.push('reminder' + this.reminderLength);
-            this.reminderLength++;
+        }else {
+            return;
+        }
+    }
+    checkNumber(obj) {
+        if ( obj < 1) {
+            alert('The field for "Number of events" cannot be low than 1');
+            this.goal.end_date.number_of_event = 1;
+        }
+    }
+    checkNumber1(obj) {
+        if ( obj < 1) {
+            alert('The field for "Every ' + this.unit + '" cannot be low than 1');
+            this.goal.repetition.how_often = 1;
         }
     }
 }
