@@ -118,8 +118,8 @@
 <div id="sort-modal" class="modal" (mouseleave)="showSortMenu()">
     <div class="modal-content">
         <div class="modal-body sort">
-            <span class="close1" (click)="showSortMenu()">Close &times;</span>
-            <span><b>Sort by</b></span>
+            <div class="close1" (click)="showSortMenu()">Close &times;</div>
+            <span class="title"><b>Sort by</b></span>
             <span class="space"></span>
             <input type="radio" id="date-created" name="sort-type" value="1" [checked]="sortType == 1" (change)="sort()"> <span>Day created</span>
             <span class="space"></span>

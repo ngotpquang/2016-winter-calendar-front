@@ -90,7 +90,7 @@ export class ArchivedGoalsComponent extends LoadingPage implements OnInit {
         if (backgroundColor != "rgb(238, 238, 255)") {
             goalPanel.style.backgroundColor = "#eef";
         } else {
-            goalPanel.style.backgroundColor = "#fff";
+            goalPanel.style.backgroundColor = "#f1f1f1";
         }
 
         let checks = document.getElementsByClassName('checking');
