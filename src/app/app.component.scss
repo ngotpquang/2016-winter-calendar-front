@@ -194,3 +194,10 @@ main {
 .clear {
 	clear: both;
 }
+
+@media screen and (max-width: 375px) {
+    header {
+			width: 38em;
+			overflow: auto;
+		}
+}

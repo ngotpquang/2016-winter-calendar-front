@@ -252,8 +252,15 @@ $main: #1E824C;
         }
     }
 }
-@media screen and (max-width: 470px) {
-    // TODO
+@media screen and (max-width: 476px) {
+  .view {
+      .goal-panel {
+          width: 20em;
+          float: none !important;
+          margin: 0 auto;
+          overflow: auto;
+      }
+  }
 }
 
 .modal {
@@ -548,4 +555,7 @@ $main: #1E824C;
     .clear {
         clear: both;
     }
+}
+@media screen and (max-width: 375px) {
+
 }

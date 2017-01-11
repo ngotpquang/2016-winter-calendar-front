@@ -71,9 +71,9 @@ $cascade: #95A5A6;
         }
     }
 
-    input[type="time"]{
-      width: 90%;
-      margin-top: 0.5em;
+    input[type="time"] {
+        width: 90%;
+        margin-top: 0.5em;
     }
 
     textarea {
@@ -114,10 +114,11 @@ $cascade: #95A5A6;
 
             span {
                 position: absolute;
-                top: 60%;
+                top: 2.7em;
                 right: 0;
-                &.first{
-                  top: 40%;
+
+                &.first {
+                    top: 1.2em;
                 }
             }
         }
@@ -173,5 +174,44 @@ $cascade: #95A5A6;
                 background-color: #eee;
             }
         }
+    }
+}
+@media screen and (max-width: 1010px) {
+    .form-group {
+        width: 85%;
+
+        button {
+            &#add-reminder {
+                width: 50%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 651px) {
+    .form-group {
+        width: 95%;
+
+        button {
+            width: 100% !important;
+
+            &#add-reminder {
+                width: 100%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 375px) {
+    .form-group {
+        width: 100%;
+
+        .right {
+            width: 50%;
+        }
+    }
+}
+@media screen and (max-width: 545px) {
+    .form-group {
+      width: 30em;
+        overflow: auto;
     }
 }
