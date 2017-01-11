@@ -243,18 +243,6 @@ $main: #1E824C;
         opacity: 1;
     }
 }
-@media screen and (max-width: 1239px) {
-    .view {
-        .goal-panel {
-            width: 100%;
-            float: none !important;
-            margin: 0 auto;
-        }
-    }
-}
-@media screen and (max-width: 470px) {
-    // TODO
-}
 
 .modal {
     display: none;
@@ -356,19 +344,21 @@ $main: #1E824C;
                     color: $main;
                 }
 
-                span {
-                    &.close1 {
-                        color: $main;
-                        float: right;
-                        font-size: 14px;
-                        font-weight: bold;
+                div.close1 {
+                    color: $main;
+                    font-size: 12px;
+                    font-weight: bold;
+                    float: right;
+                    margin-right: 2em;
 
-                        &:focus,
-                        &:hover {
-                            text-decoration: underline;
-                            cursor: pointer;
-                        }
+                    &:focus,
+                    &:hover {
+                        text-decoration: underline;
+                        cursor: pointer;
                     }
+                }
+
+                span {
                     color: $main;
                     display: inline-block;
 
@@ -546,5 +536,139 @@ $main: #1E824C;
 
     .clear {
         clear: both;
+    }
+}
+@media screen and (max-width: 1365px) and (min-width: 768px) {
+    .view {
+        .goal-panel {
+            width: 100%;
+            float: none !important;
+            margin: 0 auto;
+        }
+
+        .label-container,
+        .label-container1 {
+            display: none;
+        }
+
+        a {
+            &.float,
+            &.float1 {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+            }
+        }
+
+        .my-float {
+            margin-top: 13px;
+        }
+    }
+
+    #sort-modal {
+        .modal-content {
+            .modal-body {
+                &.sort {
+                    font-size: 12px;
+                    padding: 10px 2px;
+
+                    .close1 {}
+
+                    span {
+                        width: 47%;
+
+                        &.space {
+                            display: none;
+                        }
+
+                        &.title {
+                            width: 100% !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px) and (min-width: 375px) {
+    .view {
+        .goal-panel {
+            font-size: 12px;
+            width: 100%;
+            float: none !important;
+            margin: 0 auto;
+
+            .goal-title {
+                #title {
+                    width: 56%;
+                    font-size: 12px;
+                }
+            }
+
+            .goal-detail {
+                display: none;
+            }
+        }
+
+        a {
+            &.float,
+            &.float1 {
+                width: 30px;
+                height: 30px;
+                bottom: 15px;
+            }
+        }
+
+        .my-float {
+            margin-top: 8px;
+        }
+
+        .label-container,
+        .label-container1 {
+            display: none;
+        }
+    }
+
+    #sort-modal {
+        .modal-content {
+            .modal-body {
+                &.sort {
+                    font-size: 12px;
+                    padding: 10px 2px;
+
+                    .close1 {
+                        float: right;
+                        margin-right: 2em;
+                        font-size: 12px;
+                    }
+
+                    span {
+                        width: 44%;
+
+                        &.space {
+                            display: none;
+                        }
+
+                        &.title {
+                            width: 100% !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #notification-delete {
+      .modal-body {
+        p {
+          font-size: 12px !important;
+        }
+        button {
+          font-size: 12px;
+          width: 5em;
+          &#ok {
+            margin-left: 17em;
+          }
+        }
+      }
     }
 }
