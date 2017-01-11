@@ -62,12 +62,12 @@
 		<div class="left">
 			<label id="reminders" for="reminders">Reminders</label>
 			<div class="reminder-group" *ngFor="let item of reminders; let iI = index" id="{{item}}">
-			<select [class.first]="item == 'time_before_1'" id="select-{{item}}"
+			<select [class.first]="item == 'time_before_1'" id="select-{{item}}" (change)="setReminderValues(iI,$event.target.value)"
 				name="{{item}}" class="time-before" [(ngModel)]="reminderTypes[iI]">
 				<option *ngFor="let time of remindersList; let i = index" value="{{i}}">{{time}}</option>
 			</select>
 			<span class="fa fa-times" [class.first]="item == 'time_before_1'" style="float: right" (click)="deleteReminder(item)"></span>
-			<input type="time" id="input-{{item}}" *ngIf="reminderTypes[iI]=='3'" value=""/>
+			<input type="time" id="input-{{item}}" *ngIf="reminderTypes[iI]=='7'" (blur)="reminderValues[iI]=$event.target.value" [value]="defaultTime"/>
 			</div>
 			<button type="button" name="addReminder" id="add-reminder" (click)="addReminder()" [hidden]="hiddenReminderButton">Add reminder</button>
 		</div>
@@ -84,7 +84,7 @@
 	<div class="form-group">
 		<div class="right" style="font-size: 16px;">
       <button type="submit">Save</button>
-			<button type="button" (click)="cancel()" id="cancel">Cancel</button>
+			<button type="button" (click)="log()" id="cancel">Cancel</button>
 			<div class="clear"></div>
 		</div>
 	</div>
