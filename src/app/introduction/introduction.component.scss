@@ -1,5 +1,5 @@
 $main: #1E824C;
-$background: #eee;
+$background: #ddd;
 $red: #D80027;
 
 p {
@@ -54,15 +54,16 @@ p {
         }
 
         &:hover {
-            background-color: rgba(255,255,255,0.4);
+            background-color: #f1f1f1;
 
             a {
                 color: #D80027;
             }
+
             hr {
-              width: 75%;
-              border-color: $red;
-              background-color: $red;
+                width: 75%;
+                border-color: $red;
+                background-color: $red;
             }
         }
     }
@@ -84,16 +85,17 @@ p {
         }
 
         &:hover {
-          background-color: rgba(255,255,255,0.4);
+            background-color: #f1f1f1;
 
-          a {
-              color: #D80027;
-          }
-          hr {
-            width: 75%;
-            border-color: $red;
-            background-color: $red;
-          }
+            a {
+                color: #D80027;
+            }
+
+            hr {
+                width: 75%;
+                border-color: $red;
+                background-color: $red;
+            }
         }
     }
 
@@ -115,20 +117,88 @@ p {
         }
 
         &:hover {
-          background-color: rgba(255,255,255,0.4);
+            background-color: #F1F1F1;
 
-          a {
-              color: #D80027;
-          }
-          hr {
-            width: 75%;
-            border-color: $red;
-            background-color: $red;
-          }
+            a {
+                color: #D80027;
+            }
+
+            hr {
+                width: 75%;
+                border-color: $red;
+                background-color: $red;
+            }
         }
     }
 
     .clear {
         clear: both;
+    }
+}
+@media screen and (max-width: 1335px) and (min-width: 768px) {
+    .welcome {
+        p {
+            width: 80%;
+            margin-top: 0.7em !important;
+        }
+    }
+
+    .info {
+        p {
+            // float: right;
+            // width: 65%;
+            margin-top: 0 !important;
+        }
+
+        img {
+            margin: 0.7em auto 0;
+        }
+    }
+
+    .logged-in {
+        p {
+            float: none !important;
+            margin-top: 0 !important;
+        }
+    }
+}
+@media screen and (max-width: 765px) and (min-width: 375px) {
+    .introduction {
+        font-size: 20px;
+
+        .welcome {
+            background: #f1f1f1;
+
+            p {
+                width: 100%;
+                margin-top: 0 !important;
+            }
+
+            img {
+                display: none;
+
+                &.iphone {
+                    display: block;
+                    float: none !important;
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+        }
+
+        .info {
+            display: none;
+        }
+
+        .logged-in {
+            p {
+                float: none !important;
+                margin-top: 0 !important;
+            }
+            img {
+              width: 50px;
+              height: 50px;
+            }
+        }
     }
 }
