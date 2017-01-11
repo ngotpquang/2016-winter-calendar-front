@@ -204,6 +204,14 @@ $cascade: #95A5A6;
 
         .right {
             width: 50%;
+            button{
+              width: 100%;
+            }
+        }
+        button {
+            &#add-reminder {
+                width: 100%;
+            }
         }
     }
 }

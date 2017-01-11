@@ -187,6 +187,28 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
         }
     }
 
+    checkNumber(obj) {
+        if ( obj < 1) {
+            let repetitionNumber = <HTMLInputElement>document.getElementById('repetition-number');
+            repetitionNumber.value = "1";
+        }
+    }
+
+    checkNumber1(obj) {
+        if ( obj < 1) {
+            let repetitionNumber = <HTMLInputElement>document.getElementById('number-of-event');
+            repetitionNumber.value = "1";
+        }
+    }
+
+    checkEndDate(obj){
+      console.log(obj  + "|" + this.startTime);
+      if (obj < this.startTime.split('T')[0]){
+        let endDateInput = <HTMLInputElement>document.getElementById('until-date');
+        endDateInput.value = this.commonFunctions.formatStartDate(this.untilDate()).split('T')[0];
+      }
+    }
+
     addNewGoal(): void {
         let input = this.createNewGoalForm.value;
         if (input.goal_name != "") {
@@ -204,18 +226,24 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
             }
             let specific_end_date = null;
             if (input.type_of_end_date == 2) {
-                if (input.specific_end_date == null) {
+                if (input.specific_end_date == null || input.specific_end_date < this.startTime.split('T')[0]) {
                     specific_end_date = this.untilDate().toString();
                 } else {
                     specific_end_date = input.specific_end_date;
                 }
             }
+            // console.log("End date: " + specific_end_date);
             if (input.type_of_repetition == null) {
                 input.type_of_repetition = 1;
             }
-            if (input.how_often == null) {
+            if (input.how_often == null || parseInt(input.how_often) < 0) {
                 input.how_often = 1;
             }
+            // console.log("Often: " + input.how_often);
+            if (input.number_of_event == null || parseInt(input.number_of_event) < 0) {
+                input.number_of_event = 1;
+            }
+            // console.log("Num events: " + input.number_of_event);
             if (input.type_of_end_date == null) {
                 input.type_of_end_date = 1;
             }
@@ -227,7 +255,6 @@ export class CreateNewGoalComponent extends LoadingPage implements OnInit {
             for (let time of this.timeBefores) {
                 timeBeforeGroup.push(<HTMLElement>document.getElementById(time));
             }
-            let startHours = new Date
             if (input.time_before_1 != null && timeBeforeGroup[0].hidden != true) {
                 if (input.time_before_1 == "7") {
                     this.commonFunctions.pushReminder(time_before, (input.time_before_1_t == null ? this.startTime.split('T')[1] : input.time_before_1_t));

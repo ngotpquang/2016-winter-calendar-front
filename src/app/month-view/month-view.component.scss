@@ -587,18 +587,17 @@ $red: #D80027;
             .days {
                 li {
                     width: 13%;
-                    padding: 1em 0;
+                    padding: 0.2em 0;
 
                     &.fail,
                     &.pass {
-                        background-position: 12px 21px;
                     }
                 }
             }
         }
 
         .tooltiptext {
-            left: 19%;
+            left: 17%;
             bottom: 5em;
             width: auto;
             padding: 5px;
@@ -606,7 +605,7 @@ $red: #D80027;
 
         .tooltiptext1 {
             padding: 5px;
-            left: 6%;
+            left: 4%;
             bottom: 5em;
             width: auto;
         }
