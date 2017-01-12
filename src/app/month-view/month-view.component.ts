@@ -103,7 +103,8 @@ export class MonthViewComponent implements OnInit {
         } else if (this.goal.end_date.type_of_end_date == 3) {
             endDate.innerHTML = this.commonFunctions.getEndDateType(this.goal.end_date.type_of_end_date) + this.goal.end_date.number_of_event + " event(s)";
         }
-        if (this.goal.time_before != null) {
+        reminders.innerHTML = "";
+        if (this.goal.time_before != null && this.goal.time_before != "") {
             let remindersList = this.goal.time_before.split(',');
             for (let reminder of remindersList) {
                 if (remindersList.indexOf(reminder) < (remindersList.length - 1)){
