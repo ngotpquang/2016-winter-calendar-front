@@ -115,7 +115,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         modal.style.display = "none";
         for (let index in checks) {
             if ((<HTMLInputElement>checks[index]).checked == true) {
-                modal.style.display = "block !important";
+                modal.style.display = "block";
             }
         }
     }
@@ -124,7 +124,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         let modal = document.getElementById('deleting');
         let span = document.getElementsByClassName("close")[0];
         if (showed) {
-            modal.style.display = "block !important";
+            modal.style.display = "block";
         } else {
             modal.style.display = "none";
         }
@@ -134,7 +134,7 @@ export class DetailViewComponent extends LoadingPage implements OnInit {
         let sortModal = document.getElementById('notification-delete');
         let display = sortModal.style.display;
         if (display != 'block') {
-            sortModal.style.display = "block !important";
+            sortModal.style.display = "block";
         } else {
             sortModal.style.display = "none";
         }

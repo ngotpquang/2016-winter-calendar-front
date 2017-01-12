@@ -657,18 +657,21 @@ $main: #1E824C;
             }
         }
     }
+
     #notification-delete {
-      .modal-body {
-        p {
-          font-size: 12px !important;
+        .modal-body {
+            p {
+                font-size: 12px !important;
+            }
+
+            button {
+                font-size: 12px;
+                width: 5em;
+
+                &#ok {
+                    margin-left: 17em;
+                }
+            }
         }
-        button {
-          font-size: 12px;
-          width: 5em;
-          &#ok {
-            margin-left: 17em;
-          }
-        }
-      }
     }
 }
