@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { CommonFunctions } from '../shared/common-functions';
 import { Goal, Repetition, EndDate } from '../shared/goal';
 import { GoalService } from '../goal/goal.service';
-
+const limitReminder = 5;
 @Component({
     moduleId: '' + module.id,
     selector: 'app-edit-goal',
@@ -69,11 +69,12 @@ export class EditGoalComponent implements OnInit {
             };
             this.setDay();
             this.setDate();
-
-            let tmpString = this.goal.time_before;
-            if (tmpString !== '') {
-                this.reminderString = this.goal.time_before;
-                this.stringToReminders();
+            if (this.goal.time_before != null) {
+                let tmpString = this.goal.time_before;
+                if (tmpString !== '') {
+                    this.reminderString = this.goal.time_before;
+                    this.stringToReminders();
+                }
             }
             this.isDataLoaded = true;
         }, (error) => {
@@ -171,7 +172,11 @@ export class EditGoalComponent implements OnInit {
         this.createTheUniqueArray();
         this.remindersToString();
         this.goal.time_before = this.reminderString;
-        this.goalService.editGoal(this.id, this.goal).then(() => this.router.navigate(['/detailview'])).catch((error) => {
+        this.goalService.editGoal(this.id, this.goal).then(() => {
+            let fullYear = new Date().getFullYear();
+            let month = new Date().getMonth() + 1;
+            this.router.navigate(['/monthview', this.goal.id, fullYear, month]);
+        }).catch((error) => {
             console.log(error);
         });
     }
@@ -263,6 +268,10 @@ export class EditGoalComponent implements OnInit {
         return [d.getFullYear(), pad(d.getMonth() + 1), pad(d.getDate())].join('-');
     }
     addReminder(): void {
+        if (this.reminders.length >= limitReminder) {
+            alert('You should only have 5 reminders for each goal');
+            return;
+        }
         this.reminders.push('reminder' + this.reminderLength);
         this.reminderTypes.push('');
         this.reminderValues.push('');
@@ -279,7 +288,6 @@ export class EditGoalComponent implements OnInit {
     setReminderValues(para1, para2): void {
         let num = parseInt(para2, 10);
         this.reminderValues[para1] = this.convertArray[num];
-        this.createTheUniqueArray();
     }
     createTheUniqueArray() {
         this.uniqueArray = [];
