@@ -404,7 +404,17 @@ $red: #D80027;
         cursor: pointer;
     }
 }
-@media screen and (min-width: 1366px) and (max-width: 1919px) {}
+@media screen and (min-width: 1366px) and (max-width: 1919px) {
+  .right-view {
+      .tooltiptext {
+          bottom: 25em;
+      }
+
+      .tooltiptext1 {
+          bottom: 25em;
+      }
+  }
+}
 @media screen and (min-width: 1024px) and (max-width: 1322px) {
     .left-view {
         display: none;

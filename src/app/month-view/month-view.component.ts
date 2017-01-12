@@ -40,6 +40,10 @@ export class MonthViewComponent implements OnInit {
             this.displayGoalInfor();
             this.openModal(false);
             this.hiddenWeekdays = false;
+            let editButton = <HTMLElement>document.getElementById('edit-button');
+            if (this.goal.is_archived == true){
+              editButton.hidden = true;
+            }
         }, error => {
             console.log(error['status']);
             this.router.navigate(['/pagenotfound']);
