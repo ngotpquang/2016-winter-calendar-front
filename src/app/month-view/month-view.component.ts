@@ -236,19 +236,18 @@ export class MonthViewComponent implements OnInit {
             let month = this.getMonth(monthName.innerHTML) + 1;
             let year = <HTMLElement>document.getElementById('year');
             let fullDate = year.innerHTML + "-" + month + "-" + date.innerHTML;
-            let markDate = new Date(fullDate).setHours(0, 0, 0, 0);
-            let startDate = new Date(this.goal.start_date.split('T')[0]).setHours(0, 0, 0, 0);
-            let today = new Date().setHours(0, 0, 0, 0);
+            let markDate = this.commonFunctions.formatStartDate(new Date(fullDate)).split('T')[0];
+            let startDate = this.goal.start_date.split('T')[0];
+            let today = this.commonFunctions.formatStartDate(new Date()).split('T')[0];
             if (this.goal.end_date.type_of_end_date == 2 || this.goal.end_date.type_of_end_date == 3) {
-                let endDate = new Date(this.goal.end_date.specific_end_date).setHours(0, 0, 0, 0);
                 // console.log(endDate);
-                if (endDate > 0) {
-                    if (today > endDate) {
-                        today = endDate;
+                if (!isNaN(Date.parse(this.goal.end_date.specific_end_date))) {
+                    if (today > this.goal.end_date.specific_end_date) {
+                        today = this.goal.end_date.specific_end_date;
                     }
                 }
             }
-            // console.log(this.goal.start_date + "|" + new Date(this.goal.start_date.split('T')[0]) + "\n" + new Date(fullDate) + "\n" + new Date());
+            console.log(markDate + "\t" + startDate + "\t" + today + "\t" + this.goal.end_date.specific_end_date);
             if (markDate >= startDate && markDate <= today) {
                 if (date.classList.item(0) == null || date.classList.item(0) == 'active') {
                     if (date.classList.item(1) == 'pass') {

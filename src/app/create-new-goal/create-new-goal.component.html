@@ -26,7 +26,7 @@
 					</div>
 					<div class="right">
 	                every&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input formControlName="how_often" type="number" min='1' class="inline-input" style="width: 10%; margin-top: 2.7em;"/>
+						<input formControlName="how_often" id="repetition-number" (blur)="checkNumber($event.target.value)" type="number" min='1' class="inline-input" style="width: 10%; margin-top: 2.7em;"/>
 	                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="repetitionFrequencyType">day(s)</span>
 					</div>
 					<div class="clear"></div>
@@ -46,8 +46,8 @@
 						</select>
 				</div>
 				<div class="right">
-					<input type="date" formControlName="specific_end_date" id="until-date" hidden="hidden" value="{{untilDate() | date:'yyyy-MM-dd'}}" style="margin-top: 2em;" />
-					<span id="number-events" hidden="hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" formControlName="number_of_event" min='1' style="width: 10%; margin-top: 2em;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event(s)</span>
+					<input type="date" formControlName="specific_end_date" id="until-date" hidden="hidden" (blur)="checkEndDate($event.target.value)" value="{{untilDate() | date:'yyyy-MM-dd'}}" style="margin-top: 2em;" />
+					<span id="number-events" hidden="hidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" formControlName="number_of_event" id="number-of-event" (blur)="checkNumber1($event.target.value)" min='1' style="width: 10%; margin-top: 2em;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event(s)</span>
 				</div>
 				<div class="clear"></div>
 				<div class="left">
