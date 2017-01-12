@@ -74,6 +74,7 @@ export class MonthViewComponent implements OnInit {
         let progress = <HTMLElement>document.getElementById('progress');
         let currentChain = <HTMLElement>document.getElementById('current-chain');
         let endDate = <HTMLElement>document.getElementById('end-date');
+        let reminders = <HTMLElement>document.getElementById('reminders');
         let routeListView = <HTMLElement>document.getElementById('route-list-view');
 
         startDate.innerHTML = this.commonFunctions.displayStartDate(this.goal.start_date);
@@ -97,6 +98,18 @@ export class MonthViewComponent implements OnInit {
             endDate.innerHTML = this.commonFunctions.getEndDateType(this.goal.end_date.type_of_end_date) + this.commonFunctions.displayEndDate(this.goal.end_date.specific_end_date) + ".";
         } else if (this.goal.end_date.type_of_end_date == 3) {
             endDate.innerHTML = this.commonFunctions.getEndDateType(this.goal.end_date.type_of_end_date) + this.goal.end_date.number_of_event + " event(s)";
+        }
+        if (this.goal.time_before != null) {
+            let remindersList = this.goal.time_before.split(',');
+            for (let reminder of remindersList) {
+                if (remindersList.indexOf(reminder) < (remindersList.length - 1)){
+                  reminders.innerHTML += this.commonFunctions.labelForReminder(reminder.trim()) + "<br/>";
+                } else {
+                  reminders.innerHTML += this.commonFunctions.labelForReminder(reminder.trim());
+                }
+            }
+        } else {
+          reminders.innerHTML = "No reminders";
         }
 
         if (this.goal.is_archived == true) {
@@ -168,9 +181,9 @@ export class MonthViewComponent implements OnInit {
     }
 
     navigateToYearView(): void {
-      let year = <HTMLElement>document.getElementById('year');
-      let fullYear = year.innerHTML;
-      this.router.navigate(['/yearview', this.goal.id, fullYear]);
+        let year = <HTMLElement>document.getElementById('year');
+        let fullYear = year.innerHTML;
+        this.router.navigate(['/yearview', this.goal.id, fullYear]);
     }
 
     displayCalendar(month, fullYear) {

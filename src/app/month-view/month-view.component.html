@@ -4,116 +4,119 @@
     </div>
 </div>
 <div class="left-view" [class.hidden]="hiddenWeekdays">
-  <p>
-    Goal details
-  </p>
-  <a (click)="routeListView()" id="route-list-view"></a>
-  <label for="description">Description: </label>
-  <span id="description">
+    <p>
+        Goal details
+    </p>
+    <a (click)="routeListView()" id="route-list-view"></a>
+    <label for="description">Description: </label>
+    <span id="description">
   </span>
-  <br>
-  <label for="start-date">Start date: </label>
-  <span id="start-date">
+    <br>
+    <label for="start-date">Start date: </label>
+    <span id="start-date">
   </span>
-  <br>
-  <label for="repetition">Repetition: </label>
-  <span id="repetition">
+    <br>
+    <label for="repetition">Repetition: </label>
+    <span id="repetition">
   </span>
-  <br>
-  <label for="best-chain">Best chain: </label>
-  <span id="best-chain">
+    <br>
+    <label for="best-chain">Best chain: </label>
+    <span id="best-chain">
   </span>
-  <br>
-  <label for="current-chain">Current chain: </label>
-  <span id="current-chain">
+    <br>
+    <label for="current-chain">Current chain: </label>
+    <span id="current-chain">
   </span>
-  <br>
-  <label for="progress">Progress: </label>
-  <span id="progress">
+    <br>
+    <label for="progress">Progress: </label>
+    <span id="progress">
   </span>
-  <br>
-  <label for="end-date">End date: </label>
-  <span id="end-date">
+    <br>
+    <label for="end-date">End date: </label>
+    <span id="end-date">
   </span>
-  <br />
-  <br />
-
+    <br>
+    <label for="reminders">Reminders: </label>
+    <span id="reminders">
+</span>
+    <br />
+    <br />
 </div>
 <div class="right-view">
-  <div class="item" [class.hidden]="hiddenWeekdays">
-      <div class="month">
-          <ul>
-              <li class="prev" (click)="previousMonth()">❮</li>
-              <li class="next" (click)="nextMonth()">❯</li>
-              <li style="text-align:center" id="monthName" value=""></li>
-              <li style="font-size:18px; text-align:center" id="year" value="" (click)="navigateToYearView()"></li>
-          </ul>
-      </div>
+    <div class="item" [class.hidden]="hiddenWeekdays">
+        <div class="month">
+            <ul>
+                <li class="prev" (click)="previousMonth()">❮</li>
+                <li class="next" (click)="nextMonth()">❯</li>
+                <li style="text-align:center" id="monthName" value=""></li>
+                <li style="font-size:18px; text-align:center" id="year" value="" (click)="navigateToYearView()"></li>
+            </ul>
+        </div>
 
-      <ul class="weekdays" [class.hidden]="hiddenWeekdays">
-          <li>Mon</li>
-          <li>Tue</li>
-          <li>Wed</li>
-          <li>Thu</li>
-          <li>Fri</li>
-          <li>Sat</li>
-          <li>Sun</li>
-      </ul>
-      <ul class="days" id="calendar">
-        <li id="1" (click)="displayDate(1)">&nbsp;</li>
-        <li id="2" (click)="displayDate(2)">&nbsp;</li>
-        <li id="3" (click)="displayDate(3)">&nbsp;</li>
-        <li id="4" (click)="displayDate(4)">&nbsp;</li>
-        <li id="5" (click)="displayDate(5)">&nbsp;</li>
-        <li id="6" (click)="displayDate(6)">&nbsp;</li>
-        <li id="7" (click)="displayDate(7)">&nbsp;</li>
-        <li id="8" (click)="displayDate(8)">&nbsp;</li>
-        <li id="9" (click)="displayDate(9)">&nbsp;</li>
-        <li id="10" (click)="displayDate(10)">&nbsp;</li>
-        <li id="11" (click)="displayDate(11)">&nbsp;</li>
-        <li id="12" (click)="displayDate(12)">&nbsp;</li>
-        <li id="13" (click)="displayDate(13)">&nbsp;</li>
-        <li id="14" (click)="displayDate(14)">&nbsp;</li>
-        <li id="15" (click)="displayDate(15)">&nbsp;</li>
-        <li id="16" (click)="displayDate(16)">&nbsp;</li>
-        <li id="17" (click)="displayDate(17)">&nbsp;</li>
-        <li id="18" (click)="displayDate(18)">&nbsp;</li>
-        <li id="19" (click)="displayDate(19)">&nbsp;</li>
-        <li id="20" (click)="displayDate(20)">&nbsp;</li>
-        <li id="21" (click)="displayDate(21)">&nbsp;</li>
-        <li id="22" (click)="displayDate(22)">&nbsp;</li>
-        <li id="23" (click)="displayDate(23)">&nbsp;</li>
-        <li id="24" (click)="displayDate(24)">&nbsp;</li>
-        <li id="25" (click)="displayDate(25)">&nbsp;</li>
-        <li id="26" (click)="displayDate(26)">&nbsp;</li>
-        <li id="27" (click)="displayDate(27)">&nbsp;</li>
-        <li id="28" (click)="displayDate(28)">&nbsp;</li>
-        <li id="29" (click)="displayDate(29)">&nbsp;</li>
-        <li id="30" (click)="displayDate(30)">&nbsp;</li>
-        <li id="31" (click)="displayDate(31)">&nbsp;</li>
-        <li id="32" (click)="displayDate(32)">&nbsp;</li>
-        <li id="33" (click)="displayDate(33)">&nbsp;</li>
-        <li id="34" (click)="displayDate(34)">&nbsp;</li>
-        <li id="35" (click)="displayDate(35)">&nbsp;</li>
-        <li id="36" (click)="displayDate(36)">&nbsp;</li>
-        <li id="37" (click)="displayDate(37)">&nbsp;</li>
-        <li id="38" (click)="displayDate(38)">&nbsp;</li>
-        <li id="39" (click)="displayDate(39)">&nbsp;</li>
-        <li id="40" (click)="displayDate(40)">&nbsp;</li>
-        <li id="41" (click)="displayDate(41)">&nbsp;</li>
-        <li id="42" (click)="displayDate(42)">&nbsp;</li>
-      </ul>
-  </div>
-  <a class="float" id="edit-button" (click)="editGoal()">
-      <i class="fa fa-pencil my-float"></i>
-  </a>
-  <div class="label-container">
-      <div class="label-text">Edit this goal</div>
-      <i class="fa fa-play label-arrow"></i>
-  </div>
-  <a class="float1" id="back-button" (click)="routeListView()">
-      <i class="fa fa-arrow-left my-float1"></i><a (click)="routeListView()"> Back</a>
-  </a>
-  <span class="tooltiptext" id="show-infor">Goal is archived and not able to edit!</span>
-  <span class="tooltiptext1" id="show-infor1">Day is in future or after end date or before start day!</span>
+        <ul class="weekdays" [class.hidden]="hiddenWeekdays">
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Wed</li>
+            <li>Thu</li>
+            <li>Fri</li>
+            <li>Sat</li>
+            <li>Sun</li>
+        </ul>
+        <ul class="days" id="calendar">
+            <li id="1" (click)="displayDate(1)">&nbsp;</li>
+            <li id="2" (click)="displayDate(2)">&nbsp;</li>
+            <li id="3" (click)="displayDate(3)">&nbsp;</li>
+            <li id="4" (click)="displayDate(4)">&nbsp;</li>
+            <li id="5" (click)="displayDate(5)">&nbsp;</li>
+            <li id="6" (click)="displayDate(6)">&nbsp;</li>
+            <li id="7" (click)="displayDate(7)">&nbsp;</li>
+            <li id="8" (click)="displayDate(8)">&nbsp;</li>
+            <li id="9" (click)="displayDate(9)">&nbsp;</li>
+            <li id="10" (click)="displayDate(10)">&nbsp;</li>
+            <li id="11" (click)="displayDate(11)">&nbsp;</li>
+            <li id="12" (click)="displayDate(12)">&nbsp;</li>
+            <li id="13" (click)="displayDate(13)">&nbsp;</li>
+            <li id="14" (click)="displayDate(14)">&nbsp;</li>
+            <li id="15" (click)="displayDate(15)">&nbsp;</li>
+            <li id="16" (click)="displayDate(16)">&nbsp;</li>
+            <li id="17" (click)="displayDate(17)">&nbsp;</li>
+            <li id="18" (click)="displayDate(18)">&nbsp;</li>
+            <li id="19" (click)="displayDate(19)">&nbsp;</li>
+            <li id="20" (click)="displayDate(20)">&nbsp;</li>
+            <li id="21" (click)="displayDate(21)">&nbsp;</li>
+            <li id="22" (click)="displayDate(22)">&nbsp;</li>
+            <li id="23" (click)="displayDate(23)">&nbsp;</li>
+            <li id="24" (click)="displayDate(24)">&nbsp;</li>
+            <li id="25" (click)="displayDate(25)">&nbsp;</li>
+            <li id="26" (click)="displayDate(26)">&nbsp;</li>
+            <li id="27" (click)="displayDate(27)">&nbsp;</li>
+            <li id="28" (click)="displayDate(28)">&nbsp;</li>
+            <li id="29" (click)="displayDate(29)">&nbsp;</li>
+            <li id="30" (click)="displayDate(30)">&nbsp;</li>
+            <li id="31" (click)="displayDate(31)">&nbsp;</li>
+            <li id="32" (click)="displayDate(32)">&nbsp;</li>
+            <li id="33" (click)="displayDate(33)">&nbsp;</li>
+            <li id="34" (click)="displayDate(34)">&nbsp;</li>
+            <li id="35" (click)="displayDate(35)">&nbsp;</li>
+            <li id="36" (click)="displayDate(36)">&nbsp;</li>
+            <li id="37" (click)="displayDate(37)">&nbsp;</li>
+            <li id="38" (click)="displayDate(38)">&nbsp;</li>
+            <li id="39" (click)="displayDate(39)">&nbsp;</li>
+            <li id="40" (click)="displayDate(40)">&nbsp;</li>
+            <li id="41" (click)="displayDate(41)">&nbsp;</li>
+            <li id="42" (click)="displayDate(42)">&nbsp;</li>
+        </ul>
+    </div>
+    <a class="float" id="edit-button" (click)="editGoal()">
+        <i class="fa fa-pencil my-float"></i>
+    </a>
+    <div class="label-container">
+        <div class="label-text">Edit this goal</div>
+        <i class="fa fa-play label-arrow"></i>
+    </div>
+    <a class="float1" id="back-button" (click)="routeListView()">
+        <i class="fa fa-arrow-left my-float1"></i><a (click)="routeListView()"> Back</a>
+    </a>
+    <span class="tooltiptext" id="show-infor">Goal is archived and not able to edit!</span>
+    <span class="tooltiptext1" id="show-infor1">Day is in future or after end date or before start day!</span>
 </div>

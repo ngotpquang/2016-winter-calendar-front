@@ -343,6 +343,19 @@ export class CommonFunctions implements OnInit {
         }
     }
 
+    labelForReminder(time: string): string {
+        switch (time) {
+            case '0': return "At the time of event.";
+            case '10': return "10 minutes before.";
+            case '30': return "30 minutes before.";
+            case '60': return "1 hour before.";
+            case '120': return "2 hours before.";
+            case '180': return "3 hours before.";
+            case '720': return "12 hours before.";
+            default: return "At " + time + " on today.";
+        }
+    }
+
     pushReminder(result: string[], input: string) {
         for (let item of result) {
             if (input == item) {
