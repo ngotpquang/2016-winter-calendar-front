@@ -173,9 +173,10 @@ export class EditGoalComponent implements OnInit {
         this.remindersToString();
         this.goal.time_before = this.reminderString;
         this.goalService.editGoal(this.id, this.goal).then(() => {
-            let fullYear = new Date().getFullYear();
+            /*let fullYear = new Date().getFullYear();
             let month = new Date().getMonth() + 1;
-            this.router.navigate(['/monthview', this.goal.id, fullYear, month]);
+            this.router.navigate(['/monthview', this.goal.id, fullYear, month]);*/
+            this.location.back();
         }).catch((error) => {
             console.log(error);
         });
